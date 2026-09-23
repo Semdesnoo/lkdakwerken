@@ -4,6 +4,7 @@ import './globals.css';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
+import { WhatsappFloat } from '@/components/WhatsappFloat';
 
 // Body font: Inter
 const inter = Inter({
@@ -105,6 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="flex-1">{children}</main>
         <Footer />
         <ScrollReveal />
+        <WhatsappFloat />
       </body>
     </html>
   );

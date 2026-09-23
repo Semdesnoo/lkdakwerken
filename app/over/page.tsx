@@ -76,7 +76,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Werkwijze / Team aanpak */}
-      <section id="team" className="section-pad bg-paper-50 scroll-mt-32">
+      <section className="section-pad bg-paper-50 scroll-mt-32">
         <div className="container-tight">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <div className="eyebrow mb-4">Werkwijze</div>

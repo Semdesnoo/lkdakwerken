@@ -27,7 +27,6 @@ const navItems: NavItem[] = [
     label: 'Over Ons',
     items: [
       { href: '/over', label: 'Ons verhaal', desc: 'Wie zijn wij en waar we voor staan' },
-      { href: '/over#team', label: 'Team', desc: 'De mensen achter LK Dakwerken' },
       { href: '/over#projecten', label: 'Alle projecten', desc: 'Onze recente projecten' },
     ],
   },
@@ -35,16 +34,9 @@ const navItems: NavItem[] = [
 ];
 
 export function Navigation() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -79,21 +71,13 @@ export function Navigation() {
   return (
     <>
       <header className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] max-w-7xl">
-        <div
-          className={cn(
-            'flex items-center justify-between gap-4 md:gap-6 px-4 md:px-6 py-2.5 md:py-3 rounded-2xl transition-all duration-300',
-            scrolled ? 'nav-floating text-ink-900' : 'nav-floating-dark text-white'
-          )}
-        >
+        <div className="flex items-center justify-between gap-4 md:gap-6 px-4 md:px-6 py-2.5 md:py-3 rounded-2xl transition-all duration-300 nav-floating text-ink-900">
           {/* Logo links met LK Dakwerken merk-teken */}
           <Link href="/" aria-label="LK Dakwerken home" className="flex items-center gap-3 shrink-0 group">
             <img
               src="/lkdakwerken/logo.svg"
               alt="LK Dakwerken"
-              className={cn(
-                'h-7 md:h-9 w-auto transition-all duration-300',
-                scrolled ? '' : 'brightness-0 invert'
-              )}
+              className="h-7 md:h-9 w-auto transition-all duration-300"
             />
           </Link>
 
@@ -114,11 +98,7 @@ export function Navigation() {
                       aria-expanded={isOpen}
                       className={cn(
                         'group relative flex items-center gap-1.5 px-3 xl:px-4 py-2 text-[15px] font-display font-semibold transition-all duration-200',
-                        isOpen
-                          ? 'text-blue-500'
-                          : scrolled
-                            ? 'text-ink-900 hover:text-blue-500'
-                            : 'text-white hover:text-blue-300'
+                        isOpen ? 'text-blue-500' : 'text-ink-900 hover:text-blue-500'
                       )}
                     >
                       {item.label}
@@ -138,10 +118,7 @@ export function Navigation() {
                   ) : (
                     <Link
                       href={item.href!}
-                      className={cn(
-                        'group relative inline-flex items-center px-3 xl:px-4 py-2 text-[15px] font-display font-semibold transition-all duration-200',
-                        scrolled ? 'text-ink-900 hover:text-blue-500' : 'text-white hover:text-blue-300'
-                      )}
+                      className="group relative inline-flex items-center px-3 xl:px-4 py-2 text-[15px] font-display font-semibold text-ink-900 hover:text-blue-500 transition-all duration-200"
                     >
                       {item.label}
                       <span className="absolute bottom-0 left-3 right-3 xl:left-4 xl:right-4 h-0.5 bg-blue-500 origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
@@ -157,30 +134,23 @@ export function Navigation() {
           <div className="flex items-center gap-2 md:gap-3 shrink-0">
             <a
               href="tel:+311****3824"
-              className={cn(
-                'hidden xl:flex items-center gap-2 px-3 py-2 rounded-full text-xs font-mono transition-colors',
-                scrolled ? 'text-ink-700 hover:bg-paper-100' : 'text-white/80 hover:bg-white/10'
-              )}
-              aria-label="Bel ons"
+              className="inline-flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full text-ink-700 hover:bg-paper-100 hover:text-blue-500 transition-colors"
+              aria-label="Bel ons: 010 - 271 38 24"
             >
-              <Phone className="w-3.5 h-3.5" />
-              <span>010 - 271 38 24</span>
+              <Phone className="w-4 h-4 md:w-[1.05rem] md:h-[1.05rem]" />
             </a>
 
             <Link
               href="/offerte"
-              className="inline-flex items-center gap-2 px-4 md:px-5 py-2.5 text-sm font-semibold rounded-full bg-blue-500 hover:bg-blue-600 text-white transition-all duration-200 shadow-sm hover:shadow-md hover:scale-[1.02]"
+              className="btn-offerte inline-flex items-center gap-2 px-4 md:px-5 py-2.5 text-sm font-semibold rounded-full bg-blue-500 text-white"
             >
-              Offerte
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span className="btn-offerte-label">Offerte</span>
+              <ArrowRight className="btn-offerte-arrow w-3.5 h-3.5" />
             </Link>
 
             <button
               onClick={() => setMobileOpen(true)}
-              className={cn(
-                'lg:hidden w-9 h-9 rounded-full flex items-center justify-center transition-colors',
-                scrolled ? 'hover:bg-paper-100 text-ink-700' : 'hover:bg-white/10 text-white'
-              )}
+              className="lg:hidden w-9 h-9 rounded-full flex items-center justify-center hover:bg-paper-100 text-ink-700 transition-colors"
               aria-label="Open menu"
             >
               <Menu className="w-4 h-4" />
@@ -263,25 +233,24 @@ export function Navigation() {
         </div>
       </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — altijd wit voor consistente header-stijl */}
       <div
         className={cn(
-          'fixed inset-0 z-[60] lg:hidden flex flex-col transition-transform duration-300',
-          scrolled ? 'bg-white text-ink-900' : 'bg-ink-900 text-white',
+          'fixed inset-0 z-[60] lg:hidden flex flex-col transition-transform duration-300 bg-white text-ink-900',
           mobileOpen ? 'translate-x-0' : 'translate-x-full'
         )}
       >
-        <div className={cn('px-6 py-5 flex items-center justify-between border-b', scrolled ? 'border-paper-200' : 'border-white/10')}>
+        <div className="px-6 py-5 flex items-center justify-between border-b border-paper-200">
           <Link href="/" onClick={() => setMobileOpen(false)} aria-label="LK Dakwerken" className="flex items-center gap-2">
             <img
               src="/lkdakwerken/logo.svg"
               alt="LK Dakwerken"
-              className={cn('h-9 w-auto', scrolled ? '' : 'brightness-0 invert')}
+              className="h-9 w-auto"
             />
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
-            className={cn('w-9 h-9 rounded-full flex items-center justify-center', scrolled ? 'hover:bg-paper-100' : 'hover:bg-white/10')}
+            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-paper-100"
             aria-label="Sluit menu"
           >
             <X className="w-5 h-5" />
@@ -294,13 +263,12 @@ export function Navigation() {
               key={item.label}
               item={item}
               index={i}
-              scrolled={scrolled}
               onClose={() => setMobileOpen(false)}
             />
           ))}
         </nav>
 
-        <div className={cn('px-6 py-6 border-t space-y-4', scrolled ? 'border-paper-200' : 'border-white/10')}>
+        <div className="px-6 py-6 border-t border-paper-200 space-y-4">
           <a href="tel:+311****3824" className="flex items-center gap-3 font-mono text-sm">
             <Phone className="w-4 h-4" />
             <span>010 - 271 38 24</span>
@@ -321,12 +289,10 @@ export function Navigation() {
 function MobileNavSection({
   item,
   index,
-  scrolled,
   onClose,
 }: {
   item: NavItem;
   index: number;
-  scrolled: boolean;
   onClose: () => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -336,19 +302,16 @@ function MobileNavSection({
       <Link
         href={item.href!}
         onClick={onClose}
-        className={cn(
-          'flex items-center justify-between py-5 text-2xl font-display font-bold tracking-tight border-b',
-          scrolled ? 'border-paper-200' : 'border-white/10'
-        )}
+        className="flex items-center justify-between py-5 text-2xl font-display font-bold tracking-tight border-b border-paper-200"
       >
         <span>{item.label}</span>
-        <span className={cn('font-mono text-xs', scrolled ? 'text-ink-400' : 'text-white/40')}>0{index + 1}</span>
+        <span className="font-mono text-xs text-ink-400">0{index + 1}</span>
       </Link>
     );
   }
 
   return (
-    <div className={cn('border-b', scrolled ? 'border-paper-200' : 'border-white/10')}>
+    <div className="border-b border-paper-200">
       <button
         onClick={() => setOpen(!open)}
         className="flex items-center justify-between w-full py-5 text-2xl font-display font-bold tracking-tight"
@@ -368,28 +331,22 @@ function MobileNavSection({
               key={sub.href}
               href={sub.href}
               onClick={onClose}
-              className={cn(
-                'flex items-start gap-3 py-3 pl-2 rounded-lg transition-colors',
-                scrolled ? 'hover:bg-paper-100' : 'hover:bg-white/5'
-              )}
+              className="flex items-start gap-3 py-3 pl-2 rounded-lg hover:bg-paper-100 transition-colors"
             >
-              <span className={cn('font-mono text-xs mt-2', scrolled ? 'text-ink-400' : 'text-white/40')}>0{i + 1}</span>
+              <span className="font-mono text-xs mt-2 text-ink-400">0{i + 1}</span>
               <div className="flex-1 min-w-0">
                 <div className="text-base font-medium">{sub.label}</div>
                 {sub.desc && (
-                  <div className={cn('text-xs mt-0.5', scrolled ? 'text-ink-500' : 'text-white/60')}>{sub.desc}</div>
+                  <div className="text-xs mt-0.5 text-ink-500">{sub.desc}</div>
                 )}
               </div>
-              <ArrowRight className={cn('w-4 h-4 mt-2', scrolled ? 'text-ink-400' : 'text-white/40')} />
+              <ArrowRight className="w-4 h-4 mt-2 text-ink-400" />
             </Link>
           ))}
           <Link
             href={item.label === 'Diensten' ? '/diensten' : '/over'}
             onClick={onClose}
-            className={cn(
-              'flex items-center justify-between mt-2 py-3 pl-2 rounded-lg font-medium transition-colors',
-              scrolled ? 'text-blue-500 hover:bg-paper-100' : 'text-blue-300 hover:bg-white/5'
-            )}
+            className="flex items-center justify-between mt-2 py-3 pl-2 rounded-lg font-medium text-blue-500 hover:bg-paper-100 transition-colors"
           >
             <span>{item.label === 'Diensten' ? 'Bekijk alle diensten' : 'Lees ons verhaal'}</span>
             <ArrowRight className="w-4 h-4" />
