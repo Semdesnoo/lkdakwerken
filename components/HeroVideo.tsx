@@ -65,17 +65,18 @@ export function HeroVideo() {
         </video>
       )}
 
-      {/* Lichte zwarte waas over de video, zodat de witte kop en de knoppen
-          leesbaar blijven zonder dat het beeld wegvalt. Links iets dieper dan
-          rechts, want daar staat de tekst; onderaan een aanzet naar de
-          kaarten die over de hero heen steken. */}
+      {/* Donkere gloed over de video: links dieper, want daar staat de tekst.
+          Genoeg om de witte kop en de knoppen te dragen, niet zo veel dat het
+          beeld eronder verdwijnt. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-ink-950/70 via-ink-950/35 to-ink-950/25"
+        className="absolute inset-0 bg-gradient-to-r from-ink-950/85 via-ink-950/55 to-ink-950/45"
       />
+      {/* Tweede laag voor de boven- en onderrand: onder de menubalk en boven
+          de dienstkaarten die over de hero heen steken. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-ink-950/45 via-transparent to-ink-950/70"
+        className="absolute inset-0 bg-gradient-to-b from-ink-950/55 via-ink-950/20 to-ink-950/80"
       />
     </div>
   );

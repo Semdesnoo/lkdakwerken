@@ -11,8 +11,10 @@
  * Alleen h264/mp4: elke browser die autoplay op achtergrondvideo ondersteunt
  * speelt dat af, en een vp9/webm-variant bleek bij dit materiaal juist groter.
  *
- * De video's draaien als achtergrond achter de hero-tekst, dus beeldruis
- * telt zwaarder dan scherpte: liever een compact bestand dat direct start.
+ * De video's blijven op hun eigen resolutie staan en krijgen een lage crf:
+ * het dak vult het hele scherm, en op een scherp scherm zie je meteen of er
+ * op de vlakken is beknibbeld. De donkere waas komt van de CSS-verlopen in
+ * components/HeroVideo.tsx, niet uit de video zelf.
  *
  *   node scripts/herovideo.mjs [bronmap]
  */
@@ -28,15 +30,18 @@ const doel = path.join(process.cwd(), 'public', 'hero');
 
 const VARIANTEN = [
   {
-    bestand: 'Hero video laptop.mp4',
+    bestand: 'Hero video laptop-2.mp4',
     naam: 'hero-desktop',
-    // Full hd is voor een achtergrondvideo zonde van de bandbreedte.
-    breedte: 1280,
+    // 1600 px blijft op een groot scherm scherp; full hd leverde een bestand
+    // van elf megabyte op, en dat weegt niet op tegen het zichtbare verschil.
+    breedte: 1600,
   },
   {
-    bestand: 'Hero video telefoon.mp4',
+    bestand: 'Hero video telefoon-2.mp4',
     naam: 'hero-mobiel',
-    breedte: 720,
+    // Ruim boven de breedte van een telefoon, zodat het beeld ook op een
+    // scherm met hoge pixeldichtheid scherp blijft.
+    breedte: 1000,
   },
 ];
 
@@ -55,7 +60,7 @@ async function main() {
 
   for (const v of VARIANTEN) {
     const invoer = path.join(bron, v.bestand);
-    const schaal = `scale=${v.breedte}:-2`;
+    const schaal = `scale=${v.breedte}:-2:flags=lanczos`;
 
     const mp4 = path.join(doel, `${v.naam}.mp4`);
     await ffmpeg([
@@ -63,9 +68,13 @@ async function main() {
       '-an',                      // geen geluid: de video speelt automatisch af
       '-vf', schaal,
       '-c:v', 'libx264',
-      '-profile:v', 'main',
-      '-crf', '30',
+      '-profile:v', 'high',
+      '-crf', '25',
       '-preset', 'slow',
+      // Grote egale vlakken (dakbedekking, lucht) vragen om fijnere korrel,
+      // anders ontstaan er banden in het verloop.
+      '-tune', 'film',
+      '-x264-params', 'aq-mode=3:aq-strength=1.0',
       '-pix_fmt', 'yuv420p',
       // Met faststart staat de index vooraan, zodat afspelen begint voordat
       // het hele bestand binnen is.
@@ -78,7 +87,7 @@ async function main() {
       '-i', invoer,
       '-vf', schaal,
       '-frames:v', '1',
-      '-q:v', '5',
+      '-q:v', '3',
       poster,
     ]);
 
