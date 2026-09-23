@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Menu, X, Phone, ChevronDown, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -37,6 +38,12 @@ export function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
+  const pathname = usePathname();
+
+  // Toon de header-foto alleen op pagina's die geen eigen hero/donkere
+  // bovenkant hebben. Op `/` (homepage) en `/diensten/*` staat al een
+  // eigen hero, dus daar dubbelen we niet.
+  const showHeaderPhoto = pathname !== '/' && !pathname.startsWith('/diensten');
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -70,17 +77,16 @@ export function Navigation() {
 
   return (
     <>
-      {/* Achtergrond-foto die achter de zwevende nav doorloopt.
-          Lichtelijk transparant zodat nav-tekst goed leesbaar blijft.
-          Bedekt de bovenkant van elke pagina. */}
-      <div aria-hidden="true" className="nav-bg-photo">
-        <img
-          src="https://images.unsplash.com/photo-1605276373954-0c4a0dac5b12?w=2400&q=85&auto=format&fit=crop"
-          alt=""
-          className="nav-bg-photo-img"
-        />
-        <div className="nav-bg-photo-overlay" />
-      </div>
+      {showHeaderPhoto && (
+        <div aria-hidden="true" className="nav-bg-photo">
+          <img
+            src="https://images.unsplash.com/photo-1605276373954-0c4a0dac5b12?w=2400&q=85&auto=format&fit=crop"
+            alt=""
+            className="nav-bg-photo-img"
+          />
+          <div className="nav-bg-photo-overlay" />
+        </div>
+      )}
 
       <header className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] max-w-7xl">
         <div className="flex items-center justify-between gap-4 md:gap-6 px-4 md:px-6 py-2.5 md:py-3 rounded-2xl transition-all duration-300 nav-floating text-ink-900">

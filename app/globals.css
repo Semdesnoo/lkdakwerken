@@ -391,19 +391,19 @@ body {
   }
 
   /* ============================================================
-     Header achtergrond-foto — full-width bovenkant van elke pagina.
-     Staat onder de zwevende nav (z-40) en boven pagina-content.
-     Fixed zodat 'ie niet meescrollt; nav blijft er bovenop zweven.
+     Header achtergrond-foto — bovenaan elke pagina.
+     Staat in de page-flow (geen positionering) zodat 'ie netjes
+     meescrolt met de pagina en niet blijft plakken.
+     De Hero-sectie staat direct eronder met eigen donkere overlay,
+     dus tekst blijft goed leesbaar.
      ============================================================ */
   .nav-bg-photo {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
+    position: relative;
+    width: 100%;
     height: 42vh;
     min-height: 320px;
     max-height: 520px;
-    z-index: 40;
+    z-index: 0;
     overflow: hidden;
     pointer-events: none;
     /* Vervolg onder de floating nav: zachte fade naar transparent */
@@ -429,20 +429,19 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: center 35%;
+    opacity: 0.85;
   }
   .nav-bg-photo-overlay {
     position: absolute;
     inset: 0;
     background:
-      /* Donkere wash in het midden zodat de witte nav leesbaar blijft */
       linear-gradient(
         180deg,
-        rgba(0, 0, 0, 0.35) 0%,
-        rgba(0, 0, 0, 0.45) 30%,
-        rgba(0, 0, 0, 0.45) 60%,
-        rgba(255, 255, 255, 0.35) 100%
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.35) 30%,
+        rgba(0, 0, 0, 0.35) 60%,
+        rgba(255, 255, 255, 0.25) 100%
       );
-    /* Subtiel grid/textuur-patroon bovenop, niet te opvallend */
   }
 
   /* ============================================================
