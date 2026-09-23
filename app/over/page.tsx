@@ -6,14 +6,13 @@ import {
   certificeringen,
   werkwijze,
   projecten,
-  reviews,
   bedrijf,
   fotos,
 } from '@/lib/data';
 import { foto } from '@/lib/images';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
-import { Sterren } from '@/components/Sterren';
+import { GoogleReviews } from '@/components/GoogleReviews';
 
 export const metadata: Metadata = {
   title: 'Over LK Dakwerken - Vakmensen voor uw dak sinds 2004',
@@ -165,32 +164,8 @@ export default function OverOnsPage() {
         </div>
       </section>
 
-      {/* Reviews */}
-      <section className="section-pad bg-paper-50">
-        <div className="container-wide">
-          <Reveal className="mb-10 md:mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-            <h2 className="text-display text-3xl md:text-5xl leading-[1.06] tracking-[-0.03em] text-ink-900 text-balance max-w-xl">
-              4.9 gemiddeld, uit 127 beoordelingen.
-            </h2>
-            <Sterren className="w-6 h-6" label="4.9 van de 5 sterren op Google" />
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            {reviews.map((r) => (
-              <figure key={r.naam} className="card p-6 md:p-8 flex flex-col">
-                <Sterren aantal={r.rating} label={`${r.rating} van de 5 sterren`} />
-                <blockquote className="mt-4 text-lg leading-relaxed text-ink-800">{r.tekst}</blockquote>
-                <figcaption className="mt-6 pt-5 border-t border-paper-200">
-                  <span className="block font-semibold text-ink-900">{r.naam}</span>
-                  <span className="block text-sm text-ink-500">
-                    {r.rol}, {r.plaats}
-                  </span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Beoordelingen: hetzelfde Google-blok als op de homepage */}
+      <GoogleReviews />
 
       {/* Bedrijfsgegevens */}
       <section className="section-pad bg-white">
