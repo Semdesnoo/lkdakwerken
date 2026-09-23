@@ -546,31 +546,17 @@ export const projecten = [
     tekst: "Een fors dakvlak op een nieuwe aanbouw. De lichte leislag houdt de ruimte eronder in de zomer merkbaar koeler, iets waar bewoners pas na de eerste hittegolf echt blij mee zijn.",
   },
   {
-    titel: "Overkapping naast het grinddak",
-    plaats: "Berkel en Rodenrijs",
-    type: "Nieuwe dakbedekking",
-    oppervlakte: "28 m²",
-    jaar: 2025,
-    image: "project-24",
-    tekst: "Naast het bestaande grinddak met zonnepanelen kwam deze overkapping. De dakdoorvoer is netjes ingewerkt en de aansluiting op het hogere dak is dubbel uitgevoerd.",
-  },
-  {
     titel: "Uitbouw in de nieuwbouwwijk",
     plaats: "Pijnacker",
     type: "Nieuwbouw plat dak",
-    oppervlakte: "34 m²",
-    jaar: 2025,
-    image: "project-25",
-    tekst: "Verse uitbouw in een nieuwbouwwijk waar alles nog kraakt. Wij zorgden voor de waterdichte laag en de doorvoer voor de afzuiging, zodat de keukenbouwer daarna zo aan de slag kon.",
-  },
-  {
-    titel: "Plat dak langs de sloot",
-    plaats: "Bergschenhoek",
-    type: "Renovatie",
     oppervlakte: "52 m²",
     jaar: 2025,
-    image: "project-26",
-    tekst: "Een dak dat door de bomen langs het water veel blad te verduren krijgt. We hebben de afvoer verruimd en de randen verhoogd, zodat verstopping niet meteen tot water op het dak leidt.",
+    image: "project-25",
+    // Drie opnamen van dezelfde uitbouw: het dakvlak met de doorvoer, de
+    // aansluiting op het hogere dak met zonnepanelen en het overzicht
+    // richting de sloot.
+    extraFotos: ["project-24", "project-26"],
+    tekst: "Verse uitbouw in een nieuwbouwwijk waar alles nog kraakt. Wij zorgden voor de waterdichte laag en de doorvoer voor de afzuiging, zodat de keukenbouwer daarna zo aan de slag kon. De aansluiting op het hogere dak met zonnepanelen is dubbel uitgevoerd, en langs de slootkant hebben we de randen verhoogd zodat bladval niet meteen tot water op het dak leidt.",
   },
   {
     titel: "Appartementencomplex met lichtkoepels",

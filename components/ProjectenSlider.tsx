@@ -29,7 +29,14 @@ export function ProjectenSlider() {
 
   /* Index van het project dat vergroot in beeld staat, of null. */
   const [open, setOpen] = useState<number | null>(null);
+  /* Welke foto van dat project getoond wordt: 0 is de hoofdfoto. */
+  const [fotoIndex, setFotoIndex] = useState(0);
+
   const sluit = useCallback(() => setOpen(null), []);
+  const toon = useCallback((i: number) => {
+    setOpen(i);
+    setFotoIndex(0);
+  }, []);
 
   /* Escape sluit de vergroting; de achtergrond scrollt ondertussen niet mee. */
   useEffect(() => {
@@ -50,6 +57,9 @@ export function ProjectenSlider() {
   }, [open, sluit]);
 
   const actief = open === null ? null : projecten[open];
+  /* Hoofdfoto plus eventuele extra opnamen van hetzelfde project. */
+  const fotos = actief ? [actief.image, ...(actief.extraFotos ?? [])] : [];
+  const huidigeFoto = fotos[fotoIndex] ?? fotos[0];
 
   return (
     <section className="relative section-pad bg-white overflow-hidden">
@@ -94,7 +104,7 @@ export function ProjectenSlider() {
               >
                 <button
                   type="button"
-                  onClick={() => setOpen(i)}
+                  onClick={() => toon(i)}
                   className="block w-full text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-4 rounded-2xl"
                   aria-label={`Bekijk project ${p.titel} in ${p.plaats}`}
                 >
@@ -162,11 +172,19 @@ export function ProjectenSlider() {
               </button>
 
               <div className="grid md:grid-cols-2">
-                <img
-                  src={projectGroot(actief.image)}
-                  alt={`${actief.type} in ${actief.plaats} door LK Dakwerken`}
-                  className="w-full h-64 md:h-full object-cover md:rounded-l-2xl"
-                />
+                <div className="relative">
+                  <img
+                    key={huidigeFoto}
+                    src={projectGroot(huidigeFoto)}
+                    alt={`${actief.type} in ${actief.plaats} door LK Dakwerken`}
+                    className="w-full h-64 md:h-full object-cover md:rounded-l-2xl"
+                  />
+                  {fotos.length > 1 && (
+                    <span className="absolute right-3 bottom-3 rounded-full bg-ink-950/70 px-3 py-1 text-xs font-semibold text-white">
+                      {fotoIndex + 1} van {fotos.length}
+                    </span>
+                  )}
+                </div>
                 <div className="p-6 md:p-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600">
                     {actief.type}
@@ -174,6 +192,35 @@ export function ProjectenSlider() {
                   <h3 className="mt-3 text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-ink-900">
                     {actief.titel}
                   </h3>
+
+                  {/* Sommige projecten hebben meerdere opnamen van hetzelfde
+                      dak. Die staan als miniaturen onder de titel. */}
+                  {fotos.length > 1 && (
+                    <div className="mt-5 flex gap-2">
+                      {fotos.map((id, n) => (
+                        <button
+                          key={id}
+                          type="button"
+                          onClick={() => setFotoIndex(n)}
+                          aria-label={`Foto ${n + 1} van dit project`}
+                          aria-current={n === fotoIndex}
+                          className={`relative h-16 w-16 overflow-hidden rounded-xl transition ${
+                            n === fotoIndex
+                              ? 'ring-2 ring-blue-500 ring-offset-2'
+                              : 'opacity-70 hover:opacity-100'
+                          }`}
+                        >
+                          <img
+                            src={projectKaart(id)}
+                            alt=""
+                            loading="lazy"
+                            className="h-full w-full object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
                   <p className="mt-4 text-ink-600 leading-relaxed">{actief.tekst}</p>
                   <dl className="mt-6 grid grid-cols-3 gap-4 border-t border-ink-900/10 pt-5 text-sm">
                     <div>

@@ -34,13 +34,21 @@ if (!blok) {
 }
 
 const ids = [...blok[1].matchAll(/image:\s*"([^"]+)"/g)].map((m) => m[1]);
-console.log(`projecten in data.ts: ${ids.length}`);
+
+/* Projecten kunnen meerdere opnamen van hetzelfde dak hebben; die staan in
+   extraFotos en horen er net zo goed bij. */
+const extra = [...blok[1].matchAll(/extraFotos:\s*\[([^\]]*)\]/g)].flatMap((m) =>
+  [...m[1].matchAll(/"([^"]+)"/g)].map((t) => t[1]),
+);
+
+const alleIds = [...ids, ...extra];
+console.log(`projecten in data.ts: ${ids.length} (plus ${extra.length} extra foto's)`);
 
 if (ids.length === 0) fout('geen projecten gevonden');
 
 const verwacht = new Set();
 
-for (const id of ids) {
+for (const id of alleIds) {
   for (const bestand of [`${id}.webp`, `${id}-kaart.webp`]) {
     verwacht.add(bestand);
     try {

@@ -108,6 +108,60 @@ if (dialoog) {
   eis('vergroting sluit met Escape', (await page.$('[role="dialog"]')) === null);
 }
 
+/* Projecten met meerdere opnamen van hetzelfde dak tonen miniaturen waarmee
+   je tussen de foto's wisselt. */
+const metGalerij = await page.evaluate(() => {
+  const knoppen = [...document.querySelectorAll('.slider-track article button')];
+  const i = knoppen.findIndex((k) => (k.getAttribute('aria-label') ?? '').includes('Pijnacker'));
+  if (i < 0) return -1;
+  knoppen[i].scrollIntoView({ block: 'center' });
+  knoppen[i].click();
+  return i;
+});
+eis('project met meerdere foto\'s gevonden', metGalerij >= 0, `kaart ${metGalerij}`);
+
+if (metGalerij >= 0) {
+  await wacht(600);
+
+  const galerij = await page.evaluate(() => {
+    const dlg = document.querySelector('[role="dialog"]');
+    const mini = [...dlg.querySelectorAll('button[aria-label^="Foto "]')];
+    return {
+      aantal: mini.length,
+      teller: dlg.innerText.match(/\d+ van \d+/)?.[0] ?? '',
+      hoofdfoto: dlg.querySelector('img')?.getAttribute('src') ?? '',
+    };
+  });
+
+  eis('drie miniaturen zichtbaar', galerij.aantal === 3, `${galerij.aantal} miniaturen`);
+  eis('teller toont de positie', galerij.teller === '1 van 3', galerij.teller);
+
+  /* Op de tweede miniatuur klikken moet de grote foto verwisselen. */
+  await page.evaluate(() => {
+    document.querySelectorAll('[role="dialog"] button[aria-label^="Foto "]')[1].click();
+  });
+  await wacht(500);
+
+  const na = await page.evaluate(() => {
+    const dlg = document.querySelector('[role="dialog"]');
+    const img = dlg.querySelector('img');
+    return {
+      bron: img?.getAttribute('src') ?? '',
+      geladen: Boolean(img && img.complete && img.naturalWidth > 100),
+      teller: dlg.innerText.match(/\d+ van \d+/)?.[0] ?? '',
+    };
+  });
+
+  eis('grote foto wisselt bij een klik', na.bron !== galerij.hoofdfoto, na.bron);
+  eis('tweede foto is geladen', na.geladen);
+  eis('teller loopt mee', na.teller === '2 van 3', na.teller);
+
+  if (UIT) await page.screenshot({ path: join(UIT, 'galerij.png') });
+
+  await page.keyboard.press('Escape');
+  await wacht(300);
+}
+
 eis('geen mislukte fotoverzoeken', mislukt.length === 0, mislukt.slice(0, 3).join(' | '));
 
 await browser.close();
