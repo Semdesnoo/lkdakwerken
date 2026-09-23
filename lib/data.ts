@@ -1,0 +1,300 @@
+export const locaties = [
+  { naam: "Rotterdam", slug: "rotterdam", regio: "Rijnmond" },
+  { naam: "Den Haag", slug: "den-haag", regio: "Haaglanden" },
+  { naam: "Dordrecht", slug: "dordrecht", regio: "Zuid-Holland Zuid" },
+  { naam: "Leiden", slug: "leiden", regio: "Leiden" },
+  { naam: "Zoetermeer", slug: "zoetermeer", regio: "Haaglanden" },
+  { naam: "Delft", slug: "delft", regio: "Haaglanden" },
+  { naam: "Alphen aan den Rijn", slug: "alphen-aan-den-rijn", regio: "Rijnstreek" },
+  { naam: "Westland", slug: "westland", regio: "Westland" },
+  { naam: "Schiedam", slug: "schiedam", regio: "Rijnmond" },
+  { naam: "Spijkenisse", slug: "spijkenisse", regio: "Voorne-Putten" },
+  { naam: "Vlaardingen", slug: "vlaardingen", regio: "Rijnmond" },
+  { naam: "Maassluis", slug: "maassluis", regio: "Rijnmond" },
+  { naam: "Ridderkerk", slug: "ridderkerk", regio: "Rijnmond" },
+  { naam: "Barendrecht", slug: "barendrecht", regio: "Rijnmond" },
+  { naam: "Capelle aan den IJssel", slug: "capelle-aan-den-ijssel", regio: "Rijnmond" },
+  { naam: "Krimpen aan den IJssel", slug: "krimpen-aan-den-ijssel", regio: "Rijnmond" },
+  { naam: "Hendrik-Ido-Ambacht", slug: "hendrik-ido-ambacht", regio: "Zuid-Holland Zuid" },
+  { naam: "Papendrecht", slug: "papendrecht", regio: "Zuid-Holland Zuid" },
+  { naam: "Sliedrecht", slug: "sliedrecht", regio: "Zuid-Holland Zuid" },
+  { naam: "Gorinchem", slug: "gorinchem", regio: "Zuid-Holland Zuid" },
+  { naam: "Gouda", slug: "gouda", regio: "Midden-Holland" },
+  { naam: "Waddinxveen", slug: "waddinxveen", regio: "Midden-Holland" },
+  { naam: "Bodegraven-Reeuwijk", slug: "bodegraven-reeuwijk", regio: "Midden-Holland" },
+  { naam: "Nieuwkoop", slug: "nieuwkoop", regio: "Rijnstreek" },
+  { naam: "Kaag en Braassem", slug: "kaag-en-braassem", regio: "Rijnstreek" },
+  { naam: "Teylingen", slug: "teylingen", regio: "Leiden" },
+  { naam: "Leiderdorp", slug: "leiderdorp", regio: "Leiden" },
+  { naam: "Voorschoten", slug: "voorschoten", regio: "Leiden" },
+  { naam: "Wassenaar", slug: "wassenaar", regio: "Haaglanden" },
+  { naam: "Rijswijk", slug: "rijswijk", regio: "Haaglanden" },
+  { naam: "Pijnacker-Nootdorp", slug: "pijnacker-nootdorp", regio: "Haaglanden" },
+  { naam: "Lansingerland", slug: "lansingerland", regio: "Haaglanden" },
+  { naam: "Zuidplas", slug: "zuidplas", regio: "Midden-Holland" },
+  { naam: "Molenlanden", slug: "molenlanden", regio: "Zuid-Holland Zuid" },
+  { naam: "Hoeksche Waard", slug: "hoeksche-waard", regio: "Zuid-Holland Zuid" },
+  { naam: "Goeree-Overflakkee", slug: "goeree-overflakkee", regio: "Zuid-Holland Zuid" },
+  { naam: "Nissewaard", slug: "nissewaard", regio: "Voorne-Putten" },
+  { naam: "Hellevoetsluis", slug: "hellevoetsluis", regio: "Voorne-Putten" },
+  { naam: "Westvoorne", slug: "westvoorne", regio: "Voorne-Putten" },
+  { naam: "Midden-Delfland", slug: "midden-delfland", regio: "Haaglanden" },
+  { naam: "Katwijk", slug: "katwijk", regio: "Leiden" },
+  { naam: "Noordwijk", slug: "noordwijk", regio: "Leiden" },
+  { naam: "Lisse", slug: "lisse", regio: "Rijnstreek" },
+  { naam: "Hillegom", slug: "hillegom", regio: "Rijnstreek" },
+  { naam: "Oegstgeest", slug: "oegstgeest", regio: "Leiden" },
+  { naam: "Krimpenerwaard", slug: "krimpenerwaard", regio: "Midden-Holland" },
+  { naam: "Alblasserdam", slug: "alblasserdam", regio: "Zuid-Holland Zuid" },
+  { naam: "Hardinxveld-Giessendam", slug: "hardinxveld-giessendam", regio: "Zuid-Holland Zuid" },
+];
+
+export const diensten = [
+  {
+    titel: "Bitumen daken",
+    slug: "bitumen-daken",
+    korte: "Hoogwaardige bitumen dakbedekking voor platte en licht hellende daken.",
+    heroImage: "photo-1605276373954-0c4a0dac5b12",
+    beschrijving: "Bitumen is al decennialang de standaard voor platte daken. Wij werken uitsluitend met APP en SBS gemodificeerde bitumen van topmerken zoals IKO en Derbigum. Onze bitumen daken worden mechanisch bevestigd, gelast of volledig verkleefd, afhankelijk van de ondergrond en uw wensen.",
+    icon: "layers",
+    voordelen: [
+      "Levensduur tot 30 jaar bij correct onderhoud",
+      "Bestand tegen UV-straling en wortelgroei",
+      "Volledig recyclebaar",
+      "Snel te leggen, dus minimale overlast",
+    ],
+  },
+  {
+    titel: "Renovatie",
+    slug: "renovatie",
+    korte: "Volledige dakrenovatie met garantiecertificaat.",
+    heroImage: "photo-1531834685032-c34bf0d84c77",
+    beschrijving: "Is uw dak toe aan vervanging? Wij verzorgen de complete renovatie: van inspectie en advies tot demontage van de oude bedekking en het aanbrengen van nieuw isolatie- en dakbedekkingssysteem. Na afloop ontvangt u een Dakmerk garantiecertificaat.",
+    icon: "wrench",
+    voordelen: [
+      "Gratis dakinspectie vooraf",
+      "10 jaar garantie op waterdichtheid",
+      "Dakmerk Erkend Kwaliteitskeurmerk",
+      "VCA-gecertificeerde uitvoering",
+    ],
+  },
+  {
+    titel: "Nieuwbouw",
+    slug: "nieuwbouw",
+    korte: "Complete dakbedekking voor nieuwbouwprojecten.",
+    heroImage: "photo-1676802037786-3697d60497ae",
+    beschrijving: "Voor aannemers en particulieren realiseren wij complete daksystemen voor nieuwbouw. Denk aan platte daken, lessenaarsdaken, sedumdaken en licht hellende daken. Wij denken mee in de ontwerpfase en leveren volgens de strakke planning van uw bouwproject.",
+    icon: "hammer",
+    voordelen: [
+      "Samenwerking met aannemer en architect",
+      "Voldoet aan alle Bouwbesluit-eisen",
+      "Keuze uit bitumen, EPDM, PVC of groendak",
+      "Strakke planning en oplevering",
+    ],
+  },
+  {
+    titel: "Onderhoud",
+    slug: "onderhoud",
+    korte: "Periodiek onderhoud voorkomt kostbare reparaties.",
+    heroImage: "photo-1607400201515-c2c41c07d307",
+    beschrijving: "Een goed onderhouden dak gaat jaren langer mee. Wij bieden onderhoudscontracten op maat: jaarlijkse inspectie, reiniging van goten en afvoeren, controle van aansluitingen en kleine herstelwerkzaamheden. Zo voorkomt u lekkages en onverwachte kosten.",
+    icon: "shield-check",
+    voordelen: [
+      "Jaarlijkse inspectie en rapportage",
+      "Reiniging van dak en goten inbegrepen",
+      "Voorrang bij calamiteiten",
+      "Vaste lage onderhoudskosten per jaar",
+    ],
+  },
+  {
+    titel: "Lekkage",
+    slug: "lekkage",
+    korte: "Spoedservice bij lekkage. Vaak dezelfde dag ter plaatse.",
+    heroImage: "photo-1607400201515-c2c41c07d307",
+    beschrijving: "Lekkage vraagt om snel handelen. Onze spoedservice is 7 dagen per week bereikbaar. In de meeste gevallen zijn wij binnen enkele uren ter plaatse om de schade te beperken en een noodreparatie uit te voeren. Daarna plannen we een structurele oplossing.",
+    icon: "droplet",
+    voordelen: [
+      "7 dagen per week bereikbaar",
+      "Vaak dezelfde dag ter plaatse",
+      "Noodreparatie en structurele oplossing",
+      "Heldere communicatie over kosten",
+    ],
+  },
+];
+
+export const blogPosts = [
+  {
+    slug: "bitumen-vs-epdm-welk-dak-kies-je",
+    titel: "Bitumen vs EPDM: welk dak kies je?",
+    excerpt: "Beide materialen zijn populair voor platte daken, maar ze verschillen flink in prijs, levensduur en verwerking. Een eerlijke vergelijking.",
+    categorie: "Materialen",
+    leestijd: "6 min",
+    datum: "2026-01-15",
+    auteur: "Kees van der Linden",
+    inhoud: `Bitumen en EPDM zijn de twee meest gekozen materialen voor platte daken in Nederland. Maar welke past het beste bij uw situatie? In dit artikel zetten we de belangrijkste verschillen op een rij.\n\n## Bitumen dakbedekking\n\nBitumen is al ruim een eeuw de standaard voor platte daken. Modern APP en SBS bitumen heeft een levensduur van 25 tot 30 jaar, is sterk en betaalbaar. Bitumen wordt warm of koud verwerkt en is daardoor op vrijwel elke ondergrond toepasbaar.\n\n## EPDM dakbedekking\n\nEPDM is een synthetisch rubber dat in één stuk op het dak wordt gelijmd. Het materiaal is elastisch, UV-bestendig en gaat tot 40 jaar mee. Het nadeel: EPDM is duurder in aanschaf en de verwerking vraagt meer specialistische kennis.\n\n## Wanneer kiest u wat?\n\nKies bitumen als u een betrouwbaar, betaalbaar dak wilt dat door elke dakdekker goed verwerkt kan worden. Kies EPDM als u maximaal 40 jaar wilt genieten zonder onderhoud en bereid bent om meer te investeren.\n\nTwijfelt u? Wij komen graag vrijblijvend langs voor een dakinspectie en eerlijk advies.`,
+  },
+  {
+    slug: "dak-lekkage-wat-te-doen",
+    titel: "Dak lekkage? Dit moet u direct doen",
+    excerpt: "Een lekkage is altijd vervelend, maar snel handelen beperkt de schade. Een stappenplan voor als het misgaat.",
+    categorie: "Schade",
+    leestijd: "4 min",
+    datum: "2026-01-08",
+    auteur: "Kees van der Linden",
+    inhoud: `Een lekkage kan veel schade aanrichten in korte tijd. Waterschade aan plafond, muren en vloeren, schimmelvorming en zelfs kortsluiting. Snel handelen is essentieel.\n\n## Stap 1: Zet de stroom uit\n\nAls water in de buurt komt van stopcontacten of elektrische apparaten, schakel dan direct de groep uit. Veiligheid gaat voor.\n\n## Stap 2: Vang het water op\n\nPlaats emmers, bakken of handdoeken om het water op te vangen. Prik niet in een waterzak in het plafond, dit kan voor extra schade zorgen.\n\n## Stap 3: Bel uw verzekeraar\n\nMeld de schade zo snel mogelijk bij uw opstal- of inboedelverzekeraar. Maak foto's van de schade voor uw dossier.\n\n## Stap 4: Schakel een dakdekker in\n\nBel een erkende dakdekker voor een noodreparatie. Wij zijn 7 dagen per week bereikbaar en vaak dezelfde dag ter plaatse in heel Zuid-Holland.\n\nVoorkomen is beter dan genezen: met periodiek onderhoud vangt u kleine problemen op voordat ze uitgroeien tot een lekkage.`,
+  },
+  {
+    slug: "dak-onderhoud-jaarlijkse-checklist",
+    titel: "Dakonderhoud: de jaarlijkse checklist",
+    excerpt: "Met deze checklist voorkomt u de meest voorkomende dakproblemen. Doe het zelf of besteed het uit aan een vakman.",
+    categorie: "Onderhoud",
+    leestijd: "5 min",
+    datum: "2025-12-20",
+    auteur: "Kees van der Linden",
+    inhoud: `Een goed onderhouden dak gaat tientallen jaren mee. Zonder onderhoud kan een dak al binnen 15 jaar problemen geven. Met deze jaarlijkse checklist houdt u uw dak in topconditie.\n\n## Visuele inspectie\n\nLoop of kijk rond uw dak en let op:\n\n- Blaasvorming of scheuren in de bedekking\n- Losliggende randen of loodslabben\n- Vochtplekken of mosgroei\n- Verstopte dakgoten en hemelwaterafvoeren\n\n## Goten reinigen\n\nReinig in het najaar alle goten en afvoeren. Bladeren en vuil zorgen voor verstoppingen, met wateroverlast en lekkage tot gevolg.\n\n## Aansluitingen controleren\n\nControleer de aansluitingen rondom schoorstenen, dakramen, lichtkoepels en opstanden. Kitranden verouderen en moeten op tijd vervangen worden.\n\n## Wilt u het uitbesteden?\n\nWij bieden onderhoudscontracten vanaf 175 euro per jaar. Inclusief jaarlijkse inspectie, reiniging en voorrang bij calamiteiten. Vraag vrijblijvend een offerte aan.`,
+  },
+  {
+    slug: "kosten-dakrenovatie-2026",
+    titel: "Kosten dakrenovatie in 2026: waar moet u op letten?",
+    excerpt: "Een dakrenovatie is een flinke investering. Wij leggen uit welke kosten u kunt verwachten en hoe u bespaart zonder in te leveren op kwaliteit.",
+    categorie: "Renovatie",
+    leestijd: "7 min",
+    datum: "2025-12-12",
+    auteur: "Kees van der Linden",
+    inhoud: `Een volledige dakrenovatie kost gemiddeld tussen de 8.000 en 25.000 euro voor een gemiddelde woning. Maar wat bepaalt de prijs precies?\n\n## Factoren die de prijs bepalen\n\n**Oppervlakte**: het aantal vierkante meters is de belangrijkste prijsbepaler.\n\n**Materiaal**: bitumen is voordeliger dan EPDM of groendak.\n\n**Isolatie**: het meenemen van dakisolatie in de renovatie levert direct besparing op uw energierekening.\n\n**Bereikbaarheid**: een dak op de 4e verdieping zonder lift is duurder om te renoveren dan een dak op de begane grond.\n\n**Ondergrond**: rotte dakbeschot of doorgezakte balken zorgen voor meerwerk.\n\n## Hoe bespaart u slim?\n\n- Combineer renovatie met isolatie: subsidie mogelijk via ISDE\n- Voer het werk in het laagseizoen uit (oktober-maart)\n- Kies voor bitumen als topkwaliteit niet per se EPDM vereist\n- Vraag meerdere offertes aan en vergelijk op garantie en materiaal\n\n## Garantie als kwaliteitsindicator\n\nEen Dakmerk Erkend Kwaliteitskeurmerk geeft u 10 jaar garantie op waterdichtheid, ook als het bedrijf onverhoopt in gebreke blijft. Dat is pas echte zekerheid.`,
+  },
+  {
+    slug: "groendak-subsidie-zuid-holland",
+    titel: "Groendak aanleggen? Subsidie in Zuid-Holland",
+    excerpt: "Een sedumdak isoleert, vertraagt regenwater en verlengt de levensduur van uw dak. En u kunt subsidie krijgen.",
+    categorie: "Duurzaam",
+    leestijd: "5 min",
+    datum: "2025-11-28",
+    auteur: "Kees van der Linden",
+    inhoud: `Steeds meer huiseigenaren in Zuid-Holland kiezen voor een groendak. Niet alleen vanwege de uitstraling, maar ook vanwege de praktische voordelen: betere isolatie, langere levensduur van de onderliggende dakbedekking en opvang van regenwater.\n\n## Subsidie in uw gemeente\n\nVeel Zuid-Hollandse gemeenten verstrekken subsidie voor de aanleg van een groendak. Het bedrag verschilt per gemeente, maar loopt op tot 50 euro per vierkante meter.\n\nGemeenten met groendak-subsidie in onze regio zijn onder andere Rotterdam, Den Haag, Dordrecht, Leiden, Delft en Zoetermeer. De ISDE-subsidie van de rijksoverheid is landelijk beschikbaar.\n\n## Wat kost een groendak?\n\nEen sedumdak kost gemiddeld 50 tot 80 euro per vierkante meter, inclusief aanleg en onderhoudsplan. Reken op een terugverdientijd van 12 tot 18 jaar via subsidie, besparing op energiekosten en waardevermeerdering van uw woning.\n\n## Onze werkwijze\n\nWij leggen groendaksystemen aan op bestaande en nieuwe platte daken. Eerst een waterdichte onderlaag in bitumen of EPDM, daarna een drainagelaag, substraat en sedummat. Binnen twee dagen heeft u een bloeiend dak.\n\nWilt u weten of uw groendak in aanmerking komt voor subsidie? Wij regelen de aanvraag voor u.`,
+  },
+  {
+    slug: "dakinspectie-kopen-huis",
+    titel: "Dakinspectie bij aankoop van een woning",
+    excerpt: "Een dak kan er goed uitzien en toch verborgen gebreken hebben. Laat het controleren vóór u tekent.",
+    categorie: "Advies",
+    leestijd: "4 min",
+    datum: "2025-11-15",
+    auteur: "Kees van der Linden",
+    inhoud: `De aankoop van een woning is een grote stap. Een bouwkundige keuring wordt vaak geadviseerd, maar het dak krijgt daarbij soms weinig aandacht. Dat is jammer, want een dakreparatie of renovatie kan al snel tienduizenden euro's kosten.\n\n## Wat wij controleren\n\nBij een dakinspectie voor aankoop kijken wij naar:\n\n- Leeftijd en conditie van de dakbedekking\n- Aansluitingen, randen en loodslabben\n- Staat van goten, hemelwaterafvoeren en kilgoten\n- Eventuele vochtplekken of schimmel\n- Staat van het dakbeschot (van binnenuit)\n\n## Onafhankelijk rapport\n\nU ontvangt een helder rapport met foto's en een inschatting van de kosten op korte en middellange termijn. Handig als onderhandelingsinstrument of om onaangename verrassingen te voorkomen.\n\n## Wanneer inschakelen?\n\nHet liefst vóór of tijdens het onderhandelingsproces. Een eigen dakdekker mee laten kijken op de bezichtigdag kan al veel duidelijk maken.\n\nWij bieden dakinspecties voor slechts 195 euro. Bel ons of plan online een afspraak.`,
+  },
+];
+
+export const reviews = [
+  {
+    naam: "Mark Duits",
+    rol: "VVE-voorzitter · Maassluis",
+    rating: 5,
+    tekst: "Onze VVE had last van een hardnekkige lekkage die andere bedrijven niet konden vinden. LK Dakwerken heeft het in één middag opgelost. Heldere communicatie en nette prijs.",
+  },
+  {
+    naam: "Hendrik Scheepers",
+    rol: "Particulier · Rotterdam",
+    rating: 5,
+    tekst: "Volledige dakrenovatie laten uitvoeren. Van offerte tot oplevering alles volgens afspraak. Het team werkt netjes, denkt mee en het resultaat mag er zijn. Aanrader.",
+  },
+  {
+    naam: "Niels van der Kooij",
+    rol: "Cornus Vastgoed · Rotterdam",
+    rating: 5,
+    tekst: "Betrouwbaar en vriendelijk dakdekkersbedrijf. Wij schakelen LK Dakwerken in voor al onze vastgoedobjecten in de regio. Altijd snel en tegen eerlijke prijzen.",
+  },
+  {
+    naam: "Renske van Grevenbroek",
+    rol: "Facility Manager · Den Haag",
+    rating: 5,
+    tekst: "Perfecte service. Ze doen ook het jaarlijks onderhoud van ons kantoorpand. Snel ter plaatse bij meldingen en proactief in hun advies. Precies wat je zoekt.",
+  },
+  {
+    naam: "Sanne Mol",
+    rol: "Particulier · Delft",
+    rating: 5,
+    tekst: "Snelle reactie op onze lekkagemelding. Binnen twee uur stond er iemand op het dak. Noodreparatie dezelfde avond, definitieve oplossing een week later. Topservice.",
+  },
+  {
+    naam: "Tom Bakker",
+    rol: "Aannemer · Dordrecht",
+    rating: 5,
+    tekst: "Voor onze nieuwbouwprojecten werken we al jaren samen met LK Dakwerken. Strakke planning, goede kwaliteit en ze denken mee in de ontwerpfase. Prettige partner.",
+  },
+];
+
+export const bedrijf = {
+  naam: "LK Dakwerken",
+  slogan: "Vakwerk voor uw dak in Zuid-Holland",
+  adres: "Vlaardingweg 12, 3044 CK Rotterdam",
+  telefoon: "010 - 271 38 24",
+  mobiel: "06 - 12 34 56 78",
+  email: "info@lkdakwerken.nl",
+  kvk: "24138572",
+  btw: "NL001234567B01",
+  openingstijden: {
+    maVrij: "07:00 - 18:00",
+    za: "08:00 - 14:00",
+    zo: "Alleen spoed",
+  },
+};
+
+export const stats = [
+  { cijfer: "20+", label: "Jaar ervaring" },
+  { cijfer: "1.842", label: "Daken geleverd" },
+  { cijfer: "4.9", label: "Google score" },
+  { cijfer: "127", label: "Reviews" },
+];
+
+export const certificeringen = [
+  { naam: "Dakmerk Erkend", uitleg: "Gecertificeerd voor bitumen en kunststof daken" },
+  { naam: "VCA**", uitleg: "Veiligheid, gezondheid en milieu" },
+  { naam: "BRL 4702", uitleg: "Beoordelingsrichtlijn dakbedekking" },
+  { naam: "10 jaar garantie", uitleg: "Waterdichtheidsgarantie via Dakmerk" },
+];
+
+export const werkwijze = [
+  { nummer: "01", titel: "Inspectie", tekst: "We komen vrijblijvend langs, bekijken het dak en bespreken uw wensen." },
+  { nummer: "02", titel: "Offerte", tekst: "U ontvangt binnen 3 werkdagen een heldere offerte met materiaal en planning." },
+  { nummer: "03", titel: "Uitvoering", tekst: "Vakmensen werken volgens planning. Geen verrassingen achteraf." },
+  { nummer: "04", titel: "Oplevering", tekst: "We lopen samen het werk na. U ontvangt garantiecertificaat en onderhoudsadvies." },
+];
+
+export const projecten = [
+  { titel: "Appartementencomplex Den Haag", type: "Renovatie", oppervlakte: "1.200 m²", jaar: 2024, image: "photo-1431576901776-e539bd9186bd" },
+  { titel: "Bedrijfspand Rotterdam", type: "Bitumen nieuwbouw", oppervlakte: "850 m²", jaar: 2024, image: "photo-1565793298595-6a879b1d9492" },
+  { titel: "Villa Krimpen aan den IJssel", type: "Nieuwbouw", oppervlakte: "240 m²", jaar: 2023, image: "photo-1600585154340-be6161a56a0c" },
+  { titel: "Woningcentrum Leiden", type: "Renovatie + isolatie", oppervlakte: "640 m²", jaar: 2023, image: "photo-1605276374104-dee2a0ed3cd6" },
+  { titel: "Wijk Dordrecht", type: "Onderhoudscontract", oppervlakte: "32 woningen", jaar: 2024, image: "photo-1605276373954-0c4a0dac5b12" },
+  { titel: "Strandhuis Goeree", type: "Complete renovatie", oppervlakte: "180 m²", jaar: 2023, image: "photo-1503594384566-461fe158e797" },
+];
+
+export const faq = [
+  {
+    vraag: "Wat kost een nieuw bitumen dak?",
+    antwoord: "De prijs hangt af van oppervlakte, huidige staat en isolatiewensen. Gemiddeld ligt bitumen tussen €75 en €110 per m² inclusief materiaal en arbeid. We maken graag een vrijblijvende offerte.",
+  },
+  {
+    vraag: "Hoe snel kunnen jullie bij een lekkage zijn?",
+    antwoord: "Bij spoed zijn we vaak binnen enkele uren ter plaatse, ook in het weekend. Bel onze spoedlijn en we sturen direct een dakdekker.",
+  },
+  {
+    vraag: "Werken jullie ook in het weekend?",
+    antwoord: "Ja, voor spoedgevallen zijn we 7 dagen per week bereikbaar. Geplande werkzaamheden voeren we uit van maandag tot en met zaterdag.",
+  },
+  {
+    vraag: "Krijg ik garantie op het werk?",
+    antwoord: "Ja. Via ons Dakmerk-keurmerk ontvangt u 10 jaar garantie op waterdichtheid, ook wanneer ons bedrijf onverhoopt in gebreke zou blijven.",
+  },
+  {
+    vraag: "Werken jullie voor particulieren of alleen bedrijven?",
+    antwoord: "Beide. We werken voor VvE's, woningcorporaties, aannemers en particuliere huiseigenaren. Geen project is ons te klein of te groot.",
+  },
+  {
+    vraag: "In welke regio werken jullie?",
+    antwoord: "We werken in heel Zuid-Holland: van Rotterdam tot Den Haag, van Dordrecht tot Leiden en alles daartussen. Op de pagina Locaties vindt u alle gemeenten waar we actief zijn.",
+  },
+];
+
+

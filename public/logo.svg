@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Linker cirkel (zwart) -->
+  <circle cx="38" cy="50" r="30" fill="#000000"/>
+  <!-- Rechter cirkel (blauw), overlap -->
+  <circle cx="62" cy="50" r="30" fill="#1d4ed8"/>
+  <!-- LK tekst in het midden, wit -->
+  <text x="50" y="62" font-family="Arial Black, system-ui, sans-serif" font-size="28" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">LK</text>
+</svg>
