@@ -519,13 +519,13 @@ export const projecten = [
     tekst: "Op verzoek van de eigenaar gingen we hier voor zwart bitumen zonder leislag. Strak, egaal en onzichtbaar vanaf de straat. De dakdoorvoer kreeg een eigen aansluiting.",
   },
   {
-    titel: "Aanbouw aan het water",
+    titel: "Aanbouw in de woonwijk",
     plaats: "Nieuwerkerk aan den IJssel",
-    type: "Nieuwe dakbedekking",
+    type: "Renovatie",
     oppervlakte: "40 m²",
     jaar: 2025,
     image: "project-21",
-    tekst: "Uitzicht op de sloot, ladder in het gras en een dak dat om aandacht vroeg. Nieuwe leislagbitumen met aluminium trim rondom, zodat de wind er geen grip meer op krijgt.",
+    tekst: "Ladder tegen de rand, grasveld ernaast en een dak dat om aandacht vroeg. De oude laag was dof en poreus geworden. Nieuwe leislagbitumen met een trim rondom, zodat de wind er geen grip meer op krijgt.",
   },
   {
     titel: "Veranda met plat dak",
