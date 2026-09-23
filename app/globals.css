@@ -133,6 +133,45 @@ body {
       linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
     background-size: 40px 40px;
   }
+
+  /* ============================================================
+     Zigzagmotief: verwijst naar de golf van dakbedekking en de
+     naden tussen de banen. Schuin geplaatst zodat het beweging
+     geeft zonder de tekst erboven te storen.
+
+     Het motief zit in een eigen laag met ::before, want die kan
+     gedraaid en ruim overschaald worden zonder dat de sectie
+     zelf meedraait. overflow-hidden op de sectie knipt de randen af.
+     ============================================================ */
+  .zigzag,
+  .zigzag-donker {
+    position: relative;
+    isolation: isolate;
+  }
+  .zigzag::before,
+  .zigzag-donker::before {
+    content: '';
+    position: absolute;
+    /* Ruim buiten de sectie, anders zie je de hoeken van de draaiing. */
+    inset: -30%;
+    z-index: -1;
+    transform: rotate(-8deg);
+    background-repeat: repeat;
+    background-size: 56px 22px;
+    pointer-events: none;
+  }
+  .zigzag::before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='22' viewBox='0 0 56 22'><path d='M0 15 L14 5 L28 15 L42 5 L56 15' fill='none' stroke='rgba(10,10,10,0.055)' stroke-width='1.4'/></svg>");
+  }
+  .zigzag-donker::before {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='22' viewBox='0 0 56 22'><path d='M0 15 L14 5 L28 15 L42 5 L56 15' fill='none' stroke='rgba(96,165,250,0.13)' stroke-width='1.4'/></svg>");
+  }
+
+  /* Variant die onderaan uitdooft, voor secties waar het motief
+     alleen als aanzet mag dienen. */
+  .zigzag-vervaag::before {
+    mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
+  }
   .bg-dots-dark {
     background-image: radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px);
     background-size: 22px 22px;

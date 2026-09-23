@@ -5,8 +5,7 @@ import { Reveal } from '@/components/Reveal';
 
 export function ContactCTA() {
   return (
-    <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
-      <div className="absolute inset-0 bg-grid-dark opacity-70" aria-hidden="true" />
+    <section className="relative section-pad bg-ink-950 text-white overflow-hidden zigzag-donker">
       <div
         className="absolute -top-40 -right-32 w-[34rem] h-[34rem] rounded-full bg-blue-700/25 blur-3xl"
         aria-hidden="true"

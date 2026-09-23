@@ -91,8 +91,7 @@ export default function ProjectenPage() {
       </section>
 
       {/* Afsluitende CTA */}
-      <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-grid-dark opacity-70" aria-hidden="true" />
+      <section className="relative section-pad bg-ink-950 text-white overflow-hidden zigzag-donker">
         <div className="container-wide relative grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7">
             <h2 className="text-display text-3xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-balance">

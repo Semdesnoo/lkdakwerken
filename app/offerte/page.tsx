@@ -35,7 +35,7 @@ export default function OffertePage() {
         compact
       />
 
-      <section className="section-pad bg-paper-50">
+      <section className="section-pad bg-paper-50 zigzag overflow-hidden">
         <div className="container-wide grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-7">
             <OfferteFormulier />
