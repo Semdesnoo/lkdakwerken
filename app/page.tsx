@@ -5,7 +5,6 @@ import { Process } from '@/components/Process';
 import { ProjectenSlider } from '@/components/ProjectenSlider';
 import { GoogleReviews } from '@/components/GoogleReviews';
 import { Blog } from '@/components/Blog';
-import { Locaties } from '@/components/Locaties';
 import { ContactCTA } from '@/components/ContactCTA';
 import type { Metadata } from 'next';
 
@@ -31,18 +30,20 @@ export const metadata: Metadata = {
 /**
  * Homepage als kleurblok-ritme: geen twee opeenvolgende secties delen
  * dezelfde achtergrond. De achtergrond per sectie staat in het commentaar.
+ *
+ * Het werkgebied met de kaart en de gemeentelijst staat op /locaties, niet
+ * meer op de homepage.
  */
 export default function Home() {
   return (
     <>
-      <Hero />            {/* donkere fotohero, daaronder een witte strook */}
-      <DienstenPaneel />  {/* paper-50 met een donker ink-paneel erin */}
+      <Hero />            {/* videohero met donkere gloed */}
+      <DienstenPaneel />  {/* paper-50 met een wit paneel erin */}
       <OverOns />         {/* wit */}
       <Process />         {/* donker ink met foto */}
       <ProjectenSlider /> {/* wit */}
       <GoogleReviews />   {/* donker ink met raster en lijnen */}
       <Blog />            {/* paper-50 */}
-      <Locaties />        {/* wit */}
       <ContactCTA />      {/* donker ink */}
     </>
   );

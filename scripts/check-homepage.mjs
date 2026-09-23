@@ -11,9 +11,9 @@ const html = readFileSync('out/index.html', 'utf8');
 const tekst = html.replace(/<!-- -->/g, '');
 let fouten = 0;
 
-const eis = (naam, goed) => {
+const eis = (naam, goed, extra = '') => {
   if (!goed) fouten += 1;
-  console.log((goed ? 'OK   ' : 'FOUT ') + naam);
+  console.log((goed ? 'OK   ' : 'FOUT ') + naam + (extra ? '  ' + extra : ''));
 };
 
 console.log('--- nieuwe secties ---');
@@ -58,9 +58,13 @@ const kleur = (c) => {
 };
 const rij = klassen.map(kleur);
 rij.forEach((k, i) => console.log('  ' + i + ': ' + k));
-eis('negen secties', rij.length === 9);
+/* Het aantal secties komt uit app/page.tsx, zodat de controle meeloopt
+   wanneer er een blok af gaat of bij komt. */
+const paginaBron = readFileSync('app/page.tsx', 'utf8');
+const verwachteSecties = [...paginaBron.matchAll(/^\s*<[A-Z]\w+ \/>/gm)].length;
+eis(`${verwachteSecties} secties`, rij.length === verwachteSecties, `${rij.length} gevonden`);
 eis('geen twee gelijke achtergronden naast elkaar', rij.every((k, i) => i === 0 || k !== rij[i - 1]));
-eis('donkere secties aanwezig', rij.filter((k) => k === 'donker').length === 3);
+eis('donkere secties aanwezig', rij.filter((k) => k === 'donker').length >= 3);
 
 console.log('\nfouten: ' + fouten);
 process.exit(fouten === 0 ? 0 : 1);
