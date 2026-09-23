@@ -1,26 +1,24 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Montserrat, JetBrains_Mono } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 
+// Body font: Inter
 const inter = Inter({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-body',
   display: 'swap',
 });
 
-const display = Montserrat({
+// Display font: Inter (zelfde family, andere variable zodat we hem makkelijk kunnen targeten).
+// Wanneer Gilroy beschikbaar is kan deze variable naar Gilroy verwijzen zonder classNames aan te passen.
+const display = Inter({
   subsets: ['latin'],
-  weight: ['500', '600', '700', '800'],
+  weight: ['500', '600', '700', '800', '900'],
   variable: '--font-display',
-  display: 'swap',
-});
-
-const mono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -97,7 +95,7 @@ const localBusinessSchema = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="nl" className={`${inter.variable} ${display.variable} ${mono.variable}`}>
+    <html lang="nl" className={`${inter.variable} ${display.variable}`}>
       <head>
         <link rel="icon" href="/lkdakwerken/favicon.svg" type="image/svg+xml" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
