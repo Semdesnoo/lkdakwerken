@@ -66,11 +66,11 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.45 }}
               className="mt-10 flex flex-wrap items-center gap-3"
             >
-              <Link href="/lkdakwerken/contact" className="btn-pill">
+              <Link href="/contact" className="btn-pill">
                 <span className="label">Direct contact</span>
                 <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
               </Link>
-              <Link href="/lkdakwerken/offerte" className="btn-ghost border-white/40 text-white hover:bg-white hover:text-ink-900">
+              <Link href="/offerte" className="btn-ghost border-white/40 text-white hover:bg-white hover:text-ink-900">
                 Offerte aanvragen
               </Link>
             </motion.div>

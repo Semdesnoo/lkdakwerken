@@ -47,7 +47,7 @@ export default async function LocatiePage({ params }: { params: Promise<{ slug: 
                 LK Dakwerken is uw lokale dakdekkersbedrijf in {loc.naam} en omgeving. 25 jaar ervaring, Dakmerk erkenning en 10 jaar garantie.
               </p>
               <div className="mt-10 flex flex-wrap gap-3">
-                <Link href="/lkdakwerken/offerte" className="btn-primary group">
+                <Link href="/offerte" className="btn-primary group">
                   Offerte {loc.naam}
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </Link>
@@ -124,7 +124,7 @@ export default async function LocatiePage({ params }: { params: Promise<{ slug: 
           </h2>
           <p className="mt-6 opacity-80">Binnen 5 werkdagen een heldere offerte op maat.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/lkdakwerken/offerte" className="inline-flex items-center gap-2 bg-[var(--background)] text-[var(--foreground)] font-semibold px-6 py-3.5 hover:opacity-85 transition-opacity">
+            <Link href="/offerte" className="inline-flex items-center gap-2 bg-[var(--background)] text-[var(--foreground)] font-semibold px-6 py-3.5 hover:opacity-85 transition-opacity">
               Offerte aanvragen
             </Link>
             <a href="tel:+31612345678" className="inline-flex items-center gap-2 border border-[var(--background)]/30 px-6 py-3.5 font-semibold hover:bg-[var(--background)] hover:text-[var(--foreground)] transition-colors">

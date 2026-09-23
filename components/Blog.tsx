@@ -76,7 +76,7 @@ export function Blog() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <Link href="/lkdakwerken/blog" className="btn-pill-dark">
+          <Link href="/blog" className="btn-pill-dark">
             <span className="label">Bekijk alle artikelen</span>
             <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
           </Link>

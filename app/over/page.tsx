@@ -245,11 +245,11 @@ export default function OverOnsPage() {
               </p>
             </div>
             <div className="md:col-span-4 flex flex-col gap-3">
-              <Link href="/lkdakwerken/offerte" className="btn-pill-dark">
+              <Link href="/offerte" className="btn-pill-dark">
                 <span className="label">Offerte aanvragen</span>
                 <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
               </Link>
-              <Link href="/lkdakwerken/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-500 transition-colors">
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-500 transition-colors">
                 Bel ons direct
               </Link>
             </div>

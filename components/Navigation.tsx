@@ -49,7 +49,7 @@ export function Navigation() {
           )}
         >
           {/* Logo links */}
-          <Link href="/lkdakwerken/" aria-label="LK Dakwerken home" className="flex items-center gap-2 shrink-0">
+          <Link href="/" aria-label="LK Dakwerken home" className="flex items-center gap-2 shrink-0">
             <img
               src="/lkdakwerken/logo.svg"
               alt="LK Dakwerken"
@@ -105,7 +105,7 @@ export function Navigation() {
 
             {/* Offerte CTA */}
             <Link
-              href="/lkdakwerken/offerte"
+              href="/offerte"
               className="hidden md:inline-flex items-center gap-2 px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-full hover:bg-blue-600 transition-colors shadow-sm"
             >
               Offerte
@@ -135,7 +135,7 @@ export function Navigation() {
         )}
       >
         <div className={cn('px-6 py-5 flex items-center justify-between border-b', scrolled ? 'border-paper-200' : 'border-white/10')}>
-          <Link href="/lkdakwerken/" onClick={() => setMobileOpen(false)} aria-label="LK Dakwerken" className="flex items-center gap-2">
+          <Link href="/" onClick={() => setMobileOpen(false)} aria-label="LK Dakwerken" className="flex items-center gap-2">
             <img
               src="/lkdakwerken/logo.svg"
               alt="LK Dakwerken"
@@ -175,7 +175,7 @@ export function Navigation() {
             <span>010 - 271 38 24</span>
           </a>
           <Link
-            href="/lkdakwerken/offerte"
+            href="/offerte"
             onClick={() => setMobileOpen(false)}
             className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white py-3 font-semibold transition-colors rounded-full"
           >

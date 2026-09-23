@@ -43,7 +43,7 @@ export function Diensten() {
             </div>
 
             <div className="mt-10">
-              <Link href="/lkdakwerken/diensten" className="btn-pill-dark">
+              <Link href="/diensten" className="btn-pill-dark">
                 <span className="label">Bekijk alle diensten</span>
                 <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
               </Link>

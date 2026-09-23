@@ -37,7 +37,7 @@ export function OverOns() {
               ))}
             </div>
 
-            <Link href="/lkdakwerken/over" className="btn-pill">
+            <Link href="/over" className="btn-pill">
               <span className="label">Meer over ons</span>
               <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
             </Link>

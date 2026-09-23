@@ -68,7 +68,7 @@ export default function LocatiesIndexPage() {
               <a href="tel:+31612345678" className="inline-flex items-center gap-2 bg-[var(--background)] text-[var(--foreground)] font-semibold px-6 py-3 hover:opacity-85 transition-opacity">
                 <Phone className="w-4 h-4" /> Bel ons
               </a>
-              <Link href="/lkdakwerken/contact" className="inline-flex items-center gap-2 border border-[var(--background)]/30 px-6 py-3 font-semibold hover:bg-[var(--background)] hover:text-[var(--foreground)] transition-colors">
+              <Link href="/contact" className="inline-flex items-center gap-2 border border-[var(--background)]/30 px-6 py-3 font-semibold hover:bg-[var(--background)] hover:text-[var(--foreground)] transition-colors">
                 Contactformulier
               </Link>
             </div>
