@@ -249,7 +249,7 @@ export function Navigation() {
                             key={sub.href}
                             href={sub.href}
                             onClick={() => setOpenMenu(null)}
-                            className="group flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-paper-50 transition-colors"
+                            className="group flex items-center gap-3 px-4 py-3 rounded-button hover:bg-paper-50 transition-colors"
                           >
                             <div className="flex-1 min-w-0">
                               <div className="font-semibold text-ink-900 group-hover:text-blue-500 transition-colors">
@@ -368,7 +368,7 @@ function MobileNavSection({ item, onClose }: { item: NavItem; onClose: () => voi
               key={sub.href}
               href={sub.href}
               onClick={onClose}
-              className="flex items-center gap-3 py-3 px-3 rounded-2xl hover:bg-paper-100 transition-colors"
+              className="flex items-center gap-3 py-3 px-3 rounded-button hover:bg-paper-100 transition-colors"
             >
               <div className="flex-1 min-w-0">
                 <div className="text-base font-semibold">{sub.label}</div>
@@ -380,7 +380,7 @@ function MobileNavSection({ item, onClose }: { item: NavItem; onClose: () => voi
           <Link
             href={item.label === 'Diensten' ? '/diensten' : '/over'}
             onClick={onClose}
-            className="flex items-center justify-between mt-1 py-3 px-3 rounded-2xl font-semibold text-blue-500 hover:bg-paper-100 transition-colors"
+            className="flex items-center justify-between mt-1 py-3 px-3 rounded-button font-semibold text-blue-500 hover:bg-paper-100 transition-colors"
           >
             <span>{item.label === 'Diensten' ? 'Bekijk alle diensten' : 'Lees ons verhaal'}</span>
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
