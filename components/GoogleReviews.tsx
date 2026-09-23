@@ -54,7 +54,7 @@ const kaartVarianten = {
 
 export function GoogleReviews() {
   const reduce = useReducedMotion();
-  const { trackProps, terug, vooruit, stap } = useSlider();
+  const { trackProps, terug, vooruit, stap } = useSlider({ automatisch: true });
 
   return (
     <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
@@ -106,7 +106,7 @@ export function GoogleReviews() {
         <div className="mt-10 border-t border-blue-400/20 pt-8 md:pt-10">
           <div className="flex items-center justify-between gap-6 mb-6">
             <p className="text-sm text-white/70">
-              Veeg of sleep voor alle beoordelingen.
+              De beoordelingen lopen door. Veeg of sleep om zelf te bladeren.
             </p>
             <SliderKnoppen
               terug={terug}
@@ -126,13 +126,20 @@ export function GoogleReviews() {
             viewport={{ once: true, margin: '-80px' }}
           >
             {/* Kaartbreedte: vanaf lg drie zichtbaar, dus een derde min twee
-                tussenruimtes van 1.25rem, verdeeld over drie kaarten. */}
-            {reviews.map((r) => (
-              <motion.figure
-                key={r.naam}
-                variants={kaartVarianten}
-                className="slider-item card-dark p-6 w-[82%] sm:w-[54%] lg:w-[calc(33.333%_-_0.834rem)]"
-              >
+                tussenruimtes van 1.25rem, verdeeld over drie kaarten.
+
+                De lijst staat er twee keer in: dat maakt de lopende band
+                naadloos, want halverwege springen we een helft terug naar een
+                identiek beeld. De tweede reeks is een kopie voor het oog en
+                hoort daarom niet in de voorleesvolgorde. */}
+            {[0, 1].map((reeks) =>
+              reviews.map((r) => (
+                <motion.figure
+                  key={`${reeks}-${r.naam}`}
+                  variants={kaartVarianten}
+                  aria-hidden={reeks === 1 || undefined}
+                  className="slider-item card-dark p-6 w-[82%] sm:w-[54%] lg:w-[calc(33.333%_-_0.834rem)]"
+                >
                 <div className="flex items-center gap-3">
                   <span className="relative shrink-0">
                     <span
@@ -168,8 +175,9 @@ export function GoogleReviews() {
                 <blockquote className="mt-3 text-white/85 leading-relaxed line-clamp-3">
                   {r.tekst}
                 </blockquote>
-              </motion.figure>
-            ))}
+                </motion.figure>
+              )),
+            )}
           </motion.div>
         </div>
       </div>

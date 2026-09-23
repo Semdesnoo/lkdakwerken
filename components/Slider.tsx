@@ -10,21 +10,25 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
  * mobiel en scrollen met een trackpad vanzelf werken. Daarbovenop komt
  * slepen met de muis en bediening via de pijlknoppen.
  */
-export function useSlider() {
+export function useSlider({ automatisch = false, snelheid = 40 } = {}) {
   const track = useRef<HTMLDivElement>(null);
   const [terug, setTerug] = useState(false);
   // Begint op true: de track is altijd breder dan het scherm, dus de
   // vooruit-knop hoort niet uitgeschakeld te staan voordat JavaScript meet.
   const [vooruit, setVooruit] = useState(true);
   const reduce = useReducedMotion();
+  // Een lopende band heeft geen begin en geen eind, dus daar horen de
+  // pijlknoppen nooit uitgeschakeld te staan.
+  const doorlopend = automatisch && !reduce;
 
   const meet = useCallback(() => {
     const el = track.current;
     if (!el) return;
+    if (doorlopend) return;
     const maximum = el.scrollWidth - el.clientWidth;
     setTerug(el.scrollLeft > 8);
     setVooruit(el.scrollLeft < maximum - 8);
-  }, []);
+  }, [doorlopend]);
 
   useEffect(() => {
     const el = track.current;
@@ -39,6 +43,50 @@ export function useSlider() {
     };
   }, [meet]);
 
+  const sleep = useRef({ actief: false, startX: 0, startScroll: 0, verplaatst: false });
+
+  /* De band loopt door doordat de aanroeper de lijst twee keer rendert: zodra
+     we de eerste helft voorbij zijn springen we een helft terug, wat exact
+     hetzelfde beeld oplevert. Daarom is de sprong onzichtbaar. */
+  const verschuif = useCallback((el: HTMLDivElement, afstand: number) => {
+    const helft = el.scrollWidth / 2;
+    if (helft <= 0) return;
+    let doel = el.scrollLeft + afstand;
+    if (doel >= helft) doel -= helft;
+    if (doel < 0) doel += helft;
+    el.scrollLeft = doel;
+  }, []);
+
+  useEffect(() => {
+    if (!doorlopend) return;
+    const el = track.current;
+    if (!el) return;
+
+    /* Scroll-snap trekt de band telkens naar de dichtstbijzijnde kaart terug
+       en maakt de beweging schokkerig; bij een lopende band hoort hij uit. */
+    el.style.scrollSnapType = 'none';
+
+    let vorige: number | null = null;
+    let id = requestAnimationFrame(function tik(nu) {
+      id = requestAnimationFrame(tik);
+      if (vorige === null) {
+        vorige = nu;
+        return;
+      }
+      const verstreken = (nu - vorige) / 1000;
+      vorige = nu;
+      // Tijdens slepen heeft de bezoeker de band in handen.
+      if (sleep.current.actief) return;
+      // Na een tabwissel is verstreken groot; begrenzen voorkomt een sprong.
+      verschuif(el, snelheid * Math.min(verstreken, 0.1));
+    });
+
+    return () => {
+      cancelAnimationFrame(id);
+      el.style.scrollSnapType = '';
+    };
+  }, [doorlopend, snelheid, verschuif]);
+
   /** Eén kaartbreedte opschuiven, inclusief de tussenruimte van 1.25rem. */
   const stap = useCallback(
     (richting: 1 | -1) => {
@@ -46,12 +94,14 @@ export function useSlider() {
       if (!el) return;
       const kaart = el.firstElementChild as HTMLElement | null;
       const afstand = kaart ? kaart.offsetWidth + 20 : Math.round(el.clientWidth * 0.8);
-      el.scrollBy({ left: richting * afstand, behavior: reduce ? 'auto' : 'smooth' });
+      /* Een lopende band schrijft elke frame zijn eigen scrollLeft; een
+         smooth-scroll ernaast zou meteen worden overschreven. Daarom springt
+         de stap daar direct, en loopt de band gewoon door vanaf de nieuwe plek. */
+      if (doorlopend) verschuif(el, richting * afstand);
+      else el.scrollBy({ left: richting * afstand, behavior: reduce ? 'auto' : 'smooth' });
     },
-    [reduce],
+    [doorlopend, reduce, verschuif],
   );
-
-  const sleep = useRef({ actief: false, startX: 0, startScroll: 0, verplaatst: false });
 
   const onPointerDown = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     const el = track.current;
@@ -73,17 +123,26 @@ export function useSlider() {
     if (!el || !sleep.current.actief) return;
     const verschil = e.clientX - sleep.current.startX;
     if (Math.abs(verschil) > 4) sleep.current.verplaatst = true;
+    if (doorlopend) {
+      /* Slepen rekent vanaf de startpositie, maar die verspringt zodra we de
+         naad passeren. Daarom per beweging het verschil verwerken. */
+      verschuif(el, sleep.current.startScroll - verschil - el.scrollLeft);
+      sleep.current.startX = e.clientX;
+      sleep.current.startScroll = el.scrollLeft;
+      return;
+    }
     el.scrollLeft = sleep.current.startScroll - verschil;
-  }, []);
+  }, [doorlopend, verschuif]);
 
   const stopSlepen = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     const el = track.current;
     if (!el || !sleep.current.actief) return;
     sleep.current.actief = false;
     if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
-    el.style.scrollSnapType = '';
+    // Bij een lopende band blijft snap uit: die zou de beweging terugtrekken.
+    el.style.scrollSnapType = doorlopend ? 'none' : '';
     el.style.userSelect = '';
-  }, []);
+  }, [doorlopend]);
 
   /** Een sleepbeweging mag niet als klik op de onderliggende kaart tellen. */
   const onClickCapture = useCallback((e: React.MouseEvent<HTMLDivElement>) => {

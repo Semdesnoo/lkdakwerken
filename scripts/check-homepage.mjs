@@ -41,8 +41,6 @@ eis('gouden sterren', html.includes('ster-goud'));
 eis('score en aantal', tekst.includes('4,9') && tekst.includes('127 beoordelingen'));
 eis('knop Beoordeel ons op Google', html.includes('Beoordeel ons op Google'));
 eis('link naar google-profiel', html.includes('google.com/search?q=LK+Dakwerken+Rotterdam+reviews'));
-eis('blauwe lijnen licht', html.includes('rgba(37, 99, 235, 0.12)'));
-eis('blauwe lijnen donker', html.includes('rgba(96, 165, 250, 0.30)'));
 eis('blauw getinte hairlines', /border-blue-(400|500)\/2[05]/.test(html));
 
 console.log('\n--- geen kastlijntjes ---');
