@@ -37,8 +37,46 @@ const navItems: NavItem[] = [
 export function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  /* De balk schuift omhoog uit beeld zodra je naar beneden scrollt, en komt
+     terug zodra je omhoog scrollt. */
+  const [verborgen, setVerborgen] = useState(false);
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    let vorige = window.scrollY;
+    let wachtOpFrame = false;
+
+    const verwerk = () => {
+      const huidige = window.scrollY;
+      const verschil = huidige - vorige;
+
+      /* Bovenaan altijd tonen, en kleine bewegingen negeren zodat de balk
+         niet gaat knipperen bij een trillende muis of trackpad. */
+      if (huidige < 120) {
+        setVerborgen(false);
+      } else if (Math.abs(verschil) > 6) {
+        setVerborgen(verschil > 0);
+      }
+
+      vorige = huidige;
+      wachtOpFrame = false;
+    };
+
+    const opScroll = () => {
+      if (wachtOpFrame) return;
+      wachtOpFrame = true;
+      window.requestAnimationFrame(verwerk);
+    };
+
+    window.addEventListener('scroll', opScroll, { passive: true });
+    return () => window.removeEventListener('scroll', opScroll);
+  }, []);
+
+  /* Een openstaand menu hoort niet mee omhoog te schuiven. */
+  useEffect(() => {
+    if (verborgen) setOpenMenu(null);
+  }, [verborgen]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -78,7 +116,16 @@ export function Navigation() {
 
   return (
     <>
-      <header className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] max-w-7xl">
+      <header
+        className={cn(
+          'fixed top-4 md:top-6 left-1/2 z-50 w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] max-w-7xl',
+          'transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none',
+          // -translate-x-1/2 houdt de balk gecentreerd; de tweede waarde
+          // schuift hem verticaal uit beeld. Iets meer dan de eigen hoogte,
+          // zodat ook de schaduw meegaat.
+          verborgen ? '-translate-x-1/2 -translate-y-[150%]' : '-translate-x-1/2 translate-y-0'
+        )}
+      >
         <div className="flex items-center justify-between gap-4 md:gap-8 pl-4 pr-3 md:pl-6 md:pr-4 py-2.5 md:py-3 nav-floating text-ink-900">
           <Link href="/" aria-label="LK Dakwerken, naar de homepage" className="shrink-0">
             <img src="/lkdakwerken/logo.png" alt="LK Dakwerken" className="h-7 md:h-9 w-auto" />
