@@ -38,6 +38,12 @@ npm run build
 npm start
 ```
 
+## Deploy
+
+GitHub Pages via Actions. Bij elke push naar `main` bouwt `.github/workflows/deploy.yml` de static export en publiceert die automatisch.
+
+Eenmalig in GitHub UI: **Settings → Pages → Source: "GitHub Actions"**.
+
 ## Project structuur
 
 ```
