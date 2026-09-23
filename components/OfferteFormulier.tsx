@@ -1,7 +1,14 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { ArrowRight, Check, Lock } from 'lucide-react';
+import { useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { ArrowRight, Check, Info, Lock } from 'lucide-react';
+import {
+  berekenIndicatie,
+  formatEuro,
+  opties as prijsOpties,
+  type OptieId,
+} from '@/lib/prijzen';
 
 const dienstOpties = [
   { value: 'bitumen-daken', label: 'Bitumen daken' },
@@ -42,14 +49,29 @@ function valideer(data: Record<VeldNaam, string>) {
 
 export function OfferteFormulier() {
   const [data, setData] = useState<Record<VeldNaam, string>>(leeg);
+  const [gekozenOpties, setGekozenOpties] = useState<OptieId[]>([]);
   const [aangeraakt, setAangeraakt] = useState<Partial<Record<VeldNaam, boolean>>>({});
   const [gepoogd, setGepoogd] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const reduce = useReducedMotion();
+  const wortel = useRef<HTMLDivElement>(null);
 
   const fouten = useMemo(() => valideer(data), [data]);
+  const indicatie = useMemo(
+    () => berekenIndicatie(data.dienst, data.oppervlakte, gekozenOpties),
+    [data.dienst, data.oppervlakte, gekozenOpties]
+  );
+  // Toeslagen slaan alleen ergens op bij werk dat per m² wordt gerekend.
+  const toonToeslagen = data.dienst !== '' && data.dienst !== 'lekkage';
 
   function update(k: VeldNaam, v: string) {
     setData((vorige) => ({ ...vorige, [k]: v }));
+  }
+
+  function wisselOptie(id: OptieId) {
+    setGekozenOpties((vorige) =>
+      vorige.includes(id) ? vorige.filter((o) => o !== id) : [...vorige, id]
+    );
   }
 
   function toonFout(k: VeldNaam) {
@@ -59,13 +81,28 @@ export function OfferteFormulier() {
   function submit(e: React.FormEvent) {
     e.preventDefault();
     setGepoogd(true);
-    if (Object.keys(fouten).length > 0) return;
+    if (Object.keys(fouten).length > 0) {
+      // Naar het eerste veld met een fout, anders blijft de melding onzichtbaar.
+      const eerste = (Object.keys(fouten) as VeldNaam[])[0];
+      document.getElementById(eerste)?.focus({ preventScroll: false });
+      return;
+    }
     setSubmitted(true);
+    // De bevestiging is korter dan het formulier, dus zonder scrollen kijkt de
+    // bezoeker naar de footer in plaats van naar het bedankbericht.
+    requestAnimationFrame(() => {
+      wortel.current?.scrollIntoView({
+        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth',
+        block: 'start',
+      });
+    });
   }
 
   if (submitted) {
     return (
-      <div className="panel p-8 md:p-12 text-center">
+      <div ref={wortel} className="panel p-8 md:p-12 text-center scroll-mt-28">
         <div className="w-16 h-16 bg-blue-500 rounded-full mx-auto mb-7 flex items-center justify-center">
           <Check className="w-8 h-8 text-white" aria-hidden="true" strokeWidth={3} />
         </div>
@@ -75,6 +112,20 @@ export function OfferteFormulier() {
         <p className="mt-4 text-lg text-ink-500 max-w-md mx-auto leading-relaxed">
           We hebben uw aanvraag ontvangen en bellen u binnen één werkdag terug op {data.telefoon}.
         </p>
+        {indicatie && (
+          <div className="mt-8 max-w-md mx-auto rounded-2xl bg-ink-950 text-white p-6 text-left">
+            <p className="text-sm font-semibold text-blue-400">Uw prijsindicatie</p>
+            <p className="mt-2 font-display text-3xl font-bold tracking-[-0.03em] leading-none">
+              {formatEuro(indicatie.van)}
+              <span className="text-white/50 font-normal"> tot </span>
+              {formatEuro(indicatie.tot)}
+              {indicatie.eenheid && (
+                <span className="text-base font-normal text-white/60"> {indicatie.eenheid}</span>
+              )}
+            </p>
+            <p className="mt-3 text-sm text-white/60 leading-relaxed">{indicatie.voorbehoud}</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -133,7 +184,9 @@ export function OfferteFormulier() {
                 placeholder="bijvoorbeeld 120 m²"
                 className="field-input"
               />
-              <p className="field-hint">Weet u het niet precies? Een schatting is genoeg.</p>
+              <p className="field-hint">
+                Vul dit in voor een directe prijsindicatie. Een schatting is genoeg.
+              </p>
             </div>
             <div>
               <label htmlFor="adres" className="field-label">
@@ -152,6 +205,98 @@ export function OfferteFormulier() {
               <p className="field-hint">We komen langs voor een gratis inspectie.</p>
             </div>
           </div>
+
+          {/* Toeslagen: alleen zinvol bij werk dat per m² wordt gerekend */}
+          {toonToeslagen && (
+            <fieldset className="border-0 p-0 m-0 min-w-0">
+              <legend className="field-label">Wilt u dit meenemen?</legend>
+              <div className="grid sm:grid-cols-2 gap-3 mt-1">
+                {prijsOpties.map((optie) => {
+                  const aan = gekozenOpties.includes(optie.id);
+                  return (
+                    <label
+                      key={optie.id}
+                      className={`flex gap-3 rounded-2xl border p-4 cursor-pointer transition-colors ${
+                        aan
+                          ? 'border-blue-500 bg-blue-500/[0.06]'
+                          : 'border-paper-200 hover:border-paper-300'
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={aan}
+                        onChange={() => wisselOptie(optie.id)}
+                        className="sr-only"
+                      />
+                      <span
+                        aria-hidden="true"
+                        className={`w-5 h-5 mt-0.5 rounded-md shrink-0 flex items-center justify-center border transition-colors ${
+                          aan ? 'bg-blue-500 border-blue-500' : 'border-paper-300 bg-white'
+                        }`}
+                      >
+                        {aan && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block font-semibold text-ink-900 text-[0.9375rem]">
+                          {optie.label}
+                        </span>
+                        <span className="block text-sm text-ink-500 mt-0.5 leading-relaxed">
+                          {optie.hint}
+                        </span>
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </fieldset>
+          )}
+
+          {/* Prijsindicatie: verschijnt zodra dienst en oppervlakte bekend zijn */}
+          <AnimatePresence initial={false}>
+            {indicatie && (
+              <motion.div
+                key="indicatie"
+                initial={reduce ? false : { opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={reduce ? undefined : { opacity: 0, height: 0 }}
+                transition={{ duration: reduce ? 0 : 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="overflow-hidden"
+                aria-live="polite"
+              >
+                <div className="rounded-2xl bg-ink-950 text-white p-6 sm:p-7">
+                  <p className="text-sm font-semibold text-blue-400">Uw prijsindicatie</p>
+
+                  <p className="mt-2 font-display text-3xl sm:text-4xl font-bold tracking-[-0.03em] leading-none">
+                    {formatEuro(indicatie.van)}
+                    <span className="text-white/50 font-normal"> tot </span>
+                    {formatEuro(indicatie.tot)}
+                    {indicatie.eenheid && (
+                      <span className="text-lg font-normal text-white/60"> {indicatie.eenheid}</span>
+                    )}
+                  </p>
+
+                  <p className="mt-2.5 text-white/75 leading-relaxed">{indicatie.toelichting}</p>
+
+                  <dl className="mt-5 pt-5 border-t border-blue-400/20 space-y-2.5">
+                    {indicatie.regels.map((regel) => (
+                      <div
+                        key={regel.label}
+                        className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm"
+                      >
+                        <dt className="text-white/70">{regel.label}</dt>
+                        <dd className="text-white font-medium">{regel.waarde}</dd>
+                      </div>
+                    ))}
+                  </dl>
+
+                  <p className="mt-5 flex items-start gap-2.5 text-sm text-white/60 leading-relaxed">
+                    <Info className="w-4 h-4 mt-0.5 text-blue-400 shrink-0" aria-hidden="true" />
+                    {indicatie.voorbehoud}
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </fieldset>
 
