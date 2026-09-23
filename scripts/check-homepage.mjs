@@ -20,7 +20,18 @@ console.log('--- nieuwe secties ---');
 eis('projectenslider kop', html.includes('Onze projecten'));
 eis('projectenslider track', html.includes('slider-track'));
 eis('projectenslider pijlknoppen', html.includes('slider-arrow'));
-eis('acht projecten in de track', (html.match(/door LK Dakwerken" loading="lazy" draggable/g) || []).length === 8);
+/* Aantal projecten uit lib/data.ts, zodat de check meegroeit als er
+   projecten bij komen. */
+const projectenAantal = (
+  readFileSync('lib/data.ts', 'utf8')
+    .match(/export const projecten = \[([\s\S]*?)\n\];/)?.[1]
+    .match(/image:\s*"project-\d+"/g) || []
+).length;
+
+eis(
+  `${projectenAantal} projecten in de track`,
+  (html.match(/door LK Dakwerken" loading="lazy" draggable/g) || []).length === projectenAantal,
+);
 eis('donker diensten-paneel', /rounded-3xl bg-ink-950/.test(html));
 eis('diensten-paneel wisselt foto', html.includes('dienst-uitgelicht'));
 eis('knop Alle diensten', html.includes('Alle diensten'));
