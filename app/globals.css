@@ -402,19 +402,19 @@ body {
      ============================================================ */
   .form-group { border: 0; padding: 0; margin: 0; min-width: 0; }
   .form-group > legend { padding: 0; float: none; }
-  .form-divider { height: 1px; background: var(--color-paper-200); margin-block: 2.75rem; }
+  .form-divider { height: 1px; background: var(--color-paper-200); margin-block: 3.25rem; }
 
   .field-label {
     display: block;
     font-size: 0.875rem;
     font-weight: 600;
     color: var(--foreground);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
   }
   .field-input {
     width: 100%;
-    padding: 0.8rem 1rem;
-    border-radius: var(--radius-card);
+    padding: 1rem 1.15rem;
+    border-radius: 0.875rem;
     border: 1.5px solid var(--color-paper-200);
     background: #ffffff;
     color: var(--foreground);
@@ -441,6 +441,55 @@ body {
   }
   .field-hint { font-size: 0.8125rem; color: var(--muted); margin-top: 0.4rem; }
   .field-error { font-size: 0.8125rem; color: var(--color-blue-700); font-weight: 500; margin-top: 0.4rem; }
+
+  /* Verplicht veld: een discreet sterretje achter het label. */
+  .field-label > .verplicht {
+    color: var(--accent);
+    margin-left: 0.2rem;
+  }
+
+  /* ============================================================
+     Oppervlakte-schuif op het offerteformulier.
+     Eén regel CSS per browser-eigen onderdeel, want Chrome en Firefox
+     stylen het duimpje via verschillende pseudo-elementen.
+     ============================================================ */
+  .schuif {
+    width: 100%;
+    height: 0.5rem;
+    border-radius: 999px;
+    appearance: none;
+    background: var(--color-paper-200);
+    outline: none;
+    cursor: pointer;
+  }
+  .schuif::-webkit-slider-thumb {
+    appearance: none;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 999px;
+    background: var(--accent);
+    border: 4px solid #ffffff;
+    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
+    cursor: grab;
+    transition: transform 0.15s ease;
+  }
+  .schuif::-webkit-slider-thumb:active { transform: scale(1.12); cursor: grabbing; }
+  .schuif::-moz-range-thumb {
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 999px;
+    background: var(--accent);
+    border: 4px solid #ffffff;
+    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.45);
+    cursor: grab;
+  }
+  .schuif:focus-visible::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+  }
+  .schuif:focus-visible::-moz-range-thumb {
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+  }
+  .schuif:disabled { opacity: 0.45; cursor: not-allowed; }
 
   /* ============================================================
      Horizontale sliders (projecten en Google-beoordelingen).

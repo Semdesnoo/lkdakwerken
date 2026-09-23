@@ -51,16 +51,50 @@ const leesIndicatie = () =>
     };
   });
 
-/** Leegmaken via Ctrl+A: een triple-click selecteert niet in dit React-veld. */
-async function vulOppervlakte(waarde) {
-  await page.click('#oppervlakte');
-  await page.keyboard.down('Control');
-  await page.keyboard.press('KeyA');
-  await page.keyboard.up('Control');
-  await page.keyboard.press('Backspace');
-  const leeg = await page.$eval('#oppervlakte', (el) => el.value);
-  if (leeg !== '') throw new Error(`oppervlakteveld niet leeg: ${JSON.stringify(leeg)}`);
-  if (waarde) await page.type('#oppervlakte', waarde);
+/** Klikt de dienstkaart met dit opschrift aan. */
+async function kiesDienst(label) {
+  const gelukt = await page.evaluate((tekst) => {
+    const knop = Array.from(document.querySelectorAll('[role="radio"]')).find((b) =>
+      b.textContent.includes(tekst)
+    );
+    if (!knop) return false;
+    knop.click();
+    return true;
+  }, label);
+  if (!gelukt) throw new Error(`dienstkaart niet gevonden: ${label}`);
+  await wacht(400);
+}
+
+/**
+ * Zet de oppervlakteschuif op de gevraagde waarde. De schuif kent vaste
+ * standen, dus we zoeken de stand die bij het aantal vierkante meters hoort
+ * en sturen de bijbehorende invoergebeurtenis.
+ */
+async function zetOppervlakte(meters) {
+  const gezet = await page.evaluate((doel) => {
+    const schuif = document.querySelector('#oppervlakte');
+    if (!schuif) return null;
+
+    // De standen staan niet in de DOM, dus we lopen ze af en lezen het
+    // getal dat het formulier zelf toont.
+    const zetter = Object.getOwnPropertyDescriptor(
+      window.HTMLInputElement.prototype,
+      'value'
+    ).set;
+
+    const max = Number(schuif.max);
+    for (let i = 0; i <= max; i += 1) {
+      zetter.call(schuif, String(i));
+      schuif.dispatchEvent(new Event('input', { bubbles: true }));
+      const tekst = schuif.getAttribute('aria-valuetext') ?? '';
+      const waarde = Number(tekst.match(/\d+/)?.[0] ?? 0);
+      if (waarde >= doel) return waarde;
+    }
+    return null;
+  }, meters);
+
+  await wacht(500);
+  return gezet;
 }
 
 // Het paneel zelf in beeld schieten, niet het toevallige venster.
@@ -78,16 +112,31 @@ async function schietPaneel(bestand) {
   await element.screenshot({ path: join(UIT, bestand) });
 }
 
+/* ---------- dienstkeuze als kaarten ---------- */
+
+const kaarten = await page.$$('[role="radio"]');
+check('dienstkeuze staat als kaarten', kaarten.length === 5, `${kaarten.length} kaarten`);
+check('geen keuzelijst meer voor de dienst', (await page.$('select#dienst')) === null);
+
 check('geen indicatie bij een leeg formulier', (await leesIndicatie()) === null);
 
 // Alleen een dienst, nog geen oppervlakte: nog steeds niets tonen.
-await page.select('#dienst', 'bitumen-daken');
-await wacht(500);
+await kiesDienst('Bitumen daken');
+check('gekozen kaart is aangevinkt', await page.evaluate(() =>
+  Array.from(document.querySelectorAll('[role="radio"]')).some(
+    (b) => b.getAttribute('aria-checked') === 'true' && b.textContent.includes('Bitumen daken')
+  )
+));
 check('geen indicatie zonder oppervlakte', (await leesIndicatie()) === null);
 
-// Oppervlakte erbij: de indicatie moet verschijnen met de verwachte bedragen.
-await page.type('#oppervlakte', '120');
-await wacht(700);
+/* ---------- oppervlakte met de schuif ---------- */
+
+const schuif = await page.$eval('#oppervlakte', (el) => el.type);
+check('oppervlakte is een schuif', schuif === 'range', schuif);
+
+const gezet = await zetOppervlakte(120);
+check('schuif bereikt 120 m²', gezet === 120, String(gezet));
+
 const basis = await leesIndicatie();
 check('indicatie verschijnt', basis !== null, basis?.tekst);
 check('ondergrens 120 x 75 = 9.000', basis?.van === 9000, String(basis?.van));
@@ -112,8 +161,8 @@ check('isolatie krijgt een eigen regel', metIsolatie.regels.length === basis.reg
 await schietPaneel('offerte-isolatie.png');
 
 // Spoed bij lekkage rekent per bezoek, niet per m².
-await page.select('#dienst', 'lekkage');
-await wacht(700);
+await kiesDienst('Lekkage');
+await wacht(500);
 const lekkage = await leesIndicatie();
 check('lekkage toont een bedrag per bezoek', lekkage !== null && lekkage.van === 165, lekkage?.tekst);
 check('lekkage verbergt de toeslagen', !(await page.$$eval('label', (ls) =>
@@ -122,18 +171,42 @@ check('lekkage verbergt de toeslagen', !(await page.$$eval('label', (ls) =>
 
 await schietPaneel('offerte-lekkage.png');
 
-// Onzin in het oppervlakteveld mag geen bedrag opleveren.
-await page.select('#dienst', 'renovatie');
-await vulOppervlakte('geen idee');
-await wacht(700);
-check('onbruikbare invoer geeft geen bedrag', (await leesIndicatie()) === null);
+/* ---------- verplichte contactgegevens ---------- */
 
-// Mobiel: opnieuw laden op telefoonformaat, zodat de layout echt mobiel is.
+await page.reload({ waitUntil: 'networkidle0' });
+await kiesDienst('Renovatie');
+await page.click('button[type="submit"]');
+await wacht(600);
+
+const meldingen = await page.evaluate(() =>
+  Array.from(document.querySelectorAll('.field-error')).map((e) => e.textContent.trim())
+);
+check('versturen zonder contactgegevens wordt tegengehouden', meldingen.length >= 3, `${meldingen.length} meldingen`);
+check('naam is verplicht', meldingen.some((m) => m.toLowerCase().includes('naam')));
+check('e-mailadres is verplicht', meldingen.some((m) => m.toLowerCase().includes('mail')));
+check('telefoonnummer is verplicht', meldingen.some((m) => m.toLowerCase().includes('telefoon')));
+check('formulier is niet verstuurd', !(await page.evaluate(() =>
+  document.body.textContent.includes('Bedankt,')
+)));
+
+// Een half e-mailadres hoort ook te worden afgekeurd.
+await page.type('#naam', 'Jan de Vries');
+await page.type('#email', 'jan@voorbeeld');
+await page.type('#telefoon', '0612345678');
+await page.click('button[type="submit"]');
+await wacht(600);
+check('onvolledig e-mailadres wordt afgekeurd', await page.evaluate(() =>
+  Array.from(document.querySelectorAll('.field-error')).some((e) =>
+    e.textContent.includes('niet compleet')
+  )
+));
+
+/* ---------- mobiel ---------- */
+
 await page.setViewport({ width: 390, height: 844, isMobile: true, hasTouch: true });
 await page.reload({ waitUntil: 'networkidle0' });
-await page.select('#dienst', 'renovatie');
-await vulOppervlakte('250');
-await wacht(700);
+await kiesDienst('Renovatie');
+await zetOppervlakte(250);
 const mobiel = await leesIndicatie();
 check('indicatie ook op mobiel', mobiel !== null, mobiel?.tekst);
 const overloop = await page.evaluate(() => {
@@ -151,11 +224,12 @@ check(
 );
 await schietPaneel('offerte-mobiel.png');
 
-// Na het versturen moet de indicatie op de bevestiging blijven staan.
+/* ---------- versturen ---------- */
+
 await page.setViewport({ width: 1440, height: 1200 });
 await page.reload({ waitUntil: 'networkidle0' });
-await page.select('#dienst', 'bitumen-daken');
-await vulOppervlakte('120');
+await kiesDienst('Bitumen daken');
+await zetOppervlakte(120);
 await page.type('#naam', 'Jan de Vries');
 await page.type('#email', 'jan@voorbeeld.nl');
 await page.type('#telefoon', '0612345678');

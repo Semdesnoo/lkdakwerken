@@ -2,7 +2,16 @@
 
 import { useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Check, Info, Lock } from 'lucide-react';
+import {
+  ArrowRight,
+  Check,
+  Droplets,
+  Hammer,
+  Info,
+  Layers,
+  Lock,
+  Wrench,
+} from 'lucide-react';
 import {
   berekenIndicatie,
   formatEuro,
@@ -11,12 +20,20 @@ import {
 } from '@/lib/prijzen';
 
 const dienstOpties = [
-  { value: 'bitumen-daken', label: 'Bitumen daken' },
-  { value: 'renovatie', label: 'Renovatie' },
-  { value: 'nieuwbouw', label: 'Nieuwbouw' },
-  { value: 'onderhoud', label: 'Onderhoud' },
-  { value: 'lekkage', label: 'Lekkage (spoed)' },
+  { value: 'bitumen-daken', label: 'Bitumen daken', hint: 'Nieuwe dakbedekking', Icoon: Layers },
+  { value: 'renovatie', label: 'Renovatie', hint: 'Bestaand dak vervangen', Icoon: Hammer },
+  { value: 'nieuwbouw', label: 'Nieuwbouw', hint: 'Dak op nieuwe aanbouw', Icoon: Wrench },
+  { value: 'onderhoud', label: 'Onderhoud', hint: 'Jaarlijkse controle', Icoon: Check },
+  { value: 'lekkage', label: 'Lekkage', hint: 'Spoed, vaak dezelfde dag', Icoon: Droplets },
 ];
+
+/* Standen van de oppervlakteschuif. Niet lineair: onder de honderd vierkante
+   meter wil je per vijf kunnen kiezen, daarboven is dat zinloos nauwkeurig. */
+const OPPERVLAKTES = [
+  5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100,
+  120, 140, 160, 180, 200, 250, 300, 400, 500, 750, 1000,
+];
+const STANDAARD_STAND = 9; // 50 m², een gangbare uitbouw
 
 type VeldNaam = 'dienst' | 'oppervlakte' | 'naam' | 'email' | 'telefoon' | 'adres' | 'opmerkingen';
 
@@ -53,19 +70,41 @@ export function OfferteFormulier() {
   const [aangeraakt, setAangeraakt] = useState<Partial<Record<VeldNaam, boolean>>>({});
   const [gepoogd, setGepoogd] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  /* De schuif staat pas aan zodra de bezoeker hem gebruikt; daarvoor is het
+     oppervlak onbekend en tonen we nog geen prijs. */
+  const [stand, setStand] = useState(STANDAARD_STAND);
+  const [oppervlakBekend, setOppervlakBekend] = useState(false);
   const reduce = useReducedMotion();
   const wortel = useRef<HTMLDivElement>(null);
 
+  const oppervlak = OPPERVLAKTES[stand];
+
   const fouten = useMemo(() => valideer(data), [data]);
   const indicatie = useMemo(
-    () => berekenIndicatie(data.dienst, data.oppervlakte, gekozenOpties),
-    [data.dienst, data.oppervlakte, gekozenOpties]
+    () =>
+      berekenIndicatie(
+        data.dienst,
+        oppervlakBekend ? String(oppervlak) : '',
+        gekozenOpties,
+      ),
+    [data.dienst, oppervlak, oppervlakBekend, gekozenOpties]
   );
   // Toeslagen slaan alleen ergens op bij werk dat per m² wordt gerekend.
   const toonToeslagen = data.dienst !== '' && data.dienst !== 'lekkage';
 
   function update(k: VeldNaam, v: string) {
     setData((vorige) => ({ ...vorige, [k]: v }));
+  }
+
+  function kiesDienst(waarde: string) {
+    setData((vorige) => ({ ...vorige, dienst: waarde }));
+    setAangeraakt((a) => ({ ...a, dienst: true }));
+  }
+
+  function verzetSchuif(nieuweStand: number) {
+    setStand(nieuweStand);
+    setOppervlakBekend(true);
+    update('oppervlakte', String(OPPERVLAKTES[nieuweStand]));
   }
 
   function wisselOptie(id: OptieId) {
@@ -139,71 +178,123 @@ export function OfferteFormulier() {
         </legend>
         <p className="text-ink-500 mb-6">Met deze gegevens kunnen we de offerte gericht opstellen.</p>
 
-        <div className="space-y-5">
-          <div>
-            <label htmlFor="dienst" className="field-label">
+        <div className="space-y-8">
+          {/* Dienstkeuze als kaarten: sneller te kiezen dan een keuzelijst en
+              meteen zichtbaar wat we aanbieden. */}
+          <fieldset className="border-0 p-0 m-0 min-w-0">
+            <legend className="field-label">
               Welke dienst heeft u nodig?
-            </label>
-            <select
-              id="dienst"
-              name="dienst"
-              required
-              value={data.dienst}
-              onChange={(e) => update('dienst', e.target.value)}
-              onBlur={() => setAangeraakt((a) => ({ ...a, dienst: true }))}
+              <span className="verplicht" aria-hidden="true">*</span>
+            </legend>
+            <div
+              className="grid grid-cols-2 lg:grid-cols-3 gap-3 mt-1"
+              role="radiogroup"
+              aria-label="Welke dienst heeft u nodig?"
               aria-invalid={toonFout('dienst')}
               aria-describedby={toonFout('dienst') ? 'dienst-fout' : undefined}
-              className="field-input"
             >
-              <option value="">Kies een dienst</option>
-              {dienstOpties.map((opt) => (
-                <option key={opt.value} value={opt.value}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
+              {dienstOpties.map(({ value, label, hint, Icoon }) => {
+                const aan = data.dienst === value;
+                return (
+                  <button
+                    key={value}
+                    type="button"
+                    role="radio"
+                    aria-checked={aan}
+                    id={value === dienstOpties[0].value ? 'dienst' : undefined}
+                    onClick={() => kiesDienst(value)}
+                    className={`group flex flex-col items-start gap-2.5 rounded-2xl border p-4 text-left transition-all ${
+                      aan
+                        ? 'border-blue-500 bg-blue-500/[0.06] shadow-[0_2px_16px_rgba(37,99,235,0.14)]'
+                        : 'border-paper-200 hover:border-blue-300 hover:bg-paper-50'
+                    }`}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`inline-flex h-10 w-10 items-center justify-center rounded-xl transition-colors ${
+                        aan ? 'bg-blue-500 text-white' : 'bg-paper-100 text-ink-500'
+                      }`}
+                    >
+                      <Icoon className="h-5 w-5" />
+                    </span>
+                    <span className="min-w-0">
+                      <span
+                        className={`block font-semibold text-[0.9375rem] leading-tight ${
+                          aan ? 'text-blue-600' : 'text-ink-900'
+                        }`}
+                      >
+                        {label}
+                      </span>
+                      <span className="block text-sm text-ink-500 mt-1 leading-snug">{hint}</span>
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
             {toonFout('dienst') && (
               <p id="dienst-fout" className="field-error">
                 {fouten.dienst}
               </p>
             )}
-          </div>
+          </fieldset>
 
-          <div className="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label htmlFor="oppervlakte" className="field-label">
+          {/* Oppervlakte met een schuif: fijner dan een getal intypen, en het
+              laat meteen zien welke bandbreedte we aanhouden. */}
+          <div>
+            <div className="flex flex-wrap items-baseline justify-between gap-2">
+              <label htmlFor="oppervlakte" className="field-label mb-0">
                 Geschatte oppervlakte
               </label>
-              <input
-                id="oppervlakte"
-                name="oppervlakte"
-                type="text"
-                inputMode="numeric"
-                value={data.oppervlakte}
-                onChange={(e) => update('oppervlakte', e.target.value)}
-                placeholder="bijvoorbeeld 120 m²"
-                className="field-input"
-              />
-              <p className="field-hint">
-                Vul dit in voor een directe prijsindicatie. Een schatting is genoeg.
-              </p>
+              <span
+                className={`font-display text-2xl font-bold tracking-[-0.02em] tabular-nums transition-colors ${
+                  oppervlakBekend ? 'text-blue-600' : 'text-ink-300'
+                }`}
+                aria-hidden="true"
+              >
+                {oppervlak} m²
+              </span>
             </div>
-            <div>
-              <label htmlFor="adres" className="field-label">
-                Adres van het dak
-              </label>
-              <input
-                id="adres"
-                name="adres"
-                type="text"
-                autoComplete="street-address"
-                value={data.adres}
-                onChange={(e) => update('adres', e.target.value)}
-                placeholder="Straat 12, 3044 CK Rotterdam"
-                className="field-input"
-              />
-              <p className="field-hint">We komen langs voor een gratis inspectie.</p>
+
+            <input
+              id="oppervlakte"
+              name="oppervlakte"
+              type="range"
+              min={0}
+              max={OPPERVLAKTES.length - 1}
+              step={1}
+              value={stand}
+              onChange={(e) => verzetSchuif(Number(e.target.value))}
+              className="schuif mt-4"
+              aria-valuetext={`${oppervlak} vierkante meter`}
+            />
+
+            <div className="mt-2 flex justify-between text-xs text-ink-400">
+              <span>{OPPERVLAKTES[0]} m²</span>
+              <span>{OPPERVLAKTES[OPPERVLAKTES.length - 1]} m² of meer</span>
             </div>
+
+            <p className="field-hint">
+              {oppervlakBekend
+                ? 'Een schatting is genoeg. Bij de inspectie meten we het dak precies op.'
+                : 'Sleep de schuif voor een directe prijsindicatie. Een schatting is genoeg.'}
+            </p>
+          </div>
+
+          <div>
+            <label htmlFor="adres" className="field-label">
+              Adres van het dak
+            </label>
+            <input
+              id="adres"
+              name="adres"
+              type="text"
+              autoComplete="street-address"
+              value={data.adres}
+              onChange={(e) => update('adres', e.target.value)}
+              placeholder="Straat 12, 3044 CK Rotterdam"
+              className="field-input"
+            />
+            <p className="field-hint">We komen langs voor een gratis inspectie.</p>
           </div>
 
           {/* Toeslagen: alleen zinvol bij werk dat per m² wordt gerekend */}
@@ -307,12 +398,16 @@ export function OfferteFormulier() {
         <legend className="text-display text-2xl tracking-[-0.02em] text-ink-900 mb-1">
           Uw contactgegevens
         </legend>
-        <p className="text-ink-500 mb-6">We bellen binnen één werkdag terug.</p>
+        <p className="text-ink-500 mb-6">
+          We bellen binnen één werkdag terug. Naam, e-mailadres en telefoonnummer hebben we
+          nodig om de offerte te kunnen sturen.
+        </p>
 
-        <div className="space-y-5">
+        <div className="space-y-6">
           <div>
             <label htmlFor="naam" className="field-label">
               Naam
+              <span className="verplicht" aria-hidden="true">*</span>
             </label>
             <input
               id="naam"
@@ -334,10 +429,11 @@ export function OfferteFormulier() {
             )}
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-5">
+          <div className="grid sm:grid-cols-2 gap-6">
             <div>
               <label htmlFor="email" className="field-label">
                 E-mailadres
+                <span className="verplicht" aria-hidden="true">*</span>
               </label>
               <input
                 id="email"
@@ -361,6 +457,7 @@ export function OfferteFormulier() {
             <div>
               <label htmlFor="telefoon" className="field-label">
                 Telefoonnummer
+                <span className="verplicht" aria-hidden="true">*</span>
               </label>
               <input
                 id="telefoon"
@@ -413,7 +510,10 @@ export function OfferteFormulier() {
       <div className="flex flex-col sm:flex-row sm:items-center gap-6 justify-between">
         <p className="flex items-start gap-2.5 text-sm text-ink-500 max-w-sm leading-relaxed">
           <Lock className="w-4 h-4 mt-0.5 text-blue-500 shrink-0" aria-hidden="true" />
-          Uw gegevens gebruiken we alleen voor deze offerte. We delen ze niet met derden.
+          <span>
+            Velden met een <span className="text-blue-500 font-semibold">*</span> zijn verplicht.
+            Uw gegevens gebruiken we alleen voor deze offerte en delen we niet met derden.
+          </span>
         </p>
         <button type="submit" className="btn-pill self-start sm:self-auto">
           <span className="label">Verstuur aanvraag</span>
