@@ -1,6 +1,10 @@
 import type { Metadata } from 'next';
+import { Check, Clock, Star } from 'lucide-react';
+import { fotos, reviews } from '@/lib/data';
 import { OfferteFormulier } from '@/components/OfferteFormulier';
-import { Check, Clock } from 'lucide-react';
+import { PageHeader } from '@/components/PageHeader';
+import { Sterren } from '@/components/Sterren';
+import { Reveal } from '@/components/Reveal';
 
 export const metadata: Metadata = {
   title: 'Offerte aanvragen - Binnen 24 uur reactie',
@@ -8,54 +12,87 @@ export const metadata: Metadata = {
   alternates: { canonical: '/offerte' },
 };
 
+const inbegrepen = [
+  'Gratis dakinspectie op locatie',
+  'Heldere offerte zonder kleine lettertjes',
+  'Fotorapport van de huidige staat',
+  'Dakmerk garantiecertificaat',
+  '10 jaar garantie op waterdichtheid',
+];
+
 export default function OffertePage() {
+  const review = reviews[0];
+
   return (
     <>
-      <section className="pt-28 pb-12 md:pt-32 md:pb-20 border-b border-[var(--border)]">
-        <div className="container-wide">
-          <div className="max-w-3xl">
-            <div className="eyebrow mb-6">Offerte</div>
-            <h1 className="text-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-[-0.04em] text-balance">
-              Vraag uw
-              <br />
-              <span className="text-[var(--accent)]">gratis offerte aan.</span>
-            </h1>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        titel="Vraag uw"
+        accent="gratis offerte aan."
+        lead="Vul het formulier in en we bellen binnen één werkdag terug om een inspectie in te plannen."
+        image={fotos.offerteHeader}
+        imageAlt="Dakdekkers bespreken de werkplanning"
+        kruimels={[{ label: 'Home', href: '/' }, { label: 'Offerte' }]}
+        compact
+      />
 
-      <section className="py-12 md:py-20">
-        <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-10">
+      <section className="section-pad bg-paper-50">
+        <div className="container-wide grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-7">
             <OfferteFormulier />
           </div>
 
-          <aside className="lg:col-span-5 space-y-px bg-[var(--border)]">
-            <div className="bg-[var(--background)] p-6">
-              <div className="text-[11px] font-mono uppercase tracking-[0.15em] text-[var(--muted)] mb-3">Wat u krijgt</div>
-              <ul className="space-y-2 text-sm">
-                {['Gratis dakinspectie op locatie', 'Heldere offerte zonder kleine lettertjes', 'Foto-rapport van de huidige staat', 'Dakmerk garantiecertificaat', '10 jaar garantie op waterdichtheid'].map((p) => (
-                  <li key={p} className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-[var(--accent)] mt-0.5 flex-shrink-0" />
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <aside className="lg:col-span-5 lg:sticky lg:top-28 space-y-4">
+            <Reveal>
+              <div className="panel p-7">
+                <h2 className="text-display text-xl tracking-[-0.02em] text-ink-900">Wat u krijgt</h2>
+                <ul className="mt-5 space-y-3">
+                  {inbegrepen.map((p) => (
+                    <li key={p} className="flex items-start gap-3 text-ink-700">
+                      <Check className="w-4 h-4 text-blue-500 mt-1 shrink-0" aria-hidden="true" strokeWidth={3} />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
 
-            <div className="bg-[var(--foreground)] text-[var(--background)] p-6">
-              <Clock className="w-5 h-5 text-[var(--accent)] mb-3" />
-              <div className="text-display text-xl tracking-tight">Spoed bij lekkage?</div>
-              <p className="mt-2 text-sm opacity-80 leading-relaxed">Wacht niet op een offerte. Bel direct.</p>
-              <a href="tel:+31612345678" className="block mt-4 font-mono text-2xl">06 12 34 56 78</a>
-            </div>
+            <Reveal delay={0.07}>
+              <div className="rounded-3xl bg-ink-900 text-white p-7">
+                <span className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center mb-5">
+                  <Clock className="w-5 h-5" aria-hidden="true" />
+                </span>
+                <h2 className="text-display text-xl tracking-[-0.02em]">Spoed bij lekkage?</h2>
+                <p className="mt-2.5 text-white/75 leading-relaxed">
+                  Wacht niet op een offerte. Bel ons direct, 7 dagen per week.
+                </p>
+                <a
+                  href="tel:+31612345678"
+                  className="mt-5 inline-block text-2xl font-display font-bold tracking-[-0.02em] link-underline"
+                >
+                  06 12 34 56 78
+                </a>
+              </div>
+            </Reveal>
 
-            <div className="bg-[var(--background)] p-6">
-              <div className="font-semibold">Waarom LK Dakwerken?</div>
-              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-                Dakmerk erkend, VCA-gecertificeerd, 25 jaar ervaring. Eerlijke prijzen en garantie waar u op kunt bouwen.
+            <Reveal delay={0.14}>
+              <figure className="panel p-7">
+                <Sterren aantal={review.rating} className="w-4 h-4" label={`${review.rating} van de 5 sterren`} />
+                <blockquote className="mt-4 text-ink-800 leading-relaxed">{review.tekst}</blockquote>
+                <figcaption className="mt-5 pt-5 border-t border-paper-200 text-sm">
+                  <span className="block font-semibold text-ink-900">{review.naam}</span>
+                  <span className="block text-ink-500">
+                    {review.rol}, {review.plaats}
+                  </span>
+                </figcaption>
+              </figure>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <p className="flex items-center gap-2.5 text-sm text-ink-500 px-1">
+                <Star className="w-4 h-4 fill-blue-500 text-blue-500 shrink-0" aria-hidden="true" strokeWidth={0} />
+                4.9 gemiddeld op Google, uit 127 beoordelingen.
               </p>
-            </div>
+            </Reveal>
           </aside>
         </div>
       </section>

@@ -1,85 +1,67 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { blogPosts } from '@/lib/data';
+import { foto } from '@/lib/images';
+import { Reveal } from '@/components/Reveal';
 
 export function Blog() {
-  const featured = blogPosts[0];
+  const posts = blogPosts.slice(0, 4);
 
   return (
     <section className="section-pad bg-paper-50">
       <div className="container-wide">
-        <div className="grid md:grid-cols-12 gap-8 mb-12 items-end">
-          <div className="md:col-span-5">
-            <div className="eyebrow mb-4">Blog</div>
-            <h2 className="text-display text-4xl md:text-5xl leading-[1.05] tracking-[-0.03em]">
-              Wist je dit al?
+        <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
+          <div className="max-w-2xl">
+            <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-ink-900 text-balance">
+              Kennis over daken, zonder verkooppraat.
             </h2>
-          </div>
-          <div className="md:col-span-5 md:col-start-8">
-            <p className="text-lg text-ink-500 leading-relaxed">
+            <p className="lead mt-5">
               Praktische artikelen over dakonderhoud, materiaalkeuzes en veelgemaakte fouten.
             </p>
           </div>
-        </div>
-
-        <div className="grid md:grid-cols-12 gap-5">
-          {/* Featured - large card */}
-          <Link href={`/blog/${featured.slug}`} className="md:col-span-7 group">
-            <div className="panel overflow-hidden h-full">
-              <div className="aspect-[16/10] overflow-hidden rounded-t-3xl">
-                <img
-                  src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1200&q=80&auto=format&fit=crop"
-                  alt={featured.titel}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-              <div className="p-6 md:p-8">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="pill-light">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                    {featured.categorie}
-                  </span>
-                  <span className="text-xs text-ink-400 font-mono uppercase tracking-widest">{featured.leestijd} leestijd</span>
-                </div>
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-ink-900 group-hover:text-blue-500 transition-colors leading-tight">
-                  {featured.titel}
-                </h3>
-                <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-blue-500">
-                  Lees artikel <ArrowRight className="w-4 h-4" />
-                </div>
-              </div>
-            </div>
+          <Link href="/blog" className="btn-link shrink-0">
+            Alle artikelen
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
+        </Reveal>
 
-          {/* Stack van 3 kleinere cards */}
-          <div className="md:col-span-5 flex flex-col gap-5">
-            {blogPosts.slice(1, 4).map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="group flex-1">
-                <div className="panel p-5 h-full flex items-center gap-5 hover:shadow-2xl transition-shadow">
-                  <div className="w-24 h-24 md:w-28 md:h-28 flex-shrink-0 rounded-2xl overflow-hidden">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {posts.map((post, i) => (
+            <Reveal key={post.slug} delay={(i % 4) * 0.07}>
+              <article className="h-full">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group card card-hover overflow-hidden h-full flex flex-col"
+                >
+                  <div className="aspect-[4/3] overflow-hidden bg-paper-100">
                     <img
-                      src="https://images.unsplash.com/photo-1607400201515-c2c41c07d307?w=400&q=70&auto=format&fit=crop"
+                      src={foto(post.image, 700, 75)}
                       alt={post.titel}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
                     />
                   </div>
-                  <div className="flex-1">
-                    <div className="text-xs text-blue-500 font-mono uppercase tracking-widest mb-1">{post.categorie}</div>
-                    <h3 className="font-bold text-ink-900 group-hover:text-blue-500 transition-colors leading-snug">
+                  <div className="p-5 md:p-6 flex flex-col flex-1">
+                    <div className="flex items-center gap-2 text-sm text-ink-500">
+                      <span className="font-medium text-blue-500">{post.categorie}</span>
+                      <span aria-hidden="true" className="w-1 h-1 rounded-full bg-ink-300" />
+                      <span>{post.leestijd}</span>
+                    </div>
+                    <h3 className="mt-3 text-lg md:text-xl font-semibold tracking-[-0.015em] leading-snug text-ink-900 group-hover:text-blue-500 transition-colors">
                       {post.titel}
                     </h3>
+                    <p className="mt-3 text-sm text-ink-500 leading-relaxed line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                    <span className="btn-link mt-auto pt-5">
+                      Lees artikel
+                      <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                    </span>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-12 flex justify-center">
-          <Link href="/blog" className="btn-pill-dark">
-            <span className="label">Bekijk alle artikelen</span>
-            <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
-          </Link>
+                </Link>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

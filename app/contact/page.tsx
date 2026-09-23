@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
-import { Phone, Mail, MapPin, MessageSquare, Clock } from 'lucide-react';
+import Link from 'next/link';
+import { Phone, Mail, MapPin, MessageSquare, ArrowRight, Navigation2 } from 'lucide-react';
+import { bedrijf, certificeringen, fotos } from '@/lib/data';
+import { PageHeader } from '@/components/PageHeader';
+import { Reveal } from '@/components/Reveal';
 
 export const metadata: Metadata = {
   title: 'Contact - Bel, mail of stuur een WhatsApp',
@@ -7,75 +11,175 @@ export const metadata: Metadata = {
   alternates: { canonical: '/contact' },
 };
 
+const kanalen = [
+  {
+    icon: Phone,
+    label: 'Bel ons',
+    waarde: '06 12 34 56 78',
+    sub: '7 dagen per week, 07:00 tot 21:00',
+    href: 'tel:+31612345678',
+  },
+  {
+    icon: MessageSquare,
+    label: 'WhatsApp',
+    waarde: '06 12 34 56 78',
+    sub: 'Meestal binnen een uur antwoord',
+    href: 'https://wa.me/31612345678',
+  },
+  {
+    icon: Mail,
+    label: 'Mail ons',
+    waarde: 'info@lkdakwerken.nl',
+    sub: 'Antwoord binnen 24 uur',
+    href: 'mailto:info@lkdakwerken.nl',
+  },
+];
+
 export default function ContactPage() {
   return (
     <>
-      <section className="pt-28 pb-12 md:pt-32 md:pb-20 border-b border-[var(--border)]">
-        <div className="container-wide">
-          <div className="max-w-3xl">
-            <div className="eyebrow mb-6">Contact</div>
-            <h1 className="text-display text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-[-0.04em] text-balance">
-              Laten we
-              <br />
-              <span className="text-[var(--accent)]">kennismaken.</span>
-            </h1>
-          </div>
-        </div>
-      </section>
+      <PageHeader
+        titel="Laten we"
+        accent="kennismaken."
+        lead="Een vraag over uw dak, een lekkage of een offerte: we denken graag mee. U krijgt altijd een vakman aan de lijn, geen callcenter."
+        image={fotos.contactHeader}
+        imageAlt="Skyline van Rotterdam"
+        kruimels={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
+        compact
+      />
 
-      <section className="py-12 md:py-20">
-        <div className="container-wide grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div className="lg:col-span-5 space-y-px bg-[var(--border)]">
-            {[
-              { icon: Phone, label: 'Bel ons', waarde: '06 12 34 56 78', sub: '7 dagen, 07:00 - 21:00', href: 'tel:+31612345678' },
-              { icon: MessageSquare, label: 'WhatsApp', waarde: '06 12 34 56 78', sub: 'Reactie binnen 1 uur', href: 'https://wa.me/31612345678' },
-              { icon: Mail, label: 'Mail ons', waarde: 'info@lkdakwerken.nl', sub: 'Binnen 24 uur', href: 'mailto:info@lkdakwerken.nl' },
-              { icon: MapPin, label: 'Bezoek ons', waarde: 'Bedrijvenpark 12', sub: '3000 AB Rotterdam', href: '#' },
-            ].map((c) => {
+      <section className="section-pad bg-white">
+        <div className="container-wide grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Contactkanalen */}
+          <div className="lg:col-span-5 space-y-4">
+            {kanalen.map((c, i) => {
               const Icon = c.icon;
+              const extern = c.href.startsWith('http');
               return (
-                <a key={c.label} href={c.href} className="bg-[var(--background)] p-6 hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-colors flex items-start gap-4 group">
-                  <Icon className="w-5 h-5 mt-1 flex-shrink-0" />
-                  <div className="flex-1">
-                    <div className="text-[11px] font-mono uppercase tracking-[0.15em] opacity-60">{c.label}</div>
-                    <div className="text-display text-lg tracking-tight mt-1">{c.waarde}</div>
-                    <div className="text-xs opacity-60 mt-1 flex items-center gap-1.5"><Clock className="w-3 h-3" /> {c.sub}</div>
-                  </div>
-                </a>
+                <Reveal key={c.label} delay={i * 0.07}>
+                  <a
+                    href={c.href}
+                    {...(extern ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    className="group card card-hover flex items-center gap-4 p-5 md:p-6"
+                  >
+                    <span className="w-12 h-12 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 transition-colors group-hover:bg-blue-500 group-hover:text-white">
+                      <Icon className="w-5 h-5" aria-hidden="true" />
+                    </span>
+                    <span className="flex-1 min-w-0">
+                      <span className="block text-sm text-ink-500">{c.label}</span>
+                      <span className="block text-lg font-semibold text-ink-900 truncate">{c.waarde}</span>
+                      <span className="block text-sm text-ink-500 mt-0.5">{c.sub}</span>
+                    </span>
+                    <ArrowRight
+                      aria-hidden="true"
+                      className="w-5 h-5 text-blue-500 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0"
+                    />
+                  </a>
+                </Reveal>
               );
             })}
+
+            <Reveal delay={0.24}>
+              <div className="panel p-6 md:p-7">
+                <h2 className="text-display text-xl tracking-[-0.02em] text-ink-900">
+                  Liever meteen een prijs?
+                </h2>
+                <p className="mt-2.5 text-ink-500 leading-relaxed">
+                  Vul het offerteformulier in. U hoort binnen één werkdag van ons.
+                </p>
+                <Link href="/offerte" className="btn-pill mt-6 w-full justify-between">
+                  <span className="label">Offerte aanvragen</span>
+                  <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
+                </Link>
+              </div>
+            </Reveal>
           </div>
 
-          <div className="lg:col-span-7">
-            <div className="aspect-[4/3] bg-[var(--foreground)] overflow-hidden">
-              <iframe
-                src="https://www.openstreetmap.org/export/embed.html?bbox=4.3777%2C51.8744%2C4.5777%2C51.9744&layer=mapnik"
-                width="100%"
-                height="100%"
-                style={{ border: 0, filter: 'invert(0.9) hue-rotate(180deg)' }}
-                title="LK Dakwerken locatie"
-                loading="lazy"
-              />
-            </div>
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--border)] border border-[var(--border)]">
-              <div className="bg-[var(--background)] p-5">
-                <div className="text-[11px] font-mono uppercase tracking-[0.15em] text-[var(--muted)] mb-2">Openingstijden</div>
-                <div className="text-sm space-y-0.5">
-                  <div>Ma-Vr: 07:30-17:30</div>
-                  <div>Za: 09:00-13:00</div>
-                  <div className="text-[var(--accent)]">Zo: alleen spoed</div>
+          {/* Gestileerd kaartblok en gegevens */}
+          <div className="lg:col-span-7 space-y-5">
+            <Reveal delay={0.05}>
+              <div className="relative rounded-3xl overflow-hidden bg-ink-900 aspect-[16/10]">
+                <div className="absolute inset-0 bg-grid-dark opacity-80" aria-hidden="true" />
+                <div
+                  className="absolute inset-0 bg-gradient-to-br from-blue-800/40 via-transparent to-transparent"
+                  aria-hidden="true"
+                />
+
+                {/* Schematische wegen en water rond het depot */}
+                <svg
+                  className="absolute inset-0 w-full h-full"
+                  viewBox="0 0 100 62"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path d="M0 44 C 25 36, 55 50, 100 40" fill="none" stroke="#2563eb" strokeWidth="5" opacity="0.28" />
+                  <path d="M12 0 L 30 62" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.22" />
+                  <path d="M0 22 L 100 16" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.22" />
+                  <path d="M72 0 L 62 62" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.22" />
+                </svg>
+
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center">
+                  <span className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg">
+                    <MapPin className="w-6 h-6" aria-hidden="true" />
+                  </span>
+                  <span className="mt-3 text-white font-semibold">{bedrijf.naam}</span>
+                  <span className="text-sm text-white/65">{bedrijf.straat}</span>
+                </div>
+
+                <p className="absolute bottom-5 left-5 right-5 flex items-center gap-2 text-sm text-white/55">
+                  <Navigation2 className="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true" />
+                  Kantoor en materiaaldepot in {bedrijf.plaats}. Bezoek op afspraak.
+                </p>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="panel p-6 md:p-8 grid sm:grid-cols-2 gap-8">
+                <div>
+                  <h2 className="font-semibold text-ink-900 mb-2.5">Adres</h2>
+                  <address className="not-italic text-ink-500 leading-relaxed">
+                    {bedrijf.naam}
+                    <br />
+                    {bedrijf.straat}
+                    <br />
+                    {bedrijf.postcode} {bedrijf.plaats}
+                  </address>
+                </div>
+                <div>
+                  <h2 className="font-semibold text-ink-900 mb-2.5">Openingstijden</h2>
+                  <dl className="text-ink-500 space-y-1.5">
+                    <div className="flex justify-between gap-4">
+                      <dt>Maandag tot vrijdag</dt>
+                      <dd className="text-ink-900 whitespace-nowrap">{bedrijf.openingstijden.maVrij}</dd>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <dt>Zaterdag</dt>
+                      <dd className="text-ink-900 whitespace-nowrap">{bedrijf.openingstijden.za}</dd>
+                    </div>
+                    <div className="flex justify-between gap-4">
+                      <dt>Zondag</dt>
+                      <dd className="text-ink-900 whitespace-nowrap">{bedrijf.openingstijden.zo}</dd>
+                    </div>
+                  </dl>
+                </div>
+                <div>
+                  <h2 className="font-semibold text-ink-900 mb-2.5">Bedrijfsgegevens</h2>
+                  <p className="text-ink-500 leading-relaxed">
+                    KvK {bedrijf.kvk}
+                    <br />
+                    BTW {bedrijf.btw}
+                  </p>
+                </div>
+                <div>
+                  <h2 className="font-semibold text-ink-900 mb-2.5">Certificering</h2>
+                  <ul className="text-ink-500 space-y-1.5">
+                    {certificeringen.map((c) => (
+                      <li key={c.naam}>{c.naam}</li>
+                    ))}
+                  </ul>
                 </div>
               </div>
-              <div className="bg-[var(--background)] p-5">
-                <div className="text-[11px] font-mono uppercase tracking-[0.15em] text-[var(--muted)] mb-2">KVK</div>
-                <div className="font-mono text-sm">12345678</div>
-              </div>
-              <div className="bg-[var(--background)] p-5">
-                <div className="text-[11px] font-mono uppercase tracking-[0.15em] text-[var(--muted)] mb-2">Certificering</div>
-                <div className="text-sm">Dakmerk Erkend</div>
-                <div className="text-sm">VCA-gecertificeerd</div>
-              </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>

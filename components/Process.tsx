@@ -1,139 +1,63 @@
-'use client';
-
-import { motion, useReducedMotion } from 'framer-motion';
-import { Check } from 'lucide-react';
-import { werkwijze } from '@/lib/data';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { werkwijze, fotos } from '@/lib/data';
+import { foto } from '@/lib/images';
+import { Reveal } from '@/components/Reveal';
 
 export function Process() {
-  const reduce = useReducedMotion();
-
   return (
-    <section className="section-pad bg-paper-50 relative overflow-hidden">
-      {/* Decoratieve grid-achtergrond */}
-      <div className="absolute inset-0 bg-grid opacity-[0.04] pointer-events-none" aria-hidden="true" />
+    <section className="relative section-pad bg-ink-900 text-white overflow-hidden">
+      <img
+        src={foto(fotos.werkwijze, 1800, 75)}
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+        className="absolute inset-0 w-full h-full object-cover opacity-20"
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/92 to-ink-950/70" />
 
-      <div className="container-tight relative">
-        <motion.div
-          initial={reduce ? false : { opacity: 0, y: 20 }}
-          whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-2xl mx-auto mb-16 md:mb-20"
-        >
-          <div className="eyebrow mb-4">Werkwijze</div>
-          <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.03em] text-ink-900">
-            Vier stappen.<br />
-            <span className="text-blue-500">Geen verrassingen.</span>
-          </h2>
-        </motion.div>
+      <div className="container-wide relative">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          <Reveal className="lg:col-span-5">
+            <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-balance">
+              Vier stappen.
+              <br />
+              <span className="text-blue-400">Geen verrassingen.</span>
+            </h2>
+            <p className="mt-6 text-lg text-white/75 leading-relaxed max-w-md">
+              Van de eerste inspectie tot het garantiecertificaat weet u precies waar u aan toe bent. U krijgt één vast aanspreekpunt.
+            </p>
+            <Link href="/offerte" className="btn-pill-white mt-9">
+              <span className="label">Offerte aanvragen</span>
+              <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
+            </Link>
+          </Reveal>
 
-        {/* Stappen-grid + verbindende lijn (alleen zichtbaar op md+) */}
-        <div className="relative">
-          {/* Horizontale connector-lijn achter de kaarten */}
-          <div
-            aria-hidden="true"
-            className="hidden md:block absolute top-12 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-ink-200 to-transparent"
-          />
-
-          <div className="grid md:grid-cols-4 gap-5 md:gap-6">
-            {werkwijze.map((stap, i) => (
-              <motion.div
-                key={stap.nummer}
-                initial={reduce ? false : { opacity: 0, y: 32 }}
-                whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-60px' }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.12,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="group relative"
-              >
-                <div className="relative bg-white rounded-3xl p-7 md:p-8 border border-paper-200 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-xl group-hover:border-blue-200 h-full flex flex-col">
-                  {/* Nummer-badge met progress-ring */}
-                  <div className="relative w-24 h-24 mx-auto mb-6">
-                    {/* Pulse-ring bij hover */}
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 rounded-full bg-blue-500/0 group-hover:bg-blue-500/10 transition-colors duration-500 scale-100 group-hover:scale-110"
-                    />
-                    {/* Buitenring */}
-                    <div className="absolute inset-0 rounded-full border-2 border-paper-200 group-hover:border-blue-300 transition-colors duration-300" />
-                    {/* Binnenstap met progress (i+1)/4 */}
-                    <svg
-                      className="absolute inset-0 -rotate-90"
-                      viewBox="0 0 100 100"
-                      aria-hidden="true"
-                    >
-                      <circle
-                        cx="50"
-                        cy="50"
-                        r="46"
-                        fill="none"
-                        stroke="var(--color-blue-500)"
-                        strokeWidth="3"
-                        strokeDasharray={`${((i + 1) / werkwijze.length) * 289} 289`}
-                        strokeLinecap="round"
-                        className="transition-all duration-500"
-                      />
-                    </svg>
-                    {/* Cijfer in het midden */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-display text-2xl md:text-3xl font-bold text-ink-900 group-hover:text-blue-500 transition-colors duration-300">
-                        {stap.nummer}
-                      </span>
-                    </div>
-                    {/* Check-mark in de hoek voor voltooide stappen (alle behalve laatste) */}
-                    {i < werkwijze.length - 1 && (
-                      <div
-                        aria-hidden="true"
-                        className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300"
-                      >
-                        <Check className="w-3.5 h-3.5" strokeWidth={3} />
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Pijltje tussen stappen (alleen op md+, behalve laatste) */}
-                  {i < werkwijze.length - 1 && (
-                    <div
-                      aria-hidden="true"
-                      className="hidden md:block absolute top-12 -right-3 translate-x-0 z-10 w-6 h-6 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-sm text-xs"
-                    >
-                      →
-                    </div>
-                  )}
-
-                  {/* Titel */}
-                  <h3 className="text-xl md:text-2xl font-bold text-ink-900 mb-3 text-center tracking-tight">
+          {/* Verticale tijdlijn: bewust een ander opmaakfamilie dan de kaartrasters */}
+          <div className="lg:col-span-6 lg:col-start-7">
+            <ol className="relative">
+              <span
+                aria-hidden="true"
+                className="absolute left-[7px] top-3 bottom-3 w-px bg-gradient-to-b from-blue-400/70 via-white/25 to-transparent"
+              />
+              {werkwijze.map((stap, i) => (
+                <Reveal
+                  as="li"
+                  key={stap.titel}
+                  delay={i * 0.1}
+                  className="relative pl-10 pb-10 last:pb-0"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 top-2 w-[15px] h-[15px] rounded-full bg-blue-500 ring-4 ring-ink-950"
+                  />
+                  <h3 className="text-2xl md:text-3xl font-semibold tracking-[-0.02em] text-white">
                     {stap.titel}
                   </h3>
-
-                  {/* Tekst */}
-                  <p className="text-sm text-ink-500 leading-relaxed text-center flex-1">
-                    {stap.tekst}
-                  </p>
-
-                  {/* Voortgangs-bar onderaan */}
-                  <div
-                    aria-hidden="true"
-                    className="mt-6 h-1 w-full bg-paper-100 rounded-full overflow-hidden"
-                  >
-                    <motion.div
-                      initial={reduce ? { width: `${((i + 1) / werkwijze.length) * 100}%` } : { width: 0 }}
-                      whileInView={
-                        reduce
-                          ? undefined
-                          : { width: `${((i + 1) / werkwijze.length) * 100}%` }
-                      }
-                      viewport={{ once: true, margin: '-60px' }}
-                      transition={{ duration: 0.9, delay: 0.3 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                      className="h-full bg-blue-500 rounded-full"
-                    />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                  <p className="mt-2.5 text-white/70 leading-relaxed max-w-md">{stap.tekst}</p>
+                </Reveal>
+              ))}
+            </ol>
           </div>
         </div>
       </div>

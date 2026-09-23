@@ -3,117 +3,96 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { diensten, fotos } from '@/lib/data';
+import { foto } from '@/lib/images';
+
+const snelkoppelingen = ['bitumen-daken', 'renovatie', 'lekkage'];
 
 export function Hero() {
   const reduce = useReducedMotion();
+  const kaarten = snelkoppelingen
+    .map((slug) => diensten.find((d) => d.slug === slug))
+    .filter((d): d is (typeof diensten)[number] => Boolean(d));
 
   return (
     <section className="relative">
-      {/* Full-width achtergrond foto met hogere min-height */}
-      <div className="relative h-[92vh] min-h-[680px] overflow-hidden">
+      <div className="relative h-[92vh] min-h-[640px] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1605276373954-0c4a0dac5b12?w=2400&q=85&auto=format&fit=crop"
-          alt="Wijk met pannendaken in Zuid-Holland"
+          src={foto(fotos.heroHome, 2400, 85)}
+          alt="Daken van een woonwijk in Zuid-Holland"
           className="absolute inset-0 w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/55 to-ink-950/90" />
 
-        {/* Donkere overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/80 via-ink-950/40 to-ink-950/85" />
-
-        {/* Grid patroon voor textuur */}
-        <div className="absolute inset-0 bg-grid-dark opacity-30 pointer-events-none" />
-
-        {/* Tekst content */}
         <div className="relative h-full container-wide flex flex-col justify-center">
-          <motion.div
-            initial={reduce ? false : { opacity: 0, y: 24 }}
-            animate={reduce ? false : { opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl"
-          >
-            <motion.div
-              initial={reduce ? false : { opacity: 0, y: 8 }}
-              animate={reduce ? false : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex pill mb-8"
-            >
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-              <span className="font-mono text-xs uppercase tracking-widest">LK Dakwerken · Zuid-Holland</span>
-            </motion.div>
-
+          <div className="max-w-3xl pb-16 md:pb-24">
             <motion.h1
               initial={reduce ? false : { opacity: 0, y: 20 }}
               animate={reduce ? false : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-display text-5xl md:text-7xl lg:text-[88px] leading-[0.95] tracking-[-0.03em] text-balance text-white"
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-display text-6xl md:text-8xl lg:text-[104px] leading-[0.92] tracking-[-0.04em] text-white"
             >
-              Wij zijn <span className="text-blue-500">LK</span>
-              <br />Dakwerken.
+              Uw dak.
+              <br />
+              <span className="text-blue-400">Ons vak.</span>
             </motion.h1>
 
             <motion.p
-              initial={reduce ? false : { opacity: 0 }}
-              animate={reduce ? false : { opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="mt-6 text-lg md:text-xl text-white/85 max-w-xl leading-relaxed"
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={reduce ? false : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-7 text-lg md:text-xl text-white/85 max-w-xl leading-relaxed"
             >
-              Specialisten in platte en licht hellende daken. Onderhoud, renovatie en nieuwbouw. Waar kunnen we u mee helpen?
+              Specialisten in platte en licht hellende daken. Onderhoud, renovatie en nieuwbouw in heel Zuid-Holland.
             </motion.p>
 
             <motion.div
-              initial={reduce ? false : { opacity: 0 }}
-              animate={reduce ? false : { opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.45 }}
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={reduce ? false : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
               className="mt-10 flex flex-wrap items-center gap-3"
             >
-              <Link href="/contact" className="btn-pill">
-                <span className="label">Direct contact</span>
-                <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
+              <Link href="/offerte" className="btn-pill">
+                <span className="label">Offerte aanvragen</span>
+                <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
               </Link>
-              <Link href="/offerte" className="btn-ghost border-white/40 text-white hover:bg-white hover:text-ink-900">
-                Offerte aanvragen
+              <Link href="/contact" className="btn-ghost-invert">
+                Bel ons
               </Link>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
-
-        {/* Scroll indicator onderaan */}
-        <motion.div
-          initial={reduce ? false : { opacity: 0 }}
-          animate={reduce ? false : { opacity: 1 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-white/60"
-        >
-          <span className="font-mono text-[10px] uppercase tracking-widest">Scroll</span>
-          <div className="w-px h-8 bg-gradient-to-b from-white/60 to-transparent" />
-        </motion.div>
       </div>
 
-      {/* 3 service-pill cards - BLOK onder hero, NIET overlappend */}
-      <div className="container-wide relative z-10 -mt-16 md:-mt-20 mb-12 md:mb-16 pointer-events-none">
-        <div className="grid md:grid-cols-3 gap-4 pointer-events-auto">
-          {[
-            { label: 'Bitumen', href: '/diensten/bitumen-daken', desc: 'Bitumen daken' },
-            { label: 'Renovatie', href: '/diensten/renovatie', desc: 'Dakrenovatie' },
-            { label: 'Lekkage', href: '/diensten/lekkage', desc: 'Spoedservice' },
-          ].map((item, i) => (
+      {/* Drie snelkoppelingen met fotominiatuur, als blok onder de hero */}
+      <div className="container-wide relative z-10 -mt-14 md:-mt-20 mb-16 md:mb-24">
+        <div className="grid sm:grid-cols-3 gap-4">
+          {kaarten.map((dienst, i) => (
             <motion.div
-              key={item.href}
-              initial={reduce ? false : { opacity: 0, y: 30 }}
+              key={dienst.slug}
+              initial={reduce ? false : { opacity: 0, y: 24 }}
               animate={reduce ? false : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.6, delay: 0.4 + i * 0.09, ease: [0.16, 1, 0.3, 1] }}
             >
               <Link
-                href={item.href}
-                className="group flex items-center justify-between gap-3 panel p-5 md:p-6 hover:shadow-2xl hover:-translate-y-1 transition-all"
+                href={`/diensten/${dienst.slug}`}
+                className="group panel flex items-center gap-4 p-4 md:p-5 hover:-translate-y-1 transition-transform duration-300 h-full"
               >
-                <div className="min-w-0">
-                  <div className="font-mono text-[10px] uppercase tracking-widest text-ink-400 mb-1">0{i + 1}</div>
-                  <span className="text-lg md:text-xl font-bold text-ink-900 block leading-tight">{item.label}</span>
-                  <span className="text-xs text-ink-500 block mt-0.5">{item.desc}</span>
+                <div className="w-16 h-16 md:w-[4.5rem] md:h-[4.5rem] rounded-2xl overflow-hidden shrink-0 bg-paper-100">
+                  <img
+                    src={foto(dienst.heroImage, 300, 70)}
+                    alt=""
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.08]"
+                  />
                 </div>
-                <span className="w-11 h-11 md:w-12 md:h-12 rounded-full bg-blue-500 text-white flex items-center justify-center group-hover:translate-x-1 transition-transform flex-shrink-0">
-                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
+                <div className="min-w-0 flex-1">
+                  <span className="block text-lg md:text-xl font-semibold tracking-[-0.02em] text-ink-900 leading-tight group-hover:text-blue-500 transition-colors">
+                    {dienst.titel}
+                  </span>
+                  <span className="block text-sm text-ink-500 mt-1 leading-snug">{dienst.korte}</span>
+                </div>
+                <span className="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center shrink-0 transition-transform group-hover:translate-x-1">
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </span>
               </Link>
             </motion.div>

@@ -1,7 +1,7 @@
 /**
  * Decoratieve SVG-iconen voor LK Dakwerken
  * Mono-stroke, schaalbaar, passend bij een dakdekker.
- * Default kleur is via currentColor — geef kleur mee via className.
+ * Default kleur is via currentColor: geef kleur mee via className.
  */
 
 import type { SVGProps } from 'react';
@@ -100,7 +100,7 @@ export function BeschermlaagIcon({ size = 24, ...rest }: IconProps) {
 }
 
 /**
- * Achtergrondpatroon — een grid van daklijnen, waterdruppels, hamers.
+ * Achtergrondpatroon: een grid van daklijnen, waterdruppels, hamers.
  * Gebruik als decoratie in een section. Neemt de volledige parent in.
  */
 export function DakAchtergrond({ className = '' }: { className?: string }) {

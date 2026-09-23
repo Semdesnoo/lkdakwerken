@@ -40,11 +40,6 @@ export function Navigation() {
   const closeTimeout = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
 
-  // Toon de header-foto alleen op pagina's die geen eigen hero/donkere
-  // bovenkant hebben. Op `/` (homepage) en `/diensten/*` staat al een
-  // eigen hero, dus daar dubbelen we niet.
-  const showHeaderPhoto = pathname !== '/' && !pathname.startsWith('/diensten');
-
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -55,6 +50,13 @@ export function Navigation() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, []);
+
+  const isActive = (item: NavItem) => {
+    if (item.href) return pathname === item.href;
+    if (item.label === 'Diensten') return pathname.startsWith('/diensten');
+    if (item.label === 'Over Ons') return pathname.startsWith('/over');
+    return false;
+  };
 
   const openDropdown = (label: string) => {
     if (closeTimeout.current) clearTimeout(closeTimeout.current);
@@ -68,8 +70,7 @@ export function Navigation() {
 
   const handleItemClick = (item: NavItem) => {
     if (item.items) {
-      const next = openMenu === item.label ? null : item.label;
-      setOpenMenu(next);
+      setOpenMenu(openMenu === item.label ? null : item.label);
     } else {
       setOpenMenu(null);
     }
@@ -77,32 +78,16 @@ export function Navigation() {
 
   return (
     <>
-      {showHeaderPhoto && (
-        <div aria-hidden="true" className="nav-bg-photo">
-          <img
-            src="https://images.unsplash.com/photo-1605276373954-0c4a0dac5b12?w=2400&q=85&auto=format&fit=crop"
-            alt=""
-            className="nav-bg-photo-img"
-          />
-          <div className="nav-bg-photo-overlay" />
-        </div>
-      )}
-
       <header className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] max-w-7xl">
-        <div className="flex items-center justify-between gap-4 md:gap-6 px-4 md:px-6 py-2.5 md:py-3 rounded-2xl transition-all duration-300 nav-floating text-ink-900">
-          {/* Logo links met LK Dakwerken merk-teken */}
-          <Link href="/" aria-label="LK Dakwerken home" className="flex items-center gap-3 shrink-0 group">
-            <img
-              src="/lkdakwerken/logo.svg"
-              alt="LK Dakwerken"
-              className="h-7 md:h-9 w-auto transition-all duration-300"
-            />
+        <div className="flex items-center justify-between gap-4 md:gap-8 pl-4 pr-3 md:pl-6 md:pr-4 py-2.5 md:py-3 nav-floating text-ink-900">
+          <Link href="/" aria-label="LK Dakwerken, naar de homepage" className="shrink-0">
+            <img src="/lkdakwerken/logo.svg" alt="LK Dakwerken" className="h-7 md:h-9 w-auto" />
           </Link>
 
-          {/* Nav links: grotere, boldere titels gecentreerd */}
-          <nav className="hidden lg:flex items-center justify-center gap-2 xl:gap-3 flex-1">
+          <nav aria-label="Hoofdmenu" className="hidden lg:flex items-center justify-center gap-1 flex-1">
             {navItems.map((item) => {
               const isOpen = openMenu === item.label;
+              const active = isActive(item);
               return (
                 <div
                   key={item.label}
@@ -115,31 +100,39 @@ export function Navigation() {
                       onClick={() => handleItemClick(item)}
                       aria-expanded={isOpen}
                       className={cn(
-                        'group relative flex items-center gap-1.5 px-3 xl:px-4 py-2 text-[15px] font-display font-semibold transition-all duration-200',
-                        isOpen ? 'text-blue-500' : 'text-ink-900 hover:text-blue-500'
+                        'group relative flex items-center gap-1.5 px-4 py-2 text-[15px] font-semibold transition-colors duration-200',
+                        isOpen || active ? 'text-blue-500' : 'text-ink-900 hover:text-blue-500'
                       )}
                     >
                       {item.label}
                       <ChevronDown
-                        className={cn(
-                          'w-4 h-4 transition-transform duration-300 ease-out',
-                          isOpen && 'rotate-180'
-                        )}
+                        aria-hidden="true"
+                        className={cn('w-4 h-4 transition-transform duration-300', isOpen && 'rotate-180')}
                       />
                       <span
+                        aria-hidden="true"
                         className={cn(
-                          'absolute bottom-0 left-3 right-3 xl:left-4 xl:right-4 h-0.5 bg-blue-500 origin-center transition-transform duration-300 ease-out',
-                          isOpen ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                          'absolute bottom-0.5 left-4 right-4 h-0.5 rounded-full bg-blue-500 origin-center transition-transform duration-300',
+                          isOpen || active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                         )}
                       />
                     </button>
                   ) : (
                     <Link
                       href={item.href!}
-                      className="group relative inline-flex items-center px-3 xl:px-4 py-2 text-[15px] font-display font-semibold text-ink-900 hover:text-blue-500 transition-all duration-200"
+                      className={cn(
+                        'group relative inline-flex items-center px-4 py-2 text-[15px] font-semibold transition-colors duration-200',
+                        active ? 'text-blue-500' : 'text-ink-900 hover:text-blue-500'
+                      )}
                     >
                       {item.label}
-                      <span className="absolute bottom-0 left-3 right-3 xl:left-4 xl:right-4 h-0.5 bg-blue-500 origin-center scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100" />
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          'absolute bottom-0.5 left-4 right-4 h-0.5 rounded-full bg-blue-500 origin-center transition-transform duration-300',
+                          active ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                        )}
+                      />
                     </Link>
                   )}
                 </div>
@@ -149,34 +142,34 @@ export function Navigation() {
 
           <div className="lg:hidden flex-1" />
 
-          <div className="flex items-center gap-2 md:gap-3 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             <a
               href="tel:+311****3824"
-              className="inline-flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full text-ink-700 hover:bg-paper-100 hover:text-blue-500 transition-colors"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-full text-ink-700 hover:bg-paper-100 hover:text-blue-500 transition-colors"
               aria-label="Bel ons: 010 - 271 38 24"
             >
-              <Phone className="w-4 h-4 md:w-[1.05rem] md:h-[1.05rem]" />
+              <Phone className="w-[1.05rem] h-[1.05rem]" aria-hidden="true" />
             </a>
 
             <Link
               href="/offerte"
-              className="btn-offerte inline-flex items-center gap-2 px-4 md:px-5 py-2.5 text-sm font-semibold rounded-full bg-blue-500 text-white"
+              className="inline-flex items-center gap-2 px-4 md:pl-5 md:pr-4 py-2.5 text-sm font-semibold rounded-full bg-blue-500 text-white whitespace-nowrap transition-colors hover:bg-blue-600"
             >
-              <span className="btn-offerte-label">Offerte</span>
-              <ArrowRight className="btn-offerte-arrow w-3.5 h-3.5" />
+              Offerte
+              <ArrowRight className="hidden md:block w-3.5 h-3.5" aria-hidden="true" />
             </Link>
 
             <button
               onClick={() => setMobileOpen(true)}
-              className="lg:hidden w-9 h-9 rounded-full flex items-center justify-center hover:bg-paper-100 text-ink-700 transition-colors"
+              className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center hover:bg-paper-100 text-ink-700 transition-colors"
               aria-label="Open menu"
             >
-              <Menu className="w-4 h-4" />
+              <Menu className="w-5 h-5" aria-hidden="true" />
             </button>
           </div>
         </div>
 
-        {/* Mega dropdown panel: cross-fade via grid-rows animatie */}
+        {/* Dropdown-paneel */}
         <div
           className={cn(
             'hidden lg:block absolute top-full left-0 right-0 pt-3 transition-all duration-300 ease-out',
@@ -195,53 +188,45 @@ export function Navigation() {
                     key={item.label}
                     className={cn(
                       'grid transition-all duration-300 ease-out',
-                      isOpen
-                        ? 'grid-rows-[1fr] opacity-100'
-                        : 'grid-rows-[0fr] opacity-0 pointer-events-none'
+                      isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0 pointer-events-none'
                     )}
                   >
                     <div className="overflow-hidden">
-                      <div className="p-3 md:p-4">
+                      <div className="p-3">
                         {item.items!.map((sub) => (
                           <Link
                             key={sub.href}
                             href={sub.href}
                             onClick={() => setOpenMenu(null)}
-                            className="group flex items-start gap-3 px-4 py-3 rounded-xl hover:bg-paper-50 transition-colors"
+                            className="group flex items-center gap-3 px-4 py-3 rounded-2xl hover:bg-paper-50 transition-colors"
                           >
                             <div className="flex-1 min-w-0">
-                              <div className="font-medium text-ink-900 group-hover:text-blue-500 transition-colors">
+                              <div className="font-semibold text-ink-900 group-hover:text-blue-500 transition-colors">
                                 {sub.label}
                               </div>
-                              {sub.desc && (
-                                <div className="text-xs text-ink-500 mt-0.5">{sub.desc}</div>
-                              )}
+                              {sub.desc && <div className="text-sm text-ink-500 mt-0.5">{sub.desc}</div>}
                             </div>
-                            <ArrowRight className="w-4 h-4 text-blue-500 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all mt-1 shrink-0" />
+                            <ArrowRight
+                              aria-hidden="true"
+                              className="w-4 h-4 text-blue-500 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all shrink-0"
+                            />
                           </Link>
                         ))}
                       </div>
                       <div className="bg-paper-50 px-6 py-4 border-t border-paper-200">
-                        {item.label === 'Diensten' && (
-                          <Link
-                            href="/diensten"
-                            onClick={() => setOpenMenu(null)}
-                            className="flex items-center justify-between text-sm font-medium text-blue-500 hover:text-blue-600 transition-colors group"
-                          >
-                            <span>Bekijk alle diensten</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                        )}
-                        {item.label === 'Over Ons' && (
-                          <Link
-                            href="/over"
-                            onClick={() => setOpenMenu(null)}
-                            className="flex items-center justify-between text-sm font-medium text-blue-500 hover:text-blue-600 transition-colors group"
-                          >
-                            <span>Lees ons verhaal</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                        )}
+                        <Link
+                          href={item.label === 'Diensten' ? '/diensten' : '/over'}
+                          onClick={() => setOpenMenu(null)}
+                          className="flex items-center justify-between text-sm font-semibold text-blue-500 hover:text-blue-600 transition-colors group"
+                        >
+                          <span>
+                            {item.label === 'Diensten' ? 'Bekijk alle diensten' : 'Lees ons verhaal'}
+                          </span>
+                          <ArrowRight
+                            aria-hidden="true"
+                            className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          />
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -251,7 +236,7 @@ export function Navigation() {
         </div>
       </header>
 
-      {/* Mobile drawer — altijd wit voor consistente header-stijl */}
+      {/* Mobiele lade */}
       <div
         className={cn(
           'fixed inset-0 z-[60] lg:hidden flex flex-col transition-transform duration-300 bg-white text-ink-900',
@@ -259,44 +244,36 @@ export function Navigation() {
         )}
       >
         <div className="px-6 py-5 flex items-center justify-between border-b border-paper-200">
-          <Link href="/" onClick={() => setMobileOpen(false)} aria-label="LK Dakwerken" className="flex items-center gap-2">
-            <img
-              src="/lkdakwerken/logo.svg"
-              alt="LK Dakwerken"
-              className="h-9 w-auto"
-            />
+          <Link href="/" onClick={() => setMobileOpen(false)} aria-label="LK Dakwerken">
+            <img src="/lkdakwerken/logo.svg" alt="LK Dakwerken" className="h-9 w-auto" />
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
-            className="w-9 h-9 rounded-full flex items-center justify-center hover:bg-paper-100"
+            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-paper-100"
             aria-label="Sluit menu"
           >
-            <X className="w-5 h-5" />
+            <X className="w-5 h-5" aria-hidden="true" />
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto flex flex-col px-6 py-4">
-          {navItems.map((item, i) => (
-            <MobileNavSection
-              key={item.label}
-              item={item}
-              index={i}
-              onClose={() => setMobileOpen(false)}
-            />
+        <nav aria-label="Mobiel menu" className="flex-1 overflow-y-auto flex flex-col px-6 py-2">
+          {navItems.map((item) => (
+            <MobileNavSection key={item.label} item={item} onClose={() => setMobileOpen(false)} />
           ))}
         </nav>
 
-        <div className="px-6 py-6 border-t border-paper-200 space-y-4">
-          <a href="tel:+311****3824" className="flex items-center gap-3 font-mono text-sm">
-            <Phone className="w-4 h-4" />
+        <div className="px-6 py-6 border-t border-paper-200 space-y-3">
+          <a href="tel:+311****3824" className="flex items-center gap-3 font-medium">
+            <Phone className="w-4 h-4 text-blue-500" aria-hidden="true" />
             <span>010 - 271 38 24</span>
           </a>
           <Link
             href="/offerte"
             onClick={() => setMobileOpen(false)}
-            className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white py-3 font-semibold transition-colors rounded-full"
+            className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white py-3.5 font-semibold transition-colors rounded-full"
           >
             Offerte aanvragen
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </div>
       </div>
@@ -304,15 +281,7 @@ export function Navigation() {
   );
 }
 
-function MobileNavSection({
-  item,
-  index,
-  onClose,
-}: {
-  item: NavItem;
-  index: number;
-  onClose: () => void;
-}) {
+function MobileNavSection({ item, onClose }: { item: NavItem; onClose: () => void }) {
   const [open, setOpen] = useState(false);
 
   if (!item.items) {
@@ -323,7 +292,7 @@ function MobileNavSection({
         className="flex items-center justify-between py-5 text-2xl font-display font-bold tracking-tight border-b border-paper-200"
       >
         <span>{item.label}</span>
-        <span className="font-mono text-xs text-ink-400">0{index + 1}</span>
+        <ArrowRight className="w-5 h-5 text-blue-500" aria-hidden="true" />
       </Link>
     );
   }
@@ -332,42 +301,38 @@ function MobileNavSection({
     <div className="border-b border-paper-200">
       <button
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
         className="flex items-center justify-between w-full py-5 text-2xl font-display font-bold tracking-tight"
       >
         <span>{item.label}</span>
-        <ChevronDown className={cn('w-5 h-5 transition-transform duration-200', open && 'rotate-180')} />
+        <ChevronDown
+          aria-hidden="true"
+          className={cn('w-5 h-5 transition-transform duration-200', open && 'rotate-180')}
+        />
       </button>
-      <div
-        className={cn(
-          'overflow-hidden transition-all duration-300',
-          open ? 'max-h-[600px] pb-3' : 'max-h-0'
-        )}
-      >
+      <div className={cn('overflow-hidden transition-all duration-300', open ? 'max-h-[600px] pb-4' : 'max-h-0')}>
         <div className="space-y-1">
-          {item.items.map((sub, i) => (
+          {item.items.map((sub) => (
             <Link
               key={sub.href}
               href={sub.href}
               onClick={onClose}
-              className="flex items-start gap-3 py-3 pl-2 rounded-lg hover:bg-paper-100 transition-colors"
+              className="flex items-center gap-3 py-3 px-3 rounded-2xl hover:bg-paper-100 transition-colors"
             >
-              <span className="font-mono text-xs mt-2 text-ink-400">0{i + 1}</span>
               <div className="flex-1 min-w-0">
-                <div className="text-base font-medium">{sub.label}</div>
-                {sub.desc && (
-                  <div className="text-xs mt-0.5 text-ink-500">{sub.desc}</div>
-                )}
+                <div className="text-base font-semibold">{sub.label}</div>
+                {sub.desc && <div className="text-sm mt-0.5 text-ink-500">{sub.desc}</div>}
               </div>
-              <ArrowRight className="w-4 h-4 mt-2 text-ink-400" />
+              <ArrowRight className="w-4 h-4 text-ink-400 shrink-0" aria-hidden="true" />
             </Link>
           ))}
           <Link
             href={item.label === 'Diensten' ? '/diensten' : '/over'}
             onClick={onClose}
-            className="flex items-center justify-between mt-2 py-3 pl-2 rounded-lg font-medium text-blue-500 hover:bg-paper-100 transition-colors"
+            className="flex items-center justify-between mt-1 py-3 px-3 rounded-2xl font-semibold text-blue-500 hover:bg-paper-100 transition-colors"
           >
             <span>{item.label === 'Diensten' ? 'Bekijk alle diensten' : 'Lees ons verhaal'}</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
         </div>
       </div>

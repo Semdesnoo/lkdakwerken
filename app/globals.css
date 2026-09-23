@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 /* ============================================================
-   LK Dakwerken — puur blauw, zwart, wit, grijs
-   Geen oranje accenten. Modern, zakelijk, rustig.
+   LK Dakwerken design system
+   Palet: blauw (#2563eb), zwart/ink, wit, grijs. Geen andere accenten.
+   Typografie: uitsluitend Inter, via --font-display en --font-body.
+   Radii: 1 systeem. rounded-2xl (1rem) voor kaarten en media,
+   rounded-3xl (1.5rem) voor grote panelen, pill voor knoppen.
    ============================================================ */
 
 @theme {
@@ -35,15 +38,13 @@
   --color-paper-200: #e5e5e5;
   --color-paper-300: #d4d4d4;
 
-  --font-display: var(--font-display), "Inter", "Gilroy", system-ui, sans-serif;
+  --font-display: var(--font-display), "Inter", system-ui, sans-serif;
   --font-body: var(--font-body), "Inter", system-ui, sans-serif;
-  /* Mono is verwijderd: we gebruiken overal Inter (body of display family). */
+  /* Mono bestaat niet als apart lettertype: alles is Inter. */
   --font-mono: var(--font-body), "Inter", system-ui, sans-serif;
 
   --animate-fade-up: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-fade-in: fadeIn 0.5s ease-out forwards;
-  --animate-slide-in: slideIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  --animate-scale-in: scaleIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes fadeUp {
@@ -53,14 +54,6 @@
 @keyframes fadeIn {
   0% { opacity: 0; }
   100% { opacity: 1; }
-}
-@keyframes slideIn {
-  0% { opacity: 0; transform: translateX(-24px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
-@keyframes scaleIn {
-  0% { opacity: 0; transform: scale(0.96); }
-  100% { opacity: 1; transform: scale(1); }
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -74,6 +67,10 @@
   --accent-hover: #1d4ed8;
   --muted: #525252;
   --paper: #fafafa;
+
+  /* Radius-systeem */
+  --radius-card: 1rem;
+  --radius-panel: 1.5rem;
 }
 
 .dark {
@@ -100,6 +97,12 @@ body {
 
 ::selection { background: var(--accent); color: #ffffff; }
 
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 @layer utilities {
   .container-tight { max-width: 80rem; margin-inline: auto; padding-inline: 1.5rem; }
   @media (min-width: 768px) { .container-tight { padding-inline: 2.5rem; } }
@@ -107,32 +110,16 @@ body {
   .container-wide { max-width: 90rem; margin-inline: auto; padding-inline: 1.5rem; }
   @media (min-width: 768px) { .container-wide { padding-inline: 2.5rem; } }
 
-  .section-pad { padding-block: 4rem; }
-  @media (min-width: 768px) { .section-pad { padding-block: 6rem; } }
+  .container-prose { max-width: 44rem; margin-inline: auto; padding-inline: 1.5rem; }
+
+  .section-pad { padding-block: 4.5rem; }
+  @media (min-width: 768px) { .section-pad { padding-block: 7rem; } }
 
   .text-display { font-family: var(--font-display); letter-spacing: -0.03em; font-weight: 700; }
   .text-balance { text-wrap: balance; }
 
-  .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.18em;
-    color: var(--accent);
-    font-weight: 600;
-  }
-
-  /* Chevron / dakpan patroon (grijs) */
-  .bg-chevron {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'><path d='M0 15 L15 0 L30 15 L45 0 L60 15 L45 30 L30 15 L15 30 Z' fill='none' stroke='%23d4d4d4' stroke-width='1' opacity='0.5'/></svg>");
-    background-size: 60px 30px;
-    background-repeat: repeat;
-  }
-  .bg-chevron-light {
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'><path d='M0 15 L15 0 L30 15 L45 0 L60 15 L45 30 L30 15 L15 30 Z' fill='none' stroke='%23e5e5e5' stroke-width='1' opacity='1'/></svg>");
-    background-size: 60px 30px;
-    background-repeat: repeat;
-  }
+  /* Lead-tekst onder een sectiekop */
+  .lead { font-size: 1.125rem; line-height: 1.7; color: var(--muted); }
 
   .bg-grid-dark {
     background-image:
@@ -146,68 +133,69 @@ body {
       linear-gradient(90deg, rgba(0,0,0,0.06) 1px, transparent 1px);
     background-size: 40px 40px;
   }
+  .bg-dots-dark {
+    background-image: radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
 
-  /* Pill button: blauw met witte arrow-cube */
+  /* ============================================================
+     Eén knoppensysteem: pill met arrow-cube.
+     Varianten verschillen alleen in kleur, nooit in vorm.
+     ============================================================ */
+  .btn-pill,
+  .btn-pill-dark,
+  .btn-pill-white {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    font-weight: 600;
+    border-radius: 999px;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-pill > .label,
+  .btn-pill-dark > .label,
+  .btn-pill-white > .label {
+    padding: 0.85rem 1.1rem 0.85rem 1.5rem;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+  }
+  .btn-pill > .arrow,
+  .btn-pill-dark > .arrow,
+  .btn-pill-white > .arrow {
+    width: 2.25rem;
+    height: 2.25rem;
+    margin: 0.35rem 0.35rem 0.35rem 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  .btn-pill:hover > .arrow,
+  .btn-pill-dark:hover > .arrow,
+  .btn-pill-white:hover > .arrow { transform: translateX(2px); }
+
+  /* Blauw op licht: de primaire offerte-knop */
   .btn-pill {
-    display: inline-flex;
-    align-items: center;
     background: var(--accent);
     color: #ffffff;
-    padding: 0;
-    font-weight: 600;
-    border-radius: 999px;
-    overflow: hidden;
-    transition: background 0.2s ease;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.22);
   }
-  .btn-pill:hover { background: var(--accent-hover); }
-  .btn-pill > .label {
-    padding: 0.85rem 1.25rem 0.85rem 1.5rem;
-    font-size: 0.875rem;
-  }
-  .btn-pill > .arrow {
-    width: 2.5rem;
-    height: 2.5rem;
-    margin: 0.35rem 0.35rem 0.35rem 0;
-    background: #ffffff;
-    color: var(--accent);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    transition: transform 0.2s ease;
-  }
-  .btn-pill:hover > .arrow { transform: translateX(2px); }
+  .btn-pill:hover { background: var(--accent-hover); box-shadow: 0 8px 22px rgba(37, 99, 235, 0.3); }
+  .btn-pill > .arrow { background: #ffffff; color: var(--accent); }
 
-  .btn-pill-dark {
-    display: inline-flex;
-    align-items: center;
-    background: #0a0a0a;
-    color: #ffffff;
-    padding: 0;
-    font-weight: 600;
-    border-radius: 999px;
-    overflow: hidden;
-    transition: background 0.2s ease;
-  }
-  .btn-pill-dark:hover { background: #171717; }
-  .btn-pill-dark > .label {
-    padding: 0.85rem 1.25rem 0.85rem 1.5rem;
-    font-size: 0.875rem;
-  }
-  .btn-pill-dark > .arrow {
-    width: 2.5rem;
-    height: 2.5rem;
-    margin: 0.35rem 0.35rem 0.35rem 0;
-    background: var(--accent);
-    color: #ffffff;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 999px;
-    transition: transform 0.2s ease;
-  }
-  .btn-pill-dark:hover > .arrow { transform: translateX(2px); }
+  /* Zwart op licht of op blauw */
+  .btn-pill-dark { background: #0a0a0a; color: #ffffff; }
+  .btn-pill-dark:hover { background: #262626; }
+  .btn-pill-dark > .arrow { background: var(--accent); color: #ffffff; }
+
+  /* Wit op donker */
+  .btn-pill-white { background: #ffffff; color: #0a0a0a; }
+  .btn-pill-white:hover { background: #f5f5f5; }
+  .btn-pill-white > .arrow { background: var(--accent); color: #ffffff; }
 
   .btn-ghost {
     display: inline-flex;
@@ -217,12 +205,30 @@ body {
     color: var(--foreground);
     padding: 0.85rem 1.5rem;
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
+    white-space: nowrap;
     border: 1.5px solid var(--foreground);
     border-radius: 999px;
-    transition: background 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
   .btn-ghost:hover { background: var(--foreground); color: var(--background); }
+
+  /* Ghost-variant voor donkere of fotografische achtergronden */
+  .btn-ghost-invert {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: #ffffff;
+    padding: 0.85rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    white-space: nowrap;
+    border: 1.5px solid rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-ghost-invert:hover { background: #ffffff; color: #0a0a0a; border-color: #ffffff; }
 
   .btn-link {
     display: inline-flex;
@@ -230,68 +236,99 @@ body {
     gap: 0.5rem;
     color: var(--accent);
     font-weight: 600;
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
+    white-space: nowrap;
     transition: gap 0.2s ease;
   }
   .btn-link:hover { gap: 0.75rem; }
 
+  /* ============================================================
+     Panelen en kaarten
+     ============================================================ */
   .panel {
     background: #ffffff;
-    border-radius: 1.5rem;
-    box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.10);
-    border: 1px solid #f5f5f5;
+    border-radius: var(--radius-panel);
+    box-shadow: 0 20px 60px -18px rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--color-paper-200);
   }
   .panel-flat {
     background: #ffffff;
-    border-radius: 1.5rem;
-    border: 1px solid #f5f5f5;
+    border-radius: var(--radius-panel);
+    border: 1px solid var(--color-paper-200);
   }
-  .panel-pill {
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(12px);
+  .card {
+    background: #ffffff;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-paper-200);
+    transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+  }
+  .card-hover:hover {
+    box-shadow: 0 18px 44px -18px rgba(0, 0, 0, 0.22);
+    transform: translateY(-3px);
+    border-color: var(--color-blue-200);
+  }
+  .card-dark {
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 999px;
+    border-radius: var(--radius-card);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  .card-dark:hover {
+    background: rgba(255, 255, 255, 0.09);
+    border-color: rgba(255, 255, 255, 0.22);
   }
 
-  .pill {
+  /* Chips: gebruikt voor certificeringen en plaatsnamen */
+  .chip {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(8px);
+    padding: 0.5rem 0.95rem;
     border-radius: 999px;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-  }
-  .pill-light {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
     background: var(--color-paper-100);
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 500;
     color: var(--foreground);
+    white-space: nowrap;
   }
+  .chip-ink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: var(--color-ink-900);
+    color: #ffffff;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+  }
+  .chip-ink:hover { background: var(--color-ink-700); }
+
+  .chip-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.95rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .chip-dark:hover { background: rgba(255, 255, 255, 0.14); border-color: rgba(255, 255, 255, 0.3); }
 
   .nav-floating {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(14px);
+    border-radius: 1rem;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(229, 229, 229, 0.8);
+    border: 1px solid rgba(229, 229, 229, 0.9);
   }
-  .nav-floating-dark {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      border-radius: 1.25rem;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-      border: 1px solid rgba(229, 229, 229, 0.8);
-    }
 
   .link-underline {
     position: relative;
@@ -326,126 +363,52 @@ body {
   }
 
   /* ============================================================
-     Offerte CTA — shine + breathe animatie
-     Subtiel, niet opdringerig. Pauzeert bij reduced-motion.
+     Formulier-elementen: labels boven, duidelijke focus-staat
      ============================================================ */
-  .btn-offerte {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
-    transition:
-      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-      box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-      background-color 0.2s ease;
-    animation: btn-offerte-breathe 3.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-  .btn-offerte:hover {
-    background-color: var(--color-blue-600);
-    transform: translateY(-1px) scale(1.02);
-    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.38);
-    animation-play-state: paused;
-  }
-  .btn-offerte:active {
-    transform: translateY(0) scale(0.98);
-  }
+  .form-group { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .form-group > legend { padding: 0; float: none; }
+  .form-divider { height: 1px; background: var(--color-paper-200); margin-block: 2.75rem; }
 
-  /* Shine streak die over de knop heen glijdt */
-  .btn-offerte::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      100deg,
-      transparent 30%,
-      rgba(255, 255, 255, 0.45) 50%,
-      transparent 70%
-    );
-    transform: translateX(-110%);
-    animation: btn-offerte-shine 4.5s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 0;
+  .field-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: 0.5rem;
   }
-
-  .btn-offerte-label,
-  .btn-offerte-arrow {
-    position: relative;
-    z-index: 1;
+  .field-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-card);
+    border: 1.5px solid var(--color-paper-200);
+    background: #ffffff;
+    color: var(--foreground);
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  .btn-offerte-arrow {
-    animation: btn-offerte-arrow 2.4s ease-in-out infinite;
+  .field-input::placeholder { color: var(--color-ink-300); }
+  .field-input:hover { border-color: var(--color-paper-300); }
+  .field-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
   }
-
-  @keyframes btn-offerte-breathe {
-    0%, 100% { box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28); }
-    50%      { box-shadow: 0 8px 26px rgba(37, 99, 235, 0.55); }
+  .field-input[aria-invalid='true'] {
+    border-color: var(--color-blue-700);
+    box-shadow: 0 0 0 4px rgba(30, 64, 175, 0.12);
   }
-  @keyframes btn-offerte-shine {
-    0%   { transform: translateX(-110%); }
-    35%  { transform: translateX(110%); }
-    100% { transform: translateX(110%); }
+  select.field-input {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23525252' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.75rem;
   }
-  @keyframes btn-offerte-arrow {
-    0%, 60%, 100% { transform: translateX(0); }
-    25%, 75%      { transform: translateX(2px); }
-  }
+  .field-hint { font-size: 0.8125rem; color: var(--muted); margin-top: 0.4rem; }
+  .field-error { font-size: 0.8125rem; color: var(--color-blue-700); font-weight: 500; margin-top: 0.4rem; }
 
   /* ============================================================
-     Header achtergrond-foto — bovenaan elke pagina.
-     Staat in de page-flow (geen positionering) zodat 'ie netjes
-     meescrolt met de pagina en niet blijft plakken.
-     De Hero-sectie staat direct eronder met eigen donkere overlay,
-     dus tekst blijft goed leesbaar.
-     ============================================================ */
-  .nav-bg-photo {
-    position: relative;
-    width: 100%;
-    height: 42vh;
-    min-height: 320px;
-    max-height: 520px;
-    z-index: 0;
-    overflow: hidden;
-    pointer-events: none;
-    /* Vervolg onder de floating nav: zachte fade naar transparent */
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      #000 0%,
-      #000 55%,
-      rgba(0, 0, 0, 0.4) 80%,
-      transparent 100%
-    );
-            mask-image: linear-gradient(
-      to bottom,
-      #000 0%,
-      #000 55%,
-      rgba(0, 0, 0, 0.4) 80%,
-      transparent 100%
-    );
-  }
-  .nav-bg-photo-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 35%;
-    opacity: 0.85;
-  }
-  .nav-bg-photo-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.25) 0%,
-        rgba(0, 0, 0, 0.35) 30%,
-        rgba(0, 0, 0, 0.35) 60%,
-        rgba(255, 255, 255, 0.25) 100%
-      );
-  }
-
-  /* ============================================================
-     WhatsApp floating button — rechtsonder, met pulse-ring
+     WhatsApp floating button
      ============================================================ */
   .wa-float {
     position: fixed;
@@ -473,34 +436,6 @@ body {
   }
   .wa-float:active {
     transform: translateY(0) scale(0.96);
-  }
-  .wa-float::before,
-  .wa-float::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 9999px;
-    border: 2px solid #25d366;
-    opacity: 0;
-    animation: wa-pulse 2.8s ease-out infinite;
-    pointer-events: none;
-  }
-  .wa-float::after { animation-delay: 1.4s; }
-
-  @keyframes wa-pulse {
-    0%   { opacity: 0.6; transform: scale(1); }
-    80%  { opacity: 0;   transform: scale(1.55); }
-    100% { opacity: 0;   transform: scale(1.55); }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .btn-offerte,
-    .btn-offerte-arrow,
-    .btn-offerte::before,
-    .wa-float::before,
-    .wa-float::after {
-      animation: none !important;
-    }
   }
 }
 

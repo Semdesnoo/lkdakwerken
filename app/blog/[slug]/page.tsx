@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { ArrowLeft, ArrowRight, Clock } from 'lucide-react';
 import { blogPosts } from '@/lib/data';
-import { ArrowLeft } from 'lucide-react';
+import { foto } from '@/lib/images';
+import { Reveal } from '@/components/Reveal';
 
 export const dynamic = 'force-static';
 
@@ -22,13 +24,74 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-function formatContent(raw: string) {
-  return raw.split('\n').map((line, i) => {
-    if (line.startsWith('## ')) return <h2 key={i} className="text-display text-3xl mt-12 mb-4 tracking-tight">{line.slice(3)}</h2>;
-    if (line.startsWith('- ')) return <li key={i} className="ml-6 list-disc marker:text-[var(--accent)] leading-relaxed my-1">{line.slice(2)}</li>;
-    if (line.trim() === '') return null;
-    return <p key={i} className="text-[var(--muted)] leading-relaxed my-4 text-lg">{line}</p>;
+const datumOpmaak = new Intl.DateTimeFormat('nl-NL', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+/** Zet de platte tekst uit lib/data.ts om in leesbare opmaak. */
+function renderInhoud(raw: string) {
+  const blokken: React.ReactNode[] = [];
+  let lijst: string[] = [];
+
+  const spoelLijst = (sleutel: number) => {
+    if (lijst.length === 0) return;
+    blokken.push(
+      <ul key={`ul-${sleutel}`} className="my-6 space-y-2.5">
+        {lijst.map((item) => (
+          <li key={item} className="flex items-start gap-3 text-ink-700 leading-relaxed">
+            <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2.5 shrink-0" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    );
+    lijst = [];
+  };
+
+  raw.split('\n').forEach((regel, i) => {
+    const tekst = regel.trim();
+    if (tekst === '') {
+      spoelLijst(i);
+      return;
+    }
+    if (tekst.startsWith('## ')) {
+      spoelLijst(i);
+      blokken.push(
+        <h2 key={i} className="text-display text-2xl md:text-3xl tracking-[-0.025em] text-ink-900 mt-12 mb-4">
+          {tekst.slice(3)}
+        </h2>
+      );
+      return;
+    }
+    if (tekst.startsWith('- ')) {
+      lijst.push(tekst.slice(2));
+      return;
+    }
+    spoelLijst(i);
+    blokken.push(
+      <p key={i} className="text-lg text-ink-700 leading-[1.75] my-5">
+        {renderVet(tekst)}
+      </p>
+    );
   });
+
+  spoelLijst(9999);
+  return blokken;
+}
+
+/** Ondersteunt **vet** binnen een alinea. */
+function renderVet(tekst: string) {
+  return tekst.split(/(\*\*[^*]+\*\*)/g).map((deel, i) =>
+    deel.startsWith('**') && deel.endsWith('**') ? (
+      <strong key={i} className="font-semibold text-ink-900">
+        {deel.slice(2, -2)}
+      </strong>
+    ) : (
+      <span key={i}>{deel}</span>
+    )
+  );
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -40,63 +103,118 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <article className="pt-28 pb-12 md:pt-32 md:pb-16 border-b border-[var(--border)]">
-        <div className="container-tight max-w-3xl">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] link-underline mb-8">
-            <ArrowLeft className="w-4 h-4" />
-            Blog
+      {/* Artikelkop */}
+      <header className="relative bg-ink-900 text-white overflow-hidden">
+        <img
+          src={foto(post.image, 2000, 80)}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/80 to-ink-950" />
+
+        <div className="container-tight relative pt-32 pb-16 md:pt-40 md:pb-20 max-w-3xl">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white transition-colors mb-8"
+          >
+            <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+            Alle artikelen
           </Link>
 
-          <div className="flex items-center gap-3 text-[11px] font-mono uppercase tracking-[0.15em] text-[var(--muted)] mb-4">
-            <span>{post.categorie}</span>
-            <span>·</span>
-            <span>{post.datum}</span>
-            <span>·</span>
-            <span>{post.leestijd}</span>
+          <div className="flex flex-wrap items-center gap-2.5 text-sm text-white/70 mb-5">
+            <span className="font-medium text-blue-400">{post.categorie}</span>
+            <span aria-hidden="true" className="w-1 h-1 rounded-full bg-white/40" />
+            <time dateTime={post.datum}>{datumOpmaak.format(new Date(post.datum))}</time>
+            <span aria-hidden="true" className="w-1 h-1 rounded-full bg-white/40" />
+            <span className="inline-flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5" aria-hidden="true" />
+              {post.leestijd} leestijd
+            </span>
           </div>
 
-          <h1 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1] tracking-[-0.04em] text-balance">{post.titel}</h1>
-          <p className="mt-6 text-xl text-[var(--muted)] leading-relaxed">{post.excerpt}</p>
+          <h1 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-balance">
+            {post.titel}
+          </h1>
+          <p className="mt-6 text-xl text-white/80 leading-relaxed">{post.excerpt}</p>
 
-          <div className="mt-8 flex items-center gap-3">
-            <div className="w-10 h-10 bg-[var(--foreground)] text-[var(--background)] flex items-center justify-center font-display">{post.auteur[0]}</div>
-            <div>
-              <div className="font-semibold text-sm">{post.auteur}</div>
-              <div className="text-xs text-[var(--muted)]">Eigenaar LK Dakwerken</div>
-            </div>
+          <div className="mt-9 flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              className="w-11 h-11 rounded-full bg-blue-500 text-white flex items-center justify-center font-display font-bold"
+            >
+              {post.auteur[0]}
+            </span>
+            <span>
+              <span className="block font-semibold">{post.auteur}</span>
+              <span className="block text-sm text-white/60">Eigenaar LK Dakwerken</span>
+            </span>
           </div>
         </div>
+      </header>
 
-        <div className="container-tight max-w-3xl mt-12">
-          <div className="aspect-[16/9] overflow-hidden bg-[var(--card)]">
-            <img src={`https://picsum.photos/seed/lk-hero-${post.slug}/1200/675`} alt={post.titel} className="w-full h-full object-cover" />
+      {/* Artikelfoto */}
+      <div className="bg-white">
+        <div className="container-tight max-w-4xl -mt-10 md:-mt-14 relative z-10">
+          <div className="aspect-[16/9] rounded-3xl overflow-hidden bg-paper-100 shadow-[0_24px_70px_-25px_rgba(0,0,0,0.35)]">
+            <img src={foto(post.image, 1600, 82)} alt={post.titel} className="w-full h-full object-cover" />
           </div>
-          <div className="mt-12">{formatContent(post.inhoud)}</div>
+        </div>
+      </div>
 
-          <div className="mt-16 p-8 bg-[var(--foreground)] text-[var(--background)]">
-            <div className="text-display text-2xl md:text-3xl tracking-tight">Hulp nodig bij uw dak?</div>
-            <p className="mt-3 opacity-80 leading-relaxed">Vraag een gratis dakinspectie aan.</p>
-            <Link href="/offerte" className="inline-block mt-6 bg-[var(--background)] text-[var(--foreground)] font-semibold px-6 py-3 hover:opacity-85 transition-opacity">
-              Offerte aanvragen
+      {/* Artikeltekst */}
+      <article className="bg-white pt-12 md:pt-16 pb-16 md:pb-24">
+        <div className="container-prose">
+          {renderInhoud(post.inhoud)}
+
+          <aside className="mt-14 rounded-3xl bg-ink-900 text-white p-7 md:p-9">
+            <h2 className="text-display text-2xl md:text-3xl tracking-[-0.025em]">Hulp nodig bij uw dak?</h2>
+            <p className="mt-3 text-white/75 leading-relaxed">
+              We komen vrijblijvend langs voor een gratis dakinspectie en een heldere offerte.
+            </p>
+            <Link href="/offerte" className="btn-pill mt-7">
+              <span className="label">Offerte aanvragen</span>
+              <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
             </Link>
-          </div>
+          </aside>
         </div>
       </article>
 
-      <section className="py-20">
+      {/* Gerelateerde artikelen */}
+      <section className="section-pad bg-paper-50">
         <div className="container-wide">
-          <h2 className="text-display text-3xl tracking-tight mb-10">Lees ook</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--border)] border border-[var(--border)]">
-            {related.map((p) => (
-              <Link key={p.slug} href={`/blog/${p.slug}`} className="block group bg-[var(--background)]">
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={`https://picsum.photos/seed/lk-rel-${p.slug}/400/300`} alt={p.titel} className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500" />
-                </div>
-                <div className="p-5">
-                  <div className="text-[10px] font-mono uppercase tracking-[0.15em] text-[var(--accent)]">{p.categorie}</div>
-                  <h3 className="mt-2 text-display text-lg tracking-tight">{p.titel}</h3>
-                </div>
-              </Link>
+          <Reveal className="mb-10">
+            <h2 className="text-display text-3xl md:text-4xl tracking-[-0.03em] text-ink-900">Lees ook</h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {related.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 0.07}>
+                <article className="h-full">
+                  <Link
+                    href={`/blog/${p.slug}`}
+                    className="group card card-hover overflow-hidden h-full flex flex-col"
+                  >
+                    <div className="aspect-[16/10] overflow-hidden bg-paper-100">
+                      <img
+                        src={foto(p.image, 700, 75)}
+                        alt={p.titel}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                      />
+                    </div>
+                    <div className="p-6 flex flex-col flex-1">
+                      <span className="text-sm font-medium text-blue-500">{p.categorie}</span>
+                      <h3 className="mt-2 text-lg font-semibold leading-snug text-ink-900 group-hover:text-blue-500 transition-colors">
+                        {p.titel}
+                      </h3>
+                      <span className="btn-link mt-auto pt-5">
+                        Lees artikel
+                        <ArrowRight className="w-4 h-4" aria-hidden="true" />
+                      </span>
+                    </div>
+                  </Link>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>

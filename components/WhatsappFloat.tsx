@@ -22,7 +22,7 @@ export function WhatsappFloat() {
       aria-label="Stuur ons een WhatsApp-bericht"
       className="wa-float"
     >
-      {/* WhatsApp icon — officiële 'bubble' vorm */}
+      {/* WhatsApp icon in de officiële 'bubble' vorm */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 32 32"
