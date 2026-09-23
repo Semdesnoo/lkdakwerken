@@ -31,6 +31,10 @@ export const metadata: Metadata = {
  * Homepage als kleurblok-ritme: geen twee opeenvolgende secties delen
  * dezelfde achtergrond. De achtergrond per sectie staat in het commentaar.
  *
+ * De blog sluit de pagina af, met de oproep tot actie er direct boven. Om te
+ * voorkomen dat die donkere oproep tegen de donkere reviews aan komt te
+ * liggen, staan over ons en de projecten ertussen.
+ *
  * Het werkgebied met de kaart en de gemeentelijst staat op /locaties, niet
  * meer op de homepage.
  */
@@ -39,12 +43,12 @@ export default function Home() {
     <>
       <Hero />            {/* videohero met donkere gloed */}
       <DienstenPaneel />  {/* paper-50 met een wit paneel erin */}
-      <OverOns />         {/* wit */}
       <Process />         {/* donker ink met foto */}
-      <ProjectenSlider /> {/* wit */}
+      <OverOns />         {/* wit */}
       <GoogleReviews />   {/* donker ink met raster en lijnen */}
-      <Blog />            {/* paper-50 */}
+      <ProjectenSlider /> {/* wit */}
       <ContactCTA />      {/* donker ink */}
+      <Blog />            {/* paper-50, sluit de pagina af boven de voettekst */}
     </>
   );
 }
