@@ -612,7 +612,6 @@ export const faq = [
 
 /** Vaste sfeerfoto's per pagina-onderdeel. Alle ID's zijn gecontroleerd op 200. */
 export const fotos = {
-  heroHome: "photo-1605276373954-0c4a0dac5b12",
   overOnsTeam: "photo-1541888894402-f3b1af908be4",
   overOnsHeader: "photo-1541888946425-d81bb19240f5",
   dienstenHeader: "photo-1744975748338-d226c7535d49",

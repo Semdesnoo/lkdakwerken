@@ -3,8 +3,9 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { diensten, fotos } from '@/lib/data';
+import { diensten } from '@/lib/data';
 import { foto } from '@/lib/images';
+import { HeroVideo } from '@/components/HeroVideo';
 
 const snelkoppelingen = ['bitumen-daken', 'renovatie', 'lekkage'];
 
@@ -17,12 +18,7 @@ export function Hero() {
   return (
     <section className="relative">
       <div className="relative h-[92vh] min-h-[640px] overflow-hidden">
-        <img
-          src={foto(fotos.heroHome, 2400, 85)}
-          alt="Daken van een woonwijk in Zuid-Holland"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink-950/85 via-ink-950/55 to-ink-950/90" />
+        <HeroVideo />
 
         <div className="relative h-full container-wide flex flex-col justify-center">
           <div className="max-w-3xl pb-16 md:pb-24">

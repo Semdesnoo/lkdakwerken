@@ -24,3 +24,8 @@ export function projectKaart(id: string) {
 export function projectGroot(id: string) {
   return `${basis}/projecten/${id}.webp`;
 }
+
+/** Bestand uit public/hero/, bijvoorbeeld 'hero-desktop.mp4'. */
+export function heroBestand(naam: string) {
+  return `${basis}/hero/${naam}`;
+}
