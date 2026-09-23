@@ -21,11 +21,11 @@ export function OverOns() {
           <div className="md:col-span-7">
             <div className="eyebrow mb-4 text-blue-500">Over ons</div>
             <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-[-0.03em] mb-6">
-              Selected with care.<br />
-              <span className="text-blue-500">Served with passion.</span>
+              Met zorg gekozen.<br />
+              <span className="text-blue-500">Met passie geleverd.</span>
             </h2>
             <p className="text-lg text-white/80 leading-relaxed mb-10 max-w-xl">
-              LK Dakwerken is een Rotterdams familiebedrijf met meer dan 20 jaar ervaring. We werken met een vast team van tien vakmensen, geen onderaannemers. Zo weten we wie er op uw dak staat.
+              LK Dakwerken is een Rotterdams familiebedrijf met meer dan 20 jaar ervaring. We werken met een vast team van tien vakmensen, geen onderaannemers. Iedere dakdekker in ons team heeft minimaal 5 jaar werkervaring en is in dienst. Zo weten we wie er op uw dak staat.
             </p>
 
             <div className="flex flex-wrap gap-3 mb-10">
