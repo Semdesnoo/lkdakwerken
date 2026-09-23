@@ -197,6 +197,41 @@ body {
   .btn-pill-white:hover { background: #f5f5f5; }
   .btn-pill-white > .arrow { background: var(--accent); color: #ffffff; }
 
+  /* Brede variant: vult de kolom, label links, pijl in een vierkant rechts.
+     Gebruikt onder de dienstenlijst op de homepage. */
+  .btn-breed {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+    padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+    background: var(--accent);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 0.875rem;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.22);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-breed:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 8px 22px rgba(37, 99, 235, 0.3);
+  }
+  .btn-breed > .arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.625rem;
+    background: #ffffff;
+    color: var(--accent);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+  .btn-breed:hover > .arrow { transform: translateX(2px); }
+
   .btn-ghost {
     display: inline-flex;
     align-items: center;

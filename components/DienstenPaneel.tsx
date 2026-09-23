@@ -10,12 +10,15 @@ import { Lijnen } from '@/components/Lijnen';
 import { Reveal } from '@/components/Reveal';
 
 /**
- * Diensten op de homepage: een donker ink-paneel met links een lijst van de
- * vijf specialisaties en rechts de foto van de actieve dienst. Hoveren of
- * klikken wisselt de foto met een crossfade.
+ * Diensten op de homepage: een licht paneel met links een lijst van de vijf
+ * specialisaties en rechts de foto van de actieve dienst. Hoveren of klikken
+ * wisselt de foto met een crossfade.
  *
- * Onder 768px valt het paneel terug op gestapelde kaarten, omdat hoveren
- * daar geen betekenis heeft. Het raster op /diensten blijft ongemoeid.
+ * De rijen staan ruim uit elkaar en worden gescheiden door stippellijnen, met
+ * daaronder een knop over de volle breedte van de kolom.
+ *
+ * Onder 768px valt het paneel terug op gestapelde kaarten, omdat hoveren daar
+ * geen betekenis heeft. Het raster op /diensten blijft ongemoeid.
  */
 export function DienstenPaneel() {
   const [actief, setActief] = useState(0);
@@ -26,25 +29,22 @@ export function DienstenPaneel() {
     <section className="section-pad bg-paper-50">
       <div className="container-wide">
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl bg-ink-950 text-white p-6 sm:p-10 lg:p-14">
-            <Lijnen
-              variant="donker"
-              className="absolute -top-32 -right-40 w-[46rem] h-[40rem]"
-            />
+          <div className="relative overflow-hidden rounded-3xl bg-white text-ink-900 border border-ink-900/10 shadow-[0_2px_40px_rgba(10,10,10,0.06)] p-6 sm:p-10 lg:p-14">
+            <Lijnen className="absolute -top-32 -right-40 w-[46rem] h-[40rem]" />
 
             <div className="relative grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
               {/* Links: kop, lijst en knop */}
               <div className="lg:col-span-5">
-                <h2 className="text-display text-4xl md:text-5xl leading-[1.04] tracking-[-0.035em] text-balance">
+                <h2 className="text-display text-4xl md:text-5xl leading-[1.04] tracking-[-0.035em] text-balance text-ink-900">
                   Vijf specialisaties voor een zorgeloos dak.
                 </h2>
-                <p className="mt-5 text-white/75 leading-relaxed max-w-md">
+                <p className="mt-5 text-ink-600 leading-relaxed max-w-md">
                   Van een lekkage op zaterdagavond tot een complete dakrenovatie van uw
                   bedrijfspand. LK Dakwerken levert alle dakdiensten onder één dak.
                 </p>
 
                 {/* Interactieve lijst vanaf 768px */}
-                <ul className="hidden md:block mt-10 border-b border-blue-400/20">
+                <ul className="hidden md:block mt-10">
                   {diensten.map((d, i) => (
                     <li key={d.slug}>
                       <button
@@ -54,8 +54,8 @@ export function DienstenPaneel() {
                         onClick={() => setActief(i)}
                         aria-pressed={i === actief}
                         aria-controls="dienst-uitgelicht"
-                        className={`w-full flex items-center justify-between gap-4 py-4 text-left border-t border-blue-400/20 transition-colors ${
-                          i === actief ? 'text-blue-400' : 'text-white hover:text-blue-300'
+                        className={`w-full flex items-center justify-between gap-4 py-6 text-left border-b border-dashed border-ink-900/15 transition-colors ${
+                          i === actief ? 'text-blue-600' : 'text-ink-900 hover:text-blue-600'
                         }`}
                       >
                         <span className="text-xl lg:text-2xl font-semibold tracking-[-0.02em]">
@@ -63,11 +63,11 @@ export function DienstenPaneel() {
                         </span>
                         <span
                           aria-hidden="true"
-                          className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                            i === actief ? 'bg-blue-500 text-white' : 'bg-white/10 text-white'
+                          className={`shrink-0 transition-transform ${
+                            i === actief ? 'translate-x-1' : ''
                           }`}
                         >
-                          <ArrowRight className="w-4 h-4" />
+                          <ArrowRight className="w-6 h-6" />
                         </span>
                       </button>
                     </li>
@@ -80,9 +80,9 @@ export function DienstenPaneel() {
                     <Link
                       key={d.slug}
                       href={`/diensten/${d.slug}`}
-                      className="block rounded-2xl overflow-hidden border border-blue-400/20 bg-white/[0.06]"
+                      className="block rounded-2xl overflow-hidden border border-ink-900/10 bg-paper-50"
                     >
-                      <div className="aspect-[16/9] bg-ink-900">
+                      <div className="aspect-[16/9] bg-paper-100">
                         <img
                           src={foto(d.heroImage, 700, 75)}
                           alt={`${d.titel} door LK Dakwerken`}
@@ -91,11 +91,11 @@ export function DienstenPaneel() {
                         />
                       </div>
                       <div className="p-5">
-                        <h3 className="text-xl font-semibold tracking-[-0.02em] text-white">
+                        <h3 className="text-xl font-semibold tracking-[-0.02em] text-ink-900">
                           {d.titel}
                         </h3>
-                        <p className="mt-2 text-sm text-white/75 leading-relaxed">{d.korte}</p>
-                        <span className="inline-flex items-center gap-2 mt-4 text-[0.9375rem] font-semibold text-blue-400">
+                        <p className="mt-2 text-sm text-ink-600 leading-relaxed">{d.korte}</p>
+                        <span className="inline-flex items-center gap-2 mt-4 text-[0.9375rem] font-semibold text-blue-600">
                           Lees meer
                           <ArrowRight className="w-4 h-4" aria-hidden="true" />
                         </span>
@@ -104,8 +104,8 @@ export function DienstenPaneel() {
                   ))}
                 </div>
 
-                <Link href="/diensten" className="btn-pill-white mt-9">
-                  <span className="label">Alle diensten</span>
+                <Link href="/diensten" className="btn-breed mt-9">
+                  <span>Alle diensten</span>
                   <span className="arrow">
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </span>
@@ -118,7 +118,7 @@ export function DienstenPaneel() {
                 aria-live="polite"
                 className="hidden md:block lg:col-span-7"
               >
-                <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-2xl overflow-hidden bg-ink-900">
+                <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-2xl overflow-hidden bg-paper-100">
                   <AnimatePresence initial={false}>
                     <motion.div
                       key={dienst.slug}

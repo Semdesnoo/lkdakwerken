@@ -32,7 +32,7 @@ eis(
   `${projectenAantal} projecten in de track`,
   (html.match(/door LK Dakwerken" loading="lazy" draggable/g) || []).length === projectenAantal,
 );
-eis('donker diensten-paneel', /rounded-3xl bg-ink-950/.test(html));
+eis('licht diensten-paneel', /rounded-3xl bg-white/.test(html));
 eis('diensten-paneel wisselt foto', html.includes('dienst-uitgelicht'));
 eis('knop Alle diensten', html.includes('Alle diensten'));
 eis('google kop', html.includes('Dit zeggen onze klanten in Google'));
