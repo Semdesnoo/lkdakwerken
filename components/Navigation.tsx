@@ -204,7 +204,7 @@ export function Navigation() {
 
             <Link
               href="/offerte"
-              className="inline-flex items-center gap-2 px-4 md:pl-5 md:pr-4 py-2.5 text-sm font-semibold rounded-button bg-blue-500 text-white whitespace-nowrap transition-colors hover:bg-blue-600"
+              className="inline-flex items-center gap-2 px-4 md:pl-5 md:pr-4 py-2.5 text-sm font-semibold rounded-button-inner bg-blue-500 text-white whitespace-nowrap transition-colors hover:bg-blue-600"
             >
               Offerte
               <ArrowRight className="hidden md:block w-3.5 h-3.5" aria-hidden="true" />

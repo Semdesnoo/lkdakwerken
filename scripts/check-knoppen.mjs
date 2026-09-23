@@ -6,7 +6,7 @@
  * Uitgezonderd: de zwevende WhatsApp-knop (ronde bel is het idioom), chips
  * en stipjes (labels, geen knoppen) en de duim van de oppervlakteschuif.
  *
- * Gebruik: node scripts/check-knoppen.mjs <basisurl>
+ * Gebruik: node scripts/check-knoppen.mjs <basisurl> [breedte]
  * Sluit af met code 1 zodra er een pil overblijft.
  */
 import puppeteer from 'puppeteer-core';
@@ -16,10 +16,11 @@ const CHROME =
   process.env.CHROME_PATH ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe';
 
 const ROUTES = ['', 'diensten', 'projecten', 'over', 'locaties', 'blog', 'contact', 'offerte'];
+const BREEDTE = Number(process.argv[3] ?? 1440);
 
 const browser = await puppeteer.launch({ executablePath: CHROME, headless: 'new' });
 const page = await browser.newPage();
-await page.setViewport({ width: 1440, height: 1200 });
+await page.setViewport({ width: BREEDTE, height: 900 });
 
 const meet = () =>
   Array.from(document.querySelectorAll('a, button'))
@@ -45,8 +46,10 @@ const meet = () =>
     /* Een knop zonder eigen achtergrond of rand is een tekstlink; die heeft
        geen vorm om te beoordelen. Vandaar de ondergrens op de hoogte. */
     .filter((b) => b.hoogte >= 24 && b.breedte >= 24)
-    /* Pil: de radius haalt (bijna) de halve hoogte. */
-    .filter((b) => b.radius >= b.hoogte / 2 - 0.5);
+    /* Niet de pilgrens (radius = halve hoogte) maar de verhouding: 14px op
+       een knop van 56px leest rustig, dezelfde 14px op 40px leest weer als
+       een pil. De vormtaal is de ratio, niet de absolute waarde. */
+    .filter((b) => b.radius / b.hoogte > 0.3);
 
 let totaal = 0;
 for (const route of ROUTES) {
