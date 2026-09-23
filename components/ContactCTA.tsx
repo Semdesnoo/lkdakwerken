@@ -14,11 +14,11 @@ export function ContactCTA() {
               Neem contact met ons per telefoon, per mail of laat je terugbellen. We komen binnen drie werkdagen bij u langs.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link href="/contact" className="btn-pill-dark">
+              <Link href="/lkdakwerken/contact" className="btn-pill-dark">
                 <span className="label">Bel mij terug</span>
                 <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
               </Link>
-              <Link href="/offerte" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-500 transition-colors">
+              <Link href="/lkdakwerken/offerte" className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-white text-white font-semibold hover:bg-white hover:text-blue-500 transition-colors">
                 Offerte aanvragen
               </Link>
             </div>

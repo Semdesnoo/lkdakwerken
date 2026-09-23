@@ -58,7 +58,7 @@ export function Locaties() {
         </div>
 
         <div className="mt-12 flex justify-center">
-          <Link href="/locaties" className="btn-pill-dark">
+          <Link href="/lkdakwerken/locaties" className="btn-pill-dark">
             <span className="label">Alle 48 locaties</span>
             <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
           </Link>

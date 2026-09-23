@@ -42,7 +42,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <article className="pt-28 pb-12 md:pt-32 md:pb-16 border-b border-[var(--border)]">
         <div className="container-tight max-w-3xl">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] link-underline mb-8">
+          <Link href="/lkdakwerken/blog" className="inline-flex items-center gap-2 text-sm text-[var(--muted)] link-underline mb-8">
             <ArrowLeft className="w-4 h-4" />
             Blog
           </Link>
@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="mt-16 p-8 bg-[var(--foreground)] text-[var(--background)]">
             <div className="text-display text-2xl md:text-3xl tracking-tight">Hulp nodig bij uw dak?</div>
             <p className="mt-3 opacity-80 leading-relaxed">Vraag een gratis dakinspectie aan.</p>
-            <Link href="/offerte" className="inline-block mt-6 bg-[var(--background)] text-[var(--foreground)] font-semibold px-6 py-3 hover:opacity-85 transition-opacity">
+            <Link href="/lkdakwerken/offerte" className="inline-block mt-6 bg-[var(--background)] text-[var(--foreground)] font-semibold px-6 py-3 hover:opacity-85 transition-opacity">
               Offerte aanvragen
             </Link>
           </div>

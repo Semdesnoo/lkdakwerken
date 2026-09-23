@@ -58,7 +58,7 @@ export default function DienstenPage() {
                     ))}
                   </ul>
 
-                  <Link href="/offerte" className="inline-flex items-center gap-2 mt-8 font-semibold link-underline">
+                  <Link href="/lkdakwerken/offerte" className="inline-flex items-center gap-2 mt-8 font-semibold link-underline">
                     Offerte {d.titel.toLowerCase()}
                     <ArrowRight className="w-4 h-4" />
                   </Link>

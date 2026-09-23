@@ -47,8 +47,8 @@ export function Navigation() {
         scrolled ? 'nav-floating text-ink-900' : 'nav-floating-dark text-white'
       )}>
       <div className="container-wide flex items-center justify-between h-14">
-        <Link href="/" aria-label="LK Dakwerken home">
-          <img src="/logo.svg" alt="LK Dakwerken" className={cn("h-8 w-auto", scrolled ? "" : "brightness-0 invert")} />
+        <Link href="/lkdakwerken/" aria-label="LK Dakwerken home">
+          <img src="/lkdakwerken/logo.svg" alt="LK Dakwerken" className={cn("h-8 w-auto", scrolled ? "" : "brightness-0 invert")} />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7 text-sm">
@@ -62,7 +62,7 @@ export function Navigation() {
             {theme === 'dark' ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
           </button>
 
-          <Link href="/offerte" className="hidden md:inline-flex items-center gap-2 px-5 py-2 bg-blue-500 text-white text-sm font-semibold rounded-full hover:bg-blue-600 transition-colors shadow-md">
+          <Link href="/lkdakwerken/offerte" className="hidden md:inline-flex items-center gap-2 px-5 py-2 bg-blue-500 text-white text-sm font-semibold rounded-full hover:bg-blue-600 transition-colors shadow-md">
             Offerte
           </Link>
 
@@ -77,8 +77,8 @@ export function Navigation() {
         mobileOpen ? 'translate-x-0' : 'translate-x-full'
       )}>
         <div className="container-tight py-5 flex items-center justify-between border-b border-white/10">
-          <Link href="/" onClick={() => setMobileOpen(false)} aria-label="LK Dakwerken">
-            <img src="/logo.svg" alt="LK Dakwerken" className={cn("h-8 w-auto", scrolled ? "" : "brightness-0 invert")} />
+          <Link href="/lkdakwerken/" onClick={() => setMobileOpen(false)} aria-label="LK Dakwerken">
+            <img src="/lkdakwerken/logo.svg" alt="LK Dakwerken" className={cn("h-8 w-auto", scrolled ? "" : "brightness-0 invert")} />
           </Link>
           <button onClick={() => setMobileOpen(false)} className="w-9 h-9 rounded-full flex items-center justify-center bg-white/10 hover:bg-white/20" aria-label="Sluit">
             <X className="w-4 h-4" />
@@ -93,7 +93,7 @@ export function Navigation() {
         </nav>
         <div className="container-tight py-6 border-t border-white/10 space-y-4">
           <a href="tel:+31612345678" className="font-mono text-lg block">06 12 34 56 78</a>
-          <Link href="/offerte" onClick={() => setMobileOpen(false)} className="bg-blue-500 text-white py-3 font-semibold text-center hover:bg-blue-600 transition-colors">Offerte aanvragen</Link>
+          <Link href="/lkdakwerken/offerte" onClick={() => setMobileOpen(false)} className="bg-blue-500 text-white py-3 font-semibold text-center hover:bg-blue-600 transition-colors">Offerte aanvragen</Link>
         </div>
       </div>
     </div>

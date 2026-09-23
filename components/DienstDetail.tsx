@@ -17,9 +17,9 @@ export default function DienstDetail({ dienst }: Props) {
         </div>
         <div className="container-wide relative py-24 md:py-32">
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-white/60 mb-6">
-            <Link href="/" className="hover:text-white">Home</Link>
+            <Link href="/lkdakwerken/" className="hover:text-white">Home</Link>
             <span>/</span>
-            <Link href="/diensten" className="hover:text-white">Diensten</Link>
+            <Link href="/lkdakwerken/diensten" className="hover:text-white">Diensten</Link>
             <span>/</span>
             <span className="text-blue-500">{dienst.titel}</span>
           </div>
@@ -31,11 +31,11 @@ export default function DienstDetail({ dienst }: Props) {
             {dienst.korte}
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <Link href="/offerte" className="btn-pill">
+            <Link href="/lkdakwerken/offerte" className="btn-pill">
               <span className="label">Offerte aanvragen</span>
               <span className="arrow"><ArrowRight className="w-4 h-4" /></span>
             </Link>
-            <Link href="/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-white/40 text-white font-semibold hover:bg-white hover:text-ink-900 transition-colors">
+            <Link href="/lkdakwerken/contact" className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border-2 border-white/40 text-white font-semibold hover:bg-white hover:text-ink-900 transition-colors">
               Bel: 010 - 271 38 24
             </Link>
           </div>

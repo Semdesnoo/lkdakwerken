@@ -12,8 +12,8 @@ export default function NotFound() {
           De pagina die u zoekt bestaat niet of is verplaatst. Ga terug naar de homepage of bekijk onze diensten.
         </p>
         <div className="mt-8 flex justify-center gap-3 flex-wrap">
-          <Link href="/" className="btn-primary">Terug naar home</Link>
-          <Link href="/diensten" className="btn-secondary">Onze diensten</Link>
+          <Link href="/lkdakwerken/" className="btn-primary">Terug naar home</Link>
+          <Link href="/lkdakwerken/diensten" className="btn-secondary">Onze diensten</Link>
         </div>
       </div>
     </section>

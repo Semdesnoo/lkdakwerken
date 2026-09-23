@@ -10,7 +10,7 @@ export function Footer() {
         <div className="bg-ink-900 text-white rounded-3xl p-8 md:p-12 mb-12">
           <div className="grid md:grid-cols-12 gap-8 mb-10">
             <div className="md:col-span-4">
-              <img src="/logo.svg" alt="LK Dakwerken" className="h-12 w-auto mb-6 brightness-0 invert" />
+              <img src="/lkdakwerken/logo.svg" alt="LK Dakwerken" className="h-12 w-auto mb-6 brightness-0 invert" />
               <p className="text-white/70 leading-relaxed max-w-sm">
                 LK Dakwerken is een Rotterdams dakdekkersbedrijf gespecialiseerd in bitumen, renovatie, nieuwbouw, onderhoud en lekkage. Werkzaam in heel Zuid-Holland.
               </p>
