@@ -78,6 +78,13 @@ const meet = () => {
     for (let n = el; n; n = n.parentElement) {
       const cs = getComputedStyle(n);
       if (cs.backgroundImage !== 'none') return null;
+      /* Een video of afbeelding achter de tekst telt net zo goed als beeld,
+         ook al staat die niet als background-image maar als eigen element.
+         De hero legt zijn tekst over een <video>; zonder deze regel meten we
+         daar tegen het wit van de pagina en krijgen we valse meldingen zodra
+         de video trager laadt dan de meting. Niet alleen directe kinderen:
+         het beeld zit vaak een paar lagen diep in een eigen wikkel. */
+      if (n !== el && n.querySelector('video, img, picture')) return null;
       const kleur = ontleed(cs.backgroundColor);
       if (kleur && kleur.a === 1) return kleur;
       if (kleur && kleur.a > 0) return null;
