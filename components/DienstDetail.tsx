@@ -99,7 +99,7 @@ export default function DienstDetail({ dienst }: Props) {
                   href="tel:0102713824"
                   className="mt-5 flex items-center gap-3 text-ink-900 font-semibold group"
                 >
-                  <span className="w-10 h-10 rounded-full bg-paper-100 flex items-center justify-center shrink-0 transition-colors group-hover:bg-blue-500 group-hover:text-white">
+                  <span className="w-10 h-10 rounded-button-inner bg-paper-100 flex items-center justify-center shrink-0 transition-colors group-hover:bg-blue-500 group-hover:text-white">
                     <Phone className="w-4 h-4" aria-hidden="true" />
                   </span>
                   <span className="link-underline">{bedrijf.telefoon}</span>
@@ -137,7 +137,7 @@ export default function DienstDetail({ dienst }: Props) {
                   <h3 className="text-lg font-semibold leading-snug text-ink-900">{item.vraag}</h3>
                   <span
                     aria-hidden="true"
-                    className="w-8 h-8 rounded-full bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 transition-transform group-open:rotate-45"
+                    className="w-8 h-8 rounded-button-inner bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 transition-transform group-open:rotate-45"
                   >
                     <Plus className="w-4 h-4" />
                   </span>

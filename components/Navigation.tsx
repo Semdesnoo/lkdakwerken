@@ -196,7 +196,7 @@ export function Navigation() {
           <div className="flex items-center gap-2 shrink-0">
             <a
               href="tel:+311****3824"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-full text-ink-700 hover:bg-paper-100 hover:text-blue-500 transition-colors"
+              className="inline-flex items-center justify-center w-10 h-10 rounded-button-inner text-ink-700 hover:bg-paper-100 hover:text-blue-500 transition-colors"
               aria-label="Bel ons: 010 - 271 38 24"
             >
               <Phone className="w-[1.05rem] h-[1.05rem]" aria-hidden="true" />
@@ -204,7 +204,7 @@ export function Navigation() {
 
             <Link
               href="/offerte"
-              className="inline-flex items-center gap-2 px-4 md:pl-5 md:pr-4 py-2.5 text-sm font-semibold rounded-full bg-blue-500 text-white whitespace-nowrap transition-colors hover:bg-blue-600"
+              className="inline-flex items-center gap-2 px-4 md:pl-5 md:pr-4 py-2.5 text-sm font-semibold rounded-button bg-blue-500 text-white whitespace-nowrap transition-colors hover:bg-blue-600"
             >
               Offerte
               <ArrowRight className="hidden md:block w-3.5 h-3.5" aria-hidden="true" />
@@ -212,7 +212,7 @@ export function Navigation() {
 
             <button
               onClick={() => setMobileOpen(true)}
-              className="lg:hidden w-10 h-10 rounded-full flex items-center justify-center hover:bg-paper-100 text-ink-700 transition-colors"
+              className="lg:hidden w-10 h-10 rounded-button-inner flex items-center justify-center hover:bg-paper-100 text-ink-700 transition-colors"
               aria-label="Open menu"
             >
               <Menu className="w-5 h-5" aria-hidden="true" />
@@ -300,7 +300,7 @@ export function Navigation() {
           </Link>
           <button
             onClick={() => setMobileOpen(false)}
-            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-paper-100"
+            className="w-10 h-10 rounded-button-inner flex items-center justify-center hover:bg-paper-100"
             aria-label="Sluit menu"
           >
             <X className="w-5 h-5" aria-hidden="true" />
@@ -321,7 +321,7 @@ export function Navigation() {
           <Link
             href="/offerte"
             onClick={() => setMobileOpen(false)}
-            className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white py-3.5 font-semibold transition-colors rounded-full"
+            className="flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-white py-3.5 font-semibold transition-colors rounded-button"
           >
             Offerte aanvragen
             <ArrowRight className="w-4 h-4" aria-hidden="true" />

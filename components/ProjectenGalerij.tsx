@@ -117,7 +117,7 @@ export function ProjectenGalerij() {
                 type="button"
                 onClick={sluit}
                 aria-label="Sluiten"
-                className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-ink-900 shadow-sm transition hover:bg-white"
+                className="absolute right-3 top-3 z-10 inline-flex h-10 w-10 items-center justify-center rounded-button-inner bg-white/90 text-ink-900 shadow-sm transition hover:bg-white"
               >
                 <X className="h-5 w-5" aria-hidden="true" />
               </button>

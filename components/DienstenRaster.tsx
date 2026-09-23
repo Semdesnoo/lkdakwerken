@@ -77,7 +77,7 @@ export function DienstenRaster() {
                 </h3>
                 <p className="mt-1 text-sm md:text-base text-ink-500 leading-relaxed">{d.korte}</p>
               </div>
-              <span className="w-11 h-11 rounded-full bg-paper-100 text-ink-900 flex items-center justify-center shrink-0 transition-colors group-hover:bg-blue-500 group-hover:text-white">
+              <span className="w-11 h-11 rounded-button-inner bg-paper-100 text-ink-900 flex items-center justify-center shrink-0 transition-colors group-hover:bg-blue-500 group-hover:text-white">
                 <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </span>
             </Link>

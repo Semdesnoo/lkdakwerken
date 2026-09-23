@@ -29,7 +29,7 @@ export function ContactCTA() {
               href="tel:0102713824"
               className="inline-flex items-center gap-3 text-white font-semibold group"
             >
-              <span className="w-11 h-11 rounded-full border border-white/25 flex items-center justify-center transition-colors group-hover:border-white/60 group-hover:bg-white/10">
+              <span className="w-11 h-11 rounded-button-inner border border-white/25 flex items-center justify-center transition-colors group-hover:border-white/60 group-hover:bg-white/10">
                 <Phone className="w-4 h-4" aria-hidden="true" />
               </span>
               <span className="link-underline">{bedrijf.telefoon}</span>

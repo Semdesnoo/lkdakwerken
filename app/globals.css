@@ -5,7 +5,9 @@
    Palet: blauw (#2563eb), zwart/ink, wit, grijs. Geen andere accenten.
    Typografie: uitsluitend Inter, via --font-display en --font-body.
    Radii: 1 systeem. rounded-2xl (1rem) voor kaarten en media,
-   rounded-3xl (1.5rem) voor grote panelen, pill voor knoppen.
+   rounded-3xl (1.5rem) voor grote panelen, en --radius-button (0.875rem)
+   voor elke knop, met --radius-button-inner (0.625rem) voor het pijlvakje
+   erin. Knoppen zijn bewust geen pil: iets vierkanter leest rustiger.
    ============================================================ */
 
 @theme {
@@ -45,6 +47,12 @@
 
   --animate-fade-up: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-fade-in: fadeIn 0.5s ease-out forwards;
+
+  /* In het @theme-blok, zodat Tailwind er ook de utilities rounded-button
+     en rounded-button-inner van maakt. Die gebruiken we in de componenten
+     waar de radius niet uit een .btn-klasse komt. */
+  --radius-button: 0.875rem;
+  --radius-button-inner: 0.625rem;
 }
 
 @keyframes fadeUp {
@@ -204,8 +212,10 @@ html { accent-color: var(--accent); caret-color: var(--accent); }
   }
 
   /* ============================================================
-     Eén knoppensysteem: pill met arrow-cube.
+     Eén knoppensysteem: afgeronde rechthoek met een vierkant pijlvakje.
      Varianten verschillen alleen in kleur, nooit in vorm.
+     De klassenamen houden hun -pill achtervoegsel: ze staan in tientallen
+     componenten en de vorm zit in deze regels, niet in de naam.
      ============================================================ */
   .btn-pill,
   .btn-pill-dark,
@@ -214,7 +224,7 @@ html { accent-color: var(--accent); caret-color: var(--accent); }
     align-items: center;
     padding: 0;
     font-weight: 600;
-    border-radius: 999px;
+    border-radius: var(--radius-button);
     overflow: hidden;
     white-space: nowrap;
     transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
@@ -235,7 +245,7 @@ html { accent-color: var(--accent); caret-color: var(--accent); }
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 999px;
+    border-radius: var(--radius-button-inner);
     flex-shrink: 0;
     transition: transform 0.2s ease;
   }
@@ -275,7 +285,7 @@ html { accent-color: var(--accent); caret-color: var(--accent); }
     color: #ffffff;
     font-weight: 600;
     font-size: 1rem;
-    border-radius: 0.875rem;
+    border-radius: var(--radius-button);
     box-shadow: 0 4px 14px rgba(37, 99, 235, 0.22);
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
   }
@@ -289,7 +299,7 @@ html { accent-color: var(--accent); caret-color: var(--accent); }
     justify-content: center;
     width: 2.5rem;
     height: 2.5rem;
-    border-radius: 0.625rem;
+    border-radius: var(--radius-button-inner);
     background: #ffffff;
     color: var(--accent);
     flex-shrink: 0;
@@ -308,7 +318,7 @@ html { accent-color: var(--accent); caret-color: var(--accent); }
     font-size: 0.9375rem;
     white-space: nowrap;
     border: 1.5px solid var(--foreground);
-    border-radius: 999px;
+    border-radius: var(--radius-button);
     transition: background-color 0.2s ease, color 0.2s ease;
   }
   .btn-ghost:hover { background: var(--foreground); color: var(--background); }
@@ -325,7 +335,7 @@ html { accent-color: var(--accent); caret-color: var(--accent); }
     font-size: 0.9375rem;
     white-space: nowrap;
     border: 1.5px solid rgba(255, 255, 255, 0.45);
-    border-radius: 999px;
+    border-radius: var(--radius-button);
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   }
   .btn-ghost-invert:hover { background: #ffffff; color: #0a0a0a; border-color: #ffffff; }
@@ -479,7 +489,9 @@ html { accent-color: var(--accent); caret-color: var(--accent); }
   .field-input {
     width: 100%;
     padding: 1rem 1.15rem;
-    border-radius: 0.875rem;
+    /* Dezelfde radius als de knoppen: een veld en de knop eronder horen
+       optisch bij elkaar. */
+    border-radius: var(--radius-button);
     border: 1.5px solid var(--color-paper-200);
     background: #ffffff;
     color: var(--foreground);
@@ -587,7 +599,7 @@ html { accent-color: var(--accent); caret-color: var(--accent); }
     width: 2.75rem;
     height: 2.75rem;
     flex-shrink: 0;
-    border-radius: 999px;
+    border-radius: var(--radius-button-inner);
     background: var(--accent);
     color: #ffffff;
     transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
