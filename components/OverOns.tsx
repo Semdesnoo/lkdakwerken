@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
-import { stats, certificeringen, fotos } from '@/lib/data';
-import { foto } from '@/lib/images';
+import { stats, certificeringen } from '@/lib/data';
 import { Reveal } from '@/components/Reveal';
 import { Kerncijfers } from '@/components/Kerncijfers';
 
@@ -10,34 +9,9 @@ export function OverOns() {
   return (
     <section className="section-pad bg-white">
       <div className="container-wide">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          {/* Foto. Op mobiel staat de kop erboven: eerst weten waar het over
-              gaat, dan het beeld. Vandaar de omgekeerde volgorde tot lg. */}
-          <Reveal className="lg:col-span-5 max-lg:order-2">
-            <div>
-              <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-ink-900">
-                <img
-                  src={foto(fotos.overOnsTeam, 1000, 80)}
-                  alt="Het team van LK Dakwerken aan het werk op een dak"
-                  loading="lazy"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Garantie-kaart staat onder de foto, nooit eroverheen */}
-              <div className="card mt-4 p-5 md:p-6 flex items-center gap-4">
-                <span className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-6 h-6" aria-hidden="true" />
-                </span>
-                <div>
-                  <div className="font-semibold text-ink-900">10 jaar garantie</div>
-                  <div className="text-sm text-ink-500">Waterdichtheid via Dakmerk</div>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-
-          {/* Tekst en feiten */}
-          <Reveal delay={0.1} className="lg:col-span-7 lg:col-start-6 max-lg:order-1">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Geen afbeelding op de homepage — sectie is puur tekst */}
+                    <Reveal className="lg:col-span-8 lg:col-start-3 max-w-3xl mx-auto">
             <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-ink-900 text-balance">
               Een vast team.
               <br />
@@ -51,6 +25,16 @@ export function OverOns() {
               cijfers={stats}
               className="mt-10 grid grid-cols-2 gap-x-8 gap-y-7 max-w-lg"
             />
+
+            <div className="mt-10 card p-5 md:p-6 flex items-center gap-4 max-w-md">
+              <span className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-6 h-6" aria-hidden="true" />
+              </span>
+              <div>
+                <div className="font-semibold text-ink-900">10 jaar garantie</div>
+                <div className="text-sm text-ink-500">Garantie van LK Dakwerken</div>
+              </div>
+            </div>
 
             <ul className="mt-10 flex flex-wrap gap-2.5">
               {certificeringen.map((c) => (

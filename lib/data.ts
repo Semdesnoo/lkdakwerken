@@ -307,17 +307,16 @@ export const bedrijf = {
 };
 
 export const stats = [
-  { cijfer: "20+", label: "Jaar ervaring" },
-  { cijfer: "1.842", label: "Daken geleverd" },
-  { cijfer: "4,9", label: "Google score" },
-  { cijfer: "127", label: "Reviews" },
+  { cijfer: "5", label: "Jaar ervaring per dakdekker" },
+  { cijfer: "387", label: "Projecten gerealiseerd" },
+  { cijfer: "10", label: "Jaar garantie bij LK Dakwerken" },
+  { cijfer: "4,9", label: "Sterren review" },
 ];
 
 export const certificeringen = [
   { naam: "Dakmerk Erkend", uitleg: "Gecertificeerd voor bitumen en kunststof daken" },
   { naam: "VCA**", uitleg: "Veiligheid, gezondheid en milieu" },
   { naam: "BRL 4702", uitleg: "Beoordelingsrichtlijn dakbedekking" },
-  { naam: "10 jaar garantie", uitleg: "Waterdichtheidsgarantie via Dakmerk" },
 ];
 
 export const werkwijze = [
