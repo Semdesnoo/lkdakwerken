@@ -196,7 +196,7 @@ export function ProjectenSlider() {
                   {/* Sommige projecten hebben meerdere opnamen van hetzelfde
                       dak. Die staan als miniaturen onder de titel. */}
                   {fotos.length > 1 && (
-                    <div className="mt-5 flex gap-2">
+                    <div className="mt-5 flex flex-wrap gap-2">
                       {fotos.map((id, n) => (
                         <button
                           key={id}
