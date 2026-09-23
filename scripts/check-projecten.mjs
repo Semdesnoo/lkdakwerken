@@ -56,7 +56,19 @@ await page.evaluate(async () => {
 await wacht(800);
 
 const kaarten = await page.$$('.slider-track article');
-eis('meer dan twintig projectkaarten', kaarten.length >= 20, `${kaarten.length} kaarten`);
+
+/* Het aantal kaarten moet overeenkomen met lib/data.ts: projecten worden
+   samengevoegd zodra blijkt dat foto's bij hetzelfde dak horen, dus een vast
+   minimum zou telkens verlopen. */
+const bron = readFileSync('lib/data.ts', 'utf8');
+const lijst = bron.match(/export const projecten = \[([\s\S]*?)\n\];/)?.[1] ?? '';
+const verwachteKaarten = [...lijst.matchAll(/image:\s*"project-\d+"/g)].length;
+
+eis(
+  'aantal kaarten komt overeen met de gegevens',
+  kaarten.length === verwachteKaarten && verwachteKaarten > 0,
+  `${kaarten.length} kaarten, ${verwachteKaarten} projecten`,
+);
 
 const bronnen = await page.$$eval('.slider-track article img', (els) =>
   els.map((e) => e.getAttribute('src')),
@@ -111,7 +123,6 @@ if (dialoog) {
 /* Projecten met meerdere opnamen van hetzelfde dak tonen miniaturen waarmee
    je tussen de foto's wisselt. We pakken het project met de meeste foto's,
    zodat de controle blijft werken als projecten worden samengevoegd. */
-const bron = readFileSync('lib/data.ts', 'utf8');
 const blokken = [...bron.matchAll(/plaats:\s*"([^"]+)"[\s\S]*?\n  \},/g)];
 
 let doelPlaats = '';
