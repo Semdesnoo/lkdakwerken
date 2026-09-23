@@ -42,19 +42,8 @@ export default function DienstDetail({ dienst }: Props) {
         </div>
       </section>
 
-      {/* Foto */}
-      <section className="container-wide -mt-px relative z-10">
-        <div className="relative aspect-[21/6] md:aspect-[21/5] rounded-3xl overflow-hidden -mb-12 md:-mb-16">
-          <img
-            src={`https://images.unsplash.com/${dienst.heroImage}?w=1800&q=80&auto=format&fit=crop`}
-            alt={dienst.titel}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      </section>
-
       {/* Inleiding */}
-      <section className="section-pad bg-white pt-32 md:pt-40">
+      <section className="section-pad bg-white pt-16 md:pt-20">
         <div className="container-wide grid md:grid-cols-12 gap-12">
           <div className="md:col-span-4">
             <div className="eyebrow mb-4">Over deze dienst</div>
