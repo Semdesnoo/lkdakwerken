@@ -110,14 +110,14 @@ export function GoogleReviews() {
         <div className="mt-10 border-t border-blue-400/20 pt-8 md:pt-10">
           <div className="flex items-center justify-between gap-6 mb-6">
             <p className="text-sm text-white/70">
-              Sleep of gebruik de pijlen voor alle beoordelingen.
+              Veeg of sleep voor alle beoordelingen.
             </p>
             <SliderKnoppen
               terug={terug}
               vooruit={vooruit}
               stap={stap}
               label="beoordelingen"
-              className="shrink-0"
+              className="shrink-0 max-md:hidden"
             />
           </div>
 
@@ -145,17 +145,20 @@ export function GoogleReviews() {
                     >
                       {r.initiaal}
                     </span>
+                    {/* De G in het witte schildje staat in het accentblauw en
+                        niet in Google-blauw: op 11px haalt #4285f4 op wit de
+                        leesbaarheidsgrens niet. */}
                     <span
                       aria-hidden="true"
-                      className="absolute -right-1 -bottom-1 w-5 h-5 rounded-full bg-white text-[11px] font-bold leading-none flex items-center justify-center google-blauw"
+                      className="absolute -right-1 -bottom-1 w-5 h-5 rounded-full bg-white text-[11px] font-bold leading-none flex items-center justify-center text-blue-600"
                     >
                       G
                     </span>
                   </span>
                   <div className="min-w-0">
-                    <div className="font-semibold text-white truncate">{r.naam}</div>
-                    <div className="flex items-center gap-2 text-sm text-white/70">
-                      <span className="truncate">{r.plaats}</span>
+                    <div className="font-semibold text-white">{r.naam}</div>
+                    <div className="flex flex-wrap items-center gap-x-2 text-sm text-white/70">
+                      <span>{r.plaats}</span>
                       <span aria-hidden="true" className="w-1 h-1 rounded-full bg-white/40" />
                       <span className="whitespace-nowrap">{r.tijdAgo}</span>
                     </div>

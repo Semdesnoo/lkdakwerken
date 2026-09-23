@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Check, Clock, Star } from 'lucide-react';
-import { fotos, reviews } from '@/lib/data';
+import { fotos, google, reviews } from '@/lib/data';
 import { OfferteFormulier } from '@/components/OfferteFormulier';
 import { PageHeader } from '@/components/PageHeader';
 import { Sterren } from '@/components/Sterren';
@@ -90,7 +90,7 @@ export default function OffertePage() {
             <Reveal delay={0.2}>
               <p className="flex items-center gap-2.5 text-sm text-ink-500 px-1">
                 <Star className="w-4 h-4 fill-blue-500 text-blue-500 shrink-0" aria-hidden="true" strokeWidth={0} />
-                4.9 gemiddeld op Google, uit 127 beoordelingen.
+                {google.score} gemiddeld op Google, uit {google.aantal} beoordelingen.
               </p>
             </Reveal>
           </aside>

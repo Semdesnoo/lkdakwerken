@@ -3,6 +3,7 @@ import { ArrowRight, ShieldCheck } from 'lucide-react';
 import { stats, certificeringen, fotos } from '@/lib/data';
 import { foto } from '@/lib/images';
 import { Reveal } from '@/components/Reveal';
+import { Kerncijfers } from '@/components/Kerncijfers';
 
 export function OverOns() {
   // Wit: staat tussen het paper-50 diensten-paneel en de donkere werkwijze.
@@ -10,8 +11,9 @@ export function OverOns() {
     <section className="section-pad bg-white">
       <div className="container-wide">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          {/* Foto */}
-          <Reveal className="lg:col-span-5">
+          {/* Foto. Op mobiel staat de kop erboven: eerst weten waar het over
+              gaat, dan het beeld. Vandaar de omgekeerde volgorde tot lg. */}
+          <Reveal className="lg:col-span-5 max-lg:order-2">
             <div>
               <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-ink-900">
                 <img
@@ -35,7 +37,7 @@ export function OverOns() {
           </Reveal>
 
           {/* Tekst en feiten */}
-          <Reveal delay={0.1} className="lg:col-span-6 lg:col-start-7">
+          <Reveal delay={0.1} className="lg:col-span-7 lg:col-start-6 max-lg:order-1">
             <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-ink-900 text-balance">
               Een vast team.
               <br />
@@ -45,19 +47,10 @@ export function OverOns() {
               LK Dakwerken is een Rotterdams familiebedrijf met meer dan 20 jaar ervaring. We werken met een vast team van tien vakmensen. Iedere dakdekker bij ons heeft minimaal 5 jaar werkervaring en is in dienst. Zo weet u wie er op uw dak staat.
             </p>
 
-            <dl className="mt-10 grid grid-cols-2 gap-x-8 gap-y-7 max-w-lg">
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <dt className="sr-only">{s.label}</dt>
-                  <dd>
-                    <span className="block font-display text-4xl md:text-5xl font-bold text-ink-900 leading-none tracking-[-0.03em]">
-                      {s.cijfer}
-                    </span>
-                    <span className="block mt-2 text-sm text-ink-500">{s.label}</span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
+            <Kerncijfers
+              cijfers={stats}
+              className="mt-10 grid grid-cols-2 gap-x-8 gap-y-7 max-w-lg"
+            />
 
             <ul className="mt-10 flex flex-wrap gap-2.5">
               {certificeringen.map((c) => (

@@ -309,7 +309,7 @@ export const bedrijf = {
 export const stats = [
   { cijfer: "20+", label: "Jaar ervaring" },
   { cijfer: "1.842", label: "Daken geleverd" },
-  { cijfer: "4.9", label: "Google score" },
+  { cijfer: "4,9", label: "Google score" },
   { cijfer: "127", label: "Reviews" },
 ];
 
@@ -366,14 +366,6 @@ export const projecten: Project[] = [
     jaar: 2024,
     image: "project-02",
     tekst: "Bergingen die al jaren lekten. Alles eraf, de opstanden rondom opnieuw opgezet en een frisse laag leislagbitumen erop. De fietsen en het tuingereedschap staan er weer kurkdroog bij.",
-  },
-  {
-    titel: "Groot plat dak boven de woonlaag",
-    plaats: "Rotterdam Prins Alexander",
-    type: "Nieuwe dakbedekking",
-    jaar: 2025,
-    image: "project-03",
-    tekst: "Een fors dak boven de hele woonverdieping, in één dag dicht. De banen liggen strak in lijn en de aluminium dakrand loopt rondom door. De dakdoorvoer kreeg een eigen manchet, want juist daar begint een lekkage meestal.",
   },
   {
     titel: "Compleet dak met dakunits",

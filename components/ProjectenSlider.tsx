@@ -77,22 +77,23 @@ export function ProjectenSlider() {
               opgeleverd. Klik op een foto voor het verhaal erachter.
             </p>
           </div>
-          <SliderKnoppen
-            terug={terug}
-            vooruit={vooruit}
-            stap={stap}
-            label="projecten"
-            className="shrink-0"
-          />
-        </div>
-
-        <div className="mb-8 md:mb-10">
-          <Link href="/projecten" className="btn-pill">
-            <span className="label">Bekijk alle projecten</span>
-            <span className="arrow">
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </span>
-          </Link>
+          {/* Knop en pijlen horen bij de kop, niet als losse blokken eronder.
+              De pijlen zijn muisbediening: op touch wordt er geveegd. */}
+          <div className="flex items-center gap-4 shrink-0">
+            <Link href="/projecten" className="btn-pill">
+              <span className="label">Bekijk alle projecten</span>
+              <span className="arrow">
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </span>
+            </Link>
+            <SliderKnoppen
+              terug={terug}
+              vooruit={vooruit}
+              stap={stap}
+              label="projecten"
+              className="max-md:hidden"
+            />
+          </div>
         </div>
 
         <div className="border-t border-blue-500/20 pt-8 md:pt-10">

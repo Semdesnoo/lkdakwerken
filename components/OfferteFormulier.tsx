@@ -247,7 +247,7 @@ export function OfferteFormulier() {
               </label>
               <span
                 className={`font-display text-2xl font-bold tracking-[-0.02em] tabular-nums transition-colors ${
-                  oppervlakBekend ? 'text-blue-600' : 'text-ink-300'
+                  oppervlakBekend ? 'text-blue-600' : 'text-ink-400'
                 }`}
                 aria-hidden="true"
               >

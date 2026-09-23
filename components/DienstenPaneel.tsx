@@ -32,9 +32,9 @@ export function DienstenPaneel() {
           <div className="relative overflow-hidden rounded-3xl bg-white text-ink-900 border border-ink-900/10 shadow-[0_2px_40px_rgba(10,10,10,0.06)] p-6 sm:p-10 lg:p-14">
             <Lijnen className="absolute -top-32 -right-40 w-[46rem] h-[40rem]" />
 
-            <div className="relative grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div className="relative grid lg:grid-cols-12 gap-10 lg:gap-14 items-start lg:items-stretch">
               {/* Links: kop, lijst en knop */}
-              <div className="lg:col-span-5">
+              <div className="lg:col-span-5 flex flex-col">
                 <h2 className="text-display text-4xl md:text-5xl leading-[1.04] tracking-[-0.035em] text-balance text-ink-900">
                   Vijf specialisaties voor een zorgeloos dak.
                 </h2>
@@ -104,7 +104,7 @@ export function DienstenPaneel() {
                   ))}
                 </div>
 
-                <Link href="/diensten" className="btn-breed mt-9">
+                <Link href="/diensten" className="btn-breed mt-9 lg:mt-auto">
                   <span>Alle diensten</span>
                   <span className="arrow">
                     <ArrowRight className="w-4 h-4" aria-hidden="true" />
@@ -112,13 +112,14 @@ export function DienstenPaneel() {
                 </Link>
               </div>
 
-              {/* Rechts: foto van de actieve dienst */}
+              {/* Rechts: foto van de actieve dienst. Vanaf lg vult hij de volle
+                  hoogte van de lijst ernaast, zodat er geen gat onder valt. */}
               <div
                 id="dienst-uitgelicht"
                 aria-live="polite"
                 className="hidden md:block lg:col-span-7"
               >
-                <div className="relative aspect-[4/3] lg:aspect-[5/4] rounded-2xl overflow-hidden bg-paper-100">
+                <div className="relative aspect-[4/3] lg:aspect-auto lg:h-full lg:min-h-[32rem] rounded-2xl overflow-hidden bg-paper-100">
                   <AnimatePresence initial={false}>
                     <motion.div
                       key={dienst.slug}

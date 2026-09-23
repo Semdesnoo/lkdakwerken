@@ -98,7 +98,9 @@ export default function ContactPage() {
           {/* Gestileerd kaartblok en gegevens */}
           <div className="lg:col-span-7 space-y-5">
             <Reveal delay={0.05}>
-              <div className="relative rounded-3xl overflow-hidden bg-ink-900 aspect-[16/10]">
+              {/* Op mobiel staat de speld boven het bijschrift in een smaller
+                  vlak; 16/10 werd daar zo laag dat beide over elkaar vielen. */}
+              <div className="relative rounded-3xl overflow-hidden bg-ink-900 aspect-[4/3] sm:aspect-[16/10]">
                 <div className="absolute inset-0 bg-grid-dark opacity-80" aria-hidden="true" />
                 <div
                   className="absolute inset-0 bg-gradient-to-br from-blue-800/40 via-transparent to-transparent"
@@ -126,7 +128,7 @@ export default function ContactPage() {
                   <span className="text-sm text-white/65">{bedrijf.straat}</span>
                 </div>
 
-                <p className="absolute bottom-5 left-5 right-5 flex items-center gap-2 text-sm text-white/55">
+                <p className="absolute bottom-5 left-5 right-5 flex items-center gap-2 text-sm text-white/75">
                   <Navigation2 className="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true" />
                   Kantoor en materiaaldepot in {bedrijf.plaats}. Bezoek op afspraak.
                 </p>
@@ -150,15 +152,15 @@ export default function ContactPage() {
                   <dl className="text-ink-500 space-y-1.5">
                     <div className="flex justify-between gap-4">
                       <dt>Maandag tot vrijdag</dt>
-                      <dd className="text-ink-900 whitespace-nowrap">{bedrijf.openingstijden.maVrij}</dd>
+                      <dd className="text-ink-900 whitespace-nowrap tabular-nums">{bedrijf.openingstijden.maVrij}</dd>
                     </div>
                     <div className="flex justify-between gap-4">
                       <dt>Zaterdag</dt>
-                      <dd className="text-ink-900 whitespace-nowrap">{bedrijf.openingstijden.za}</dd>
+                      <dd className="text-ink-900 whitespace-nowrap tabular-nums">{bedrijf.openingstijden.za}</dd>
                     </div>
                     <div className="flex justify-between gap-4">
                       <dt>Zondag</dt>
-                      <dd className="text-ink-900 whitespace-nowrap">{bedrijf.openingstijden.zo}</dd>
+                      <dd className="text-ink-900 whitespace-nowrap tabular-nums">{bedrijf.openingstijden.zo}</dd>
                     </div>
                   </dl>
                 </div>

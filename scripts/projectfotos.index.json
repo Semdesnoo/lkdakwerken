@@ -36,24 +36,6 @@
     ]
   },
   {
-    "bron": "n02.jpeg",
-    "id": "project-03",
-    "varianten": [
-      {
-        "bestand": "project-03.webp",
-        "breedte": 1000,
-        "hoogte": 1333,
-        "kb": 206
-      },
-      {
-        "bestand": "project-03-kaart.webp",
-        "breedte": 640,
-        "hoogte": 853,
-        "kb": 79
-      }
-    ]
-  },
-  {
     "bron": "n03.jpeg",
     "id": "project-04",
     "varianten": [

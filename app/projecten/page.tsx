@@ -5,6 +5,7 @@ import { projecten, fotos } from '@/lib/data';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
 import { ProjectenGalerij } from '@/components/ProjectenGalerij';
+import { Kerncijfers } from '@/components/Kerncijfers';
 
 export const metadata: Metadata = {
   title: 'Projecten - Opgeleverde daken in Rotterdam en omgeving',
@@ -47,19 +48,10 @@ export default function ProjectenPage() {
       {/* Kerncijfers over het werk */}
       <section className="relative -mt-12 md:-mt-16 z-10">
         <div className="container-wide">
-          <dl className="panel p-8 md:p-10 grid grid-cols-2 md:grid-cols-4 gap-8">
-            {cijfers.map((s) => (
-              <div key={s.label}>
-                <dt className="sr-only">{s.label}</dt>
-                <dd>
-                  <span className="block font-display text-4xl md:text-5xl font-bold text-ink-900 leading-none tracking-[-0.03em]">
-                    {s.cijfer}
-                  </span>
-                  <span className="block mt-2.5 text-sm text-ink-500">{s.label}</span>
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <Kerncijfers
+            cijfers={cijfers}
+            className="panel p-8 md:p-10 grid grid-cols-2 md:grid-cols-4 gap-8"
+          />
         </div>
       </section>
 

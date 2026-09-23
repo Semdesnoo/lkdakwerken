@@ -97,15 +97,15 @@ export function Footer() {
             <dl className="space-y-2 text-[15px] text-white/70">
               <div className="flex justify-between gap-4">
                 <dt>Maandag tot vrijdag</dt>
-                <dd className="text-white/90 whitespace-nowrap">{bedrijf.openingstijden.maVrij}</dd>
+                <dd className="text-white/90 whitespace-nowrap tabular-nums">{bedrijf.openingstijden.maVrij}</dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt>Zaterdag</dt>
-                <dd className="text-white/90 whitespace-nowrap">{bedrijf.openingstijden.za}</dd>
+                <dd className="text-white/90 whitespace-nowrap tabular-nums">{bedrijf.openingstijden.za}</dd>
               </div>
               <div className="flex justify-between gap-4">
                 <dt>Zondag</dt>
-                <dd className="text-white/90 whitespace-nowrap">{bedrijf.openingstijden.zo}</dd>
+                <dd className="text-white/90 whitespace-nowrap tabular-nums">{bedrijf.openingstijden.zo}</dd>
               </div>
             </dl>
 

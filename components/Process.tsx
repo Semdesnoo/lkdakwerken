@@ -18,7 +18,7 @@ export function Process() {
 
       <div className="container-wide relative">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          <Reveal className="lg:col-span-5">
+          <Reveal className="lg:col-span-6">
             <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-balance">
               Vier stappen.
               <br />
@@ -34,7 +34,7 @@ export function Process() {
           </Reveal>
 
           {/* Verticale tijdlijn: bewust een ander opmaakfamilie dan de kaartrasters */}
-          <div className="lg:col-span-6 lg:col-start-7">
+          <div className="lg:col-span-5 lg:col-start-8">
             <ol className="relative">
               <span
                 aria-hidden="true"

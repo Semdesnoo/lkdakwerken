@@ -32,7 +32,9 @@ const zoek = [
   'calc(33.333% - .834rem)',
   'bg-white\\/12',
   'line-clamp-3',
-  'aspect-\\[5\\/4\\]',
+  /* De dienstenfoto vult sinds de opmaakronde de hoogte van de lijst ernaast
+     in plaats van een vaste 5/4-verhouding aan te houden. */
+  'lg\\:min-h-\\[32rem\\]',
 ];
 
 let ontbreekt = 0;

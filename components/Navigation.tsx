@@ -11,11 +11,16 @@ type NavItem = {
   href?: string;
   label: string;
   items?: SubItem[];
+  /* Paden waaronder dit menu-item als actief telt. Staat hier en niet in de
+     vergelijking verderop, want anders breekt de markering zodra een label
+     verandert. */
+  actiefBij?: string[];
 };
 
 const navItems: NavItem[] = [
   {
     label: 'Diensten',
+    actiefBij: ['/diensten'],
     items: [
       { href: '/diensten/bitumen-daken', label: 'Bitumen daken', desc: 'Bitumineuze dakbedekking' },
       { href: '/diensten/renovatie', label: 'Renovatie', desc: 'Dakrenovatie en -vernieuwing' },
@@ -25,7 +30,8 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    label: 'Over Ons',
+    label: 'Over ons',
+    actiefBij: ['/over', '/projecten'],
     items: [
       { href: '/over', label: 'Ons verhaal', desc: 'Wie zijn wij en waar we voor staan' },
       { href: '/projecten', label: 'Alle projecten', desc: 'Opgeleverde daken in de regio' },
@@ -91,11 +97,7 @@ export function Navigation() {
 
   const isActive = (item: NavItem) => {
     if (item.href) return pathname === item.href;
-    if (item.label === 'Diensten') return pathname.startsWith('/diensten');
-    if (item.label === 'Over Ons') {
-      return pathname.startsWith('/over') || pathname.startsWith('/projecten');
-    }
-    return false;
+    return (item.actiefBij ?? []).some((pad) => pathname.startsWith(pad));
   };
 
   const openDropdown = (label: string) => {

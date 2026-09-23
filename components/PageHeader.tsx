@@ -58,7 +58,7 @@ export function PageHeader({
             <ol className="flex flex-wrap items-center gap-2 text-sm text-white/60">
               {kruimels.map((k, i) => (
                 <li key={k.label} className="flex items-center gap-2">
-                  {i > 0 && <span aria-hidden="true" className="text-white/30">/</span>}
+                  {i > 0 && <span aria-hidden="true" className="text-white/55">/</span>}
                   {k.href ? (
                     <Link href={k.href} className="hover:text-white transition-colors">
                       {k.label}

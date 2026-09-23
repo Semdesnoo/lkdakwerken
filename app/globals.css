@@ -97,10 +97,36 @@ body {
 
 ::selection { background: var(--accent); color: #ffffff; }
 
+/* De onderdelen die de browser zelf tekent horen ook bij het ontwerp:
+   de cursor in formuliervelden en de schuifbalk van de pagina. */
+html { accent-color: var(--accent); caret-color: var(--accent); }
+
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar { width: 12px; height: 12px; }
+  ::-webkit-scrollbar-track { background: var(--color-paper-100); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-paper-300);
+    border: 3px solid var(--color-paper-100);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-ink-300); }
+}
+/* Firefox kent de pseudo-elementen hierboven niet. */
+@supports not selector(::-webkit-scrollbar) {
+  html { scrollbar-color: var(--color-paper-300) var(--color-paper-100); }
+}
+
 :where(a, button, input, select, textarea, summary):focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* Op de donkere secties haalt het accentblauw de 3:1-grens tegen bijna zwart
+   niet. Die secties zijn herkenbaar aan text-white, dus daar wordt de ring
+   een lichtere tint. */
+.text-white :where(a, button, input, select, textarea, summary):focus-visible {
+  outline-color: var(--color-blue-300);
 }
 
 @layer utilities {

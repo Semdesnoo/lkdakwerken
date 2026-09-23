@@ -15,11 +15,11 @@ export function Blog() {
             <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-ink-900 text-balance">
               Kennis over daken, zonder verkooppraat.
             </h2>
-            <p className="lead mt-5">
+            <p className="lead mt-5 max-w-lg">
               Praktische artikelen over dakonderhoud, materiaalkeuzes en veelgemaakte fouten.
             </p>
           </div>
-          <Link href="/blog" className="btn-link shrink-0">
+          <Link href="/blog" className="btn-link shrink-0 md:pb-2">
             Alle artikelen
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </Link>
