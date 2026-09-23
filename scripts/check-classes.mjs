@@ -7,15 +7,11 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 
-const componenten = [
-  'components/ProjectenSlider.tsx',
-  'components/DienstenPaneel.tsx',
-  'components/GoogleReviews.tsx',
-  'components/Slider.tsx',
-  'components/Lijnen.tsx',
-  'components/OverOns.tsx',
-  'components/ContactCTA.tsx',
-];
+/* Alle componenten, niet een handmatige lijst: die liep achter zodra er een
+   bestand bijkwam of verdween. */
+const componenten = readdirSync('components')
+  .filter((n) => n.endsWith('.tsx'))
+  .map((n) => join('components', n));
 
 const bestanden = [];
 (function loop(map) {

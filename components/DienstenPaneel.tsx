@@ -6,7 +6,6 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { diensten } from '@/lib/data';
 import { foto } from '@/lib/images';
-import { Lijnen } from '@/components/Lijnen';
 import { Reveal } from '@/components/Reveal';
 
 /**
@@ -30,7 +29,6 @@ export function DienstenPaneel() {
       <div className="container-wide">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-white text-ink-900 border border-ink-900/10 shadow-[0_2px_40px_rgba(10,10,10,0.06)] p-6 sm:p-10 lg:p-14">
-            <Lijnen className="absolute -top-32 -right-40 w-[46rem] h-[40rem]" />
 
             <div className="relative grid lg:grid-cols-12 gap-10 lg:gap-14 items-start lg:items-stretch">
               {/* Links: kop, lijst en knop */}

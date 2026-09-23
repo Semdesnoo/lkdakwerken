@@ -6,7 +6,6 @@ import { ArrowRight, X } from 'lucide-react';
 import Link from 'next/link';
 import { projecten } from '@/lib/data';
 import { projectGroot, projectKaart } from '@/lib/images';
-import { Lijnen } from '@/components/Lijnen';
 import { SliderKnoppen, useSlider } from '@/components/Slider';
 
 /* Kaarten komen na elkaar in beeld zodra de track in zicht schuift. */
@@ -64,7 +63,6 @@ export function ProjectenSlider() {
 
   return (
     <section className="relative section-pad bg-white overflow-hidden">
-      <Lijnen className="absolute -top-28 -right-32 w-[46rem] h-[36rem]" />
 
       <div className="container-wide relative">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8 md:mb-10">

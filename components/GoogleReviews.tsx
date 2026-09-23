@@ -3,7 +3,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Star } from 'lucide-react';
 import { google, reviews } from '@/lib/data';
-import { Lijnen } from '@/components/Lijnen';
 import { Reveal } from '@/components/Reveal';
 import { SliderKnoppen, useSlider } from '@/components/Slider';
 
@@ -59,9 +58,6 @@ export function GoogleReviews() {
 
   return (
     <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
-      <div className="absolute inset-0 bg-grid-dark opacity-60" aria-hidden="true" />
-      <Lijnen variant="donker" className="absolute -top-24 -left-32 w-[48rem] h-[36rem]" />
-
       <div className="container-wide relative">
         <Reveal className="max-w-3xl">
           <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-balance">
