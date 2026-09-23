@@ -4,7 +4,7 @@
  *
  * Gebruik: node scripts/check-projecten.mjs <basisurl> [uitvoermap]
  */
-import { mkdirSync } from 'node:fs';
+import { mkdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import puppeteer from 'puppeteer-core';
 
@@ -123,6 +123,13 @@ eis('project met meerdere foto\'s gevonden', metGalerij >= 0, `kaart ${metGaleri
 if (metGalerij >= 0) {
   await wacht(600);
 
+  /* Het verwachte aantal komt uit lib/data.ts, zodat de controle meegroeit
+     als er foto's bij het project komen. */
+  const bron = readFileSync('lib/data.ts', 'utf8');
+  const blok = bron.match(/plaats:\s*"Pijnacker"[\s\S]*?\n  \},/)?.[0] ?? '';
+  const verwachtAantal =
+    1 + [...(blok.match(/extraFotos:\s*\[([^\]]*)\]/)?.[1] ?? '').matchAll(/"[^"]+"/g)].length;
+
   const galerij = await page.evaluate(() => {
     const dlg = document.querySelector('[role="dialog"]');
     const mini = [...dlg.querySelectorAll('button[aria-label^="Foto "]')];
@@ -133,8 +140,16 @@ if (metGalerij >= 0) {
     };
   });
 
-  eis('drie miniaturen zichtbaar', galerij.aantal === 3, `${galerij.aantal} miniaturen`);
-  eis('teller toont de positie', galerij.teller === '1 van 3', galerij.teller);
+  eis(
+    `${verwachtAantal} miniaturen zichtbaar`,
+    galerij.aantal === verwachtAantal,
+    `${galerij.aantal} miniaturen`,
+  );
+  eis(
+    'teller toont de positie',
+    galerij.teller === `1 van ${verwachtAantal}`,
+    galerij.teller,
+  );
 
   /* Op de tweede miniatuur klikken moet de grote foto verwisselen. */
   await page.evaluate(() => {
@@ -154,7 +169,7 @@ if (metGalerij >= 0) {
 
   eis('grote foto wisselt bij een klik', na.bron !== galerij.hoofdfoto, na.bron);
   eis('tweede foto is geladen', na.geladen);
-  eis('teller loopt mee', na.teller === '2 van 3', na.teller);
+  eis('teller loopt mee', na.teller === `2 van ${verwachtAantal}`, na.teller);
 
   if (UIT) await page.screenshot({ path: join(UIT, 'galerij.png') });
 

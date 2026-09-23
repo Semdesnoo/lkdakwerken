@@ -528,15 +528,6 @@ export const projecten = [
     tekst: "Ladder tegen de rand, grasveld ernaast en een dak dat om aandacht vroeg. De oude laag was dof en poreus geworden. Nieuwe leislagbitumen met een trim rondom, zodat de wind er geen grip meer op krijgt.",
   },
   {
-    titel: "Veranda met plat dak",
-    plaats: "Capelle aan den IJssel",
-    type: "Nieuwe dakbedekking",
-    oppervlakte: "30 m²",
-    jaar: 2025,
-    image: "project-22",
-    tekst: "De overkapping stond er al, het dak moest nog. Wij legden de bitumen rondom door tot over de rand, zodat er bij een stevige najaarsbui geen druppel langs de zijkant naar binnen loopt.",
-  },
-  {
     titel: "Groot dakvlak achter de rijwoning",
     plaats: "Rotterdam Lombardijen",
     type: "Nieuwbouw plat dak",
@@ -552,11 +543,11 @@ export const projecten = [
     oppervlakte: "52 m²",
     jaar: 2025,
     image: "project-25",
-    // Drie opnamen van dezelfde uitbouw: het dakvlak met de doorvoer, de
-    // aansluiting op het hogere dak met zonnepanelen en het overzicht
-    // richting de sloot.
-    extraFotos: ["project-24", "project-26"],
-    tekst: "Verse uitbouw in een nieuwbouwwijk waar alles nog kraakt. Wij zorgden voor de waterdichte laag en de doorvoer voor de afzuiging, zodat de keukenbouwer daarna zo aan de slag kon. De aansluiting op het hogere dak met zonnepanelen is dubbel uitgevoerd, en langs de slootkant hebben we de randen verhoogd zodat bladval niet meteen tot water op het dak leidt.",
+    // Vier opnamen van dezelfde uitbouw: het dakvlak met de doorvoer, de
+    // overkapping aan de zijkant, de aansluiting op het hogere dak met
+    // zonnepanelen en het overzicht richting de sloot.
+    extraFotos: ["project-22", "project-24", "project-26"],
+    tekst: "Verse uitbouw in een nieuwbouwwijk waar alles nog kraakt. Wij zorgden voor de waterdichte laag en de doorvoer voor de afzuiging, zodat de keukenbouwer daarna zo aan de slag kon. De bitumen loopt rondom door tot over de rand van de overkapping, de aansluiting op het hogere dak met zonnepanelen is dubbel uitgevoerd, en langs de slootkant hebben we de randen verhoogd zodat bladval niet meteen tot water op het dak leidt.",
   },
   {
     titel: "Appartementencomplex met lichtkoepels",
