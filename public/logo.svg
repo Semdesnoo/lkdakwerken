@@ -1,8 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 100 100" fill="none">
-  <!-- Linker cirkel (zwart) -->
-  <circle cx="38" cy="50" r="30" fill="#000000"/>
-  <!-- Rechter cirkel (blauw), overlap -->
-  <circle cx="62" cy="50" r="30" fill="#1d4ed8"/>
-  <!-- LK tekst in het midden, wit -->
-  <text x="50" y="62" font-family="Arial Black, system-ui, sans-serif" font-size="28" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="-0.5">LK</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 150" fill="none">
+  <!-- LK Dakwerken logo: dak-huis (zwarte L + blauwe K) met dak-icoon (zwart + blauw) en "DAKWERKEN" tekst -->
+
+  <!-- Dak-icoon: zwarte driehoek links + blauwe driehoek rechts die horizontaal doorloopt als lijn -->
+  <!-- Zwarte driehoek (linker dakhelft van het dak) -->
+  <polygon points="0,65 45,15 90,65" fill="#000000"/>
+  <!-- Blauwe driehoek (rechter dakhelft) + horizontaal doorlopende lijn -->
+  <polygon points="90,65 45,15 90,15 200,15 200,65" fill="#1d4ed8"/>
+
+  <!-- Letter L (zwart) -->
+  <rect x="0" y="75" width="18" height="55" fill="#000000"/>
+  <rect x="0" y="113" width="48" height="17" fill="#000000"/>
+
+  <!-- Letter K (blauw) -->
+  <rect x="58" y="75" width="18" height="55" fill="#1d4ed8"/>
+  <!-- Bovenste diagonale arm -->
+  <polygon points="76,75 96,75 128,108 108,108" fill="#1d4ed8"/>
+  <!-- Onderste diagonale arm -->
+  <polygon points="108,108 128,108 96,130 76,130" fill="#1d4ed8"/>
+
+  <!-- DAKWERKEN tekst in zwart, bold, wijde tracking -->
+  <text x="158" y="123" font-family="'Inter', 'Arial Black', system-ui, sans-serif" font-size="76" font-weight="900" fill="#000000" letter-spacing="8">DAKWERKEN</text>
 </svg>
