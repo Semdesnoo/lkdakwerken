@@ -73,9 +73,6 @@ export function ProjectenGalerij() {
                       {aantal}
                     </span>
                   )}
-                  <span className="absolute left-3 bottom-3 inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink-900">
-                    {p.oppervlakte}
-                  </span>
                 </div>
                 <div className="p-5 md:p-6">
                   <div className="flex items-center gap-2 text-sm text-ink-500">
@@ -176,14 +173,10 @@ export function ProjectenGalerij() {
 
                   <p className="mt-4 text-ink-600 leading-relaxed">{actief.tekst}</p>
 
-                  <dl className="mt-6 grid grid-cols-3 gap-4 border-t border-ink-900/10 pt-5 text-sm">
+                  <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-ink-900/10 pt-5 text-sm">
                     <div>
                       <dt className="text-ink-500">Plaats</dt>
                       <dd className="mt-1 font-semibold text-ink-900">{actief.plaats}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-ink-500">Oppervlakte</dt>
-                      <dd className="mt-1 font-semibold text-ink-900">{actief.oppervlakte}</dd>
                     </div>
                     <div>
                       <dt className="text-ink-500">Jaar</dt>

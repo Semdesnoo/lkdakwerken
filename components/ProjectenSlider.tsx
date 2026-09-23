@@ -133,9 +133,6 @@ export function ProjectenSlider() {
                       aria-hidden="true"
                       className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-ink-950/45 to-transparent"
                     />
-                    <span className="absolute left-4 bottom-4 inline-flex items-center rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink-900">
-                      {p.oppervlakte}
-                    </span>
                   </div>
                   <div className="mt-4">
                     <h3 className="text-lg font-semibold tracking-[-0.015em] text-ink-900">
@@ -232,14 +229,10 @@ export function ProjectenSlider() {
                   )}
 
                   <p className="mt-4 text-ink-600 leading-relaxed">{actief.tekst}</p>
-                  <dl className="mt-6 grid grid-cols-3 gap-4 border-t border-ink-900/10 pt-5 text-sm">
+                  <dl className="mt-6 grid grid-cols-2 gap-4 border-t border-ink-900/10 pt-5 text-sm">
                     <div>
                       <dt className="text-ink-500">Plaats</dt>
                       <dd className="mt-1 font-semibold text-ink-900">{actief.plaats}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-ink-500">Oppervlakte</dt>
-                      <dd className="mt-1 font-semibold text-ink-900">{actief.oppervlakte}</dd>
                     </div>
                     <div>
                       <dt className="text-ink-500">Jaar</dt>

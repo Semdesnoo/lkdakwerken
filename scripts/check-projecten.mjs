@@ -65,7 +65,7 @@ const kaarten = await page.$$('.slider-track article');
    samengevoegd zodra blijkt dat foto's bij hetzelfde dak horen, dus een vast
    minimum zou telkens verlopen. */
 const bron = readFileSync('lib/data.ts', 'utf8');
-const lijst = bron.match(/export const projecten = \[([\s\S]*?)\n\];/)?.[1] ?? '';
+const lijst = bron.match(/export const projecten(?:: Project\[\])? = \[([\s\S]*?)\n\];/)?.[1] ?? '';
 const verwachteKaarten = [...lijst.matchAll(/image:\s*"project-\d+"/g)].length;
 
 eis(
@@ -113,8 +113,8 @@ if (dialoog) {
   eis('vergroting toont de grote foto', /\/projecten\/project-\d+\.webp$/.test(inhoud.foto), inhoud.foto);
   eis('grote foto is geladen', inhoud.fotoGeladen);
   eis('vergroting toont een projecttekst', inhoud.tekst.length > 120);
-  eis('vergroting toont plaats, oppervlakte en jaar',
-    inhoud.tekst.includes('Plaats') && inhoud.tekst.includes('Oppervlakte') && inhoud.tekst.includes('Jaar'));
+  eis('vergroting toont plaats en jaar',
+    inhoud.tekst.includes('Plaats') && inhoud.tekst.includes('Jaar'));
   eis('geen kastlijntje in de vergroting', !inhoud.tekst.includes('\u2014'));
 
   if (UIT) await page.screenshot({ path: join(UIT, 'vergroting.png') });
@@ -124,10 +124,10 @@ if (dialoog) {
   eis('vergroting sluit met Escape', (await page.$('[role="dialog"]')) === null);
 }
 
-/* Projecten met meerdere opnamen van hetzelfde dak tonen miniaturen waarmee
-   je tussen de foto's wisselt. We pakken het project met de meeste foto's,
-   zodat de controle blijft werken als projecten worden samengevoegd. */
-const blokken = [...bron.matchAll(/plaats:\s*"([^"]+)"[\s\S]*?\n  \},/g)];
+/* Projecten kunnen meerdere opnamen van hetzelfde dak dragen. Zijn die er,
+   dan hoort de vergroting miniaturen te tonen waarmee je wisselt. Staat elk
+   project op een enkele foto, dan mogen die miniaturen er juist niet zijn. */
+const blokken = [...lijst.matchAll(/plaats:\s*"([^"]+)"[\s\S]*?\n  \},/g)];
 
 let doelPlaats = '';
 let verwachtAantal = 0;
@@ -142,17 +142,17 @@ for (const b of blokken) {
 
 const metGalerij = await page.evaluate((plaats) => {
   const knoppen = [...document.querySelectorAll('.slider-track article button')];
-  const i = knoppen.findIndex((k) => (k.getAttribute('aria-label') ?? '').includes(plaats));
+  const i = plaats
+    ? knoppen.findIndex((k) => (k.getAttribute('aria-label') ?? '').includes(plaats))
+    : 0;
   if (i < 0) return -1;
   knoppen[i].scrollIntoView({ block: 'center' });
   knoppen[i].click();
   return i;
 }, doelPlaats);
-eis(
-  'project met meerdere foto\'s gevonden',
-  metGalerij >= 0 && verwachtAantal > 1,
-  `${doelPlaats}, kaart ${metGalerij}, ${verwachtAantal} foto's`,
-);
+
+eis('kaart met de meeste foto\'s geopend', metGalerij >= 0,
+  `${doelPlaats}, kaart ${metGalerij}, ${verwachtAantal} foto's`);
 
 if (metGalerij >= 0) {
   await wacht(600);
@@ -167,36 +167,39 @@ if (metGalerij >= 0) {
     };
   });
 
-  eis(
-    `${verwachtAantal} miniaturen zichtbaar`,
-    galerij.aantal === verwachtAantal,
-    `${galerij.aantal} miniaturen`,
-  );
-  eis(
-    'teller toont de positie',
-    galerij.teller === `1 van ${verwachtAantal}`,
-    galerij.teller,
-  );
+  if (verwachtAantal > 1) {
+    eis(
+      `${verwachtAantal} miniaturen zichtbaar`,
+      galerij.aantal === verwachtAantal,
+      `${galerij.aantal} miniaturen`,
+    );
+    eis('teller toont de positie', galerij.teller === `1 van ${verwachtAantal}`, galerij.teller);
 
-  /* Op de tweede miniatuur klikken moet de grote foto verwisselen. */
-  await page.evaluate(() => {
-    document.querySelectorAll('[role="dialog"] button[aria-label^="Foto "]')[1].click();
-  });
-  await wacht(500);
+    /* Op de tweede miniatuur klikken moet de grote foto verwisselen. */
+    await page.evaluate(() => {
+      document.querySelectorAll('[role="dialog"] button[aria-label^="Foto "]')[1].click();
+    });
+    await wacht(500);
 
-  const na = await page.evaluate(() => {
-    const dlg = document.querySelector('[role="dialog"]');
-    const img = dlg.querySelector('img');
-    return {
-      bron: img?.getAttribute('src') ?? '',
-      geladen: Boolean(img && img.complete && img.naturalWidth > 100),
-      teller: dlg.innerText.match(/\d+ van \d+/)?.[0] ?? '',
-    };
-  });
+    const na = await page.evaluate(() => {
+      const dlg = document.querySelector('[role="dialog"]');
+      const img = dlg.querySelector('img');
+      return {
+        bron: img?.getAttribute('src') ?? '',
+        geladen: Boolean(img && img.complete && img.naturalWidth > 100),
+        teller: dlg.innerText.match(/\d+ van \d+/)?.[0] ?? '',
+      };
+    });
 
-  eis('grote foto wisselt bij een klik', na.bron !== galerij.hoofdfoto, na.bron);
-  eis('tweede foto is geladen', na.geladen);
-  eis('teller loopt mee', na.teller === `2 van ${verwachtAantal}`, na.teller);
+    eis('grote foto wisselt bij een klik', na.bron !== galerij.hoofdfoto, na.bron);
+    eis('tweede foto is geladen', na.geladen);
+    eis('teller loopt mee', na.teller === `2 van ${verwachtAantal}`, na.teller);
+  } else {
+    /* Elk project heeft een eigen foto: dan hoort er geen galerij te staan. */
+    eis('geen miniaturen bij een project met een enkele foto', galerij.aantal === 0,
+      `${galerij.aantal} miniaturen`);
+    eis('geen teller bij een enkele foto', galerij.teller === '', galerij.teller);
+  }
 
   if (UIT) await page.screenshot({ path: join(UIT, 'galerij.png') });
 

@@ -24,7 +24,7 @@ eis('projectenslider pijlknoppen', html.includes('slider-arrow'));
    projecten bij komen. */
 const projectenAantal = (
   readFileSync('lib/data.ts', 'utf8')
-    .match(/export const projecten = \[([\s\S]*?)\n\];/)?.[1]
+    .match(/export const projecten(?:: Project\[\])? = \[([\s\S]*?)\n\];/)?.[1]
     .match(/image:\s*"project-\d+"/g) || []
 ).length;
 

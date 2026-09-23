@@ -17,7 +17,7 @@ import path from 'node:path';
 import sharp from 'sharp';
 
 const bron =
-  process.argv[2] ?? 'C:/Users/Gebruiker/AppData/Local/hermes/cache/scratch/fotos';
+  process.argv[2] ?? 'C:/Users/Gebruiker/AppData/Local/hermes/cache/scratch/fotos2';
 const doel = path.join(process.cwd(), 'public', 'projecten');
 
 const MATEN = [

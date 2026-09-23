@@ -13,23 +13,13 @@ export const metadata: Metadata = {
   alternates: { canonical: '/projecten' },
 };
 
-/* Totaal aantal opnamen: elk project heeft een hoofdfoto en soms meerdere
-   extra opnamen van hetzelfde dak. */
-const aantalFotos = projecten.reduce(
-  (som, p) => som + 1 + (p.extraFotos?.length ?? 0),
-  0,
-);
-
-/* Vierkante meters bij elkaar opgeteld, voor het cijferblok. */
-const totaalOppervlak = projecten.reduce((som, p) => {
-  const getal = parseInt(p.oppervlakte.replace(/\D/g, ''), 10);
-  return som + (Number.isNaN(getal) ? 0 : getal);
-}, 0);
+/* Aantal gemeenten waar deze projecten staan, zonder dubbele. */
+const aantalPlaatsen = new Set(projecten.map((p) => p.plaats)).size;
 
 const cijfers = [
   { cijfer: `${projecten.length}`, label: 'Projecten in beeld' },
-  { cijfer: `${aantalFotos}`, label: "Foto's van eigen werk" },
-  { cijfer: `${totaalOppervlak.toLocaleString('nl-NL')} m²`, label: 'Dakoppervlak opgeleverd' },
+  { cijfer: `${aantalPlaatsen}`, label: 'Plaatsen in de regio' },
+  { cijfer: '20+ jaar', label: 'Ervaring met platte daken' },
   { cijfer: '10 jaar', label: 'Garantie via Dakmerk' },
 ];
 

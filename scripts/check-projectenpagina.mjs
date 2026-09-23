@@ -25,7 +25,7 @@ const wacht = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /* Verwacht aantal projecten uit de gegevens, zodat de controle meeloopt. */
 const bron = readFileSync('lib/data.ts', 'utf8');
-const lijst = bron.match(/export const projecten = \[([\s\S]*?)\n\];/)?.[1] ?? '';
+const lijst = bron.match(/export const projecten(?:: Project\[\])? = \[([\s\S]*?)\n\];/)?.[1] ?? '';
 const verwachteProjecten = [...lijst.matchAll(/image:\s*"project-\d+"/g)].length;
 
 const browser = await puppeteer.launch({
@@ -89,11 +89,17 @@ const geladen = await page.$$eval('main button[aria-label^="Bekijk project"] img
 );
 eis('foto\'s daadwerkelijk geladen', geladen === bronnen.length, `${geladen} van ${bronnen.length}`);
 
-/* Projecten met meerdere opnamen tonen een telbadge op de kaart. */
+/* Projecten met meerdere opnamen krijgen een telbadge op de kaart. Staat elk
+   project op een enkele foto, dan hoort die badge er juist niet te zijn. */
+const meervoudig = [...bron.matchAll(/extraFotos:\s*\[/g)].length;
 const badges = await page.$$eval('main button[aria-label^="Bekijk project"]', (els) =>
   els.filter((e) => /\b[2-9]\b/.test(e.querySelector('span')?.innerText ?? '')).length,
 );
-eis('kaarten tonen het aantal foto\'s', badges >= 3, `${badges} kaarten met meerdere foto's`);
+eis(
+  meervoudig > 0 ? 'kaarten tonen het aantal foto\'s' : 'geen telbadge bij enkele foto\'s',
+  meervoudig > 0 ? badges >= 1 : badges === 0,
+  `${badges} kaarten met een telbadge, ${meervoudig} projecten met extra foto's`,
+);
 
 /* ---------- vergroting met galerij ---------- */
 
@@ -119,8 +125,13 @@ eis('vergroting gaat open', Boolean(dialoog));
 
 if (dialoog) {
   eis('grote foto is lokaal', /\/projecten\/project-\d+\.webp$/.test(dialoog.foto), dialoog.foto);
-  eis('galerij toont miniaturen', dialoog.mini >= 4, `${dialoog.mini} miniaturen`);
-  eis('teller aanwezig', /^1 van \d+$/.test(dialoog.teller), dialoog.teller);
+  if (meervoudig > 0) {
+    eis('galerij toont miniaturen', dialoog.mini >= 2, `${dialoog.mini} miniaturen`);
+    eis('teller aanwezig', /^1 van \d+$/.test(dialoog.teller), dialoog.teller);
+  } else {
+    eis('geen miniaturen bij een enkele foto', dialoog.mini === 0, `${dialoog.mini} miniaturen`);
+    eis('geen teller bij een enkele foto', dialoog.teller === '', dialoog.teller);
+  }
   eis('projecttekst staat erbij', dialoog.tekst > 200);
 
   if (UIT) await page.screenshot({ path: join(UIT, 'vergroting.png') });

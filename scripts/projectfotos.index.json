@@ -1,0 +1,182 @@
+[
+  {
+    "bron": "n00.jpeg",
+    "id": "project-01",
+    "varianten": [
+      {
+        "bestand": "project-01.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 189
+      },
+      {
+        "bestand": "project-01-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 73
+      }
+    ]
+  },
+  {
+    "bron": "n01.jpeg",
+    "id": "project-02",
+    "varianten": [
+      {
+        "bestand": "project-02.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 311
+      },
+      {
+        "bestand": "project-02-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 113
+      }
+    ]
+  },
+  {
+    "bron": "n02.jpeg",
+    "id": "project-03",
+    "varianten": [
+      {
+        "bestand": "project-03.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 206
+      },
+      {
+        "bestand": "project-03-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 79
+      }
+    ]
+  },
+  {
+    "bron": "n03.jpeg",
+    "id": "project-04",
+    "varianten": [
+      {
+        "bestand": "project-04.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 185
+      },
+      {
+        "bestand": "project-04-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 74
+      }
+    ]
+  },
+  {
+    "bron": "n04.jpeg",
+    "id": "project-05",
+    "varianten": [
+      {
+        "bestand": "project-05.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 278
+      },
+      {
+        "bestand": "project-05-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 107
+      }
+    ]
+  },
+  {
+    "bron": "n05.jpeg",
+    "id": "project-06",
+    "varianten": [
+      {
+        "bestand": "project-06.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 253
+      },
+      {
+        "bestand": "project-06-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 95
+      }
+    ]
+  },
+  {
+    "bron": "n06.jpeg",
+    "id": "project-07",
+    "varianten": [
+      {
+        "bestand": "project-07.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 149
+      },
+      {
+        "bestand": "project-07-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 55
+      }
+    ]
+  },
+  {
+    "bron": "n07.jpeg",
+    "id": "project-08",
+    "varianten": [
+      {
+        "bestand": "project-08.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 205
+      },
+      {
+        "bestand": "project-08-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 80
+      }
+    ]
+  },
+  {
+    "bron": "n08.jpeg",
+    "id": "project-09",
+    "varianten": [
+      {
+        "bestand": "project-09.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 330
+      },
+      {
+        "bestand": "project-09-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 132
+      }
+    ]
+  },
+  {
+    "bron": "n09.jpeg",
+    "id": "project-10",
+    "varianten": [
+      {
+        "bestand": "project-10.webp",
+        "breedte": 1000,
+        "hoogte": 1333,
+        "kb": 298
+      },
+      {
+        "bestand": "project-10-kaart.webp",
+        "breedte": 640,
+        "hoogte": 853,
+        "kb": 116
+      }
+    ]
+  }
+]

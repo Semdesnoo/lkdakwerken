@@ -333,141 +333,103 @@ export const werkwijze = [
  * veld `image` verwijst naar de bestandsnaam zonder extensie. De helpers
  * projectKaart() en projectGroot() in lib/images.ts bouwen het pad op.
  *
+ * `extraFotos` is optioneel en bedoeld voor het geval meerdere opnamen bij
+ * hetzelfde dak horen; de vergroting toont die dan als miniaturen.
+ *
  * `plaats` en `type` vormen samen het label onder de foto in de
  * projectenslider op de homepage. scripts/check-images.mjs controleert of bij
  * elk project beide fotobestanden daadwerkelijk bestaan.
  */
-export const projecten = [
+export type Project = {
+  titel: string;
+  plaats: string;
+  type: string;
+  jaar: number;
+  image: string;
+  tekst: string;
+  extraFotos?: string[];
+};
+
+export const projecten: Project[] = [
   {
-    titel: "Lekkage verholpen op de uitbouw",
-    plaats: "Capelle aan den IJssel",
-    type: "Lekkageherstel",
-    oppervlakte: "42 m²",
+    titel: "Nieuwbouw plat dak op de aanbouw",
+    plaats: "Rotterdam Kralingen",
+    type: "Nieuwbouw plat dak",
     jaar: 2025,
-    image: "project-02",
-    // Vier opnamen van dezelfde uitbouw: de aangetaste plekken in de oude
-    // laag, de nieuwe bitumen op het dakbeschot, het afgewerkte dakvlak en
-    // het overzicht vanaf de tuinzijde.
-    extraFotos: ["project-01", "project-03", "project-05"],
-    tekst: "Een natte plek op het plafond en niemand die wist waar het water vandaan kwam. Wij vonden drie open naden in de oude laag en besloten met de eigenaar om het hele dakvlak aan te pakken in plaats van te blijven lappen. Nieuwe bitumen op het dakbeschot, een aluminium daktrim rondom en elke naad met de hand nagelopen. Binnen een dag droog en klaar voor de komende jaren.",
+    image: "project-01",
+    tekst: "De aannemer zette de uitbouw neer, wij maakten hem waterdicht. Verse bitumen op nieuw dakbeschot, afgewerkt met een strakke aluminium daktrim die netjes aansluit op het boeiboord. De bewoners konden dezelfde week hun keuken laten plaatsen.",
   },
   {
     titel: "Bergingen in de achtertuin",
     plaats: "Schiedam",
     type: "Nieuwe dakbedekking",
-    oppervlakte: "24 m²",
     jaar: 2024,
-    image: "project-04",
-    tekst: "Twee bergingen die al jaren lekten. Alles eraf, opstanden opnieuw opgezet en een frisse laag leislagbitumen erop. De fietsen en het tuingereedschap staan er weer kurkdroog bij.",
+    image: "project-02",
+    tekst: "Bergingen die al jaren lekten. Alles eraf, de opstanden rondom opnieuw opgezet en een frisse laag leislagbitumen erop. De fietsen en het tuingereedschap staan er weer kurkdroog bij.",
   },
   {
     titel: "Groot plat dak boven de woonlaag",
     plaats: "Rotterdam Prins Alexander",
     type: "Nieuwe dakbedekking",
-    oppervlakte: "95 m²",
     jaar: 2025,
-    image: "project-08",
-    // Vier opnamen van hetzelfde dak: het overzicht, de dakrand langs de
-    // tuinzijde, het vlak met de markeringen en de hoek bij de schutting.
-    extraFotos: ["project-09", "project-07", "project-06"],
-    tekst: "Een fors dak boven de hele woonverdieping, in één dag dicht. De banen liggen strak in lijn en de aluminium dakrand loopt rondom door, tot in de hoeken bij de schutting. De lichte leislag reflecteert de zon, wat het materiaal langer soepel houdt en de kamers eronder in de zomer koeler. Aan het eind van de dag lag er geen restant meer op het terras.",
+    image: "project-03",
+    tekst: "Een fors dak boven de hele woonverdieping, in één dag dicht. De banen liggen strak in lijn en de aluminium dakrand loopt rondom door. De dakdoorvoer kreeg een eigen manchet, want juist daar begint een lekkage meestal.",
   },
   {
     titel: "Compleet dak met dakunits",
     plaats: "Rotterdam Nesselande",
     type: "Renovatie",
-    oppervlakte: "92 m²",
     jaar: 2025,
-    image: "project-13",
-    // Zeven opnamen van hetzelfde dak: de lichtkoepel met de dakunits, het
-    // overzicht over de banen, de randzone langs de oprit, de aansluiting
-    // bij de gevelkozijnen, de doorvoeren van dichtbij en de goot bij de
-    // entree.
-    extraFotos: [
-      "project-12",
-      "project-10",
-      "project-11",
-      "project-14",
-      "project-15",
-      "project-19",
-    ],
-    tekst: "Lichtkoepel, dakdoorvoeren en ventilatie-units, allemaal op één dak. Elk obstakel is een risico op lekkage, dus elk obstakel kreeg zijn eigen afwerking met extra manchetten. Daarna pas de grote banen, tot aan de opstand bij de gevel en de randzone langs de oprit. De goot bij de entree hebben we opnieuw aangesloten, zodat het regenwater weer precies loopt waar het hoort.",
+    image: "project-04",
+    tekst: "Lichtkoepel, dakdoorvoeren en ventilatie-units, allemaal op één dak. Elk obstakel is een risico op lekkage, dus elk obstakel kreeg zijn eigen afwerking. Daarna pas de grote banen.",
   },
   {
     titel: "Bedrijfspand in de stad",
     plaats: "Rotterdam Centrum",
     type: "Renovatie met steiger",
-    oppervlakte: "210 m²",
     jaar: 2025,
-    image: "project-16",
-    tekst: "Werken boven een drukke straat vraagt om een steiger en randbeveiliging. Oude dakbedekking eraf en afgevoerd, nieuwe erop, zonder dat de ondernemer eronder een dag dicht hoefde.",
+    image: "project-05",
+    tekst: "Werken boven een drukke straat vraagt om een steiger en randbeveiliging. Oude dakbedekking eraf en afgevoerd, nieuwe erop met de brander, zonder dat de ondernemer eronder een dag dicht hoefde.",
   },
   {
     titel: "Plat dak naast het pannendak",
     plaats: "Schiedam",
     type: "Renovatie",
-    oppervlakte: "45 m²",
     jaar: 2024,
-    image: "project-17",
-    tekst: "De aansluiting tussen plat dak en pannendak is altijd het spannendste punt. Met een goed opgezette opstand en een strakke trim blijft dat jarenlang dicht, ook bij scheefstaande regen.",
+    image: "project-06",
+    tekst: "De aansluiting tussen plat dak en pannendak is altijd het spannendste punt. Met een goed opgezette opstand en een strakke trim blijft dat jarenlang dicht, ook bij scheefstaande regen. De buitenunit hebben we netjes ingewerkt.",
   },
   {
     titel: "Dak met uitzicht over de stad",
     plaats: "Rotterdam Noord",
     type: "Renovatie",
-    oppervlakte: "230 m²",
     jaar: 2025,
-    image: "project-18",
+    image: "project-07",
     tekst: "Een van onze mooiste werkplekken: de Rotterdamse skyline aan de horizon. Schoorstenen, doorvoeren en een lichtkoepel stuk voor stuk nagelopen en waterdicht opgeleverd.",
   },
   {
     titel: "Zwart bitumen op de aanbouw",
     plaats: "Rotterdam Charlois",
     type: "Nieuwe dakbedekking",
-    oppervlakte: "36 m²",
     jaar: 2024,
-    image: "project-20",
+    image: "project-08",
     tekst: "Op verzoek van de eigenaar gingen we hier voor zwart bitumen zonder leislag. Strak, egaal en onzichtbaar vanaf de straat. De dakdoorvoer kreeg een eigen aansluiting.",
   },
   {
     titel: "Aanbouw in de woonwijk",
     plaats: "Nieuwerkerk aan den IJssel",
     type: "Renovatie",
-    oppervlakte: "40 m²",
     jaar: 2025,
-    image: "project-21",
+    image: "project-09",
     tekst: "Ladder tegen de rand, grasveld ernaast en een dak dat om aandacht vroeg. De oude laag was dof en poreus geworden. Nieuwe leislagbitumen met een trim rondom, zodat de wind er geen grip meer op krijgt.",
   },
   {
-    titel: "Groot dakvlak achter de rijwoning",
-    plaats: "Rotterdam Lombardijen",
-    type: "Nieuwbouw plat dak",
-    oppervlakte: "68 m²",
+    titel: "Overkapping naast het grinddak",
+    plaats: "Berkel en Rodenrijs",
+    type: "Nieuwe dakbedekking",
     jaar: 2025,
-    image: "project-23",
-    tekst: "Een fors dakvlak op een nieuwe aanbouw. De lichte leislag houdt de ruimte eronder in de zomer merkbaar koeler, iets waar bewoners pas na de eerste hittegolf echt blij mee zijn.",
-  },
-  {
-    titel: "Uitbouw in de nieuwbouwwijk",
-    plaats: "Pijnacker",
-    type: "Nieuwbouw plat dak",
-    oppervlakte: "52 m²",
-    jaar: 2025,
-    image: "project-25",
-    // Vier opnamen van dezelfde uitbouw: het dakvlak met de doorvoer, de
-    // overkapping aan de zijkant, de aansluiting op het hogere dak met
-    // zonnepanelen en het overzicht richting de sloot.
-    extraFotos: ["project-22", "project-24", "project-26"],
-    tekst: "Verse uitbouw in een nieuwbouwwijk waar alles nog kraakt. Wij zorgden voor de waterdichte laag en de doorvoer voor de afzuiging, zodat de keukenbouwer daarna zo aan de slag kon. De bitumen loopt rondom door tot over de rand van de overkapping, de aansluiting op het hogere dak met zonnepanelen is dubbel uitgevoerd, en langs de slootkant hebben we de randen verhoogd zodat bladval niet meteen tot water op het dak leidt.",
-  },
-  {
-    titel: "Appartementencomplex met lichtkoepels",
-    plaats: "Rotterdam Delfshaven",
-    type: "Renovatie",
-    oppervlakte: "340 m²",
-    jaar: 2025,
-    image: "project-27",
-    tekst: "Het grootste dak van deze reeks, met schoorstenen en meerdere lichtkoepels. In overleg met de VvE gefaseerd uitgevoerd, zodat de bewoners nergens last van hadden.",
+    image: "project-10",
+    tekst: "Naast het bestaande grinddak met zonnepanelen kwam deze overkapping. De dakdoorvoer is netjes ingewerkt en de aansluiting op het hogere dak is dubbel uitgevoerd, want daar komt al het water samen.",
   },
 ];
 

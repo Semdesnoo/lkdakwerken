@@ -27,7 +27,7 @@ function fout(regel) {
 
 const data = await readFile(path.join(wortel, 'lib', 'data.ts'), 'utf8');
 
-const blok = data.match(/export const projecten = \[([\s\S]*?)\n\];/);
+const blok = data.match(/export const projecten(?:: Project\[\])? = \[([\s\S]*?)\n\];/);
 if (!blok) {
   fout('kan de projecten-array niet vinden in lib/data.ts');
   process.exit(1);
