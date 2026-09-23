@@ -19,9 +19,9 @@ export function Footer() {
           {/* Merk en NAP */}
           <div className="md:col-span-4">
             <img
-              src="/lkdakwerken/logo.svg"
+              src="/lkdakwerken/logo-wit.png"
               alt="LK Dakwerken"
-              className="h-10 w-auto mb-6 brightness-0 invert"
+              className="h-10 w-auto mb-6"
             />
             <p className="text-white/70 leading-relaxed max-w-sm">
               Dakdekkersbedrijf uit Rotterdam, gespecialiseerd in bitumen, renovatie, nieuwbouw, onderhoud en lekkage. Werkzaam in heel Zuid-Holland.

@@ -5,8 +5,9 @@ import { foto } from '@/lib/images';
 import { Reveal } from '@/components/Reveal';
 
 export function OverOns() {
+  // Wit: staat tussen het paper-50 diensten-paneel en de donkere werkwijze.
   return (
-    <section className="section-pad bg-paper-50">
+    <section className="section-pad bg-white">
       <div className="container-wide">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
           {/* Foto */}

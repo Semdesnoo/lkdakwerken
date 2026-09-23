@@ -408,6 +408,59 @@ body {
   .field-error { font-size: 0.8125rem; color: var(--color-blue-700); font-weight: 500; margin-top: 0.4rem; }
 
   /* ============================================================
+     Horizontale sliders (projecten en Google-beoordelingen).
+     Scroll-snap track zonder zichtbare scrollbar; werkt met swipe,
+     met slepen en met de ronde pijlknoppen hiernaast.
+     ============================================================ */
+  .slider-track {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    cursor: grab;
+    padding-bottom: 0.5rem;
+  }
+  .slider-track::-webkit-scrollbar { display: none; }
+  .slider-track:active { cursor: grabbing; }
+
+  .slider-item {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  .slider-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #ffffff;
+    transition: background-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+  }
+  .slider-arrow:hover:not(:disabled) {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+  .slider-arrow:disabled { opacity: 0.35; cursor: default; }
+
+  /* ============================================================
+     De enige uitzondering op het palet: het Google-logotype en de
+     sterren van de Google-beoordelingenwidget staan in de officiële
+     Google-kleuren. Nergens anders gebruiken.
+     ============================================================ */
+  .google-blauw { color: #4285f4; }
+  .google-rood  { color: #ea4335; }
+  .google-geel  { color: #fbbc05; }
+  .google-groen { color: #34a853; }
+  .ster-goud { color: #fbbc05; fill: #fbbc05; }
+
+  /* ============================================================
      WhatsApp floating button
      ============================================================ */
   .wa-float {
@@ -436,6 +489,23 @@ body {
   }
   .wa-float:active {
     transform: translateY(0) scale(0.96);
+  }
+}
+
+/* Zeer smalle schermen: lange knoplabels mogen niet afbreken, dus krimpt
+   het label in plaats van dat het over de rand loopt. */
+@media (max-width: 21.25rem) {
+  .btn-pill > .label,
+  .btn-pill-dark > .label,
+  .btn-pill-white > .label {
+    padding: 0.8rem 0.85rem 0.8rem 1.15rem;
+    font-size: 0.8125rem;
+  }
+  .btn-pill > .arrow,
+  .btn-pill-dark > .arrow,
+  .btn-pill-white > .arrow {
+    width: 2rem;
+    height: 2rem;
   }
 }
 

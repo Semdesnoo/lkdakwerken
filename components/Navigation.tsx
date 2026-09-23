@@ -81,7 +81,7 @@ export function Navigation() {
       <header className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] max-w-7xl">
         <div className="flex items-center justify-between gap-4 md:gap-8 pl-4 pr-3 md:pl-6 md:pr-4 py-2.5 md:py-3 nav-floating text-ink-900">
           <Link href="/" aria-label="LK Dakwerken, naar de homepage" className="shrink-0">
-            <img src="/lkdakwerken/logo.svg" alt="LK Dakwerken" className="h-7 md:h-9 w-auto" />
+            <img src="/lkdakwerken/logo.png" alt="LK Dakwerken" className="h-7 md:h-9 w-auto" />
           </Link>
 
           <nav aria-label="Hoofdmenu" className="hidden lg:flex items-center justify-center gap-1 flex-1">
@@ -245,7 +245,7 @@ export function Navigation() {
       >
         <div className="px-6 py-5 flex items-center justify-between border-b border-paper-200">
           <Link href="/" onClick={() => setMobileOpen(false)} aria-label="LK Dakwerken">
-            <img src="/lkdakwerken/logo.svg" alt="LK Dakwerken" className="h-9 w-auto" />
+            <img src="/lkdakwerken/logo.png" alt="LK Dakwerken" className="h-9 w-auto" />
           </Link>
           <button
             onClick={() => setMobileOpen(false)}

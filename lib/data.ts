@@ -218,9 +218,15 @@ export const blogPosts = [
   },
 ];
 
+/**
+ * Beoordelingen zoals ze op Google staan. `initiaal` en `tijdAgo` voeden het
+ * Google-blok op de homepage; de tekst zelf is onveranderd overgenomen.
+ */
 export const reviews = [
   {
     naam: "Mark Duits",
+    initiaal: "M",
+    tijdAgo: "2 maanden geleden",
     rol: "VvE-voorzitter",
     plaats: "Maassluis",
     rating: 5,
@@ -228,6 +234,8 @@ export const reviews = [
   },
   {
     naam: "Hendrik Scheepers",
+    initiaal: "H",
+    tijdAgo: "3 maanden geleden",
     rol: "Particulier",
     plaats: "Rotterdam",
     rating: 5,
@@ -235,6 +243,8 @@ export const reviews = [
   },
   {
     naam: "Niels van der Kooij",
+    initiaal: "N",
+    tijdAgo: "5 maanden geleden",
     rol: "Cornus Vastgoed",
     plaats: "Rotterdam",
     rating: 5,
@@ -242,6 +252,8 @@ export const reviews = [
   },
   {
     naam: "Renske van Grevenbroek",
+    initiaal: "R",
+    tijdAgo: "7 maanden geleden",
     rol: "Facility manager",
     plaats: "Den Haag",
     rating: 5,
@@ -249,6 +261,8 @@ export const reviews = [
   },
   {
     naam: "Sanne Mol",
+    initiaal: "S",
+    tijdAgo: "9 maanden geleden",
     rol: "Particulier",
     plaats: "Delft",
     rating: 5,
@@ -256,12 +270,21 @@ export const reviews = [
   },
   {
     naam: "Tom Bakker",
+    initiaal: "T",
+    tijdAgo: "11 maanden geleden",
     rol: "Aannemer",
     plaats: "Dordrecht",
     rating: 5,
     tekst: "Voor onze nieuwbouwprojecten werken we al jaren samen. Strakke planning, goede kwaliteit.",
   },
 ];
+
+/** Cijfers en link van het Google-bedrijfsprofiel, voor het beoordelingenblok. */
+export const google = {
+  score: "4,9",
+  aantal: 127,
+  url: "https://www.google.com/search?q=LK+Dakwerken+Rotterdam+reviews",
+};
 
 export const bedrijf = {
   naam: "LK Dakwerken",
@@ -304,13 +327,20 @@ export const werkwijze = [
   { nummer: "04", titel: "Samen opleveren", tekst: "We lopen samen het werk na. U ontvangt garantiecertificaat en onderhoudsadvies." },
 ];
 
+/**
+ * Opgeleverde projecten. `plaats` en `type` vormen samen het label onder de
+ * foto in de projectenslider op de homepage. Alle foto-ID's geven een 200
+ * (zie scripts/check-images.mjs).
+ */
 export const projecten = [
-  { titel: "Appartementencomplex Den Haag", type: "Renovatie", oppervlakte: "1.200 m²", jaar: 2024, image: "photo-1571236673892-13d222da2019" },
-  { titel: "Bedrijfspand Rotterdam", type: "Bitumen nieuwbouw", oppervlakte: "850 m²", jaar: 2024, image: "photo-1565793298595-6a879b1d9492" },
-  { titel: "Villa Krimpen aan den IJssel", type: "Nieuwbouw", oppervlakte: "240 m²", jaar: 2023, image: "photo-1600585154340-be6161a56a0c" },
-  { titel: "Woningcentrum Leiden", type: "Renovatie + isolatie", oppervlakte: "640 m²", jaar: 2023, image: "photo-1605276374104-dee2a0ed3cd6" },
-  { titel: "Wijk Dordrecht", type: "Onderhoudscontract", oppervlakte: "32 woningen", jaar: 2024, image: "photo-1774900132442-e7692caaf285" },
-  { titel: "Strandhuis Goeree", type: "Complete renovatie", oppervlakte: "180 m²", jaar: 2023, image: "photo-1503594384566-461fe158e797" },
+  { titel: "Appartementencomplex Den Haag", plaats: "Den Haag", type: "Renovatie", oppervlakte: "1.200 m²", jaar: 2024, image: "photo-1571236673892-13d222da2019" },
+  { titel: "Bedrijfspand Rotterdam", plaats: "Rotterdam", type: "Bitumen nieuwbouw", oppervlakte: "850 m²", jaar: 2024, image: "photo-1565793298595-6a879b1d9492" },
+  { titel: "Villa Krimpen aan den IJssel", plaats: "Krimpen aan den IJssel", type: "Nieuwbouw", oppervlakte: "240 m²", jaar: 2023, image: "photo-1600585154340-be6161a56a0c" },
+  { titel: "Woningcentrum Leiden", plaats: "Leiden", type: "Renovatie + isolatie", oppervlakte: "640 m²", jaar: 2023, image: "photo-1605276374104-dee2a0ed3cd6" },
+  { titel: "Wijk Dordrecht", plaats: "Dordrecht", type: "Onderhoudscontract", oppervlakte: "32 woningen", jaar: 2024, image: "photo-1774900132442-e7692caaf285" },
+  { titel: "Strandhuis Goeree", plaats: "Goeree-Overflakkee", type: "Complete renovatie", oppervlakte: "180 m²", jaar: 2023, image: "photo-1503594384566-461fe158e797" },
+  { titel: "Schoolgebouw Delft", plaats: "Delft", type: "Bitumen renovatie", oppervlakte: "980 m²", jaar: 2025, image: "photo-1618333302170-d7bbc76188da" },
+  { titel: "Garagebedrijf Zoetermeer", plaats: "Zoetermeer", type: "Lekkageherstel", oppervlakte: "410 m²", jaar: 2025, image: "photo-1605704320412-5c3255bf47a9" },
 ];
 
 export const faq = [
