@@ -43,3 +43,12 @@ Thumbs.db
 
 # Local data
 *.local
+
+# Screenshots die de controlescripts in de repowortel achterlaten
+/offerte-*.png
+/hero-*.png
+/desk-*.png
+/mob-*.png
+
+# Briefing, hoort niet in de historie
+ITERATION2_BRIEF.md
