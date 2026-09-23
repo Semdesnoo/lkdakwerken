@@ -122,7 +122,10 @@ export function Navigation() {
     <>
       <header
         className={cn(
-          'fixed top-4 md:top-6 left-1/2 z-50 w-[calc(100%-1.5rem)] md:w-[calc(100%-3rem)] max-w-7xl',
+          // De balk volgt de geometrie van .container-wide, zodat zijn rand
+          // precies begint waar de tekst in de hero begint: dezelfde max-breedte
+          // (90rem) min de padding aan weerszijden (2x 1.5rem, vanaf md 2x 2.5rem).
+          'fixed top-4 md:top-6 left-1/2 z-50 w-[calc(100%-3rem)] md:w-[calc(100%-5rem)] max-w-[85rem]',
           'transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none',
           // -translate-x-1/2 houdt de balk gecentreerd; de tweede waarde
           // schuift hem verticaal uit beeld. Iets meer dan de eigen hoogte,
