@@ -339,31 +339,17 @@ export const werkwijze = [
  */
 export const projecten = [
   {
-    titel: "Nieuwe aanbouw achter de woning",
-    plaats: "Rotterdam Kralingen",
-    type: "Nieuwbouw plat dak",
-    oppervlakte: "38 m²",
-    jaar: 2025,
-    image: "project-01",
-    tekst: "De aannemer zette de uitbouw neer, wij maakten hem waterdicht. Verse bitumen op nieuw dakbeschot, afgewerkt met een strakke aluminium daktrim die netjes aansluit op het boeiboord. De bewoners konden dezelfde week hun nieuwe keuken laten plaatsen.",
-  },
-  {
     titel: "Lekkage verholpen op de uitbouw",
     plaats: "Capelle aan den IJssel",
     type: "Lekkageherstel",
-    oppervlakte: "32 m²",
-    jaar: 2025,
-    image: "project-02",
-    tekst: "Een natte plek op het plafond en niemand die wist waar het water vandaan kwam. Wij vonden drie open naden in de oude laag, zetten de boel dicht en gaven het dak weer jaren perspectief. Binnen een dag droog.",
-  },
-  {
-    titel: "Uitbouw compleet afgewerkt",
-    plaats: "Rotterdam Hillegersberg",
-    type: "Nieuwe dakbedekking",
     oppervlakte: "42 m²",
     jaar: 2025,
-    image: "project-03",
-    tekst: "Nieuwe dakbedekking met grijze leislag, rondom voorzien van aluminium dakrand. Het lagere dak met lichtplaten ernaast lieten we netjes aansluiten, zodat regenwater altijd de goede kant op loopt.",
+    image: "project-02",
+    // Vier opnamen van dezelfde uitbouw: de aangetaste plekken in de oude
+    // laag, de nieuwe bitumen op het dakbeschot, het afgewerkte dakvlak en
+    // het overzicht vanaf de tuinzijde.
+    extraFotos: ["project-01", "project-03", "project-05"],
+    tekst: "Een natte plek op het plafond en niemand die wist waar het water vandaan kwam. Wij vonden drie open naden in de oude laag en besloten met de eigenaar om het hele dakvlak aan te pakken in plaats van te blijven lappen. Nieuwe bitumen op het dakbeschot, een aluminium daktrim rondom en elke naad met de hand nagelopen. Binnen een dag droog en klaar voor de komende jaren.",
   },
   {
     titel: "Bergingen in de achtertuin",
@@ -373,15 +359,6 @@ export const projecten = [
     jaar: 2024,
     image: "project-04",
     tekst: "Twee bergingen die al jaren lekten. Alles eraf, opstanden opnieuw opgezet en een frisse laag leislagbitumen erop. De fietsen en het tuingereedschap staan er weer kurkdroog bij.",
-  },
-  {
-    titel: "Schuurdak vernieuwd",
-    plaats: "Vlaardingen",
-    type: "Nieuwe dakbedekking",
-    oppervlakte: "22 m²",
-    jaar: 2024,
-    image: "project-05",
-    tekst: "Klein werk, zelfde aanpak als een groot dak. Strakke banen, opstanden rondom netjes meegenomen en elke naad met de hand nagelopen. De buurman vroeg meteen om een offerte.",
   },
   {
     titel: "Dak van de tuinberging",

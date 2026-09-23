@@ -109,26 +109,38 @@ if (dialoog) {
 }
 
 /* Projecten met meerdere opnamen van hetzelfde dak tonen miniaturen waarmee
-   je tussen de foto's wisselt. */
-const metGalerij = await page.evaluate(() => {
+   je tussen de foto's wisselt. We pakken het project met de meeste foto's,
+   zodat de controle blijft werken als projecten worden samengevoegd. */
+const bron = readFileSync('lib/data.ts', 'utf8');
+const blokken = [...bron.matchAll(/plaats:\s*"([^"]+)"[\s\S]*?\n  \},/g)];
+
+let doelPlaats = '';
+let verwachtAantal = 0;
+for (const b of blokken) {
+  const aantal =
+    1 + [...(b[0].match(/extraFotos:\s*\[([^\]]*)\]/)?.[1] ?? '').matchAll(/"[^"]+"/g)].length;
+  if (aantal > verwachtAantal) {
+    verwachtAantal = aantal;
+    doelPlaats = b[1];
+  }
+}
+
+const metGalerij = await page.evaluate((plaats) => {
   const knoppen = [...document.querySelectorAll('.slider-track article button')];
-  const i = knoppen.findIndex((k) => (k.getAttribute('aria-label') ?? '').includes('Pijnacker'));
+  const i = knoppen.findIndex((k) => (k.getAttribute('aria-label') ?? '').includes(plaats));
   if (i < 0) return -1;
   knoppen[i].scrollIntoView({ block: 'center' });
   knoppen[i].click();
   return i;
-});
-eis('project met meerdere foto\'s gevonden', metGalerij >= 0, `kaart ${metGalerij}`);
+}, doelPlaats);
+eis(
+  'project met meerdere foto\'s gevonden',
+  metGalerij >= 0 && verwachtAantal > 1,
+  `${doelPlaats}, kaart ${metGalerij}, ${verwachtAantal} foto's`,
+);
 
 if (metGalerij >= 0) {
   await wacht(600);
-
-  /* Het verwachte aantal komt uit lib/data.ts, zodat de controle meegroeit
-     als er foto's bij het project komen. */
-  const bron = readFileSync('lib/data.ts', 'utf8');
-  const blok = bron.match(/plaats:\s*"Pijnacker"[\s\S]*?\n  \},/)?.[0] ?? '';
-  const verwachtAantal =
-    1 + [...(blok.match(/extraFotos:\s*\[([^\]]*)\]/)?.[1] ?? '').matchAll(/"[^"]+"/g)].length;
 
   const galerij = await page.evaluate(() => {
     const dlg = document.querySelector('[role="dialog"]');
