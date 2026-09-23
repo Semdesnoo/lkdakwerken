@@ -41,7 +41,11 @@ page.on('requestfailed', (r) => {
   if (/\/projecten\/.*\.webp$/.test(r.url())) mislukt.push(`mislukt ${r.url()}`);
 });
 page.on('response', (r) => {
-  if (r.status() >= 400 && /\/projecten\//.test(r.url())) mislukt.push(`${r.status()} ${r.url()}`);
+  // Alleen de fotobestanden zelf; Next prefetcht daarnaast data-routes die
+  // een statische export niet kent, en die 404's zeggen niets over beeld.
+  if (r.status() >= 400 && /\/projecten\/.*\.webp$/.test(r.url())) {
+    mislukt.push(`${r.status()} ${r.url()}`);
+  }
 });
 
 await page.goto(BASIS, { waitUntil: 'networkidle0', timeout: 60000 });

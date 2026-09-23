@@ -28,7 +28,7 @@ const navItems: NavItem[] = [
     label: 'Over Ons',
     items: [
       { href: '/over', label: 'Ons verhaal', desc: 'Wie zijn wij en waar we voor staan' },
-      { href: '/over#projecten', label: 'Alle projecten', desc: 'Onze recente projecten' },
+      { href: '/projecten', label: 'Alle projecten', desc: 'Opgeleverde daken in de regio' },
     ],
   },
   { href: '/contact', label: 'Contact' },
@@ -92,7 +92,9 @@ export function Navigation() {
   const isActive = (item: NavItem) => {
     if (item.href) return pathname === item.href;
     if (item.label === 'Diensten') return pathname.startsWith('/diensten');
-    if (item.label === 'Over Ons') return pathname.startsWith('/over');
+    if (item.label === 'Over Ons') {
+      return pathname.startsWith('/over') || pathname.startsWith('/projecten');
+    }
     return false;
   };
 

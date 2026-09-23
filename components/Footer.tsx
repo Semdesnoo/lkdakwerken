@@ -6,6 +6,7 @@ const navigatie = [
   { label: 'Home', href: '/' },
   { label: 'Diensten', href: '/diensten' },
   { label: 'Over ons', href: '/over' },
+  { label: 'Projecten', href: '/projecten' },
   { label: 'Blog', href: '/blog' },
   { label: 'Locaties', href: '/locaties' },
   { label: 'Contact', href: '/contact' },

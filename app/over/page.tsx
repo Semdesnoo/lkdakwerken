@@ -139,40 +139,29 @@ export default function OverOnsPage() {
         </div>
       </section>
 
-      {/* Projecten */}
-      <section id="projecten" className="section-pad bg-white scroll-mt-28">
+      {/* Verwijzing naar de projectenpagina */}
+      <section className="section-pad bg-white">
         <div className="container-wide">
-          <Reveal className="mb-10 md:mb-14 max-w-2xl">
-            <h2 className="text-display text-3xl md:text-5xl leading-[1.06] tracking-[-0.03em] text-ink-900 text-balance">
-              Wat we recent hebben opgeleverd.
-            </h2>
+          <Reveal>
+            <div className="panel p-8 md:p-12 grid lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-7">
+                <h2 className="text-display text-3xl md:text-4xl leading-[1.06] tracking-[-0.03em] text-ink-900 text-balance">
+                  Liever zien wat we maken?
+                </h2>
+                <p className="mt-4 text-lg text-ink-600 leading-relaxed max-w-xl">
+                  Op de projectpagina staan {projecten.length} opgeleverde daken uit de regio
+                  Rotterdam, met echte foto’s van ons eigen werk en het verhaal achter elk
+                  project.
+                </p>
+              </div>
+              <div className="lg:col-span-4 lg:col-start-9">
+                <Link href="/projecten" className="btn-pill">
+                  <span className="label">Bekijk onze projecten</span>
+                  <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
+                </Link>
+              </div>
+            </div>
           </Reveal>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {projecten.map((p, i) => (
-              <Reveal key={p.titel} delay={(i % 3) * 0.07}>
-                <article className="card card-hover overflow-hidden h-full">
-                  <div className="aspect-[4/3] overflow-hidden bg-paper-100">
-                    <img
-                      src={foto(p.image, 800, 78)}
-                      alt={p.titel}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.04]"
-                    />
-                  </div>
-                  <div className="p-5 md:p-6">
-                    <div className="flex items-center gap-2 text-sm text-ink-500">
-                      <span className="font-medium text-blue-500">{p.type}</span>
-                      <span aria-hidden="true" className="w-1 h-1 rounded-full bg-ink-300" />
-                      <span>{p.jaar}</span>
-                    </div>
-                    <h3 className="mt-3 text-lg font-semibold text-ink-900 leading-snug">{p.titel}</h3>
-                    <p className="mt-1 text-sm text-ink-500">{p.oppervlakte}</p>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
