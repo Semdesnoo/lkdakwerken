@@ -2,13 +2,19 @@ import Link from 'next/link';
 import { Phone, Mail, MapPin, ArrowRight } from 'lucide-react';
 import { bedrijf, diensten } from '@/lib/data';
 
-const navigatie = [
-  { label: 'Home', href: '/' },
-  { label: 'Diensten', href: '/diensten' },
+// Zelfde groepering als het hoofdmenu (Navigation.tsx): Diensten en het
+// "Over ons"-dropdownblok (Ons verhaal + Projecten) blijven bij elkaar,
+// zodat de footer aanvoelt als een uitgeklapte versie van het menu i.p.v.
+// een losse platte lijst.
+const bedrijfsLinks = [
   { label: 'Over ons', href: '/over' },
   { label: 'Projecten', href: '/projecten' },
-  { label: 'Subsidies', href: '/subsidies-verduurzaming' },
   { label: 'Blog', href: '/blog' },
+];
+
+const overigeLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Subsidies', href: '/subsidies-verduurzaming' },
   { label: 'Locaties', href: '/locaties' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -19,7 +25,7 @@ export function Footer() {
       <div className="container-wide py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12 md:gap-10">
           {/* Merk en NAP */}
-          <div className="md:col-span-4">
+          <div className="md:col-span-3">
             <img
               src="/lkdakwerken/logo-wit.png"
               alt="LK Dakwerken"
@@ -57,7 +63,7 @@ export function Footer() {
             </address>
           </div>
 
-          {/* Diensten */}
+          {/* Diensten: zelfde 5 items en volgorde als de "Diensten"-dropdown in het hoofdmenu */}
           <nav aria-labelledby="footer-diensten" className="md:col-span-3">
             <h2 id="footer-diensten" className="text-base font-semibold text-white mb-5">
               Diensten
@@ -76,13 +82,29 @@ export function Footer() {
             </ul>
           </nav>
 
-          {/* Navigatie */}
-          <nav aria-labelledby="footer-navigatie" className="md:col-span-2">
-            <h2 id="footer-navigatie" className="text-base font-semibold text-white mb-5">
-              Pagina&apos;s
+          {/* Bedrijf: zelfde groepering als de "Over ons"-dropdown in het hoofdmenu (Ons verhaal + Projecten) */}
+          <nav aria-labelledby="footer-bedrijf" className="md:col-span-2">
+            <h2 id="footer-bedrijf" className="text-base font-semibold text-white mb-5">
+              Bedrijf
             </h2>
             <ul className="space-y-3">
-              {navigatie.map((l) => (
+              {bedrijfsLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-white/70 hover:text-white link-underline">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          {/* Overig: pagina's die niet in de bovenstaande twee groepen thuishoren */}
+          <nav aria-labelledby="footer-overig" className="md:col-span-2">
+            <h2 id="footer-overig" className="text-base font-semibold text-white mb-5">
+              Overig
+            </h2>
+            <ul className="space-y-3">
+              {overigeLinks.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-white/70 hover:text-white link-underline">
                     {l.label}
@@ -93,7 +115,7 @@ export function Footer() {
           </nav>
 
           {/* Openingstijden en CTA */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-2">
             <h2 className="text-base font-semibold text-white mb-5">Openingstijden</h2>
             <dl className="space-y-2 text-[15px] text-white/70">
               <div className="flex justify-between gap-4">
