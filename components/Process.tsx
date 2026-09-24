@@ -1,21 +1,11 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { werkwijze, fotos } from '@/lib/data';
-import { foto } from '@/lib/images';
+import { werkwijze } from '@/lib/data';
 import { Reveal } from '@/components/Reveal';
 
 export function Process() {
   return (
-    <section className="relative section-pad bg-ink-900 text-white overflow-hidden">
-      <img
-        src={foto(fotos.werkwijze, 1800, 75)}
-        alt=""
-        aria-hidden="true"
-        loading="lazy"
-        className="absolute inset-0 w-full h-full object-cover opacity-20"
-      />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/92 to-ink-950/70" />
-
+    <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
       <div className="container-wide relative">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
           <Reveal className="lg:col-span-6">
