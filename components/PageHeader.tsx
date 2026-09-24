@@ -7,6 +7,9 @@ interface Props {
   lead?: string;
   /** Unsplash foto-ID. Zonder foto krijgt de header een strak ink-vlak. */
   image?: string;
+  /** Kant-en-klare URL (bv. een lokale projectfoto via projectGroot()), in
+      plaats van een Unsplash-ID. Heeft voorrang op `image`. */
+  imageSrc?: string;
   imageAlt?: string;
   /** Knoppen of chips onder de lead. */
   children?: React.ReactNode;
@@ -24,16 +27,18 @@ export function PageHeader({
   accent,
   lead,
   image,
+  imageSrc,
   imageAlt = '',
   children,
   compact = false,
 }: Props) {
+  const src = imageSrc ?? (image ? foto(image, 2000, 80) : undefined);
   return (
     <section className="relative bg-ink-900 text-white overflow-hidden">
-      {image ? (
+      {src ? (
         <>
           <img
-            src={foto(image, 2000, 80)}
+            src={src}
             alt={imageAlt}
             className="absolute inset-0 w-full h-full object-cover"
           />

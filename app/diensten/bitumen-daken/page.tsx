@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { diensten, bedrijf, fotos } from '@/lib/data';
 import { foto, projectGroot } from '@/lib/images';
+import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
 
 export const metadata: Metadata = {
@@ -147,64 +148,34 @@ const andereDiensten = [
 export default function BitumenDakenPage() {
   return (
     <>
-      {/* 1. Hero: tekst links, foto rechts */}
-      <section className="relative bg-white overflow-hidden pt-28 md:pt-36 pb-14 md:pb-20">
-        <div className="container-wide">
-          <nav aria-label="Broodkruimel" className="mb-6 text-sm text-ink-400 flex items-center gap-2">
-            <Link href="/" className="hover:text-blue-500">Home</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/diensten" className="hover:text-blue-500">Diensten</Link>
-            <span aria-hidden="true">/</span>
-            <span className="text-ink-600">Bitumen daken</span>
-          </nav>
+      {/* 1. Hero: donkere PageHeader stijl, zoals de andere dienstpagina's */}
+      <PageHeader
+        titel="Een bitumen dak dat jarenlang meegaat."
+        lead="Bitumen is een sterke en betrouwbare dakbedekking voor platte en licht hellende daken. LK Dakwerken verzorgt nieuwe bitumen dakbedekking, vervanging en renovatie voor woningen en bedrijfspanden. We werken met hoogwaardige APP- en SBS-bitumen en zorgen voor een nette, waterdichte afwerking."
+        imageSrc={projectGroot('project-01')}
+        imageAlt="Strak aangelegde bitumen dakbedekking op een plat dak"
+        compact
+      >
+        <Link href="/offerte" className="btn-pill">
+          <span className="label">Vraag gratis een offerte aan</span>
+          <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
+        </Link>
+        <a href="tel:0102713824" className="btn-ghost-invert">
+          <Phone className="w-4 h-4" aria-hidden="true" />
+          Bel ons
+        </a>
+      </PageHeader>
 
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            <Reveal className="lg:col-span-6">
-              <span className="text-sm font-semibold text-blue-500 tracking-wide uppercase">Bitumen dakbedekking</span>
-              <h1 className="mt-3 text-display text-4xl md:text-6xl leading-[1.02] tracking-[-0.035em] text-ink-900 text-balance">
-                Een bitumen dak dat jarenlang meegaat.
-              </h1>
-              <p className="mt-6 text-lg text-ink-600 leading-relaxed max-w-lg">
-                Bitumen is een sterke en betrouwbare dakbedekking voor platte en licht hellende daken. LK Dakwerken
-                verzorgt nieuwe bitumen dakbedekking, vervanging en renovatie voor woningen en bedrijfspanden.
-              </p>
-              <p className="mt-4 text-ink-600 leading-relaxed max-w-lg">
-                We werken met hoogwaardige APP- en SBS-bitumen en zorgen voor een nette, waterdichte afwerking.
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <Link href="/offerte" className="btn-pill">
-                  <span className="label">Vraag gratis een offerte aan</span>
-                  <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
-                </Link>
-                <a href="tel:0102713824" className="inline-flex items-center gap-2.5 px-5 py-3.5 font-semibold text-ink-900 hover:text-blue-500 transition-colors">
-                  <span className="w-10 h-10 rounded-button-inner bg-paper-100 flex items-center justify-center shrink-0">
-                    <Phone className="w-4 h-4" aria-hidden="true" />
-                  </span>
-                  010 - 271 38 24
-                </a>
-              </div>
-
-              <ul className="mt-9 grid grid-cols-2 gap-x-6 gap-y-3">
-                {trustPunten.map((p) => (
-                  <li key={p} className="flex items-center gap-2.5 text-sm text-ink-600">
-                    <CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0" aria-hidden="true" />
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
-            <Reveal delay={0.05} className="lg:col-span-6">
-              <div className="relative aspect-[4/5] md:aspect-[4/3] rounded-3xl overflow-hidden">
-                <img
-                  src={projectGroot('project-01')}
-                  alt="Strak aangelegde bitumen dakbedekking op een plat dak"
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-            </Reveal>
-          </div>
+      <section className="bg-white">
+        <div className="container-wide py-8">
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-3">
+            {trustPunten.map((p) => (
+              <li key={p} className="flex items-center gap-2.5 text-sm text-ink-600">
+                <CheckCircle2 className="w-4 h-4 text-blue-500 shrink-0" aria-hidden="true" />
+                {p}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
