@@ -12,7 +12,7 @@ export function DakOvergang({ kleur = '#fafafa' }: { kleur?: string }) {
         preserveAspectRatio="none"
         className="block w-full h-24 md:h-36"
       >
-        <polygon points="0,16 0,9 50,0 100,9 100,16" fill={kleur} />
+        <polygon points="0,16 0,12 65,0 100,5 100,16" fill={kleur} />
       </svg>
     </div>
   );
