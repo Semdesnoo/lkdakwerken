@@ -19,11 +19,6 @@ export default function DienstDetail({ dienst }: Props) {
         lead={dienst.korte}
         image={dienst.heroImage}
         imageAlt={`${dienst.titel} door LK Dakwerken`}
-        kruimels={[
-          { label: 'Home', href: '/' },
-          { label: 'Diensten', href: '/diensten' },
-          { label: dienst.titel },
-        ]}
       >
         <Link href="/offerte" className="btn-pill">
           <span className="label">Offerte aanvragen</span>

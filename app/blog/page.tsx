@@ -28,7 +28,6 @@ export default function BlogIndexPage() {
         lead="Praktische artikelen over materiaalkeuzes, onderhoud en de fouten die we in de praktijk het vaakst tegenkomen."
         image={fotos.blogHeader}
         imageAlt="Dak met lichtkoepel"
-        kruimels={[{ label: 'Home', href: '/' }, { label: 'Blog' }]}
         compact
       />
 

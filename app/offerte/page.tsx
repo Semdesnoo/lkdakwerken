@@ -31,7 +31,6 @@ export default function OffertePage() {
         lead="Vul het formulier in en we bellen binnen één werkdag terug om een inspectie in te plannen."
         image={fotos.offerteHeader}
         imageAlt="Dakdekkers bespreken de werkplanning"
-        kruimels={[{ label: 'Home', href: '/' }, { label: 'Offerte' }]}
         compact
       />
 

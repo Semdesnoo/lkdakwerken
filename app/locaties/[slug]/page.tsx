@@ -52,11 +52,6 @@ export default async function LocatiePage({ params }: { params: Promise<{ slug: 
         lead={`LK Dakwerken is uw lokale dakdekkersbedrijf in ${loc.naam} en omgeving. Ruim 20 jaar ervaring, Dakmerk erkenning en 10 jaar garantie.`}
         image={loc.image}
         imageAlt={`Daken in ${loc.naam}`}
-        kruimels={[
-          { label: 'Home', href: '/' },
-          { label: 'Locaties', href: '/locaties' },
-          { label: loc.naam },
-        ]}
         compact
       >
         <Link href="/offerte" className="btn-pill">

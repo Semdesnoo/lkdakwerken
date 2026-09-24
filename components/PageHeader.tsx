@@ -1,7 +1,4 @@
-import Link from 'next/link';
 import { foto } from '@/lib/images';
-
-type Kruimel = { label: string; href?: string };
 
 interface Props {
   titel: string;
@@ -11,7 +8,6 @@ interface Props {
   /** Unsplash foto-ID. Zonder foto krijgt de header een strak ink-vlak. */
   image?: string;
   imageAlt?: string;
-  kruimels?: Kruimel[];
   /** Knoppen of chips onder de lead. */
   children?: React.ReactNode;
   /** Compacte variant voor overzichtspagina's. */
@@ -29,7 +25,6 @@ export function PageHeader({
   lead,
   image,
   imageAlt = '',
-  kruimels,
   children,
   compact = false,
 }: Props) {
@@ -53,25 +48,6 @@ export function PageHeader({
           compact ? 'pt-32 pb-14 md:pt-40 md:pb-20' : 'pt-32 pb-16 md:pt-44 md:pb-28'
         }`}
       >
-        {kruimels && kruimels.length > 0 && (
-          <nav aria-label="Kruimelpad" className="mb-7">
-            <ol className="flex flex-wrap items-center gap-2 text-sm text-white/60">
-              {kruimels.map((k, i) => (
-                <li key={k.label} className="flex items-center gap-2">
-                  {i > 0 && <span aria-hidden="true" className="text-white/55">/</span>}
-                  {k.href ? (
-                    <Link href={k.href} className="hover:text-white transition-colors">
-                      {k.label}
-                    </Link>
-                  ) : (
-                    <span className="text-white">{k.label}</span>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </nav>
-        )}
-
         <h1
           className={`text-display text-balance leading-[0.98] tracking-[-0.035em] ${
             compact

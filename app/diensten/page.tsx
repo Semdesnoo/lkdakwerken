@@ -21,7 +21,6 @@ export default function DienstenPage() {
         lead="Van een lekkage in uw garage tot de complete dakbedekking van een bedrijfspand. Wij regelen het van A tot Z, met een vast team en tien jaar garantie."
         image={fotos.dienstenHeader}
         imageAlt="Platte daken van woningen in Zuid-Holland"
-        kruimels={[{ label: 'Home', href: '/' }, { label: 'Diensten' }]}
         compact
       >
         <Link href="/offerte" className="btn-pill">

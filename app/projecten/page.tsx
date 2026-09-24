@@ -33,7 +33,6 @@ export default function ProjectenPage() {
         lead="Geen stockfoto's maar echte opnamen van daken die wij hebben opgeleverd. Van een berging in de achtertuin tot een compleet appartementencomplex."
         image={fotos.dienstenHeader}
         imageAlt="Dakdekker van LK Dakwerken aan het werk op een plat dak"
-        kruimels={[{ label: 'Home', href: '/' }, { label: 'Projecten' }]}
       >
         <Link href="/offerte" className="btn-pill">
           <span className="label">Offerte aanvragen</span>

@@ -44,7 +44,6 @@ export default function ContactPage() {
         lead="Een vraag over uw dak, een lekkage of een offerte: we denken graag mee. U krijgt altijd een vakman aan de lijn, geen callcenter."
         image={fotos.contactHeader}
         imageAlt="Skyline van Rotterdam"
-        kruimels={[{ label: 'Home', href: '/' }, { label: 'Contact' }]}
         compact
       />
 

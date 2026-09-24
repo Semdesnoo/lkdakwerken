@@ -30,7 +30,6 @@ export default function LocatiesIndexPage() {
         lead="Vanuit Rotterdam rijden we dagelijks door de hele provincie. Kies uw gemeente voor de mogelijkheden bij u in de buurt."
         image={fotos.locatiesHeader}
         imageAlt="Luchtfoto van Rotterdam"
-        kruimels={[{ label: 'Home', href: '/' }, { label: 'Locaties' }]}
         compact
       />
 

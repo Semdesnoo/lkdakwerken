@@ -31,7 +31,6 @@ export default function OverOnsPage() {
         lead="LK Dakwerken is opgericht in 2004 met een eenvoudig idee: een dak is de belangrijkste bescherming van een gebouw, en dat werk verdient een vakman."
         image={fotos.overOnsHeader}
         imageAlt="Dakdekkers van LK Dakwerken op locatie"
-        kruimels={[{ label: 'Home', href: '/' }, { label: 'Over ons' }]}
       >
         <Link href="/offerte" className="btn-pill">
           <span className="label">Offerte aanvragen</span>
