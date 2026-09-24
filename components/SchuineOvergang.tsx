@@ -21,9 +21,9 @@ export function SchuineOvergang({
   className?: string;
 }) {
   return (
-    <div aria-hidden="true" className={`relative h-0 overflow-visible z-10 pointer-events-none ${className}`}>
+    <div aria-hidden="true" className={`relative h-16 md:h-24 overflow-visible z-10 pointer-events-none ${className}`}>
       <div
-        className="absolute -left-16 -right-16 -top-20 md:-top-28 h-32 md:h-44 rounded-[3rem] md:rounded-[4rem]"
+        className="absolute -left-16 -right-16 -top-4 md:-top-10 h-32 md:h-44 rounded-[3rem] md:rounded-[4rem]"
         style={{ backgroundColor: kleur, transform: `rotate(${hoek}deg)` }}
       />
     </div>
