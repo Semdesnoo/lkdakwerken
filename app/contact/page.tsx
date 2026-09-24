@@ -54,13 +54,6 @@ const kanalen = [
   },
 ];
 
-const keuzeItems = [
-  { situatie: 'Spoed of lekkage', actie: 'Bel ons', href: 'tel:+31680110879' },
-  { situatie: 'Foto van uw dak sturen', actie: 'WhatsApp', href: whatsappHref('Hallo LK Dakwerken, ik heb een vraag over mijn dak.') },
-  { situatie: 'Documenten of projectinformatie', actie: 'E-mail', href: `mailto:${bedrijf.email}` },
-  { situatie: 'Prijs weten', actie: 'Offerte aanvragen', href: '/offerte' },
-];
-
 const werkgebied = [
   'Rotterdam',
   'Schiedam',
@@ -155,29 +148,6 @@ export default function ContactPage() {
               );
             })}
           </div>
-
-          {/* 3. Welke contactmethode past bij uw vraag? */}
-          <Reveal delay={0.24} className="mt-10">
-            <div className="rounded-2xl bg-paper-50 p-6 md:p-7">
-              <p className="text-sm font-semibold text-ink-500 mb-4">Niet zeker wat het handigst is?</p>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                {keuzeItems.map((k) => (
-                  <a
-                    key={k.situatie}
-                    href={k.href}
-                    {...(k.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                    className="group flex items-center justify-between gap-2 text-sm"
-                  >
-                    <span className="text-ink-600">{k.situatie}</span>
-                    <span className="font-semibold text-blue-600 whitespace-nowrap flex items-center gap-1">
-                      {k.actie}
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-                    </span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 
