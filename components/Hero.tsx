@@ -45,9 +45,8 @@ export function Hero() {
               transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="mt-7 text-lg md:text-xl text-white/85 max-w-xl leading-relaxed"
             >
-              Specialist in platte daken in Rotterdam en heel Zuid-Holland. Bitumen
-              Bitumen dakbedekking, renovatie, nieuwbouw, onderhoud en spoedhulp bij lekkage.
-              Passie voor het vak, met 10 jaar garantie.
+              Specialist in platte daken in Rotterdam en Zuid-Holland. Bitumen dakbedekking,
+              renovatie, onderhoud en spoedhulp bij lekkage. Vakwerk met 10 jaar garantie.
             </motion.p>
 
             <motion.div
