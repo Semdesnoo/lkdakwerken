@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 // Pas dit aan naar het echte WhatsApp-nummer van LK Dakwerken.
@@ -13,6 +14,19 @@ export function WhatsappFloat() {
   const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     DEFAULT_MESSAGE
   )}`;
+  // De knop verbergen zodra de footer in beeld komt: anders overlapt hij op
+  // mobiel de offerteknop rechtsonder in de footer.
+  const [overFooter, setOverFooter] = useState(false);
+
+  useEffect(() => {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+    const observer = new IntersectionObserver(([entry]) => setOverFooter(entry.isIntersecting), {
+      rootMargin: '0px 0px -80px 0px',
+    });
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <Link
@@ -21,6 +35,7 @@ export function WhatsappFloat() {
       rel="noopener noreferrer"
       aria-label="Stuur ons een WhatsApp-bericht"
       className="wa-float"
+      style={overFooter ? { opacity: 0, pointerEvents: 'none' } : undefined}
     >
       {/* Het officiële WhatsApp-merkicoon: de telefoonhoorn in de spraakbel.
           Eén pad, zodat de vorm dezelfde blijft op elk formaat. */}
