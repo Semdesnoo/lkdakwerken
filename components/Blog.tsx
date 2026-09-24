@@ -8,7 +8,7 @@ export function Blog() {
   const posts = blogPosts.slice(0, 4);
 
   return (
-    <section className="section-pad -mt-16 md:-mt-24 pt-16 md:pt-24 bg-paper-50 zigzag overflow-hidden">
+    <section className="section-pad -mt-16 md:-mt-24 pt-28 md:pt-40 bg-paper-50 zigzag overflow-hidden">
       <div className="container-wide">
         <Reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12 md:mb-16">
           <div className="max-w-2xl">
