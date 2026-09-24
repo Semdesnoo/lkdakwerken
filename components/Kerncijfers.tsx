@@ -42,32 +42,42 @@ export function Kerncijfers({
 }) {
   return (
     <dl className={className}>
-      {cijfers.map((c) => {
+      {cijfers.map((c, i) => {
         const parsed = parseCijfer(c.cijfer);
+        /* De cijfers verschijnen kort na elkaar in plaats van allemaal
+           tegelijk; dat leest als opsomming en niet als een flits.
+           reveal-on-scroll bestaat al en wordt door ScrollReveal bediend. */
+        const vertraging = { transitionDelay: `${i * 90}ms` };
         // Fallback: toon de string zoals 'ie is (geen animatie).
         if (!parsed) {
           return (
-            <div key={c.label}>
+            <div key={c.label} className="reveal-on-scroll" style={vertraging}>
               <dt className="sr-only">{c.label}</dt>
               <dd>
-                <span className="block font-display text-4xl md:text-5xl font-bold text-ink-900 leading-none tracking-[-0.03em] tabular-nums">
+                <span className="block font-display text-5xl md:text-6xl font-bold text-blue-500 leading-none tracking-[-0.035em] tabular-nums">
                   {c.cijfer}
                 </span>
-                <span className="block mt-2.5 text-sm text-ink-500">{c.label}</span>
+                <span className="block mt-3 text-sm text-ink-500 text-balance">{c.label}</span>
               </dd>
             </div>
           );
         }
 
-        // Initialen "0" voor SSR/no-JS voorkomt een flits van het eindgetal.
-        // ScrollReveal vervangt dit door de geanimeerde waarde zodra in beeld.
-        const initieel = parsed.decimalen > 0 ? (0).toFixed(parsed.decimalen) : '0';
+        // Initiële nul voor SSR/no-JS voorkomt een flits van het eindgetal.
+        // Nederlandse komma, anders staat er "0.0" waar "0,0" hoort.
+        const initieel =
+          parsed.decimalen > 0
+            ? (0).toLocaleString('nl-NL', {
+                minimumFractionDigits: parsed.decimalen,
+                maximumFractionDigits: parsed.decimalen,
+              })
+            : '0';
 
         return (
-          <div key={c.label}>
+          <div key={c.label} className="reveal-on-scroll" style={vertraging}>
             <dt className="sr-only">{c.label}</dt>
             <dd>
-              <span className="block font-display text-4xl md:text-5xl font-bold text-ink-900 leading-none tracking-[-0.03em] tabular-nums">
+              <span className="block font-display text-5xl md:text-6xl font-bold text-blue-500 leading-none tracking-[-0.035em] tabular-nums">
                 <span
                   data-count-to={parsed.waarde}
                   data-count-decimals={parsed.decimalen}
@@ -79,7 +89,7 @@ export function Kerncijfers({
                   <span aria-hidden="true">{parsed.suffix}</span>
                 )}
               </span>
-              <span className="block mt-2.5 text-sm text-ink-500">{c.label}</span>
+              <span className="block mt-3 text-sm text-ink-500 text-balance">{c.label}</span>
             </dd>
           </div>
         );
