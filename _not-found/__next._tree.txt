@@ -1,3 +1,3 @@
 :HL["/lkdakwerken/_next/static/chunks/0lof_ycr10vlx.css","style"]
 :HL["/lkdakwerken/logo-wit.png","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"0gHvOayHDdacgvIlP8uYE"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"J6OaYiAE5xgZ-W_3Me4wz"}
