@@ -13,6 +13,12 @@ export const metadata: Metadata = {
   alternates: { canonical: '/offerte' },
 };
 
+const trustItems = [
+  'Binnen enkele minuten ingevuld',
+  'Vrijblijvende prijsindicatie',
+  'Inspectie op locatie mogelijk',
+];
+
 const inbegrepen = [
   'Gratis dakinspectie op locatie',
   'Heldere offerte zonder kleine lettertjes',
@@ -25,16 +31,25 @@ export default function OffertePage() {
   return (
     <>
       <PageHeader
-        titel="Vraag uw"
-        accent="gratis offerte aan."
-        lead="Vul het formulier in en we bellen binnen één werkdag terug om een inspectie in te plannen."
+        titel="Vertel ons iets"
+        accent="over uw dak."
+        lead="Beantwoord een paar korte vragen en ontvang direct een eerste prijsindicatie. Na een dakinspectie ontvangt u de definitieve offerte."
         image={fotos.offerteHeader}
         imageAlt="Dakdekkers bespreken de werkplanning"
         compact
-      />
+      >
+        <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/80">
+          {trustItems.map((t) => (
+            <li key={t} className="flex items-center gap-2">
+              <Check className="w-4 h-4 text-blue-400" aria-hidden="true" strokeWidth={3} />
+              {t}
+            </li>
+          ))}
+        </ul>
+      </PageHeader>
 
       <section className="section-pad bg-paper-50 zigzag overflow-hidden">
-        <div className="container-wide space-y-8">
+        <div className="container-tight space-y-8">
           <Suspense fallback={null}>
             <OfferteFormulier />
           </Suspense>
