@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
-import { Check, Clock, Star } from 'lucide-react';
-import { fotos, google, reviews } from '@/lib/data';
+import { Check, Clock } from 'lucide-react';
+import { fotos } from '@/lib/data';
 import { OfferteFormulier } from '@/components/OfferteFormulier';
 import { PageHeader } from '@/components/PageHeader';
-import { Sterren } from '@/components/Sterren';
 import { Reveal } from '@/components/Reveal';
 
 export const metadata: Metadata = {
@@ -21,8 +20,6 @@ const inbegrepen = [
 ];
 
 export default function OffertePage() {
-  const review = reviews[0];
-
   return (
     <>
       <PageHeader
@@ -36,11 +33,11 @@ export default function OffertePage() {
 
       <section className="section-pad bg-paper-50 zigzag overflow-hidden">
         <div className="container-wide grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <div className="lg:col-span-7">
+          <div className="lg:col-span-8">
             <OfferteFormulier />
           </div>
 
-          <aside className="lg:col-span-5 lg:sticky lg:top-28 space-y-4">
+          <aside className="lg:col-span-4 lg:col-start-9 lg:sticky lg:top-28 space-y-4">
             <Reveal>
               <div className="panel p-7">
                 <h2 className="text-display text-xl tracking-[-0.02em] text-ink-900">Wat u krijgt</h2>
@@ -71,26 +68,6 @@ export default function OffertePage() {
                   06 12 34 56 78
                 </a>
               </div>
-            </Reveal>
-
-            <Reveal delay={0.14}>
-              <figure className="panel p-7">
-                <Sterren aantal={review.rating} className="w-4 h-4" label={`${review.rating} van de 5 sterren`} />
-                <blockquote className="mt-4 text-ink-800 leading-relaxed">{review.tekst}</blockquote>
-                <figcaption className="mt-5 pt-5 border-t border-paper-200 text-sm">
-                  <span className="block font-semibold text-ink-900">{review.naam}</span>
-                  <span className="block text-ink-500">
-                    {review.rol}, {review.plaats}
-                  </span>
-                </figcaption>
-              </figure>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <p className="flex items-center gap-2.5 text-sm text-ink-500 px-1">
-                <Star className="w-4 h-4 fill-blue-500 text-blue-500 shrink-0" aria-hidden="true" strokeWidth={0} />
-                {google.score} gemiddeld op Google, uit {google.aantal} beoordelingen.
-              </p>
             </Reveal>
           </aside>
         </div>
