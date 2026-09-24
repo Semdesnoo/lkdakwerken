@@ -1,6 +1,5 @@
 import { Hero } from '@/components/Hero';
 import { DienstenPaneel } from '@/components/DienstenPaneel';
-import { DakOvergang } from '@/components/DakOvergang';
 import { OverOns } from '@/components/OverOns';
 import { Process } from '@/components/Process';
 import { ProjectenSlider } from '@/components/ProjectenSlider';
@@ -44,8 +43,7 @@ export default function Home() {
   return (
     <>
       <Hero />            {/* videohero met donkere gloed */}
-      <DakOvergang kleur="#fafafa" />
-      <DienstenPaneel />  {/* paper-50 met een wit paneel erin */}
+      <DienstenPaneel />  {/* paper-50 met een wit paneel erin, dakvormige wig met zigzag geknipt uit de sectie zelf */}
       <SchuineOvergang kleur="#0a0a0a" hoek={-1.75} />
       <Process />         {/* donker ink met foto */}
       <SchuineOvergang kleur="#ffffff" hoek={1.75} />
