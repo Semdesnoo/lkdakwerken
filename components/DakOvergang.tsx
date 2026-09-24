@@ -12,7 +12,15 @@ export function DakOvergang({ kleur = '#fafafa' }: { kleur?: string }) {
         preserveAspectRatio="none"
         className="block w-full h-24 md:h-36"
       >
+        <defs>
+          {/* Zelfde zigzagmotief als .zigzag in globals.css, zodat het lijntjespatroon
+              doorloopt over de dakvorm heen in plaats van te stoppen bij een vlakke kleur. */}
+          <pattern id="dak-zigzag" width="7" height="2.75" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)">
+            <path d="M0 1.9 L1.75 0.6 L3.5 1.9 L5.25 0.6 L7 1.9" fill="none" stroke="rgba(10,10,10,0.055)" strokeWidth="0.18" />
+          </pattern>
+        </defs>
         <polygon points="0,16 0,12 65,0 100,5 100,16" fill={kleur} />
+        <polygon points="0,16 0,12 65,0 100,5 100,16" fill="url(#dak-zigzag)" />
       </svg>
     </div>
   );
