@@ -39,6 +39,15 @@ export function OverOns() {
                 <div className="text-sm text-ink-500">Garantie van LK Dakwerken</div>
               </div>
             </div>
+
+            {/* Keurmerken: dezelfde blauwe merkkleur als de rest van de site,
+                zodat het zwart-wit logo niet uit de toon valt. */}
+            <img
+              src="/lkdakwerken/keurmerken-blauw.png"
+              alt="VCA VOL en NEN 6050 keurmerken"
+              loading="lazy"
+              className="mt-6 h-10 w-auto"
+            />
           </Reveal>
         </div>
 
