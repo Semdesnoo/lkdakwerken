@@ -1,5 +1,5 @@
-:HL["/lkdakwerken/_next/static/chunks/0h7d8tpwmow5t.css","style"]
+:HL["/lkdakwerken/_next/static/chunks/0o.scha95bl8c.css","style"]
 :HL["/lkdakwerken/_next/static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/lkdakwerken/logo-wit.png","image"]
 :HL["https://images.unsplash.com/photo-1465032995827-c3dce1d71c2a?w=2000&q=80&auto=format&fit=crop","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locaties","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"hardinxveld-giessendam","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"mxr8U2gtUnNMkNm2f1EaA"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locaties","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"hardinxveld-giessendam","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"VpqWh6xgfEuBL7Vw8u-Su"}
