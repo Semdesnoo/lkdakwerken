@@ -44,7 +44,7 @@ export default function Home() {
     <>
       <Hero />            {/* videohero met donkere gloed */}
       <DienstenPaneel />  {/* paper-50 met een wit paneel erin, dakvormige wig met zigzag geknipt uit de sectie zelf */}
-      <SchuineOvergang kleur="#0a0a0a" hoek={-1.75} />
+      <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <Process />         {/* donker ink met foto */}
       <SchuineOvergang kleur="#ffffff" hoek={1.75} />
       <OverOns />         {/* wit */}
