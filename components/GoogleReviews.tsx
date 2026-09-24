@@ -104,10 +104,7 @@ export function GoogleReviews() {
 
         {/* Slider met de beoordelingen zelf */}
         <div className="mt-10 border-t border-blue-400/20 pt-8 md:pt-10">
-          <div className="flex items-center justify-between gap-6 mb-6">
-            <p className="text-sm text-white/70">
-              De beoordelingen lopen door. Veeg of sleep om zelf te bladeren.
-            </p>
+          <div className="flex items-center justify-end gap-6 mb-6">
             <SliderKnoppen
               terug={terug}
               vooruit={vooruit}
