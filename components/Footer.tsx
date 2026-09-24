@@ -15,7 +15,7 @@ const navigatie = [
 
 export function Footer() {
   return (
-    <footer className="bg-ink-900 text-white">
+    <footer className="bg-ink-950 text-white">
       <div className="container-wide py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12 md:gap-10">
           {/* Merk en NAP */}
