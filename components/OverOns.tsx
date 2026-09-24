@@ -7,7 +7,7 @@ import { Kerncijfers } from '@/components/Kerncijfers';
 export function OverOns() {
   // Wit: staat tussen het paper-50 diensten-paneel en de donkere werkwijze.
   return (
-    <section className="section-pad bg-white">
+    <section className="pt-12 pb-20 md:pt-16 md:pb-28 bg-white">
       <div className="container-wide">
         {/* Verhaal links (7), keurmerken rechts (5). De kop heeft ~500px nodig
             om op twee regels te blijven; bij een gelijke 50/50-deling breekt
