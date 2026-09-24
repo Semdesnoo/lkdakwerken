@@ -5,7 +5,7 @@ import { Reveal } from '@/components/Reveal';
 
 export function ContactCTA() {
   return (
-    <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
+    <section className="relative pt-12 pb-20 md:pt-16 md:pb-28 bg-ink-950 text-white overflow-hidden">
       <div className="container-wide relative">
         <Reveal className="max-w-3xl">
           <h2 className="text-display text-4xl md:text-6xl lg:text-7xl leading-[1.02] tracking-[-0.035em] text-balance">
