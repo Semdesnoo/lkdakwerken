@@ -96,7 +96,7 @@ export const diensten = [
     slug: "renovatie",
     korte: "Volledige dakrenovatie met garantiecertificaat.",
     heroImage: "photo-1633759593085-1eaeb724fc88",
-    beschrijving: "Is uw dak toe aan vervanging? Wij verzorgen de complete renovatie: van inspectie en advies tot demontage van de oude bedekking en het aanbrengen van nieuw isolatie- en dakbedekkingssysteem. Na afloop ontvangt u een Dakmerk garantiecertificaat.",
+    beschrijving: "Is uw dak toe aan vervanging? Wij verzorgen de complete renovatie: van inspectie en advies tot demontage van de oude bedekking en het aanbrengen van nieuw isolatie- en dakbedekkingssysteem. Na afloop ontvangt u een garantiecertificaat.",
     icon: "wrench",
     voordelen: [
       "Gratis dakinspectie vooraf",
