@@ -3,4 +3,4 @@
 :HL["/lkdakwerken/logo-wit.png","image"]
 :HL["https://images.unsplash.com/photo-1641244107263-266c7c43d0ac?w=2000&q=80&auto=format&fit=crop","image"]
 :HL["https://images.unsplash.com/photo-1641244107263-266c7c43d0ac?w=1600&q=82&auto=format&fit=crop","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"groendak-subsidie-zuid-holland","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"uM6YPNjQqQ3BmPcH3jxUh"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"groendak-subsidie-zuid-holland","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"ft3WoC_VhUa37WljZnVtc"}
