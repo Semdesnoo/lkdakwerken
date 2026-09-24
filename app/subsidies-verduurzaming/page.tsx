@@ -325,7 +325,7 @@ export default function SubsidiesPage() {
                 <span className="label">Vraag gratis een offerte aan</span>
                 <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
               </Link>
-              <a href="tel:0102713824" className="btn-pill-dark">
+              <a href="tel:+31680110879" className="btn-pill-dark">
                 <span className="label">Neem contact met ons op</span>
                 <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
               </a>

@@ -58,7 +58,7 @@ export default async function LocatiePage({ params }: { params: Promise<{ slug: 
           <span className="label">Offerte aanvragen</span>
           <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
         </Link>
-        <a href="tel:+31612345678" className="btn-ghost-invert">
+        <a href="tel:+31680110879" className="btn-ghost-invert">
           <Phone className="w-4 h-4" aria-hidden="true" />
           Bel ons
         </a>
@@ -188,7 +188,7 @@ export default async function LocatiePage({ params }: { params: Promise<{ slug: 
               <span className="label">Offerte aanvragen</span>
               <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
             </Link>
-            <a href="tel:+31612345678" className="btn-ghost-invert">
+            <a href="tel:+31680110879" className="btn-ghost-invert">
               <Phone className="w-4 h-4" aria-hidden="true" />
               Bel ons
             </a>

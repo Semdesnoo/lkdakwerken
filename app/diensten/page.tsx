@@ -27,7 +27,7 @@ export default function DienstenPage() {
           <span className="label">Offerte aanvragen</span>
           <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
         </Link>
-        <a href="tel:0102713824" className="btn-ghost-invert">
+        <a href="tel:+31680110879" className="btn-ghost-invert">
           <Phone className="w-4 h-4" aria-hidden="true" />
           Bel ons
         </a>

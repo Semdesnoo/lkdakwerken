@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 // Zelfde nummer/patroon als WhatsappFloat.tsx: één env var, geen los hardcoded nummer per pagina.
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '316****5678';
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '31680110879';
 const whatsappHref = (tekst: string) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(tekst)}`;
 
 const kanalen = [
@@ -35,7 +35,7 @@ const kanalen = [
     waarde: bedrijf.mobiel,
     sub: '7 dagen per week bereikbaar, 07:00 – 21:00',
     knop: 'Bel direct',
-    href: 'tel:+316****5678',
+    href: 'tel:+31680110879',
   },
   {
     icon: MessageCircle,
@@ -57,7 +57,7 @@ const kanalen = [
 ];
 
 const keuzeItems = [
-  { situatie: 'Spoed of lekkage', actie: 'Bel ons', href: 'tel:+316****5678' },
+  { situatie: 'Spoed of lekkage', actie: 'Bel ons', href: 'tel:+31680110879' },
   { situatie: 'Foto van uw dak sturen', actie: 'WhatsApp', href: whatsappHref('Hallo LK Dakwerken, ik heb een vraag over mijn dak.') },
   { situatie: 'Documenten of projectinformatie', actie: 'E-mail', href: `mailto:${bedrijf.email}` },
   { situatie: 'Prijs weten', actie: 'Offerte aanvragen', href: '/offerte' },
@@ -109,7 +109,7 @@ export default function ContactPage() {
         imageAlt="Dakdekker van LK Dakwerken tijdens werkzaamheden"
         compact
       >
-        <a href="tel:+316****5678" className="btn-pill">
+        <a href="tel:+31680110879" className="btn-pill">
           <span className="label">Bel {bedrijf.mobiel}</span>
           <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
         </a>
@@ -202,7 +202,7 @@ export default function ContactPage() {
             </p>
           </div>
           <div className="lg:col-span-4 flex flex-col gap-3">
-            <a href="tel:+316****5678" className="btn-pill w-full justify-center">
+            <a href="tel:+31680110879" className="btn-pill w-full justify-center">
               <span className="label">Bel {bedrijf.mobiel}</span>
               <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
             </a>
@@ -498,7 +498,7 @@ export default function ContactPage() {
             </Link>
           </div>
           <div className="lg:col-span-4 lg:col-start-9 flex flex-wrap items-center gap-4">
-            <a href="tel:+316****5678" className="btn-pill">
+            <a href="tel:+31680110879" className="btn-pill">
               <span className="label">Bel {bedrijf.mobiel}</span>
               <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
             </a>

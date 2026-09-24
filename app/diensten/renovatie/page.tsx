@@ -104,7 +104,7 @@ export default function RenovatiePage() {
           <span className="label">Vraag gratis een offerte aan</span>
           <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
         </Link>
-        <a href="tel:0102713824" className="btn-ghost-invert">
+        <a href="tel:+31680110879" className="btn-ghost-invert">
           <Phone className="w-4 h-4" aria-hidden="true" />
           Bel ons
         </a>
@@ -454,7 +454,7 @@ export default function RenovatiePage() {
                 <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
               </Link>
               <a
-                href="tel:0102713824"
+                href="tel:+31680110879"
                 className="mt-4 flex items-center gap-3 text-sm text-ink-600 hover:text-blue-500 transition-colors"
               >
                 <Phone className="w-4 h-4" aria-hidden="true" />
@@ -575,9 +575,9 @@ export default function RenovatiePage() {
                 <span className="label">Vraag een offerte aan</span>
                 <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
               </Link>
-              <a href="tel:0102713824" className="btn-ghost-invert">
+              <a href="tel:+31680110879" className="btn-ghost-invert">
                 <Phone className="w-4 h-4" aria-hidden="true" />
-                Bel 010 - 271 38 24
+                Bel 06 - 80 11 08 79
               </a>
             </div>
           </Reveal>

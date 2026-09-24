@@ -342,13 +342,13 @@ export function OfferteFormulier() {
                     <p className="mt-0.5 text-lg font-display font-bold tracking-[-0.01em]">Wij helpen u direct verder.</p>
                   </div>
                   <a
-                    href="tel:0102713824"
+                    href="tel:+31680110879"
                     className="inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-blue-700 font-semibold shadow-sm transition-transform hover:scale-[1.03]"
                   >
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50">
                       <Phone className="w-4 h-4" aria-hidden="true" />
                     </span>
-                    010 - 271 38 24
+                    06 - 80 11 08 79
                   </a>
                 </div>
               )}

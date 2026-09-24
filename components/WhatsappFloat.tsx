@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 // Pas dit aan naar het echte WhatsApp-nummer van LK Dakwerken.
-// Formaat: internationale notatie zonder + of spaties (bijv. 316****5678).
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '316****5678';
+// Formaat: internationale notatie zonder + of spaties (bijv. 31680110879).
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '31680110879';
 
 const DEFAULT_MESSAGE =
   'Hallo LK Dakwerken, ik heb een vraag over een offerte of een klus.';

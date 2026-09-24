@@ -21,7 +21,7 @@ export function ContactCTA() {
               <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
             </Link>
             <a
-              href="tel:0102713824"
+              href="tel:+31680110879"
               className="inline-flex items-center gap-3 text-white font-semibold group"
             >
               <span className="w-11 h-11 rounded-button-inner border border-white/25 flex items-center justify-center transition-colors group-hover:border-white/60 group-hover:bg-white/10">

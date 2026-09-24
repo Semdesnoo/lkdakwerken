@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/diensten/lekkage' },
 };
 
-const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '316****5678';
+const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '31680110879';
 const whatsappHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   'Hallo LK Dakwerken, ik heb een daklekkage en wil graag de situatie laten beoordelen.'
 )}`;
@@ -100,8 +100,8 @@ export default function LekkagePage() {
         imageAlt="Dakdekker onderzoekt een beschadigde aansluiting op een plat dak"
         compact
       >
-        <a href="tel:0102713824" className="btn-pill">
-          <span className="label">Bel direct: 010 - 271 38 24</span>
+        <a href="tel:+31680110879" className="btn-pill">
+          <span className="label">Bel direct: 06 - 80 11 08 79</span>
           <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
         </a>
         <Link href="/offerte?dienst=lekkage" className="btn-ghost-invert">
@@ -144,8 +144,8 @@ export default function LekkagePage() {
             ))}
           </div>
           <div className="mt-10 text-center">
-            <a href="tel:0102713824" className="btn-pill justify-center inline-flex">
-              <span className="label">Bel 010 - 271 38 24</span>
+            <a href="tel:+31680110879" className="btn-pill justify-center inline-flex">
+              <span className="label">Bel 06 - 80 11 08 79</span>
               <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
             </a>
             <p className="mt-4 text-sm text-ink-500">
@@ -404,8 +404,8 @@ export default function LekkagePage() {
               lopende werkzaamheden, verkeerssituatie, weersomstandigheden en de ernst van de situatie.
             </p>
             <div className="mt-8">
-              <a href="tel:0102713824" className="btn-pill">
-                <span className="label">Bel 010 - 271 38 24</span>
+              <a href="tel:+31680110879" className="btn-pill">
+                <span className="label">Bel 06 - 80 11 08 79</span>
                 <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
               </a>
             </div>
@@ -482,7 +482,7 @@ export default function LekkagePage() {
                 <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
               </Link>
               <a
-                href="tel:0102713824"
+                href="tel:+31680110879"
                 className="mt-4 flex items-center gap-3 text-sm text-ink-600 hover:text-blue-500 transition-colors"
               >
                 <Phone className="w-4 h-4" aria-hidden="true" />
@@ -646,8 +646,8 @@ export default function LekkagePage() {
               is.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href="tel:0102713824" className="btn-pill">
-                <span className="label">Bel 010 - 271 38 24</span>
+              <a href="tel:+31680110879" className="btn-pill">
+                <span className="label">Bel 06 - 80 11 08 79</span>
                 <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
               </a>
               <Link href="/offerte?dienst=lekkage" className="btn-ghost-invert">
@@ -660,7 +660,7 @@ export default function LekkagePage() {
 
       {/* 20. Mobiele sticky actiebalk — alleen op deze pagina */}
       <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-ink-950 border-t border-white/10 px-4 py-3 flex gap-2">
-        <a href="tel:0102713824" className="flex-1 btn-pill justify-center py-2.5">
+        <a href="tel:+31680110879" className="flex-1 btn-pill justify-center py-2.5">
           <span className="label">Bel direct</span>
           <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
         </a>

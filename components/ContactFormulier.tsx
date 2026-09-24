@@ -73,7 +73,7 @@ export function ContactFormulier() {
       {data.onderwerp === 'Lekkage' && (
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-blue-50 p-5">
           <p className="font-medium text-ink-900">Heeft u momenteel actieve lekkage?</p>
-          <a href="tel:+316****5678" className="btn-pill shrink-0">
+          <a href="tel:+31680110879" className="btn-pill shrink-0">
             <span className="label">Bel voor snellere hulp</span>
           </a>
         </div>
