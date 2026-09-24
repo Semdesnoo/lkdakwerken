@@ -120,19 +120,19 @@ export default function DienstDetail({ dienst }: Props) {
       {/* Veelgestelde vragen */}
       <section className="section-pad bg-paper-50">
         <div className="container-tight">
-          <Reveal>
-            <h2 className="text-display text-3xl md:text-5xl leading-[1.06] tracking-[-0.03em] text-ink-900 text-balance max-w-2xl">
+          <Reveal className="text-center">
+            <h2 className="text-display text-3xl md:text-5xl leading-[1.06] tracking-[-0.03em] text-ink-900 text-balance max-w-2xl mx-auto">
               Veelgestelde vragen
             </h2>
           </Reveal>
-          <div className="mt-10 max-w-3xl space-y-3">
+          <div className="mt-10 max-w-3xl mx-auto space-y-3">
             {faq.map((item) => (
-              <details key={item.vraag} className="group panel-flat p-6">
+              <details key={item.vraag} className="group faq-item panel-flat p-6">
                 <summary className="flex items-start justify-between gap-4 cursor-pointer list-none">
                   <h3 className="text-lg font-semibold leading-snug text-ink-900">{item.vraag}</h3>
                   <span
                     aria-hidden="true"
-                    className="w-8 h-8 rounded-button-inner bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 transition-transform group-open:rotate-45"
+                    className="w-8 h-8 rounded-button-inner bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 transition-transform duration-300 group-open:rotate-45"
                   >
                     <Plus className="w-4 h-4" />
                   </span>
