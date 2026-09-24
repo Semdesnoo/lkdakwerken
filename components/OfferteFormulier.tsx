@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   ArrowRight,
@@ -85,6 +86,17 @@ export function OfferteFormulier() {
   const [oppervlakBekend, setOppervlakBekend] = useState(false);
   const reduce = useReducedMotion();
   const wortel = useRef<HTMLDivElement>(null);
+
+  // Vanaf een dienstpagina kan /offerte/?dienst=nieuwbouw de juiste dienst voorselecteren.
+  const zoekParams = useSearchParams();
+  useEffect(() => {
+    const gevraagd = zoekParams.get('dienst');
+    if (gevraagd && dienstOpties.some((o) => o.value === gevraagd)) {
+      setData((vorige) => ({ ...vorige, dienst: gevraagd }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
 
   const oppervlak = OPPERVLAKTES[stand];
 

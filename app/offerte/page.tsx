@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { Check, Clock } from 'lucide-react';
 import { fotos } from '@/lib/data';
 import { OfferteFormulier } from '@/components/OfferteFormulier';
@@ -34,7 +35,9 @@ export default function OffertePage() {
 
       <section className="section-pad bg-paper-50 zigzag overflow-hidden">
         <div className="container-wide space-y-8">
-          <OfferteFormulier />
+          <Suspense fallback={null}>
+            <OfferteFormulier />
+          </Suspense>
 
           <div className="grid sm:grid-cols-2 gap-6">
             <Reveal>

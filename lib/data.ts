@@ -110,13 +110,13 @@ export const diensten = [
     slug: "nieuwbouw",
     korte: "Complete dakbedekking voor nieuwbouwprojecten.",
     heroImage: "photo-1676802037786-3697d60497ae",
-    beschrijving: "Voor aannemers en particulieren realiseren wij complete daksystemen voor nieuwbouw. Denk aan platte daken, lessenaarsdaken, sedumdaken en licht hellende daken. Wij denken mee in de ontwerpfase en leveren volgens de strakke planning van uw bouwproject.",
+    beschrijving: "Voor aannemers en particulieren realiseren wij complete daksystemen voor nieuwbouw. Wij denken mee in de ontwerpfase en stemmen de uitvoering af op de planning van uw bouwproject.",
     icon: "hammer",
     voordelen: [
       "Samenwerking met aannemer en architect",
-      "Voldoet aan alle Bouwbesluit-eisen",
-      "Keuze uit bitumen, EPDM, PVC of groendak",
-      "Strakke planning en oplevering",
+      "Uitvoering volgens projectspecificaties",
+      "Specialist in bitumineuze dakbedekking",
+      "Afgestemde planning en oplevering",
     ],
   },
   {
