@@ -6,6 +6,7 @@ import { ProjectenSlider } from '@/components/ProjectenSlider';
 import { GoogleReviews } from '@/components/GoogleReviews';
 import { Blog } from '@/components/Blog';
 import { ContactCTA } from '@/components/ContactCTA';
+import { SchuineOvergang } from '@/components/SchuineOvergang';
 import type { Metadata } from 'next';
 
 /**
@@ -43,11 +44,17 @@ export default function Home() {
     <>
       <Hero />            {/* videohero met donkere gloed */}
       <DienstenPaneel />  {/* paper-50 met een wit paneel erin */}
+      <SchuineOvergang kleur="#0a0a0a" hoek={-1.75} />
       <Process />         {/* donker ink met foto */}
+      <SchuineOvergang kleur="#ffffff" hoek={1.75} />
       <OverOns />         {/* wit */}
+      <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <GoogleReviews />   {/* donker ink met raster en lijnen */}
+      <SchuineOvergang kleur="#ffffff" hoek={1.75} />
       <ProjectenSlider /> {/* wit */}
+      <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <ContactCTA />      {/* donker ink */}
+      <SchuineOvergang kleur="#fafafa" hoek={1.75} />
       <Blog />            {/* paper-50, sluit de pagina af boven de voettekst */}
     </>
   );
