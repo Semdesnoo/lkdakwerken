@@ -313,12 +313,6 @@ export const stats = [
   { cijfer: "4,9", label: "Sterren review" },
 ];
 
-export const certificeringen = [
-  { naam: "Dakmerk Erkend", uitleg: "Gecertificeerd voor bitumen en kunststof daken" },
-  { naam: "VCA**", uitleg: "Veiligheid, gezondheid en milieu" },
-  { naam: "BRL 4702", uitleg: "Beoordelingsrichtlijn dakbedekking" },
-];
-
 export const werkwijze = [
   { nummer: "01", titel: "Dak inspecteren", tekst: "We komen vrijblijvend langs, bekijken het dak en bespreken uw wensen." },
   { nummer: "02", titel: "Offerte opstellen", tekst: "U ontvangt binnen 3 werkdagen een heldere offerte met materiaal en planning." },

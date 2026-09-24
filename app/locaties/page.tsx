@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 };
 
 const beloften = [
-  { titel: '10 jaar', tekst: 'Garantie op waterdichtheid via Dakmerk' },
+  { titel: '10 jaar', tekst: 'Garantie op waterdichtheid' },
   { titel: `${locaties.length} gemeenten`, tekst: 'Actief in heel Zuid-Holland' },
   { titel: '7 dagen', tekst: 'Bereikbaar voor spoed bij lekkage' },
-  { titel: '20+ jaar', tekst: 'Ervaring met platte en hellende daken' },
+  { titel: 'Vast team', tekst: 'Geen onderaannemers' },
 ];
 
 export default function LocatiesIndexPage() {

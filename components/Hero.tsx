@@ -46,8 +46,8 @@ export function Hero() {
               className="mt-7 text-lg md:text-xl text-white/85 max-w-xl leading-relaxed"
             >
               Specialist in platte daken in Rotterdam en heel Zuid-Holland. Bitumen
-              dakbedekking, renovatie, nieuwbouw, onderhoud en spoedhulp bij lekkage.
-              Dakmerk erkend, met 10 jaar garantie.
+              Bitumen dakbedekking, renovatie, nieuwbouw, onderhoud en spoedhulp bij lekkage.
+              Passie voor het vak, met 10 jaar garantie.
             </motion.p>
 
             <motion.div

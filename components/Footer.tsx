@@ -120,7 +120,7 @@ export function Footer() {
           <p>
             &copy; {new Date().getFullYear()} {bedrijf.naam}. KvK {bedrijf.kvk}, BTW {bedrijf.btw}.
           </p>
-          <p>Dakmerk Erkend, VCA**, 10 jaar garantie op waterdichtheid.</p>
+          <p>10 jaar garantie op waterdichtheid.</p>
         </div>
       </div>
     </footer>

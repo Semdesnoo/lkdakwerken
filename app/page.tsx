@@ -19,12 +19,12 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'LK Dakwerken | Dakdekker Rotterdam en Zuid-Holland',
   description:
-    'LK Dakwerken is uw dakdekker voor platte daken in Rotterdam en heel Zuid-Holland. Bitumen, renovatie, nieuwbouw, onderhoud en spoedhulp bij lekkage. Dakmerk erkend.',
+    'LK Dakwerken is uw dakdekker voor platte daken in Rotterdam en heel Zuid-Holland. Bitumen, renovatie, nieuwbouw, onderhoud en spoedhulp bij lekkage.',
   alternates: { canonical: '/' },
   openGraph: {
     title: 'LK Dakwerken | Dakdekker Rotterdam en Zuid-Holland',
     description:
-      'Specialist in platte daken: bitumen, renovatie, nieuwbouw, onderhoud en lekkage. Dakmerk erkend, 10 jaar garantie.',
+      'Specialist in platte daken: bitumen, renovatie, nieuwbouw, onderhoud en lekkage. 10 jaar garantie.',
     url: '/',
   },
 };

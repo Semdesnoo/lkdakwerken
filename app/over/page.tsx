@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { ArrowRight, Phone } from 'lucide-react';
 import {
   stats,
-  certificeringen,
   werkwijze,
   projecten,
   bedrijf,
@@ -17,9 +16,9 @@ import { Kerncijfers } from '@/components/Kerncijfers';
 import { SchuineOvergang } from '@/components/SchuineOvergang';
 
 export const metadata: Metadata = {
-  title: 'Over LK Dakwerken - Vakmensen voor uw dak sinds 2004',
+  title: 'Over LK Dakwerken - Vakmensen voor uw dak',
   description:
-    'LK Dakwerken is een Rotterdams dakdekkersbedrijf met meer dan 20 jaar ervaring in bitumen, renovatie, nieuwbouw, onderhoud en lekkage. Werkzaam in heel Zuid-Holland.',
+    'LK Dakwerken is een Rotterdams dakdekkersbedrijf met een vast team van vakmensen. Werkzaam in heel Zuid-Holland.',
   alternates: { canonical: '/over' },
 };
 
@@ -27,9 +26,9 @@ export default function OverOnsPage() {
   return (
     <>
       <PageHeader
-        titel="Twintig jaar vakwerk."
+        titel="Passie voor het vak."
         accent="Eén Rotterdams team."
-        lead="LK Dakwerken is opgericht in 2004 met een eenvoudig idee: een dak is de belangrijkste bescherming van een gebouw, en dat werk verdient een vakman."
+        lead="LK Dakwerken is opgericht met een eenvoudig idee: een dak is de belangrijkste bescherming van een gebouw, en dat werk verdient een vakman."
         image={fotos.overOnsHeader}
         imageAlt="Dakdekkers van LK Dakwerken op locatie"
       >
@@ -73,24 +72,12 @@ export default function OverOnsPage() {
             </h2>
             <div className="mt-7 space-y-5 text-lg leading-relaxed text-ink-700">
               <p>
-                In 2004 begon Kees van der Linden samen met één compagnon vanuit een busje in Rotterdam. De afspraak was simpel: geen verkooppraat, geen verborgen kosten, gewoon goed werk leveren. Die afspraak geldt vandaag nog steeds.
+                We werken met passie en willen voor iedere klant het beste resultaat, zodat u nooit meer met lekkage te maken krijgt. Geen verkooppraat, geen verborgen kosten, gewoon goed werk leveren.
               </p>
               <p>
-                We zijn bewust klein gebleven. Tien dakdekkers, geen onderaannemers die u nooit ziet. Iedereen in ons team heeft minimaal tien jaar ervaring en is in dienst.
-              </p>
-              <p>
-                We zijn lid van Dakmerk en VCA-gecertificeerd. Elk project ontvangt een garantiecertificaat. Gaat er onverhoopt toch iets mis, dan staat de stichting Dakmerk garant.
+                We zijn bewust klein gebleven. Tien dakdekkers, geen onderaannemers die u nooit ziet. Iedereen in ons team heeft minimaal vijf jaar werkervaring en is in dienst.
               </p>
             </div>
-
-            <ul className="mt-9 flex flex-wrap gap-2.5">
-              {certificeringen.map((c) => (
-                <li key={c.naam} className="chip">
-                  <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                  {c.naam}
-                </li>
-              ))}
-            </ul>
           </Reveal>
         </div>
       </section>

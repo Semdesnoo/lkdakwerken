@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, Check, Phone, Plus } from 'lucide-react';
-import { diensten, certificeringen, werkwijze, faq, bedrijf } from '@/lib/data';
+import { diensten, werkwijze, faq, bedrijf } from '@/lib/data';
 import { foto } from '@/lib/images';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
@@ -101,17 +101,12 @@ export default function DienstDetail({ dienst }: Props) {
                 </a>
               </div>
 
-              <ul className="card p-6 space-y-3">
-                {certificeringen.map((c) => (
-                  <li key={c.naam} className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-blue-500 mt-1 shrink-0" aria-hidden="true" strokeWidth={3} />
-                    <span>
-                      <span className="block font-medium text-ink-900">{c.naam}</span>
-                      <span className="block text-sm text-ink-500">{c.uitleg}</span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <div className="card p-6">
+                <p className="font-medium text-ink-900">Passie voor het vak.</p>
+                <p className="mt-1.5 text-sm text-ink-500 leading-relaxed">
+                  We gaan altijd voor het beste resultaat, zodat u nooit meer met lekkage te maken krijgt.
+                </p>
+              </div>
             </div>
           </div>
         </div>

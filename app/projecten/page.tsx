@@ -21,8 +21,8 @@ const aantalPlaatsen = new Set(projecten.map((p) => p.plaats)).size;
 const cijfers = [
   { cijfer: `${projecten.length}`, label: 'Projecten in beeld' },
   { cijfer: `${aantalPlaatsen}`, label: 'Plaatsen in de regio' },
-  { cijfer: '20+ jaar', label: 'Ervaring met platte daken' },
-  { cijfer: '10 jaar', label: 'Garantie via Dakmerk' },
+  { cijfer: '5 jaar', label: 'Ervaring per dakdekker' },
+  { cijfer: '10 jaar', label: 'Garantie op waterdichtheid' },
 ];
 
 export default function ProjectenPage() {

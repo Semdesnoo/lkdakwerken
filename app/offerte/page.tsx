@@ -15,7 +15,7 @@ const inbegrepen = [
   'Gratis dakinspectie op locatie',
   'Heldere offerte zonder kleine lettertjes',
   'Fotorapport van de huidige staat',
-  'Dakmerk garantiecertificaat',
+  'Garantiecertificaat bij oplevering',
   '10 jaar garantie op waterdichtheid',
 ];
 

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Phone, Mail, MapPin, MessageSquare, ArrowRight, Navigation2 } from 'lucide-react';
-import { bedrijf, certificeringen, fotos } from '@/lib/data';
+import { bedrijf, fotos } from '@/lib/data';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
 
@@ -170,14 +170,6 @@ export default function ContactPage() {
                     <br />
                     BTW {bedrijf.btw}
                   </p>
-                </div>
-                <div>
-                  <h2 className="font-semibold text-ink-900 mb-2.5">Certificering</h2>
-                  <ul className="text-ink-500 space-y-1.5">
-                    {certificeringen.map((c) => (
-                      <li key={c.naam}>{c.naam}</li>
-                    ))}
-                  </ul>
                 </div>
               </div>
             </Reveal>

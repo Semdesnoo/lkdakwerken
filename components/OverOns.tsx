@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight, ShieldCheck } from 'lucide-react';
-import { stats, certificeringen } from '@/lib/data';
+import { stats } from '@/lib/data';
 import { Reveal } from '@/components/Reveal';
 import { Kerncijfers } from '@/components/Kerncijfers';
 
@@ -20,17 +20,8 @@ export function OverOns() {
               <span className="text-blue-500">Geen onderaannemers.</span>
             </h2>
             <p className="lead mt-6 max-w-xl">
-              LK Dakwerken is een Rotterdams familiebedrijf met meer dan 20 jaar ervaring. We werken met een vast team van tien vakmensen. Iedere dakdekker bij ons heeft minimaal 5 jaar werkervaring en is in dienst. Zo weet u wie er op uw dak staat.
+              LK Dakwerken werkt met passie en gaat altijd voor het beste resultaat, zodat u nooit meer met lekkage te maken krijgt. We werken met een vast team van tien vakmensen. Iedere dakdekker bij ons heeft minimaal 5 jaar werkervaring en is in dienst. Zo weet u wie er op uw dak staat.
             </p>
-
-            <ul className="mt-8 flex flex-wrap gap-2.5">
-              {certificeringen.map((c) => (
-                <li key={c.naam} className="chip">
-                  <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-blue-500" />
-                  {c.naam}
-                </li>
-              ))}
-            </ul>
 
             <Link href="/over" className="btn-pill-dark mt-9">
               <span className="label">Ons verhaal</span>

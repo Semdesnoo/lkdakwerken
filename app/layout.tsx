@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: '%s | LK Dakwerken',
   },
   description:
-    'LK Dakwerken is uw specialist voor bitumen daken, renovatie, nieuwbouw, onderhoud en lekkage in heel Zuid-Holland. Dakmerk Erkend, 25+ jaar ervaring, 10 jaar garantie.',
+    'LK Dakwerken is uw specialist voor bitumen daken, renovatie, nieuwbouw, onderhoud en lekkage in heel Zuid-Holland. 10 jaar garantie.',
   keywords: [
     'LK Dakwerken',
     'dakdekker',
@@ -46,7 +46,6 @@ export const metadata: Metadata = {
     'lekkage dak',
     'nieuwbouw dak',
     'dakdekker Den Haag',
-    'Dakmerk',
   ],
   authors: [{ name: 'LK Dakwerken' }],
   creator: 'LK Dakwerken',
@@ -94,7 +93,7 @@ const localBusinessSchema = {
   telephone: '+31 6 12345678',
   email: 'info@lkdakwerken.nl',
   description:
-    'LK Dakwerken is een Dakmerk erkend dakdekkersbedrijf in Zuid-Holland, gespecialiseerd in platte daken: bitumen dakbedekking, dakrenovatie, nieuwbouw, onderhoud en spoedhulp bij lekkage.',
+    'LK Dakwerken is een dakdekkersbedrijf in Zuid-Holland, gespecialiseerd in platte daken: bitumen dakbedekking, dakrenovatie, nieuwbouw, onderhoud en spoedhulp bij lekkage.',
   knowsAbout: [
     'bitumen dakbedekking',
     'dakrenovatie',

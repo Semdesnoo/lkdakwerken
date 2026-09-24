@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const loc = locaties.find((l) => l.slug === slug);
   if (!loc) return {};
   const title = `Dakdekker ${loc.naam} - LK Dakwerken`;
-  const description = `LK Dakwerken is uw dakdekker in ${loc.naam} en omgeving. Dakmerk erkend.`;
+  const description = `LK Dakwerken is uw dakdekker in ${loc.naam} en omgeving. Vast team, 10 jaar garantie.`;
   return {
     title,
     description,
@@ -31,9 +31,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const beloften = [
   'Gratis dakinspectie op locatie',
   'Binnen 5 werkdagen een offerte',
-  'Dakmerk Erkend kwaliteitskeurmerk',
   '10 jaar garantie op waterdichtheid',
-  'VCA-gecertificeerde uitvoering',
+  'Vast team, geen onderaannemers',
 ];
 
 export default async function LocatiePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -50,7 +49,7 @@ export default async function LocatiePage({ params }: { params: Promise<{ slug: 
       <PageHeader
         titel="Dakdekker"
         accent={`${loc.naam}.`}
-        lead={`LK Dakwerken is uw lokale dakdekkersbedrijf in ${loc.naam} en omgeving. Ruim 20 jaar ervaring, Dakmerk erkenning en 10 jaar garantie.`}
+        lead={`LK Dakwerken is uw lokale dakdekkersbedrijf in ${loc.naam} en omgeving. Vast team, passie voor het vak en 10 jaar garantie.`}
         image={loc.image}
         imageAlt={`Daken in ${loc.naam}`}
         compact
@@ -74,7 +73,7 @@ export default async function LocatiePage({ params }: { params: Promise<{ slug: 
             </h2>
             <div className="mt-7 space-y-5 text-lg text-ink-700 leading-relaxed">
               <p>
-                Als Dakmerk erkend dakdekkersbedrijf werken wij in {loc.naam} en de wijde regio {loc.regio}. Of het nu gaat om een plat dak op een woning, een bedrijfspand of een VvE-complex: wij leveren vakwerk met garantie.
+                Wij werken met passie in {loc.naam} en de wijde regio {loc.regio}. Of het nu gaat om een plat dak op een woning, een bedrijfspand of een VvE-complex: wij leveren vakwerk met garantie, zodat u nooit meer met lekkage te maken krijgt.
               </p>
               <p>
                 Onze specialisatie ligt bij bitumen dakbedekking voor platte en licht hellende daken. Daarnaast voeren wij renovaties uit, realiseren wij nieuwbouwdaken en bieden wij onderhoudscontracten op maat.
