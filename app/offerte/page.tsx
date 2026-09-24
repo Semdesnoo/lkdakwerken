@@ -32,16 +32,14 @@ export default function OffertePage() {
       />
 
       <section className="section-pad bg-paper-50 zigzag overflow-hidden">
-        <div className="container-wide grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <div className="lg:col-span-8">
-            <OfferteFormulier />
-          </div>
+        <div className="container-wide space-y-8">
+          <OfferteFormulier />
 
-          <aside className="lg:col-span-4 lg:col-start-9 lg:sticky lg:top-28 space-y-4">
+          <div className="grid sm:grid-cols-2 gap-6">
             <Reveal>
-              <div className="panel p-7">
+              <div className="panel p-7 h-full">
                 <h2 className="text-display text-xl tracking-[-0.02em] text-ink-900">Wat u krijgt</h2>
-                <ul className="mt-5 space-y-3">
+                <ul className="mt-5 grid sm:grid-cols-2 gap-x-6 gap-y-3">
                   {inbegrepen.map((p) => (
                     <li key={p} className="flex items-start gap-3 text-ink-700">
                       <Check className="w-4 h-4 text-blue-500 mt-1 shrink-0" aria-hidden="true" strokeWidth={3} />
@@ -53,7 +51,7 @@ export default function OffertePage() {
             </Reveal>
 
             <Reveal delay={0.07}>
-              <div className="rounded-3xl bg-ink-900 text-white p-7">
+              <div className="rounded-3xl bg-ink-900 text-white p-7 h-full">
                 <span className="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center mb-5">
                   <Clock className="w-5 h-5" aria-hidden="true" />
                 </span>
@@ -69,7 +67,7 @@ export default function OffertePage() {
                 </a>
               </div>
             </Reveal>
-          </aside>
+          </div>
         </div>
       </section>
     </>

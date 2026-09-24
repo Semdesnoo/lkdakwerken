@@ -187,7 +187,7 @@ export function OfferteFormulier() {
               <span className="verplicht" aria-hidden="true">*</span>
             </legend>
             <div
-              className="grid grid-cols-2 lg:grid-cols-3 gap-3 mt-1"
+              className="grid grid-cols-2 lg:grid-cols-5 gap-3 mt-1"
               role="radiogroup"
               aria-label="Welke dienst heeft u nodig?"
               aria-invalid={toonFout('dienst')}
@@ -240,61 +240,63 @@ export function OfferteFormulier() {
 
           {/* Oppervlakte met een schuif: fijner dan een getal intypen, en het
               laat meteen zien welke bandbreedte we aanhouden. */}
-          <div>
-            <div className="flex flex-wrap items-baseline justify-between gap-2">
-              <label htmlFor="oppervlakte" className="field-label mb-0">
-                Geschatte oppervlakte
+          <div className="grid sm:grid-cols-2 gap-6">
+            <div>
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <label htmlFor="oppervlakte" className="field-label mb-0">
+                  Geschatte oppervlakte
+                </label>
+                <span
+                  className={`font-display text-2xl font-bold tracking-[-0.02em] tabular-nums transition-colors ${
+                    oppervlakBekend ? 'text-blue-600' : 'text-ink-400'
+                  }`}
+                  aria-hidden="true"
+                >
+                  {oppervlak} m²
+                </span>
+              </div>
+
+              <input
+                id="oppervlakte"
+                name="oppervlakte"
+                type="range"
+                min={0}
+                max={OPPERVLAKTES.length - 1}
+                step={1}
+                value={stand}
+                onChange={(e) => verzetSchuif(Number(e.target.value))}
+                className="schuif mt-4"
+                aria-valuetext={`${oppervlak} vierkante meter`}
+              />
+
+              <div className="mt-2 flex justify-between text-xs text-ink-400">
+                <span>{OPPERVLAKTES[0]} m²</span>
+                <span>{OPPERVLAKTES[OPPERVLAKTES.length - 1]} m² of meer</span>
+              </div>
+
+              <p className="field-hint">
+                {oppervlakBekend
+                  ? 'Een schatting is genoeg. Bij de inspectie meten we het dak precies op.'
+                  : 'Sleep de schuif voor een directe prijsindicatie. Een schatting is genoeg.'}
+              </p>
+            </div>
+
+            <div>
+              <label htmlFor="adres" className="field-label">
+                Adres van het dak
               </label>
-              <span
-                className={`font-display text-2xl font-bold tracking-[-0.02em] tabular-nums transition-colors ${
-                  oppervlakBekend ? 'text-blue-600' : 'text-ink-400'
-                }`}
-                aria-hidden="true"
-              >
-                {oppervlak} m²
-              </span>
+              <input
+                id="adres"
+                name="adres"
+                type="text"
+                autoComplete="street-address"
+                value={data.adres}
+                onChange={(e) => update('adres', e.target.value)}
+                placeholder="Straat 12, 3044 CK Rotterdam"
+                className="field-input"
+              />
+              <p className="field-hint">We komen langs voor een gratis inspectie.</p>
             </div>
-
-            <input
-              id="oppervlakte"
-              name="oppervlakte"
-              type="range"
-              min={0}
-              max={OPPERVLAKTES.length - 1}
-              step={1}
-              value={stand}
-              onChange={(e) => verzetSchuif(Number(e.target.value))}
-              className="schuif mt-4"
-              aria-valuetext={`${oppervlak} vierkante meter`}
-            />
-
-            <div className="mt-2 flex justify-between text-xs text-ink-400">
-              <span>{OPPERVLAKTES[0]} m²</span>
-              <span>{OPPERVLAKTES[OPPERVLAKTES.length - 1]} m² of meer</span>
-            </div>
-
-            <p className="field-hint">
-              {oppervlakBekend
-                ? 'Een schatting is genoeg. Bij de inspectie meten we het dak precies op.'
-                : 'Sleep de schuif voor een directe prijsindicatie. Een schatting is genoeg.'}
-            </p>
-          </div>
-
-          <div>
-            <label htmlFor="adres" className="field-label">
-              Adres van het dak
-            </label>
-            <input
-              id="adres"
-              name="adres"
-              type="text"
-              autoComplete="street-address"
-              value={data.adres}
-              onChange={(e) => update('adres', e.target.value)}
-              placeholder="Straat 12, 3044 CK Rotterdam"
-              className="field-input"
-            />
-            <p className="field-hint">We komen langs voor een gratis inspectie.</p>
           </div>
 
           {/* Toeslagen: alleen zinvol bij werk dat per m² wordt gerekend */}
@@ -403,7 +405,7 @@ export function OfferteFormulier() {
           nodig om de offerte te kunnen sturen.
         </p>
 
-        <div className="space-y-6">
+        <div className="grid sm:grid-cols-3 gap-6">
           <div>
             <label htmlFor="naam" className="field-label">
               Naam
@@ -429,55 +431,53 @@ export function OfferteFormulier() {
             )}
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-6">
-            <div>
-              <label htmlFor="email" className="field-label">
-                E-mailadres
-                <span className="verplicht" aria-hidden="true">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                value={data.email}
-                onChange={(e) => update('email', e.target.value)}
-                onBlur={() => setAangeraakt((a) => ({ ...a, email: true }))}
-                aria-invalid={toonFout('email')}
-                aria-describedby={toonFout('email') ? 'email-fout' : undefined}
-                className="field-input"
-              />
-              {toonFout('email') && (
-                <p id="email-fout" className="field-error">
-                  {fouten.email}
-                </p>
-              )}
-            </div>
-            <div>
-              <label htmlFor="telefoon" className="field-label">
-                Telefoonnummer
-                <span className="verplicht" aria-hidden="true">*</span>
-              </label>
-              <input
-                id="telefoon"
-                name="telefoon"
-                type="tel"
-                required
-                autoComplete="tel"
-                value={data.telefoon}
-                onChange={(e) => update('telefoon', e.target.value)}
-                onBlur={() => setAangeraakt((a) => ({ ...a, telefoon: true }))}
-                aria-invalid={toonFout('telefoon')}
-                aria-describedby={toonFout('telefoon') ? 'telefoon-fout' : undefined}
-                className="field-input"
-              />
-              {toonFout('telefoon') && (
-                <p id="telefoon-fout" className="field-error">
-                  {fouten.telefoon}
-                </p>
-              )}
-            </div>
+          <div>
+            <label htmlFor="email" className="field-label">
+              E-mailadres
+              <span className="verplicht" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              value={data.email}
+              onChange={(e) => update('email', e.target.value)}
+              onBlur={() => setAangeraakt((a) => ({ ...a, email: true }))}
+              aria-invalid={toonFout('email')}
+              aria-describedby={toonFout('email') ? 'email-fout' : undefined}
+              className="field-input"
+            />
+            {toonFout('email') && (
+              <p id="email-fout" className="field-error">
+                {fouten.email}
+              </p>
+            )}
+          </div>
+          <div>
+            <label htmlFor="telefoon" className="field-label">
+              Telefoonnummer
+              <span className="verplicht" aria-hidden="true">*</span>
+            </label>
+            <input
+              id="telefoon"
+              name="telefoon"
+              type="tel"
+              required
+              autoComplete="tel"
+              value={data.telefoon}
+              onChange={(e) => update('telefoon', e.target.value)}
+              onBlur={() => setAangeraakt((a) => ({ ...a, telefoon: true }))}
+              aria-invalid={toonFout('telefoon')}
+              aria-describedby={toonFout('telefoon') ? 'telefoon-fout' : undefined}
+              className="field-input"
+            />
+            {toonFout('telefoon') && (
+              <p id="telefoon-fout" className="field-error">
+                {fouten.telefoon}
+              </p>
+            )}
           </div>
         </div>
       </fieldset>
