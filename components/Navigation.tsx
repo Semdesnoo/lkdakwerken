@@ -37,6 +37,7 @@ const navItems: NavItem[] = [
       { href: '/projecten', label: 'Alle projecten', desc: 'Opgeleverde daken in de regio' },
     ],
   },
+  { href: '/subsidies-verduurzaming', label: 'Subsidies' },
   { href: '/contact', label: 'Contact' },
 ];
 

@@ -4,6 +4,7 @@ import { diensten, werkwijze, faq, bedrijf } from '@/lib/data';
 import { foto } from '@/lib/images';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
+import { SubsidieCTA } from '@/components/SubsidieCTA';
 
 interface Props {
   dienst: (typeof diensten)[number];
@@ -107,6 +108,8 @@ export default function DienstDetail({ dienst }: Props) {
                   We gaan altijd voor het beste resultaat, zodat u nooit meer met lekkage te maken krijgt.
                 </p>
               </div>
+
+              <SubsidieCTA />
             </div>
           </div>
         </div>

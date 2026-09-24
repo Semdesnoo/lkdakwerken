@@ -7,6 +7,7 @@ const navigatie = [
   { label: 'Diensten', href: '/diensten' },
   { label: 'Over ons', href: '/over' },
   { label: 'Projecten', href: '/projecten' },
+  { label: 'Subsidies', href: '/subsidies-verduurzaming' },
   { label: 'Blog', href: '/blog' },
   { label: 'Locaties', href: '/locaties' },
   { label: 'Contact', href: '/contact' },

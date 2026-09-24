@@ -4,6 +4,7 @@ import { fotos } from '@/lib/data';
 import { OfferteFormulier } from '@/components/OfferteFormulier';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
+import { SubsidieCTA } from '@/components/SubsidieCTA';
 
 export const metadata: Metadata = {
   title: 'Offerte aanvragen - Binnen 24 uur reactie',
@@ -68,6 +69,8 @@ export default function OffertePage() {
               </div>
             </Reveal>
           </div>
+
+          <SubsidieCTA />
         </div>
       </section>
     </>

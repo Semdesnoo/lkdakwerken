@@ -101,8 +101,8 @@ export const diensten = [
     voordelen: [
       "Gratis dakinspectie vooraf",
       "10 jaar garantie op waterdichtheid",
-      "Dakmerk Erkend Kwaliteitskeurmerk",
-      "VCA-gecertificeerde uitvoering",
+      "Garantiecertificaat bij oplevering",
+      "Vast team, geen onderaannemers",
     ],
   },
   {
@@ -192,7 +192,7 @@ export const blogPosts = [
     datum: "2025-12-12",
     auteur: "Kees van der Linden",
     image: "photo-1763665814538-8ba04597286c",
-    inhoud: `Een volledige dakrenovatie kost gemiddeld tussen de 8.000 en 25.000 euro voor een gemiddelde woning. Maar wat bepaalt de prijs precies?\n\n## Factoren die de prijs bepalen\n\n**Oppervlakte**: het aantal vierkante meters is de belangrijkste prijsbepaler.\n\n**Materiaal**: bitumen is voordeliger dan EPDM of groendak.\n\n**Isolatie**: het meenemen van dakisolatie in de renovatie levert direct besparing op uw energierekening.\n\n**Bereikbaarheid**: een dak op de 4e verdieping zonder lift is duurder om te renoveren dan een dak op de begane grond.\n\n**Ondergrond**: rotte dakbeschot of doorgezakte balken zorgen voor meerwerk.\n\n## Hoe bespaart u slim?\n\n- Combineer renovatie met isolatie: subsidie mogelijk via ISDE\n- Voer het werk in het laagseizoen uit (oktober-maart)\n- Kies voor bitumen als topkwaliteit niet per se EPDM vereist\n- Vraag meerdere offertes aan en vergelijk op garantie en materiaal\n\n## Garantie als kwaliteitsindicator\n\nEen Dakmerk Erkend Kwaliteitskeurmerk geeft u 10 jaar garantie op waterdichtheid, ook als het bedrijf onverhoopt in gebreke blijft. Dat is pas echte zekerheid.`,
+    inhoud: `Een volledige dakrenovatie kost gemiddeld tussen de 8.000 en 25.000 euro voor een gemiddelde woning. Maar wat bepaalt de prijs precies?\n\n## Factoren die de prijs bepalen\n\n**Oppervlakte**: het aantal vierkante meters is de belangrijkste prijsbepaler.\n\n**Materiaal**: bitumen is voordeliger dan EPDM of groendak.\n\n**Isolatie**: het meenemen van dakisolatie in de renovatie levert direct besparing op uw energierekening.\n\n**Bereikbaarheid**: een dak op de 4e verdieping zonder lift is duurder om te renoveren dan een dak op de begane grond.\n\n**Ondergrond**: rotte dakbeschot of doorgezakte balken zorgen voor meerwerk.\n\n## Hoe bespaart u slim?\n\n- Combineer renovatie met isolatie: subsidie mogelijk via ISDE\n- Voer het werk in het laagseizoen uit (oktober-maart)\n- Kies voor bitumen als topkwaliteit niet per se EPDM vereist\n- Vraag meerdere offertes aan en vergelijk op garantie en materiaal\n\n## Garantie als kwaliteitsindicator\n\nEen Garantiecertificaat bij oplevering geeft u 10 jaar garantie op waterdichtheid, ook als het bedrijf onverhoopt in gebreke blijft. Dat is pas echte zekerheid.`,
   },
   {
     slug: "groendak-subsidie-zuid-holland",
@@ -433,7 +433,7 @@ export const faq = [
   },
   {
     vraag: "Krijg ik garantie op het werk?",
-    antwoord: "Ja. Via ons Dakmerk-keurmerk ontvangt u 10 jaar garantie op waterdichtheid, ook wanneer ons bedrijf onverhoopt in gebreke zou blijven.",
+    antwoord: "Ja. U ontvangt 10 jaar garantie op waterdichtheid, vastgelegd in een garantiecertificaat bij oplevering.",
   },
   {
     vraag: "Werken jullie voor particulieren of alleen bedrijven?",
