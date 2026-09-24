@@ -3,4 +3,4 @@
 :HL["/lkdakwerken/logo-wit.png","image"]
 :HL["https://images.unsplash.com/photo-1673645652864-9c285c1eed29?w=2000&q=80&auto=format&fit=crop","image"]
 :HL["https://images.unsplash.com/photo-1673645652864-9c285c1eed29?w=1600&q=82&auto=format&fit=crop","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"bitumen-vs-epdm-welk-dak-kies-je","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"lKdzGXRChLncUTdWDa2nx"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"bitumen-vs-epdm-welk-dak-kies-je","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"ZCCOZDks51WuHBlzjTYcm"}
