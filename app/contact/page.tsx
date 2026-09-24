@@ -3,10 +3,8 @@ import Link from 'next/link';
 import {
   Phone,
   Mail,
-  MapPin,
   MessageCircle,
   ArrowRight,
-  Navigation2,
   Plus,
   Camera,
   Clock,
@@ -292,74 +290,6 @@ export default function ContactPage() {
           </Reveal>
           <Reveal delay={0.06}>
             <ContactFormulier />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 9. Adressectie */}
-      <section className="section-pad bg-paper-50">
-        <div className="container-wide grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <Reveal className="lg:col-span-5">
-            <span className="text-sm font-semibold text-blue-500 tracking-wide uppercase">{bedrijf.naam} {bedrijf.plaats}</span>
-            <h2 className="mt-3 text-display text-3xl md:text-4xl leading-[1.08] tracking-[-0.03em] text-ink-900 text-balance">
-              Vanuit Rotterdam naar uw dak.
-            </h2>
-            <p className="mt-5 text-ink-600 leading-relaxed">
-              Vanuit onze locatie in Rotterdam voeren we dakwerkzaamheden uit voor particuliere en zakelijke
-              opdrachtgevers in Rotterdam en omliggende plaatsen.
-            </p>
-            <address className="mt-6 not-italic flex items-start gap-3 text-ink-700">
-              <MapPin className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" aria-hidden="true" />
-              <span>
-                {bedrijf.naam}
-                <br />
-                {bedrijf.straat}
-                <br />
-                {bedrijf.postcode} {bedrijf.plaats}
-              </span>
-            </address>
-            <p className="mt-3 text-sm text-ink-400">Kantoor en materiaaldepot. Bezoek uitsluitend op afspraak.</p>
-            <a
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(bedrijf.adres)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-link mt-6"
-            >
-              Route bekijken
-              <ArrowRight className="w-4 h-4" aria-hidden="true" />
-            </a>
-          </Reveal>
-
-          <Reveal delay={0.08} className="lg:col-span-7">
-            <div className="relative rounded-3xl overflow-hidden bg-ink-900 aspect-[4/3] sm:aspect-[16/10]">
-              <div className="absolute inset-0 bg-grid-dark opacity-80" aria-hidden="true" />
-              <div
-                className="absolute inset-0 bg-gradient-to-br from-blue-800/40 via-transparent to-transparent"
-                aria-hidden="true"
-              />
-              <svg
-                className="absolute inset-0 w-full h-full"
-                viewBox="0 0 100 62"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path d="M0 44 C 25 36, 55 50, 100 40" fill="none" stroke="#2563eb" strokeWidth="5" opacity="0.28" />
-                <path d="M12 0 L 30 62" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.22" />
-                <path d="M0 22 L 100 16" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.22" />
-                <path d="M72 0 L 62 62" fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.22" />
-              </svg>
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center">
-                <span className="w-12 h-12 rounded-full bg-blue-500 text-white flex items-center justify-center shadow-lg">
-                  <MapPin className="w-6 h-6" aria-hidden="true" />
-                </span>
-                <span className="mt-3 text-white font-semibold">{bedrijf.naam}</span>
-                <span className="text-sm text-white/65">{bedrijf.straat}</span>
-              </div>
-              <p className="absolute bottom-5 left-5 right-5 flex items-center gap-2 text-sm text-white/75">
-                <Navigation2 className="w-4 h-4 text-blue-400 shrink-0" aria-hidden="true" />
-                Kantoor en materiaaldepot in {bedrijf.plaats}. Bezoek op afspraak.
-              </p>
-            </div>
           </Reveal>
         </div>
       </section>
