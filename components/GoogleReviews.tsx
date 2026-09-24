@@ -57,7 +57,7 @@ export function GoogleReviews() {
   const { trackProps } = useSlider({ automatisch: true });
 
   return (
-    <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
+    <section className="relative pt-12 pb-20 md:pt-16 md:pb-28 bg-ink-950 text-white overflow-hidden">
       <div className="container-wide relative">
         <Reveal className="max-w-3xl">
           <h2 className="text-display text-4xl md:text-5xl lg:text-6xl leading-[1.04] tracking-[-0.035em] text-balance">
