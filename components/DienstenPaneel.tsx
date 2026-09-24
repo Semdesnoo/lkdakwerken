@@ -25,7 +25,7 @@ export function DienstenPaneel() {
   const dienst = diensten[actief];
 
   return (
-    <section className="section-pad bg-paper-50 zigzag overflow-hidden">
+    <section className="section-pad -mt-16 md:-mt-24 pt-16 md:pt-24 bg-paper-50 zigzag overflow-hidden">
       <div className="container-wide">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl bg-white text-ink-900 border border-ink-900/10 shadow-[0_2px_40px_rgba(10,10,10,0.06)] p-6 sm:p-10 lg:p-14">
