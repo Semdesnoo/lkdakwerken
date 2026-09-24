@@ -289,19 +289,19 @@ export function OfferteFormulier() {
   return (
     <div>
       {/* Voortgang: geen echte wizard, maar de secties voelen wel als stappen. */}
-      <ol className="mb-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-medium text-ink-400">
-        <li className="flex items-center gap-3 text-ink-900">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-500 text-xs text-white">1</span>
+      <ol className="mb-8 flex flex-wrap items-center gap-x-1 gap-y-2 rounded-2xl bg-white border border-paper-200 shadow-sm px-5 py-4 text-sm font-semibold">
+        <li className="flex items-center gap-2.5 text-blue-600">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-500 text-xs text-white shadow-[0_2px_10px_rgba(37,99,235,0.35)]">1</span>
           Uw dak
         </li>
-        <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-        <li className="flex items-center gap-3">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-paper-200 text-xs text-ink-500">2</span>
+        <ArrowRight className="w-4 h-4 mx-3 text-ink-300 shrink-0" aria-hidden="true" />
+        <li className="flex items-center gap-2.5 text-ink-400">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-paper-100 text-xs text-ink-400">2</span>
           Uw gegevens
         </li>
-        <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
-        <li className="flex items-center gap-3">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full bg-paper-200 text-xs text-ink-500">3</span>
+        <ArrowRight className="w-4 h-4 mx-3 text-ink-300 shrink-0" aria-hidden="true" />
+        <li className="flex items-center gap-2.5 text-ink-400">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-paper-100 text-xs text-ink-400">3</span>
           Aanvraag versturen
         </li>
       </ol>
