@@ -1,5 +1,5 @@
-:HL["/lkdakwerken/_next/static/chunks/0w4cjpxpeol1..css","style"]
+:HL["/lkdakwerken/_next/static/chunks/09c3fw-f54emq.css","style"]
 :HL["/lkdakwerken/_next/static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/lkdakwerken/logo-wit.png","image"]
 :HL["https://images.unsplash.com/photo-1744975748338-d226c7535d49?w=2000&q=80&auto=format&fit=crop","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locaties","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"sliedrecht","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"p87LzIpSEASdcMxt8O88i"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locaties","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"sliedrecht","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"8YfaTJ1nBm2UEkEPTGJvu"}
