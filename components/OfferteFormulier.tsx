@@ -35,7 +35,7 @@ const OPPERVLAKTES = [
 ];
 const STANDAARD_STAND = 9; // 50 m², een gangbare uitbouw
 
-type VeldNaam = 'dienst' | 'oppervlakte' | 'naam' | 'email' | 'telefoon' | 'adres' | 'opmerkingen';
+type VeldNaam = 'dienst' | 'oppervlakte' | 'naam' | 'email' | 'telefoon' | 'straat' | 'postcode' | 'opmerkingen';
 
 const leeg: Record<VeldNaam, string> = {
   dienst: '',
@@ -43,9 +43,12 @@ const leeg: Record<VeldNaam, string> = {
   naam: '',
   email: '',
   telefoon: '',
-  adres: '',
+  straat: '',
+  postcode: '',
   opmerkingen: '',
 };
+
+const POSTCODE_PATROON = /^[1-9][0-9]{3}\s?[a-zA-Z]{2}$/;
 
 function valideer(data: Record<VeldNaam, string>) {
   const fouten: Partial<Record<VeldNaam, string>> = {};
@@ -60,6 +63,12 @@ function valideer(data: Record<VeldNaam, string>) {
     fouten.telefoon = 'Vul uw telefoonnummer in, zodat we u kunnen terugbellen.';
   } else if (data.telefoon.replace(/\D/g, '').length < 9) {
     fouten.telefoon = 'Vul een volledig telefoonnummer in.';
+  }
+  if (!data.straat.trim()) fouten.straat = 'Vul het adres van het dak in.';
+  if (!data.postcode.trim()) {
+    fouten.postcode = 'Vul de postcode in.';
+  } else if (!POSTCODE_PATROON.test(data.postcode.trim())) {
+    fouten.postcode = 'Vul een geldige postcode in, bijvoorbeeld 3044 CK.';
   }
   return fouten;
 }
@@ -282,26 +291,58 @@ export function OfferteFormulier() {
             </div>
 
             <div>
-              <label htmlFor="adres" className="field-label">
+              <label htmlFor="straat" className="field-label">
                 Adres van het dak
+                <span className="verplicht" aria-hidden="true">*</span>
               </label>
               <input
-                id="adres"
-                name="adres"
+                id="straat"
+                name="straat"
                 type="text"
                 autoComplete="street-address"
-                value={data.adres}
-                onChange={(e) => update('adres', e.target.value)}
-                placeholder="Straat 12, 3044 CK Rotterdam"
+                value={data.straat}
+                onChange={(e) => update('straat', e.target.value)}
+                onBlur={() => setAangeraakt((a) => ({ ...a, straat: true }))}
+                aria-invalid={toonFout('straat')}
+                aria-describedby={toonFout('straat') ? 'straat-fout' : undefined}
+                placeholder="Straat 12, Rotterdam"
                 className="field-input"
               />
+              {toonFout('straat') && (
+                <p id="straat-fout" className="field-error">
+                  {fouten.straat}
+                </p>
+              )}
+
+              <label htmlFor="postcode" className="field-label mt-4">
+                Postcode
+                <span className="verplicht" aria-hidden="true">*</span>
+              </label>
+              <input
+                id="postcode"
+                name="postcode"
+                type="text"
+                autoComplete="postal-code"
+                value={data.postcode}
+                onChange={(e) => update('postcode', e.target.value)}
+                onBlur={() => setAangeraakt((a) => ({ ...a, postcode: true }))}
+                aria-invalid={toonFout('postcode')}
+                aria-describedby={toonFout('postcode') ? 'postcode-fout' : undefined}
+                placeholder="3044 CK"
+                className="field-input max-w-[12rem]"
+              />
+              {toonFout('postcode') && (
+                <p id="postcode-fout" className="field-error">
+                  {fouten.postcode}
+                </p>
+              )}
               <p className="field-hint">We komen langs voor een gratis inspectie.</p>
             </div>
           </div>
 
           {/* Toeslagen: alleen zinvol bij werk dat per m² wordt gerekend */}
           {toonToeslagen && (
-            <fieldset className="border-0 p-0 m-0 min-w-0">
+            <fieldset className="border-0 p-0 m-0 min-w-0 mb-8">
               <legend className="field-label">Wilt u dit meenemen?</legend>
               <div className="grid sm:grid-cols-2 gap-3 mt-1">
                 {prijsOpties.map((optie) => {
