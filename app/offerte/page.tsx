@@ -49,7 +49,7 @@ export default function OffertePage() {
       </PageHeader>
 
       <section className="section-pad bg-paper-50 zigzag overflow-hidden">
-        <div className="container-tight space-y-8">
+        <div className="container-wide space-y-8">
           <Suspense fallback={null}>
             <OfferteFormulier />
           </Suspense>

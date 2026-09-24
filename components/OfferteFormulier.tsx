@@ -306,7 +306,7 @@ export function OfferteFormulier() {
         </li>
       </ol>
 
-      <form onSubmit={submit} noValidate className="lg:grid lg:grid-cols-[1fr_340px] lg:items-start lg:gap-6">
+      <form onSubmit={submit} noValidate>
         <div className="panel p-6 md:p-10">
           {/* Groep 1: dak-informatie */}
           <fieldset className="form-group">
@@ -427,130 +427,47 @@ export function OfferteFormulier() {
               )}
 
               {/* Oppervlakte met een schuif: alleen zinvol als er wel per m² wordt gerekend */}
-              <div className={`grid gap-6 ${toonOppervlakteSlider ? 'sm:grid-cols-2' : ''}`}>
-                {toonOppervlakteSlider && (
-                  <div>
-                    <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <label htmlFor="oppervlakte" className="field-label mb-0">
-                        Geschatte oppervlakte
-                      </label>
-                      <span
-                        className={`font-display text-2xl font-bold tracking-[-0.02em] tabular-nums transition-colors ${
-                          oppervlakBekend ? 'text-blue-600' : 'text-ink-400'
-                        }`}
-                        aria-hidden="true"
-                      >
-                        {oppervlak} m²
-                      </span>
-                    </div>
-
-                    <input
-                      id="oppervlakte"
-                      name="oppervlakte"
-                      type="range"
-                      min={0}
-                      max={OPPERVLAKTES.length - 1}
-                      step={1}
-                      value={stand}
-                      onChange={(e) => verzetSchuif(Number(e.target.value))}
-                      className="schuif mt-4"
-                      aria-valuetext={`${oppervlak} vierkante meter`}
-                    />
-
-                    <div className="mt-2 flex justify-between text-xs text-ink-400">
-                      <span>{OPPERVLAKTES[0]} m²</span>
-                      <span>{OPPERVLAKTES[OPPERVLAKTES.length - 1]} m² of meer</span>
-                    </div>
-
-                    <p className="field-hint">
-                      {oppervlakBekend
-                        ? 'Een schatting is genoeg. Bij de inspectie meten we het dak precies op.'
-                        : 'Sleep de schuif voor een directe prijsindicatie. Een schatting is genoeg.'}
-                    </p>
-                  </div>
-                )}
-
-                <div className={`grid gap-4 ${toonOppervlakteSlider ? 'sm:grid-cols-[1fr_7rem_7rem]' : 'sm:grid-cols-[1fr_7rem_7rem]'}`}>
-                  <div>
-                    <label htmlFor="straat" className="field-label">
-                      Adres van het dak
-                      <span className="verplicht" aria-hidden="true">*</span>
+              {toonOppervlakteSlider && (
+                <div>
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <label htmlFor="oppervlakte" className="field-label mb-0">
+                      Geschatte oppervlakte
                     </label>
-                    <input
-                      id="straat"
-                      name="straat"
-                      type="text"
-                      autoComplete="street-address"
-                      value={data.straat}
-                      onChange={(e) => update('straat', e.target.value)}
-                      onBlur={() => setAangeraakt((a) => ({ ...a, straat: true }))}
-                      aria-invalid={toonFout('straat')}
-                      aria-describedby={toonFout('straat') ? 'straat-fout' : undefined}
-                      placeholder="Straat 12"
-                      className="field-input"
-                    />
-                    {toonFout('straat') && (
-                      <p id="straat-fout" className="field-error">
-                        {fouten.straat}
-                      </p>
-                    )}
+                    <span
+                      className={`font-display text-2xl font-bold tracking-[-0.02em] tabular-nums transition-colors ${
+                        oppervlakBekend ? 'text-blue-600' : 'text-ink-400'
+                      }`}
+                      aria-hidden="true"
+                    >
+                      {oppervlak} m²
+                    </span>
                   </div>
 
-                  <div>
-                    <label htmlFor="postcode" className="field-label">
-                      Postcode
-                      <span className="verplicht" aria-hidden="true">*</span>
-                    </label>
-                    <input
-                      id="postcode"
-                      name="postcode"
-                      type="text"
-                      autoComplete="postal-code"
-                      value={data.postcode}
-                      onChange={(e) => update('postcode', e.target.value)}
-                      onBlur={() => setAangeraakt((a) => ({ ...a, postcode: true }))}
-                      aria-invalid={toonFout('postcode')}
-                      aria-describedby={toonFout('postcode') ? 'postcode-fout' : undefined}
-                      placeholder="3044 CK"
-                      className="field-input"
-                    />
-                    {toonFout('postcode') && (
-                      <p id="postcode-fout" className="field-error">
-                        {fouten.postcode}
-                      </p>
-                    )}
+                  <input
+                    id="oppervlakte"
+                    name="oppervlakte"
+                    type="range"
+                    min={0}
+                    max={OPPERVLAKTES.length - 1}
+                    step={1}
+                    value={stand}
+                    onChange={(e) => verzetSchuif(Number(e.target.value))}
+                    className="schuif mt-4"
+                    aria-valuetext={`${oppervlak} vierkante meter`}
+                  />
+
+                  <div className="mt-2 flex justify-between text-xs text-ink-400">
+                    <span>{OPPERVLAKTES[0]} m²</span>
+                    <span>{OPPERVLAKTES[OPPERVLAKTES.length - 1]} m² of meer</span>
                   </div>
 
-                  <div>
-                    <label htmlFor="plaats" className="field-label">
-                      Plaats
-                      <span className="verplicht" aria-hidden="true">*</span>
-                    </label>
-                    <input
-                      id="plaats"
-                      name="plaats"
-                      type="text"
-                      autoComplete="address-level2"
-                      value={data.plaats}
-                      onChange={(e) => update('plaats', e.target.value)}
-                      onBlur={() => setAangeraakt((a) => ({ ...a, plaats: true }))}
-                      aria-invalid={toonFout('plaats')}
-                      aria-describedby={toonFout('plaats') ? 'plaats-fout' : undefined}
-                      placeholder="Rotterdam"
-                      className="field-input"
-                    />
-                    {toonFout('plaats') && (
-                      <p id="plaats-fout" className="field-error">
-                        {fouten.plaats}
-                      </p>
-                    )}
-                  </div>
-
-                  <p className="field-hint sm:col-span-3">
-                    Zo kunnen we meteen controleren of uw adres binnen onze regio valt.
+                  <p className="field-hint">
+                    {oppervlakBekend
+                      ? 'Een schatting is genoeg. Bij de inspectie meten we het dak precies op.'
+                      : 'Sleep de schuif voor een directe prijsindicatie. Een schatting is genoeg.'}
                   </p>
                 </div>
-              </div>
+              )}
 
               {/* Toeslagen: alleen zinvol bij werk dat per m² wordt gerekend */}
               {toonToeslagen && (
@@ -597,16 +514,13 @@ export function OfferteFormulier() {
                 </fieldset>
               )}
 
-              {/* Prijsindicatie: op mobiel/tablet inline; vanaf desktop staat hij in de sticky kolom hiernaast */}
-              <div className="lg:hidden">
-                <Prijskaart indicatie={indicatie} reduce={!!reduce} />
-              </div>
+              <Prijskaart indicatie={indicatie} reduce={!!reduce} />
             </div>
           </fieldset>
 
           <div className="form-divider" aria-hidden="true" />
 
-          {/* Groep 2: contactgegevens */}
+          {/* Groep 2: contactgegevens + adres van het dak */}
           <fieldset className="form-group">
             <legend className="text-display text-2xl tracking-[-0.02em] text-ink-900 mb-1">
               2. Waar kunnen we de offerte naartoe sturen?
@@ -691,6 +605,90 @@ export function OfferteFormulier() {
               </div>
             </div>
 
+            {/* Adres van het dak: hoort inhoudelijk bij "waar kunnen we de offerte
+                naartoe sturen", staat daarom in dezelfde stap als de contactgegevens
+                i.p.v. tussen de dakvragen in stap 1. */}
+            <div className="grid sm:grid-cols-3 gap-6 mt-6">
+              <div>
+                <label htmlFor="straat" className="field-label">
+                  Adres van het dak
+                  <span className="verplicht" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="straat"
+                  name="straat"
+                  type="text"
+                  autoComplete="street-address"
+                  value={data.straat}
+                  onChange={(e) => update('straat', e.target.value)}
+                  onBlur={() => setAangeraakt((a) => ({ ...a, straat: true }))}
+                  aria-invalid={toonFout('straat')}
+                  aria-describedby={toonFout('straat') ? 'straat-fout' : undefined}
+                  placeholder="Straat 12"
+                  className="field-input"
+                />
+                {toonFout('straat') && (
+                  <p id="straat-fout" className="field-error">
+                    {fouten.straat}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="postcode" className="field-label">
+                  Postcode
+                  <span className="verplicht" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="postcode"
+                  name="postcode"
+                  type="text"
+                  autoComplete="postal-code"
+                  value={data.postcode}
+                  onChange={(e) => update('postcode', e.target.value)}
+                  onBlur={() => setAangeraakt((a) => ({ ...a, postcode: true }))}
+                  aria-invalid={toonFout('postcode')}
+                  aria-describedby={toonFout('postcode') ? 'postcode-fout' : undefined}
+                  placeholder="3044 CK"
+                  className="field-input"
+                />
+                {toonFout('postcode') && (
+                  <p id="postcode-fout" className="field-error">
+                    {fouten.postcode}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label htmlFor="plaats" className="field-label">
+                  Plaats
+                  <span className="verplicht" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="plaats"
+                  name="plaats"
+                  type="text"
+                  autoComplete="address-level2"
+                  value={data.plaats}
+                  onChange={(e) => update('plaats', e.target.value)}
+                  onBlur={() => setAangeraakt((a) => ({ ...a, plaats: true }))}
+                  aria-invalid={toonFout('plaats')}
+                  aria-describedby={toonFout('plaats') ? 'plaats-fout' : undefined}
+                  placeholder="Rotterdam"
+                  className="field-input"
+                />
+                {toonFout('plaats') && (
+                  <p id="plaats-fout" className="field-error">
+                    {fouten.plaats}
+                  </p>
+                )}
+              </div>
+
+              <p className="field-hint sm:col-span-3">
+                Zo kunnen we meteen controleren of uw adres binnen onze regio valt.
+              </p>
+            </div>
+
             <fieldset className="border-0 p-0 m-0 min-w-0 mt-6">
               <legend className="field-label">Hoe mogen we contact opnemen?</legend>
               <div className="flex flex-wrap gap-2 mt-1">
@@ -755,39 +753,6 @@ export function OfferteFormulier() {
                 <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
               </button>
               <p className="mt-2 text-xs text-ink-400">Vrijblijvend · Geen verplichtingen</p>
-            </div>
-          </div>
-        </div>
-
-        {/* Sticky samenvatting, alleen vanaf desktop; op mobiel staat de prijskaart al inline hierboven. */}
-        <div className="hidden lg:block lg:sticky lg:top-24">
-          <div className="panel p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-400">Uw aanvraag</p>
-            {gekozenDienst ? (
-              <div className="mt-3 space-y-1.5 text-sm">
-                <p className="font-semibold text-ink-900">{gekozenDienst.label}</p>
-                {oppervlakBekend && toonOppervlakteSlider && <p className="text-ink-500">{oppervlak} m²</p>}
-                {data.plaats && <p className="text-ink-500">{data.plaats}</p>}
-                {gekozenOpties.length > 0 && (
-                  <ul className="pt-1 space-y-1">
-                    {gekozenOpties.map((id) => {
-                      const optie = prijsOpties.find((o) => o.id === id);
-                      return optie ? (
-                        <li key={id} className="flex items-center gap-1.5 text-ink-600">
-                          <Check className="w-3.5 h-3.5 text-blue-500" aria-hidden="true" strokeWidth={3} />
-                          {optie.label}
-                        </li>
-                      ) : null;
-                    })}
-                  </ul>
-                )}
-              </div>
-            ) : (
-              <p className="mt-3 text-sm text-ink-400">Kies hiernaast een dienst om te beginnen.</p>
-            )}
-
-            <div className="mt-5">
-              <Prijskaart indicatie={indicatie} reduce={!!reduce} compact />
             </div>
           </div>
         </div>
