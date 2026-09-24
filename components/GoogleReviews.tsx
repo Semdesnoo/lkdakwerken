@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Star } from 'lucide-react';
 import { google, reviews } from '@/lib/data';
 import { Reveal } from '@/components/Reveal';
-import { SliderKnoppen, useSlider } from '@/components/Slider';
+import { useSlider } from '@/components/Slider';
 
 /**
  * Het woord Google in de officiële lettersleuren. Dit is de enige plek waar
@@ -54,7 +54,7 @@ const kaartVarianten = {
 
 export function GoogleReviews() {
   const reduce = useReducedMotion();
-  const { trackProps, terug, vooruit, stap } = useSlider({ automatisch: true });
+  const { trackProps } = useSlider({ automatisch: true });
 
   return (
     <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
@@ -102,18 +102,9 @@ export function GoogleReviews() {
           </div>
         </Reveal>
 
-        {/* Slider met de beoordelingen zelf */}
+        {/* Slider met de beoordelingen zelf: schuift automatisch, geen
+            handmatige knoppen nodig. */}
         <div className="mt-10 border-t border-blue-400/20 pt-8 md:pt-10">
-          <div className="flex items-center justify-end gap-6 mb-6">
-            <SliderKnoppen
-              terug={terug}
-              vooruit={vooruit}
-              stap={stap}
-              label="beoordelingen"
-              className="shrink-0 max-md:hidden"
-            />
-          </div>
-
           <motion.div
             {...trackProps}
             className="slider-track"
