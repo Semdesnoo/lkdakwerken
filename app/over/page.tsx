@@ -14,6 +14,7 @@ import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
 import { GoogleReviews } from '@/components/GoogleReviews';
 import { Kerncijfers } from '@/components/Kerncijfers';
+import { SchuineOvergang } from '@/components/SchuineOvergang';
 
 export const metadata: Metadata = {
   title: 'Over LK Dakwerken - Vakmensen voor uw dak sinds 2004',
@@ -95,6 +96,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Werkwijze als tijdlijn */}
+      <SchuineOvergang kleur="#0a0a0a" hoek={-1.75} />
       <section className="section-pad bg-ink-900 text-white">
         <div className="container-wide grid lg:grid-cols-12 gap-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
@@ -130,6 +132,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Verwijzing naar de projectenpagina */}
+      <SchuineOvergang kleur="#ffffff" hoek={1.75} />
       <section className="section-pad bg-white">
         <div className="container-wide">
           <Reveal>
@@ -156,9 +159,11 @@ export default function OverOnsPage() {
       </section>
 
       {/* Beoordelingen: hetzelfde Google-blok als op de homepage */}
+      <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <GoogleReviews />
 
       {/* Bedrijfsgegevens */}
+      <SchuineOvergang kleur="#ffffff" hoek={1.75} />
       <section className="section-pad bg-white">
         <div className="container-wide">
           <div className="panel p-8 md:p-12 grid md:grid-cols-12 gap-10">
@@ -214,6 +219,7 @@ export default function OverOnsPage() {
       </section>
 
       {/* Afsluitende CTA */}
+      <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
         <div className="absolute inset-0 bg-grid-dark opacity-70" aria-hidden="true" />
         <div className="container-wide relative grid lg:grid-cols-12 gap-10 items-center">

@@ -6,6 +6,7 @@ import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
 import { ProjectenGalerij } from '@/components/ProjectenGalerij';
 import { Kerncijfers } from '@/components/Kerncijfers';
+import { SchuineOvergang } from '@/components/SchuineOvergang';
 
 export const metadata: Metadata = {
   title: 'Projecten - Opgeleverde daken in Rotterdam en omgeving',
@@ -72,6 +73,7 @@ export default function ProjectenPage() {
       </section>
 
       {/* Afsluitende CTA */}
+      <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <section className="relative section-pad bg-ink-950 text-white overflow-hidden zigzag-donker">
         <div className="container-wide relative grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-7">

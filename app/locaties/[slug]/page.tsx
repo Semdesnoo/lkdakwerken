@@ -6,6 +6,7 @@ import { locaties, diensten } from '@/lib/data';
 import { foto } from '@/lib/images';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
+import { SchuineOvergang } from '@/components/SchuineOvergang';
 
 export const dynamic = 'force-static';
 
@@ -173,6 +174,7 @@ export default async function LocatiePage({ params }: { params: Promise<{ slug: 
       </section>
 
       {/* Afsluiting */}
+      <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
         <div className="absolute inset-0 bg-grid-dark opacity-70" aria-hidden="true" />
         <div className="container-tight relative text-center max-w-2xl">

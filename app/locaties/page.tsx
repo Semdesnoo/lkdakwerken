@@ -5,6 +5,7 @@ import { locaties, fotos } from '@/lib/data';
 import { PageHeader } from '@/components/PageHeader';
 import { WerkgebiedKaart } from '@/components/Werkgebied';
 import { Reveal } from '@/components/Reveal';
+import { SchuineOvergang } from '@/components/SchuineOvergang';
 
 export const metadata: Metadata = {
   title: 'Werkgebied - Dakdekker in heel Zuid-Holland',
@@ -94,6 +95,7 @@ export default function LocatiesIndexPage() {
       </section>
 
       {/* Afsluiting */}
+      <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <section className="relative section-pad bg-ink-950 text-white overflow-hidden">
         <div className="absolute inset-0 bg-grid-dark opacity-70" aria-hidden="true" />
         <div className="container-wide relative grid lg:grid-cols-12 gap-10 items-center">
