@@ -17,6 +17,11 @@ import { Reveal } from '@/components/Reveal';
 export function ProjectenGalerij() {
   const [open, setOpen] = useState<number | null>(null);
   const [fotoIndex, setFotoIndex] = useState(0);
+  const [filter, setFilter] = useState('Alles');
+
+  // Alleen categorieën tonen waar daadwerkelijk projecten voor bestaan.
+  const categorieen = ['Alles', ...Array.from(new Set(projecten.map((p) => p.type)))];
+  const zichtbaar = filter === 'Alles' ? projecten : projecten.filter((p) => p.type === filter);
 
   const sluit = useCallback(() => setOpen(null), []);
   const toon = useCallback((i: number) => {
@@ -47,8 +52,27 @@ export function ProjectenGalerij() {
 
   return (
     <>
+      <div className="mb-8 flex gap-2 overflow-x-auto pb-1 md:flex-wrap md:overflow-visible">
+        {categorieen.map((c) => (
+          <button
+            key={c}
+            type="button"
+            onClick={() => setFilter(c)}
+            aria-pressed={filter === c}
+            className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              filter === c
+                ? 'bg-blue-500 text-white'
+                : 'bg-paper-100 text-ink-600 hover:bg-paper-200'
+            }`}
+          >
+            {c}
+          </button>
+        ))}
+      </div>
+
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {projecten.map((p, i) => {
+        {zichtbaar.map((p) => {
+          const i = projecten.indexOf(p);
           const aantal = 1 + (p.extraFotos?.length ?? 0);
           return (
             <Reveal key={p.image} delay={(i % 3) * 0.07}>

@@ -10,7 +10,7 @@
  * doelgetal. Wordt geregeld door `<ScrollReveal>` via `data-count-to`. Reduced-
  * motion gebruikers krijgen direct het eindgetal te zien (zonder animatie).
  */
-export type Kerncijfer = { cijfer: string; label: string };
+export type Kerncijfer = { cijfer: string; label: string; footnoot?: string };
 
 /**
  * Haal het numerieke deel uit "4,9" / "1.842" / "20+" en bepaal de decimalen.
@@ -90,6 +90,7 @@ export function Kerncijfers({
                 )}
               </span>
               <span className="block mt-3 text-sm text-ink-500 text-balance">{c.label}</span>
+              {c.footnoot && <span className="block mt-1 text-xs text-ink-400">{c.footnoot}</span>}
             </dd>
           </div>
         );
