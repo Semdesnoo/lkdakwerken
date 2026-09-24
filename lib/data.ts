@@ -124,13 +124,13 @@ export const diensten = [
     slug: "onderhoud",
     korte: "Periodiek onderhoud voorkomt kostbare reparaties.",
     heroImage: "photo-1779755376652-22ca6eba86b8",
-    beschrijving: "Een goed onderhouden dak gaat jaren langer mee. Wij bieden onderhoudscontracten op maat: jaarlijkse inspectie, reiniging van goten en afvoeren, controle van aansluitingen en kleine herstelwerkzaamheden. Zo voorkomt u lekkages en onverwachte kosten.",
+    beschrijving: "Periodiek dakonderhoud helpt gebreken vroegtijdig te herkennen en kan bijdragen aan het behoud van de technische staat van uw dak. Wij inspecteren, reinigen en onderhouden platte daken voor particuliere en zakelijke opdrachtgevers, met heldere rapportage na iedere controle.",
     icon: "shield-check",
     voordelen: [
-      "Jaarlijkse inspectie en rapportage",
-      "Reiniging van dak en goten inbegrepen",
-      "Voorrang bij calamiteiten",
-      "Vaste lage onderhoudskosten per jaar",
+      "Periodieke dakinspectie",
+      "Duidelijke rapportage",
+      "Reiniging van dak en afvoeren",
+      "Particulier & zakelijk",
     ],
   },
   {
