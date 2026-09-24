@@ -5,7 +5,6 @@ import { projecten, fotos, diensten } from '@/lib/data';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
 import { ProjectenGalerij } from '@/components/ProjectenGalerij';
-import { Kerncijfers } from '@/components/Kerncijfers';
 import { SchuineOvergang } from '@/components/SchuineOvergang';
 import { projectKaart } from '@/lib/images';
 
@@ -15,19 +14,6 @@ export const metadata: Metadata = {
     'Bekijk echte dakprojecten van LK Dakwerken in Rotterdam en omgeving. Dakrenovatie, nieuwbouw en bitumen dakbedekking voor woningen en bedrijfspanden.',
   alternates: { canonical: '/projecten' },
 };
-
-const aantalPlaatsen = new Set(projecten.map((p) => p.plaats)).size;
-
-const cijfers = [
-  { cijfer: `${projecten.length}`, label: 'Projecten in beeld' },
-  { cijfer: `${aantalPlaatsen}`, label: 'Plaatsen in de regio' },
-  { cijfer: '5+ jaar', label: 'Ervaring in het vak' },
-  {
-    cijfer: '10 jaar',
-    label: 'Garantie op waterdichtheid',
-    footnoot: 'Volgens de toepasselijke garantievoorwaarden.',
-  },
-];
 
 // Dienstpagina's die daadwerkelijk bestaan, elk gekoppeld aan een eigen echte projectfoto
 // (matcht op categorie waar mogelijk; anders krijgt elke dienst gewoon een andere foto uit de lijst,
@@ -63,16 +49,6 @@ export default function ProjectenPage() {
           Vraag een offerte aan
         </Link>
       </PageHeader>
-
-      {/* Kerncijfers over het werk */}
-      <section className="relative -mt-12 md:-mt-16 z-10">
-        <div className="container-wide">
-          <Kerncijfers
-            cijfers={cijfers}
-            className="panel p-8 md:p-10 grid grid-cols-2 md:grid-cols-4 gap-8"
-          />
-        </div>
-      </section>
 
       {/* Alle projecten */}
       <section id="projectgrid" className="section-pad bg-white scroll-mt-24">
