@@ -71,7 +71,7 @@ components/
   Locaties.tsx          # Locaties per regio
   Process.tsx           # Werkwijze in 4 stappen
   ContactCTA.tsx        # Oranje-blauwe CTA met contact cards
-  DienstDetail.tsx      # Herbruikbare component voor 5 diensten
+  app/diensten/[bitumen-daken|renovatie|nieuwbouw|onderhoud|lekkage]/page.tsx  # 5 eigen dienstpagina's
   OfferteFormulier.tsx  # Multi-step wizard
   DakIconen.tsx         # Custom SVG iconen
   ScrollReveal.tsx      # Scroll animaties

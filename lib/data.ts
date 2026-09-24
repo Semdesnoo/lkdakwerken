@@ -138,13 +138,13 @@ export const diensten = [
     slug: "lekkage",
     korte: "Spoedservice bij lekkage. Vaak dezelfde dag ter plaatse.",
     heroImage: "photo-1784009198441-fce45ab9d268",
-    beschrijving: "Lekkage vraagt om snel handelen. Onze spoedservice is 7 dagen per week bereikbaar. In de meeste gevallen zijn wij binnen enkele uren ter plaatse om de schade te beperken en een noodreparatie uit te voeren. Daarna plannen we een structurele oplossing.",
+    beschrijving: "Daklekkage vraagt om snel handelen. Wij onderzoeken de oorzaak, beperken waar mogelijk verdere schade en zorgen voor een passende reparatie. Voor urgente lekkages kunt u ons direct bellen; wij zijn 7 dagen per week telefonisch bereikbaar.",
     icon: "droplet",
     voordelen: [
       "7 dagen per week bereikbaar",
-      "Vaak dezelfde dag ter plaatse",
-      "Noodreparatie en structurele oplossing",
-      "Heldere communicatie over kosten",
+      "Snelle beoordeling van de situatie",
+      "Noodreparatie mogelijk",
+      "Duidelijke afspraken over vervolgstappen",
     ],
   },
 ];
