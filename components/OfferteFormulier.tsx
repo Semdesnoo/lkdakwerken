@@ -290,53 +290,58 @@ export function OfferteFormulier() {
               </p>
             </div>
 
-            <div>
-              <label htmlFor="straat" className="field-label">
-                Adres van het dak
-                <span className="verplicht" aria-hidden="true">*</span>
-              </label>
-              <input
-                id="straat"
-                name="straat"
-                type="text"
-                autoComplete="street-address"
-                value={data.straat}
-                onChange={(e) => update('straat', e.target.value)}
-                onBlur={() => setAangeraakt((a) => ({ ...a, straat: true }))}
-                aria-invalid={toonFout('straat')}
-                aria-describedby={toonFout('straat') ? 'straat-fout' : undefined}
-                placeholder="Straat 12, Rotterdam"
-                className="field-input"
-              />
-              {toonFout('straat') && (
-                <p id="straat-fout" className="field-error">
-                  {fouten.straat}
-                </p>
-              )}
+            <div className="grid sm:grid-cols-[1fr_10rem] gap-4">
+              <div>
+                <label htmlFor="straat" className="field-label">
+                  Adres van het dak
+                  <span className="verplicht" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="straat"
+                  name="straat"
+                  type="text"
+                  autoComplete="street-address"
+                  value={data.straat}
+                  onChange={(e) => update('straat', e.target.value)}
+                  onBlur={() => setAangeraakt((a) => ({ ...a, straat: true }))}
+                  aria-invalid={toonFout('straat')}
+                  aria-describedby={toonFout('straat') ? 'straat-fout' : undefined}
+                  placeholder="Straat 12, Rotterdam"
+                  className="field-input"
+                />
+                {toonFout('straat') && (
+                  <p id="straat-fout" className="field-error">
+                    {fouten.straat}
+                  </p>
+                )}
+              </div>
 
-              <label htmlFor="postcode" className="field-label mt-4">
-                Postcode
-                <span className="verplicht" aria-hidden="true">*</span>
-              </label>
-              <input
-                id="postcode"
-                name="postcode"
-                type="text"
-                autoComplete="postal-code"
-                value={data.postcode}
-                onChange={(e) => update('postcode', e.target.value)}
-                onBlur={() => setAangeraakt((a) => ({ ...a, postcode: true }))}
-                aria-invalid={toonFout('postcode')}
-                aria-describedby={toonFout('postcode') ? 'postcode-fout' : undefined}
-                placeholder="3044 CK"
-                className="field-input max-w-[12rem]"
-              />
-              {toonFout('postcode') && (
-                <p id="postcode-fout" className="field-error">
-                  {fouten.postcode}
-                </p>
-              )}
-              <p className="field-hint">We komen langs voor een gratis inspectie.</p>
+              <div>
+                <label htmlFor="postcode" className="field-label">
+                  Postcode
+                  <span className="verplicht" aria-hidden="true">*</span>
+                </label>
+                <input
+                  id="postcode"
+                  name="postcode"
+                  type="text"
+                  autoComplete="postal-code"
+                  value={data.postcode}
+                  onChange={(e) => update('postcode', e.target.value)}
+                  onBlur={() => setAangeraakt((a) => ({ ...a, postcode: true }))}
+                  aria-invalid={toonFout('postcode')}
+                  aria-describedby={toonFout('postcode') ? 'postcode-fout' : undefined}
+                  placeholder="3044 CK"
+                  className="field-input"
+                />
+                {toonFout('postcode') && (
+                  <p id="postcode-fout" className="field-error">
+                    {fouten.postcode}
+                  </p>
+                )}
+              </div>
+
+              <p className="field-hint sm:col-span-2">We komen langs voor een gratis inspectie.</p>
             </div>
           </div>
 
