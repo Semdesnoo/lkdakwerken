@@ -38,32 +38,6 @@ const OPPERVLAKTES = [
 ];
 const STANDAARD_STAND = 9; // 50 m², een gangbare uitbouw
 
-/* Aanvullende dakvragen per dienst. Bewust kort: 2 vragen per dienst, "Weet ik
-   niet" waar techniek erbij komt kijken. Antwoorden gaan alleen mee in de
-   omschrijving die de dakdekker leest, niet in de prijsberekening. */
-const VRAGEN: Record<string, { key: string; label: string; opties: string[] }[]> = {
-  'bitumen-daken': [
-    { key: 'uitvoering', label: 'Wat wilt u laten uitvoeren?', opties: ['Nieuwe dakbedekking', 'Bestaande dakbedekking vervangen', 'Weet ik niet'] },
-    { key: 'verwijderen', label: 'Moet de bestaande dakbedekking worden verwijderd?', opties: ['Ja', 'Nee', 'Weet ik niet'] },
-  ],
-  renovatie: [
-    { key: 'leeftijd', label: 'Hoe oud is het dak ongeveer?', opties: ['Minder dan 10 jaar', '10–20 jaar', '20+ jaar', 'Weet ik niet'] },
-    { key: 'problemen', label: 'Zijn er momenteel problemen?', opties: ['Nee', 'Lekkage', 'Scheuren of blazen', 'Water blijft staan', 'Weet ik niet'] },
-  ],
-  nieuwbouw: [
-    { key: 'type', label: 'Type project', opties: ['Nieuwe woning', 'Aanbouw', 'Garage', 'Bedrijfspand', 'Anders'] },
-    { key: 'start', label: 'Gewenste start werkzaamheden', opties: ['Zo snel mogelijk', 'Binnen 1 maand', '1–3 maanden', 'Nog onbekend'] },
-  ],
-  onderhoud: [
-    { key: 'behoefte', label: 'Waar bent u naar op zoek?', opties: ['Eenmalige dakinspectie', 'Periodiek onderhoud', 'Onderhoudscontract', 'Weet ik niet'] },
-    { key: 'problemen', label: 'Zijn er momenteel problemen?', opties: ['Nee', 'Lekkage', 'Afvoerproblemen', 'Anders'] },
-  ],
-  lekkage: [
-    { key: 'locatie', label: 'Waar is de lekkage zichtbaar?', opties: ['Plafond', 'Muur', 'Rond dakdoorvoer', 'Anders / onbekend'] },
-    { key: 'ernst', label: 'Hoe ernstig is de lekkage?', opties: ['Vochtplek', 'Druppels', 'Actief stromend water'] },
-  ],
-};
-
 const OMSCHRIJVING_PLACEHOLDER: Record<string, string> = {
   'bitumen-daken': 'Bijvoorbeeld: het dak is ongeveer 20 jaar oud en we willen de dakbedekking en isolatie vernieuwen.',
   renovatie: 'Bijvoorbeeld: er ontstaan regelmatig lekkages en het dak is ongeveer 25 jaar oud.',
@@ -72,13 +46,6 @@ const OMSCHRIJVING_PLACEHOLDER: Record<string, string> = {
   lekkage: 'Bijvoorbeeld: sinds gisteren lekt het bij de achterzijde van de aanbouw wanneer het hard regent.',
   '': 'Sinds wanneer speelt het probleem? Hoe oud is het dak? Zijn er foto\'s beschikbaar?',
 };
-
-const CONTACTVOORKEUREN = [
-  { value: 'telefonisch', label: 'Telefonisch' },
-  { value: 'email', label: 'E-mail' },
-  { value: 'whatsapp', label: 'WhatsApp' },
-  { value: 'geen-voorkeur', label: 'Geen voorkeur' },
-];
 
 type VeldNaam = 'dienst' | 'oppervlakte' | 'naam' | 'email' | 'telefoon' | 'straat' | 'postcode' | 'plaats' | 'opmerkingen';
 
@@ -130,8 +97,6 @@ function nieuwAanvraagnummer() {
 
 export function OfferteFormulier() {
   const [data, setData] = useState<Record<VeldNaam, string>>(leeg);
-  const [vragen, setVragen] = useState<Record<string, string>>({});
-  const [contactvoorkeur, setContactvoorkeur] = useState('');
   const [gekozenOpties, setGekozenOpties] = useState<OptieId[]>([]);
   const [aangeraakt, setAangeraakt] = useState<Partial<Record<VeldNaam, boolean>>>({});
   const [gepoogd, setGepoogd] = useState(false);
@@ -169,11 +134,6 @@ export function OfferteFormulier() {
   // Toeslagen en oppervlakteslider slaan alleen ergens op bij werk dat per m² wordt gerekend.
   const toonToeslagen = data.dienst !== '' && data.dienst !== 'lekkage';
   const toonOppervlakteSlider = data.dienst !== 'lekkage';
-  const huidigeVragen = data.dienst ? VRAGEN[data.dienst] ?? [] : [];
-  // Bij een lopende lekkage geven we liever meteen het telefoonnummer dan een formuliertje.
-  const actieveLekkage =
-    (data.dienst === 'lekkage' && vragen.ernst === 'Actief stromend water') ||
-    (data.dienst === 'onderhoud' && vragen.problemen === 'Lekkage');
 
   function update(k: VeldNaam, v: string) {
     setData((vorige) => ({ ...vorige, [k]: v }));
@@ -182,11 +142,6 @@ export function OfferteFormulier() {
   function kiesDienst(waarde: string) {
     setData((vorige) => ({ ...vorige, dienst: waarde }));
     setAangeraakt((a) => ({ ...a, dienst: true }));
-    setVragen({});
-  }
-
-  function beantwoord(vraagKey: string, waarde: string) {
-    setVragen((v) => ({ ...v, [vraagKey]: waarde }));
   }
 
   function verzetSchuif(nieuweStand: number) {
@@ -289,7 +244,7 @@ export function OfferteFormulier() {
   return (
     <div>
       {/* Voortgang: geen echte wizard, maar de secties voelen wel als stappen. */}
-      <ol className="mb-8 flex flex-wrap items-center gap-x-1 gap-y-2 rounded-2xl bg-white border border-paper-200 shadow-sm px-5 py-4 text-sm font-semibold">
+      <ol className="mt-2 mb-10 flex flex-wrap items-center gap-x-1 gap-y-2 rounded-2xl bg-white border border-paper-200 shadow-sm px-5 py-4 text-sm font-semibold">
         <li className="flex items-center gap-2.5 text-blue-600">
           <span className="flex h-7 w-7 items-center justify-center rounded-full bg-blue-500 text-xs text-white shadow-[0_2px_10px_rgba(37,99,235,0.35)]">1</span>
           Uw dak
@@ -381,49 +336,21 @@ export function OfferteFormulier() {
 
               {/* Lekkage: bel-CTA meteen bovenaan, geen formulier eerst */}
               {data.dienst === 'lekkage' && (
-                <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-blue-50 p-5">
-                  <p className="font-medium text-ink-900">Heeft u nu actieve lekkage?</p>
-                  <a href="tel:0102713824" className="btn-pill shrink-0">
-                    <Phone className="w-4 h-4" aria-hidden="true" />
-                    <span className="label">Bel direct 010 - 271 38 24</span>
-                  </a>
-                </div>
-              )}
-
-              {/* Aanvullende dakvragen: per dienst anders, altijd met "weet ik niet" */}
-              {huidigeVragen.map((vraag) => (
-                <fieldset key={vraag.key} className="border-0 p-0 m-0 min-w-0">
-                  <legend className="field-label">{vraag.label}</legend>
-                  <div className="flex flex-wrap gap-2 mt-1">
-                    {vraag.opties.map((optie) => {
-                      const aan = vragen[vraag.key] === optie;
-                      return (
-                        <button
-                          key={optie}
-                          type="button"
-                          onClick={() => beantwoord(vraag.key, optie)}
-                          aria-pressed={aan}
-                          className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                            aan
-                              ? 'border-blue-500 bg-blue-500 text-white'
-                              : 'border-paper-200 text-ink-600 hover:border-blue-300'
-                          }`}
-                        >
-                          {optie}
-                        </button>
-                      );
-                    })}
+                <div className="flex flex-wrap items-center justify-between gap-5 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 p-6 text-white shadow-[0_8px_30px_rgba(37,99,235,0.28)]">
+                  <div>
+                    <p className="text-sm font-semibold text-white/80">Heeft u nu actieve lekkage?</p>
+                    <p className="mt-0.5 text-lg font-display font-bold tracking-[-0.01em]">Wij helpen u direct verder.</p>
                   </div>
-                </fieldset>
-              ))}
-
-              {actieveLekkage && (
-                <p className="rounded-2xl bg-blue-50 p-4 text-sm text-ink-700">
-                  Heeft u nu actieve lekkage? Bel ons dan voor snellere hulp:{' '}
-                  <a href="tel:0102713824" className="font-semibold text-blue-600 link-underline">
+                  <a
+                    href="tel:0102713824"
+                    className="inline-flex items-center gap-3 rounded-full bg-white px-5 py-3 text-blue-700 font-semibold shadow-sm transition-transform hover:scale-[1.03]"
+                  >
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50">
+                      <Phone className="w-4 h-4" aria-hidden="true" />
+                    </span>
                     010 - 271 38 24
                   </a>
-                </p>
+                </div>
               )}
 
               {/* Oppervlakte met een schuif: alleen zinvol als er wel per m² wordt gerekend */}
@@ -471,7 +398,7 @@ export function OfferteFormulier() {
 
               {/* Toeslagen: alleen zinvol bij werk dat per m² wordt gerekend */}
               {toonToeslagen && (
-                <fieldset className="border-0 p-0 m-0 min-w-0">
+                <fieldset className="border-0 p-0 m-0 min-w-0 mt-2">
                   <legend className="field-label">Wilt u dit meenemen?</legend>
                   <div className="grid sm:grid-cols-2 gap-3 mt-1">
                     {prijsOpties.map((optie) => {
@@ -514,7 +441,9 @@ export function OfferteFormulier() {
                 </fieldset>
               )}
 
-              <Prijskaart indicatie={indicatie} reduce={!!reduce} />
+              <div className="mt-8">
+                <Prijskaart indicatie={indicatie} reduce={!!reduce} />
+              </div>
             </div>
           </fieldset>
 
@@ -688,30 +617,6 @@ export function OfferteFormulier() {
                 Zo kunnen we meteen controleren of uw adres binnen onze regio valt.
               </p>
             </div>
-
-            <fieldset className="border-0 p-0 m-0 min-w-0 mt-6">
-              <legend className="field-label">Hoe mogen we contact opnemen?</legend>
-              <div className="flex flex-wrap gap-2 mt-1">
-                {CONTACTVOORKEUREN.map((v) => {
-                  const aan = contactvoorkeur === v.value;
-                  return (
-                    <button
-                      key={v.value}
-                      type="button"
-                      onClick={() => setContactvoorkeur(v.value)}
-                      aria-pressed={aan}
-                      className={`rounded-full border px-4 py-2 text-sm font-medium transition-colors ${
-                        aan
-                          ? 'border-blue-500 bg-blue-500 text-white'
-                          : 'border-paper-200 text-ink-600 hover:border-blue-300'
-                      }`}
-                    >
-                      {v.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </fieldset>
           </fieldset>
 
           <div className="form-divider" aria-hidden="true" />
