@@ -56,7 +56,7 @@ export default function Home() {
       <ProjectenSlider /> {/* wit */}
       <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <ContactCTA />      {/* donker ink */}
-      <SchuineOvergang kleur="#fafafa" hoek={1.75} />
+      <SchuineOvergang kleur="#fafafa" hoek={1.75} zigzag />
       <Blog />            {/* paper-50, sluit de pagina af boven de voettekst */}
     </>
   );
