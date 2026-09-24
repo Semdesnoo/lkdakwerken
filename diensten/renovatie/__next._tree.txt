@@ -1,5 +1,5 @@
-:HL["/lkdakwerken/_next/static/chunks/09yqdq4vy9e1y.css","style"]
+:HL["/lkdakwerken/_next/static/chunks/04r_g9xus7o-a.css","style"]
 :HL["/lkdakwerken/_next/static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/lkdakwerken/logo-wit.png","image"]
 :HL["/lkdakwerken/projecten/project-08.webp","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"diensten","param":null,"prefetchHints":0,"slots":{"children":{"name":"renovatie","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"NbFApu8taM3oq1Yc79jNk"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"diensten","param":null,"prefetchHints":0,"slots":{"children":{"name":"renovatie","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"MmExf5ryY4lSr4xQGAhco"}
