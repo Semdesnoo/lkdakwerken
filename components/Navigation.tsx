@@ -198,14 +198,6 @@ export function Navigation() {
           <div className="lg:hidden flex-1" />
 
           <div className="flex items-center gap-2 shrink-0">
-            <a
-              href="tel:+311****3824"
-              className="inline-flex items-center justify-center w-10 h-10 rounded-button-inner text-ink-700 hover:bg-paper-100 hover:text-blue-500 transition-colors"
-              aria-label="Bel ons: 010 - 271 38 24"
-            >
-              <Phone className="w-[1.05rem] h-[1.05rem]" aria-hidden="true" />
-            </a>
-
             <Link
               href="/offerte"
               className="inline-flex items-center gap-2 px-4 md:pl-5 md:pr-4 py-2.5 text-sm font-semibold rounded-button-inner bg-blue-500 text-white whitespace-nowrap transition-colors hover:bg-blue-600"
