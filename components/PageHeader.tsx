@@ -50,7 +50,9 @@ export function PageHeader({
 
       <div
         className={`container-wide relative ${
-          compact ? 'pt-32 pb-14 md:pt-40 md:pb-20' : 'pt-32 pb-16 md:pt-44 md:pb-28'
+          compact
+            ? 'min-h-[696px] md:min-h-[589px] flex flex-col justify-center pt-32 pb-14 md:pt-40 md:pb-20'
+            : 'pt-32 pb-16 md:pt-44 md:pb-28'
         }`}
       >
         <h1
