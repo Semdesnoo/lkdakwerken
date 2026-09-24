@@ -70,13 +70,13 @@ export function HeroVideo() {
           beeld eronder verdwijnt. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-r from-ink-950/85 via-ink-950/55 to-ink-950/45"
+        className="absolute inset-0 bg-gradient-to-r from-ink-950/60 via-ink-950/30 to-ink-950/20"
       />
       {/* Tweede laag voor de boven- en onderrand: onder de menubalk en boven
           de dienstkaarten die over de hero heen steken. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-ink-950/55 via-ink-950/20 to-ink-950/80"
+        className="absolute inset-0 bg-gradient-to-b from-ink-950/35 via-transparent to-ink-950/55"
       />
     </div>
   );
