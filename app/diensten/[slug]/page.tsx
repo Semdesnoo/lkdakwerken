@@ -5,7 +5,8 @@ import { diensten } from "@/lib/data";
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  return diensten.map((d) => ({ slug: d.slug }));
+  // bitumen-daken heeft een eigen, uitgebreide pagina onder app/diensten/bitumen-daken/
+  return diensten.filter((d) => d.slug !== 'bitumen-daken').map((d) => ({ slug: d.slug }));
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
