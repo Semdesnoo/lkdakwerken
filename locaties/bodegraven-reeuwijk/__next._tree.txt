@@ -1,5 +1,5 @@
-:HL["/lkdakwerken/_next/static/chunks/0j8ixugwcfvp7.css","style"]
+:HL["/lkdakwerken/_next/static/chunks/00o-j5~1ir_df.css","style"]
 :HL["/lkdakwerken/_next/static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/lkdakwerken/logo-wit.png","image"]
 :HL["https://images.unsplash.com/photo-1618333302170-d7bbc76188da?w=2000&q=80&auto=format&fit=crop","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locaties","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"bodegraven-reeuwijk","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"s9usdRA2zhDYQtd_Tgds3"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locaties","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"bodegraven-reeuwijk","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"2iInfXK6HXOa5iAeIA2V1"}
