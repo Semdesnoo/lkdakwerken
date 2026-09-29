@@ -28,7 +28,7 @@ export default function LocatiesIndexPage() {
       <PageHeader
         titel={`${locaties.length} gemeenten.`}
         accent="Heel Zuid-Holland."
-        lead="Vanuit Rotterdam rijden we dagelijks door de hele provincie. Kies uw gemeente voor de mogelijkheden bij u in de buurt."
+        lead="Vanuit Ridderkerk rijden we dagelijks door de hele provincie. Kies uw gemeente voor de mogelijkheden bij u in de buurt."
         image={fotos.locatiesHeader}
         imageAlt="Luchtfoto van Rotterdam"
         compact

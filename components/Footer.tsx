@@ -32,7 +32,7 @@ export function Footer() {
               className="h-10 w-auto mb-6"
             />
             <p className="text-white/70 leading-relaxed max-w-sm">
-              Dakdekkersbedrijf uit Rotterdam, gespecialiseerd in bitumen, renovatie, nieuwbouw, onderhoud en lekkage. Werkzaam in heel Zuid-Holland.
+              Dakdekkersbedrijf uit Ridderkerk, gespecialiseerd in bitumen, renovatie, nieuwbouw, onderhoud en lekkage. Werkzaam in heel Zuid-Holland.
             </p>
 
             <address className="mt-7 not-italic space-y-3 text-[15px]">
@@ -141,7 +141,7 @@ export function Footer() {
 
         <div className="mt-14 pt-8 border-t border-white/10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm text-white/50">
           <p>
-            &copy; {new Date().getFullYear()} {bedrijf.naam}. KvK {bedrijf.kvk}, BTW {bedrijf.btw}.
+            &copy; {new Date().getFullYear()} {bedrijf.naam}. KvK {bedrijf.kvk}.
           </p>
           <p>10 jaar garantie op waterdichtheid.</p>
         </div>

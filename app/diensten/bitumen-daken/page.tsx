@@ -134,7 +134,7 @@ const faq = [
   },
   {
     vraag: 'In welke regio werken jullie?',
-    antwoord: 'LK Dakwerken is gevestigd in Rotterdam en voert werkzaamheden uit in Rotterdam en omliggende plaatsen in Zuid-Holland.',
+    antwoord: 'LK Dakwerken is gevestigd in Ridderkerk, direct naast Rotterdam, en voert werkzaamheden uit in Rotterdam en omliggende plaatsen in Zuid-Holland.',
   },
 ];
 

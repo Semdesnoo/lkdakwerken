@@ -103,9 +103,9 @@ const localBusinessSchema = {
   ],
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'Bedrijvenpark 12',
-    addressLocality: 'Rotterdam',
-    postalCode: '3000 AB',
+    streetAddress: 'Nassaustraat 151',
+    addressLocality: 'Ridderkerk',
+    postalCode: '2983 RD',
     addressRegion: 'Zuid-Holland',
     addressCountry: 'NL',
   },

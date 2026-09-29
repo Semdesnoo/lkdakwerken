@@ -72,7 +72,7 @@ const faq = [
   },
   {
     vraag: 'Kan ik langskomen op jullie locatie?',
-    antwoord: `Ons kantoor en materiaaldepot is gevestigd aan de ${bedrijf.straat} in ${bedrijf.plaats}. Bezoek is mogelijk op afspraak.`,
+    antwoord: `Ons bedrijf is gevestigd aan de ${bedrijf.straat} in ${bedrijf.plaats}. Bezoek is mogelijk op afspraak.`,
   },
   {
     vraag: 'Zijn jullie in het weekend bereikbaar?',
@@ -308,15 +308,15 @@ export default function ContactPage() {
             <dl className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
               <div>
                 <dt className="text-ink-400">Bedrijf</dt>
-                <dd className="mt-1 text-ink-700">{bedrijf.naam}</dd>
+                <dd className="mt-1 text-ink-700">{bedrijf.naam} ({bedrijf.rechtsvorm.toLowerCase()})</dd>
               </div>
               <div>
                 <dt className="text-ink-400">KvK</dt>
                 <dd className="mt-1 text-ink-700">{bedrijf.kvk}</dd>
               </div>
               <div>
-                <dt className="text-ink-400">BTW</dt>
-                <dd className="mt-1 text-ink-700">{bedrijf.btw}</dd>
+                <dt className="text-ink-400">Vestigingsnummer</dt>
+                <dd className="mt-1 text-ink-700">{bedrijf.vestigingsnummer}</dd>
               </div>
               <div>
                 <dt className="text-ink-400">E-mail</dt>
@@ -335,7 +335,7 @@ export default function ContactPage() {
               Actief in Rotterdam en omgeving
             </h2>
             <p className="mt-4 text-ink-600 leading-relaxed max-w-xl mx-auto">
-              LK Dakwerken werkt vanuit Rotterdam en voert werkzaamheden uit in Rotterdam en omliggende plaatsen
+              LK Dakwerken werkt vanuit Ridderkerk en voert werkzaamheden uit in Rotterdam en omliggende plaatsen
               in Zuid-Holland.
             </p>
             <div className="mt-7 flex flex-wrap justify-center gap-2.5">

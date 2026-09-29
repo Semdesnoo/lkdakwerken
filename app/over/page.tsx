@@ -344,7 +344,7 @@ export default function OverOnsPage() {
                 <p className="text-ink-500 leading-relaxed">
                   KvK {bedrijf.kvk}
                   <br />
-                  BTW {bedrijf.btw}
+                  Vestigingsnummer {bedrijf.vestigingsnummer}
                 </p>
               </div>
             </div>

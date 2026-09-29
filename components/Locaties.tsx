@@ -18,7 +18,7 @@ export function Locaties() {
               <span className="text-blue-500">Heel Zuid-Holland.</span>
             </h2>
             <p className="lead mt-6 max-w-md">
-              Vanuit Rotterdam rijden we dagelijks door de hele provincie. Van Katwijk tot Gorinchem, van Den Haag tot Goeree-Overflakkee.
+              Vanuit Ridderkerk rijden we dagelijks door de hele provincie. Van Katwijk tot Gorinchem, van Den Haag tot Goeree-Overflakkee.
             </p>
             <Link href="/locaties" className="btn-pill-dark mt-9">
               <span className="label">Bekijk het werkgebied</span>

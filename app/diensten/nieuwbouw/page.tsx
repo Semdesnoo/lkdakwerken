@@ -116,7 +116,7 @@ const faq = [
   { vraag: 'Verzorgen jullie ook de dakisolatie?', antwoord: 'Wanneer dit onderdeel is van onze opdracht kunnen dakisolatie en dakbedekking gecombineerd worden in één dakopbouw.' },
   { vraag: 'Werken jullie volgens de geldende bouwregelgeving?', antwoord: 'Onze werkzaamheden worden uitgevoerd volgens de voor onze scope relevante geldende voorschriften, tekeningen en projectspecificaties. Voor nieuwbouw gelden onder andere de voorschriften uit het Besluit bouwwerken leefomgeving (Bbl).' },
   { vraag: 'Kunnen jullie een planning van een aannemer volgen?', antwoord: 'We stemmen de uitvoeringsperiode vooraf af op de bouwplanning. De definitieve uitvoering blijft onder andere afhankelijk van gereedheid van de ondergrond, bereikbaarheid en weersomstandigheden.' },
-  { vraag: 'Werken jullie alleen in Rotterdam?', antwoord: 'LK Dakwerken is gevestigd in Rotterdam en voert werkzaamheden uit in Rotterdam en omliggende gebieden in Zuid-Holland.' },
+  { vraag: 'Werken jullie alleen in Rotterdam?', antwoord: 'LK Dakwerken is gevestigd in Ridderkerk, direct naast Rotterdam, en voert werkzaamheden uit in Rotterdam en omliggende gebieden in Zuid-Holland.' },
 ];
 
 const andereDiensten = [
