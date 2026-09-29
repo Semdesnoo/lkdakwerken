@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { ArrowRight, Phone } from 'lucide-react';
 import { locaties, fotos } from '@/lib/data';
 import { PageHeader } from '@/components/PageHeader';
-import { WerkgebiedKaart } from '@/components/Werkgebied';
 import { Reveal } from '@/components/Reveal';
 import { SchuineOvergang } from '@/components/SchuineOvergang';
 
@@ -12,13 +11,6 @@ export const metadata: Metadata = {
   description: 'LK Dakwerken is werkzaam in alle gemeenten van Zuid-Holland. Bekijk alle locaties.',
   alternates: { canonical: '/locaties' },
 };
-
-const beloften = [
-  { titel: '10 jaar', tekst: 'Garantie op waterdichtheid' },
-  { titel: `${locaties.length} gemeenten`, tekst: 'Actief in heel Zuid-Holland' },
-  { titel: '7 dagen', tekst: 'Bereikbaar voor spoed bij lekkage' },
-  { titel: 'Vast team', tekst: 'Geen onderaannemers' },
-];
 
 export default function LocatiesIndexPage() {
   const regios = Array.from(new Set(locaties.map((l) => l.regio)));
@@ -33,31 +25,6 @@ export default function LocatiesIndexPage() {
         imageAlt="Luchtfoto van Rotterdam"
         compact
       />
-
-      {/* Kaart en beloften */}
-      <section className="section-pad bg-white">
-        <div className="container-wide grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <Reveal className="lg:col-span-7">
-            <WerkgebiedKaart />
-          </Reveal>
-          <Reveal delay={0.08} className="lg:col-span-5">
-            <dl className="grid sm:grid-cols-2 gap-x-8 gap-y-8">
-              {beloften.map((b) => (
-                <div key={b.titel}>
-                  <dt className="font-display text-3xl md:text-4xl font-bold text-ink-900 tracking-[-0.03em] leading-none">
-                    {b.titel}
-                  </dt>
-                  <dd className="mt-2.5 text-sm text-ink-500 leading-relaxed">{b.tekst}</dd>
-                </div>
-              ))}
-            </dl>
-            <Link href="/offerte" className="btn-pill mt-10">
-              <span className="label">Offerte aanvragen</span>
-              <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
-            </Link>
-          </Reveal>
-        </div>
-      </section>
 
       {/* Alle gemeenten per regio */}
       <section className="section-pad bg-paper-50">
