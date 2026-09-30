@@ -156,10 +156,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </header>
 
       {/* Artikel + zijbalk */}
-      <div className="bg-white pb-16 md:pb-24">
+      <div className="bg-white pt-12 md:pt-16 pb-16 md:pb-24">
         <div className="container-wide grid lg:grid-cols-12 gap-12 lg:gap-14">
           <article className="lg:col-span-8 min-w-0">
-            <div className="-mt-10 md:-mt-14 relative z-10 aspect-[16/9] rounded-3xl overflow-hidden bg-paper-100 shadow-[0_24px_70px_-25px_rgba(0,0,0,0.35)]">
+            <div className="aspect-[16/9] rounded-3xl overflow-hidden bg-paper-100">
               <img src={foto(post.image, 1600, 82)} alt={post.titel} className="w-full h-full object-cover" />
             </div>
 
@@ -182,7 +182,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </article>
 
           {/* Zijbalk: andere artikelen en offerte, blijft op desktop in beeld */}
-          <aside className="lg:col-span-4 lg:pt-12">
+          <aside className="lg:col-span-4">
             <div className="lg:sticky lg:top-28 space-y-6">
               <div className="rounded-3xl bg-paper-50 p-6">
                 <h2 className="text-display text-xl tracking-[-0.02em] text-ink-900 mb-4">Andere artikelen</h2>
