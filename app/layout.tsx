@@ -24,7 +24,7 @@ const display = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://lkdakwerken.nl'),
+  metadataBase: new URL('https://www.lkdakwerken.nl'),
   title: {
     // De homepage zet zijn eigen titel in app/page.tsx; dit is de terugval
     // voor pagina's zonder eigen titel.
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'nl_NL',
-    url: 'https://lkdakwerken.nl',
+    url: 'https://www.lkdakwerken.nl',
     siteName: 'LK Dakwerken',
     title: 'LK Dakwerken | Dakdekker Rotterdam en Zuid-Holland',
     description:
@@ -85,11 +85,11 @@ export const viewport: Viewport = {
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'RoofingContractor',
-  '@id': 'https://lkdakwerken.nl/#organization',
+  '@id': 'https://www.lkdakwerken.nl/#organization',
   name: 'LK Dakwerken',
   alternateName: 'LK Dakwerken Rotterdam',
   slogan: 'Uw dak. Ons vak.',
-  url: 'https://lkdakwerken.nl',
+  url: 'https://www.lkdakwerken.nl',
   telephone: '+31 6 12345678',
   email: 'info@lkdakwerken.nl',
   description:
