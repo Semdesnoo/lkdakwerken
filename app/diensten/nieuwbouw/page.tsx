@@ -121,9 +121,9 @@ const faq = [
 
 const andereDiensten = [
   { slug: 'bitumen-daken', titel: 'Bitumen daken', tekst: 'Hoogwaardige bitumen dakbedekking voor platte en licht hellende daken.', knop: 'Bekijk bitumen daken', image: foto('diensten/bitumen') },
-  { slug: 'renovatie', titel: 'Renovatie', tekst: 'Complete renovatie voor verouderde en beschadigde daken.', knop: 'Bekijk renovatie', image: projectGroot('project-08') },
-  { slug: 'onderhoud', titel: 'Onderhoud', tekst: 'Onderhoud en periodieke controle om problemen vroegtijdig te signaleren.', knop: 'Bekijk onderhoud', image: projectGroot('project-05') },
-  { slug: 'lekkage', titel: 'Lekkage', tekst: 'Daklekkage laten onderzoeken en professioneel herstellen.', knop: 'Bekijk lekkage', image: projectGroot('project-02') },
+  { slug: 'renovatie', titel: 'Renovatie', tekst: 'Complete renovatie voor verouderde en beschadigde daken.', knop: 'Bekijk renovatie', image: foto('diensten/renovatie') },
+  { slug: 'onderhoud', titel: 'Onderhoud', tekst: 'Onderhoud en periodieke controle om problemen vroegtijdig te signaleren.', knop: 'Bekijk onderhoud', image: foto('diensten/onderhoud') },
+  { slug: 'lekkage', titel: 'Lekkage', tekst: 'Daklekkage laten onderzoeken en professioneel herstellen.', knop: 'Bekijk lekkage', image: foto('diensten/lekkage') },
 ];
 
 export default function NieuwbouwPage() {

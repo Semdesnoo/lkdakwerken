@@ -94,7 +94,7 @@ export const diensten = [
     titel: "Renovatie",
     slug: "renovatie",
     korte: "Volledige dakrenovatie met garantiecertificaat.",
-    heroImage: "project-05",
+    heroImage: "diensten/renovatie",
     beschrijving: "Is uw dak toe aan vervanging? Wij verzorgen de complete renovatie: van inspectie en advies tot demontage van de oude bedekking en het aanbrengen van nieuw isolatie- en dakbedekkingssysteem. Na afloop ontvangt u een garantiecertificaat.",
     icon: "wrench",
     voordelen: [
@@ -108,7 +108,7 @@ export const diensten = [
     titel: "Nieuwbouw",
     slug: "nieuwbouw",
     korte: "Complete dakbedekking voor nieuwbouwprojecten.",
-    heroImage: "project-01",
+    heroImage: "diensten/nieuwbouw",
     beschrijving: "Voor aannemers en particulieren realiseren wij complete daksystemen voor nieuwbouw. Wij denken mee in de ontwerpfase en stemmen de uitvoering af op de planning van uw bouwproject.",
     icon: "hammer",
     voordelen: [
@@ -122,7 +122,7 @@ export const diensten = [
     titel: "Onderhoud",
     slug: "onderhoud",
     korte: "Periodiek onderhoud voorkomt kostbare reparaties.",
-    heroImage: "project-06",
+    heroImage: "diensten/onderhoud",
     beschrijving: "Periodiek dakonderhoud helpt gebreken vroegtijdig te herkennen en kan bijdragen aan het behoud van de technische staat van uw dak. Wij inspecteren, reinigen en onderhouden platte daken voor particuliere en zakelijke opdrachtgevers, met heldere rapportage na iedere controle.",
     icon: "shield-check",
     voordelen: [
@@ -136,7 +136,7 @@ export const diensten = [
     titel: "Lekkage",
     slug: "lekkage",
     korte: "Spoedservice bij lekkage. Vaak dezelfde dag ter plaatse.",
-    heroImage: "project-02",
+    heroImage: "diensten/lekkage",
     beschrijving: "Daklekkage vraagt om snel handelen. Wij onderzoeken de oorzaak, beperken waar mogelijk verdere schade en zorgen voor een passende reparatie. Voor urgente lekkages kunt u ons direct bellen; wij zijn 7 dagen per week telefonisch bereikbaar.",
     icon: "droplet",
     voordelen: [

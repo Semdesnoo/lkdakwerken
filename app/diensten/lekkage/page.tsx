@@ -84,9 +84,9 @@ const faq = [
 
 const andereDiensten = [
   { slug: 'bitumen-daken', titel: 'Bitumen daken', tekst: 'Hoogwaardige bitumen dakbedekking voor platte en licht hellende daken.', knop: 'Bekijk bitumen daken', image: foto('diensten/bitumen') },
-  { slug: 'renovatie', titel: 'Renovatie', tekst: 'Bij een sterk verouderd dak kan volledige renovatie een betere oplossing zijn.', knop: 'Bekijk renovatie', image: projectGroot('project-08') },
-  { slug: 'nieuwbouw', titel: 'Nieuwbouw', tekst: 'Complete dakbedekking voor nieuwbouwprojecten.', knop: 'Bekijk nieuwbouw', image: foto('project-01', 600, 75) },
-  { slug: 'onderhoud', titel: 'Onderhoud', tekst: 'Laat uw dak periodiek controleren om aandachtspunten eerder te herkennen.', knop: 'Bekijk onderhoud', image: projectGroot('project-05') },
+  { slug: 'renovatie', titel: 'Renovatie', tekst: 'Bij een sterk verouderd dak kan volledige renovatie een betere oplossing zijn.', knop: 'Bekijk renovatie', image: foto('diensten/renovatie') },
+  { slug: 'nieuwbouw', titel: 'Nieuwbouw', tekst: 'Complete dakbedekking voor nieuwbouwprojecten.', knop: 'Bekijk nieuwbouw', image: foto('diensten/nieuwbouw') },
+  { slug: 'onderhoud', titel: 'Onderhoud', tekst: 'Laat uw dak periodiek controleren om aandachtspunten eerder te herkennen.', knop: 'Bekijk onderhoud', image: foto('diensten/onderhoud') },
 ];
 
 export default function LekkagePage() {
