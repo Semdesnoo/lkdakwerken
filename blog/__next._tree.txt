@@ -3,4 +3,4 @@
 :HL["/lkdakwerken/logo-wit.png","image"]
 :HL["/lkdakwerken/projecten/project-10.webp","image"]
 :HL["/lkdakwerken/projecten/project-07.webp","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"08LItM4bk4uVV0vN0baa4"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"E3JLkpN58BEXCKUjXJXrP"}
