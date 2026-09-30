@@ -35,6 +35,9 @@ type Soort = keyof typeof VELDEN;
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const AFZENDER = `${bedrijf.naam} <${bedrijf.email}>`;
+// Eigen afzender voor meldingen aan LK: van info@ naar info@ toont Gmail als
+// "me" en sorteert het tussen verzonden mail, zodat aanvragen wegvallen.
+const WEBSITE_AFZENDER = `${bedrijf.naam} website <website@lkdakwerken.nl>`;
 
 async function verstuur(mail: Record<string, unknown>) {
   const res = await fetch('https://api.resend.com/emails', {
@@ -111,7 +114,7 @@ export async function POST(req: Request) {
   try {
     // Eerst de mail naar LK zelf: mislukt die, dan is de aanvraag kwijt en moet de klant het weten.
     await verstuur({
-      from: AFZENDER,
+      from: WEBSITE_AFZENDER,
       to: [bedrijf.email],
       reply_to: email,
       subject: onderwerp,

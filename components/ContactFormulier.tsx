@@ -159,7 +159,7 @@ export function ContactFormulier() {
             onChange={(e) => update('onderwerp', e.target.value)}
             className="field-input"
           >
-            <option value="">Maak een keuze</option>
+            <option value="" disabled hidden>Maak een keuze</option>
             {ONDERWERPEN.map((o) => (
               <option key={o} value={o}>{o}</option>
             ))}
