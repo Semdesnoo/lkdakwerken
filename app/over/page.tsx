@@ -114,7 +114,7 @@ export default function OverOnsPage() {
           <Reveal className="lg:col-span-4">
             <div className="aspect-square rounded-3xl overflow-hidden bg-paper-100">
               <img
-                src={foto(fotos.overOnsHeader, 800, 80)}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/over/luuk-portret.webp`}
                 alt="Luuk Kanters, oprichter van LK Dakwerken"
                 loading="lazy"
                 className="w-full h-full object-cover"
