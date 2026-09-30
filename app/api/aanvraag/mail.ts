@@ -52,8 +52,11 @@ function omlijsting(voorvertoning: string, inhoud: string) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:${PAPIER};">
 <tr><td align="center" style="padding:32px 16px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;">
-    <tr><td style="background:${INKT};border-radius:16px 16px 0 0;padding:28px 32px;">
-      <a href="${SITE}"><img src="${SITE}/logo-wit.png" width="190" alt="${bedrijf.naam}" style="display:block;border:0;width:190px;height:auto;"></a>
+    <tr><td style="padding:0;line-height:0;font-size:0;">
+      <!-- Logo en zwarte balk zitten samen in één afbeelding: Gmail en Outlook in
+           donkere modus kleuren achtergronden om, maar laten afbeeldingen met rust.
+           Een los wit logo op een CSS-achtergrond verdween daardoor tegen wit. -->
+      <a href="${SITE}"><img src="${SITE}/mail/header.png" width="600" alt="${bedrijf.naam}" style="display:block;border:0;width:100%;max-width:600px;height:auto;"></a>
     </td></tr>
     <tr><td style="background:#ffffff;padding:40px 32px;border-radius:0 0 16px 16px;">
       ${inhoud}

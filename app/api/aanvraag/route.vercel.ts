@@ -77,6 +77,16 @@ export async function POST(req: Request) {
   const email = waarden.email ?? '';
   if (!naam || !EMAIL.test(email)) return Response.json({ ok: false }, { status: 400 });
 
+  // Adres, postcode en plaats als één blok: Gmail maakt van een adres over losse
+  // tabelrijen één link en schuift daarbij de cellen uit de kolommen.
+  if (waarden.straat) {
+    waarden.straat = [waarden.straat, [waarden.postcode, waarden.plaats].filter(Boolean).join(' ')]
+      .filter(Boolean)
+      .join('\n');
+    delete waarden.postcode;
+    delete waarden.plaats;
+  }
+
   const rijen = Object.entries(waarden).map(([k, v]) => [labels[k], v] as [string, string]);
   // De klant ziet zijn eigen invoer terug, zonder ons interne nummer en de prijsindicatie.
   const klantRijen = rijen.filter(([l]) => l !== 'Aanvraagnummer' && l !== 'Prijsindicatie');
