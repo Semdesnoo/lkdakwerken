@@ -1,6 +1,6 @@
-:HL["/lkdakwerken/_next/static/chunks/0mcqatfjpae86.css","style"]
+:HL["/lkdakwerken/_next/static/chunks/0ttdmh38zb_pn.css","style"]
 :HL["/lkdakwerken/_next/static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/lkdakwerken/logo-wit.png","image"]
 :HL["/lkdakwerken/projecten/project-09.webp","image"]
 :HL["/lkdakwerken/over/luuk-portret.webp","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"dakinspectie-kopen-huis","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"oIftNN7x0apdiEv1VYfHm"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"blog","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"dakinspectie-kopen-huis","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"fX9YihNUE694yjX93un3T"}
