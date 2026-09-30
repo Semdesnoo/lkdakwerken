@@ -14,6 +14,8 @@ import {
   Lock,
   Phone,
   Wrench,
+  ImagePlus,
+  X,
 } from 'lucide-react';
 import {
   berekenIndicatie,
@@ -22,7 +24,9 @@ import {
   type OptieId,
 } from '@/lib/prijzen';
 import { bedrijf } from '@/lib/data';
-import { verstuurAanvraag } from '@/lib/verstuur';
+import { verkleinFoto, verstuurAanvraag } from '@/lib/verstuur';
+
+const MAX_FOTOS = 3;
 
 const dienstOpties = [
   { value: 'bitumen-daken', label: 'Bitumen daken', hint: 'Nieuwe of vervangende dakbedekking', Icoon: Layers },
@@ -46,7 +50,7 @@ const OMSCHRIJVING_PLACEHOLDER: Record<string, string> = {
   nieuwbouw: 'Bijvoorbeeld: aanbouw van circa 45 m². De constructie wordt volgende maand geplaatst.',
   onderhoud: 'Bijvoorbeeld: we willen het dak jaarlijks laten controleren.',
   lekkage: 'Bijvoorbeeld: sinds gisteren lekt het bij de achterzijde van de aanbouw wanneer het hard regent.',
-  '': 'Sinds wanneer speelt het probleem? Hoe oud is het dak? Zijn er foto\'s beschikbaar?',
+  '': 'Sinds wanneer speelt het probleem? Hoe oud is het dak?',
 };
 
 type VeldNaam = 'dienst' | 'oppervlakte' | 'naam' | 'email' | 'telefoon' | 'straat' | 'postcode' | 'plaats' | 'opmerkingen';
@@ -107,6 +111,8 @@ export function OfferteFormulier() {
   const [bezig, setBezig] = useState(false);
   const [verzendFout, setVerzendFout] = useState(false);
   const [website, setWebsite] = useState('');
+  const [fotos, setFotos] = useState<{ naam: string; data: string }[]>([]);
+  const [fotoFout, setFotoFout] = useState('');
   /* De schuif staat pas aan zodra de bezoeker hem gebruikt; daarvoor is het
      oppervlak onbekend en tonen we nog geen prijs. */
   const [stand, setStand] = useState(STANDAARD_STAND);
@@ -161,6 +167,23 @@ export function OfferteFormulier() {
     );
   }
 
+  async function voegFotosToe(e: React.ChangeEvent<HTMLInputElement>) {
+    const gekozen = Array.from(e.target.files ?? []);
+    e.target.value = ''; // zelfde bestand opnieuw kiezen moet ook werken
+    const ruimte = MAX_FOTOS - fotos.length;
+    setFotoFout(gekozen.length > ruimte ? `U kunt maximaal ${MAX_FOTOS} foto's toevoegen.` : '');
+    const nieuw: { naam: string; data: string }[] = [];
+    for (const bestand of gekozen.slice(0, ruimte)) {
+      try {
+        nieuw.push({ naam: bestand.name, data: await verkleinFoto(bestand) });
+      } catch {
+        // Bv. HEIC in een browser die dat niet kan lezen.
+        setFotoFout(`"${bestand.name}" kon niet worden gelezen. Probeer een JPG- of PNG-foto.`);
+      }
+    }
+    setFotos((vorige) => [...vorige, ...nieuw].slice(0, MAX_FOTOS));
+  }
+
   function toonFout(k: VeldNaam) {
     return Boolean((aangeraakt[k] || gepoogd) && fouten[k]);
   }
@@ -195,6 +218,7 @@ export function OfferteFormulier() {
             : '',
         },
         website,
+        fotos.map((f) => f.data),
       );
     } catch {
       // Nummer bewaren: een tweede poging hoort bij dezelfde aanvraag.
@@ -686,6 +710,33 @@ export function OfferteFormulier() {
               placeholder={OMSCHRIJVING_PLACEHOLDER[data.dienst] ?? OMSCHRIJVING_PLACEHOLDER['']}
               className="field-input resize-y"
             />
+
+            <div className="mt-6">
+              <span className="field-label">Foto&apos;s van het dak (optioneel, maximaal {MAX_FOTOS})</span>
+              <div className="flex flex-wrap gap-3">
+                {fotos.map((f, i) => (
+                  <div key={i} className="relative w-24 h-24 rounded-xl overflow-hidden bg-paper-100">
+                    <img src={`data:image/jpeg;base64,${f.data}`} alt={f.naam} className="w-full h-full object-cover" />
+                    <button
+                      type="button"
+                      onClick={() => setFotos((v) => v.filter((_, j) => j !== i))}
+                      aria-label={`Verwijder ${f.naam}`}
+                      className="absolute top-1.5 right-1.5 w-7 h-7 rounded-full bg-ink-950/75 text-white flex items-center justify-center hover:bg-ink-950"
+                    >
+                      <X className="w-4 h-4" aria-hidden="true" />
+                    </button>
+                  </div>
+                ))}
+                {fotos.length < MAX_FOTOS && (
+                  <label className="w-24 h-24 rounded-xl border-2 border-dashed border-paper-300 text-ink-500 flex flex-col items-center justify-center gap-1 text-xs cursor-pointer hover:border-blue-500 hover:text-blue-500 transition-colors focus-within:border-blue-500">
+                    <ImagePlus className="w-6 h-6" aria-hidden="true" />
+                    Foto toevoegen
+                    <input type="file" accept="image/*" multiple onChange={voegFotosToe} className="sr-only" />
+                  </label>
+                )}
+              </div>
+              {fotoFout && <p className="field-error">{fotoFout}</p>}
+            </div>
           </fieldset>
 
           <div className="form-divider" aria-hidden="true" />

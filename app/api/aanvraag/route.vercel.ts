@@ -20,6 +20,7 @@ const VELDEN = {
     postcode: 'Postcode',
     plaats: 'Plaats',
     opmerkingen: 'Omschrijving',
+    fotos: "Foto's",
   },
   contact: {
     onderwerp: 'Onderwerp',
@@ -53,7 +54,7 @@ export async function POST(req: Request) {
     return Response.json({ ok: false }, { status: 500 });
   }
 
-  let body: { soort?: string; velden?: Record<string, unknown>; website?: string };
+  let body: { soort?: string; velden?: Record<string, unknown>; website?: string; fotos?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -87,6 +88,17 @@ export async function POST(req: Request) {
     delete waarden.plaats;
   }
 
+  // Foto's alleen bij offertes, maximaal 3, en alleen echte JPEG's (de browser
+  // verkleint ze naar JPEG) van redelijk formaat.
+  const fotos =
+    soort === 'offerte' && Array.isArray(body.fotos)
+      ? body.fotos
+          .filter((f): f is string => typeof f === 'string' && f.startsWith('/9j/') && f.length < 2_000_000)
+          .slice(0, 3)
+      : [];
+  delete waarden.fotos; // alleen wij vullen deze rij, nooit de bezoeker
+  if (fotos.length) waarden.fotos = `${fotos.length} bijgevoegd`;
+
   const rijen = Object.entries(waarden).map(([k, v]) => [labels[k], v] as [string, string]);
   // De klant ziet zijn eigen invoer terug, zonder ons interne nummer en de prijsindicatie.
   const klantRijen = rijen.filter(([l]) => l !== 'Aanvraagnummer' && l !== 'Prijsindicatie');
@@ -104,6 +116,7 @@ export async function POST(req: Request) {
       reply_to: email,
       subject: onderwerp,
       html: interneMail({ soort, naam, email, telefoon: waarden.telefoon, rijen }),
+      attachments: fotos.map((content, i) => ({ filename: `foto-${i + 1}.jpg`, content })),
     });
   } catch (fout) {
     console.error(fout);
