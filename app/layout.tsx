@@ -5,6 +5,7 @@ import { Navigation } from '@/components/Navigation';
 import { Footer } from '@/components/Footer';
 import { ScrollReveal } from '@/components/ScrollReveal';
 import { WhatsappFloat } from '@/components/WhatsappFloat';
+import { Analytics } from '@vercel/analytics/next';
 
 // Body font: Inter
 const inter = Inter({
@@ -151,6 +152,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <ScrollReveal />
         <WhatsappFloat />
+        <Analytics />
       </body>
     </html>
   );
