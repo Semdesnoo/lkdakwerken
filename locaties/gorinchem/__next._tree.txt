@@ -1,5 +1,5 @@
-:HL["/lkdakwerken/_next/static/chunks/0otpv9qtjajzw.css","style"]
+:HL["/lkdakwerken/_next/static/chunks/0mcqatfjpae86.css","style"]
 :HL["/lkdakwerken/_next/static/media/83afe278b6a6bb3c-s.p.0q-301v4kxxnr.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/lkdakwerken/logo-wit.png","image"]
 :HL["/lkdakwerken/projecten/project-08.webp","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locaties","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"gorinchem","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"dv6Z0VquCYR30g0Y9QXpD"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"locaties","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"gorinchem","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"pLFsXDx5JIgbgJJfy0yF1"}
