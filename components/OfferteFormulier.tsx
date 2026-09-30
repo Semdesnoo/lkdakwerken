@@ -21,6 +21,8 @@ import {
   opties as prijsOpties,
   type OptieId,
 } from '@/lib/prijzen';
+import { bedrijf } from '@/lib/data';
+import { verstuurAanvraag } from '@/lib/verstuur';
 
 const dienstOpties = [
   { value: 'bitumen-daken', label: 'Bitumen daken', hint: 'Nieuwe of vervangende dakbedekking', Icoon: Layers },
@@ -102,6 +104,9 @@ export function OfferteFormulier() {
   const [gepoogd, setGepoogd] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [aanvraagnummer, setAanvraagnummer] = useState('');
+  const [bezig, setBezig] = useState(false);
+  const [verzendFout, setVerzendFout] = useState(false);
+  const [website, setWebsite] = useState('');
   /* De schuif staat pas aan zodra de bezoeker hem gebruikt; daarvoor is het
      oppervlak onbekend en tonen we nog geen prijs. */
   const [stand, setStand] = useState(STANDAARD_STAND);
@@ -160,7 +165,7 @@ export function OfferteFormulier() {
     return Boolean((aangeraakt[k] || gepoogd) && fouten[k]);
   }
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
     setGepoogd(true);
     if (Object.keys(fouten).length > 0) {
@@ -169,7 +174,37 @@ export function OfferteFormulier() {
       document.getElementById(eerste)?.focus({ preventScroll: false });
       return;
     }
-    setAanvraagnummer(nieuwAanvraagnummer());
+    if (bezig) return;
+    const nummer = aanvraagnummer || nieuwAanvraagnummer();
+    setBezig(true);
+    setVerzendFout(false);
+    try {
+      await verstuurAanvraag(
+        'offerte',
+        {
+          ...data,
+          aanvraagnummer: nummer,
+          dienst: dienstOpties.find((o) => o.value === data.dienst)?.label ?? data.dienst,
+          oppervlakte: oppervlakBekend ? data.oppervlakte : '',
+          opties: prijsOpties
+            .filter((o) => gekozenOpties.includes(o.id))
+            .map((o) => o.label)
+            .join(', '),
+          indicatie: indicatie
+            ? `${formatEuro(indicatie.van)} – ${formatEuro(indicatie.tot)}${indicatie.eenheid ? ' ' + indicatie.eenheid : ''}`
+            : '',
+        },
+        website,
+      );
+    } catch {
+      // Nummer bewaren: een tweede poging hoort bij dezelfde aanvraag.
+      setAanvraagnummer(nummer);
+      setVerzendFout(true);
+      setBezig(false);
+      return;
+    }
+    setBezig(false);
+    setAanvraagnummer(nummer);
     setSubmitted(true);
     // De bevestiging is korter dan het formulier, dus zonder scrollen kijkt de
     // bezoeker naar de footer in plaats van naar het bedankbericht.
@@ -262,6 +297,17 @@ export function OfferteFormulier() {
       </ol>
 
       <form onSubmit={submit} noValidate>
+        {/* Honeypot tegen spambots: onzichtbaar voor mensen en schermlezers. */}
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+          className="hidden"
+        />
         <div className="panel p-6 md:p-10">
           {/* Groep 1: dak-informatie */}
           <fieldset className="form-group">
@@ -653,13 +699,20 @@ export function OfferteFormulier() {
               </span>
             </p>
             <div className="self-start sm:self-auto">
-              <button type="submit" className="btn-pill">
-                <span className="label">Vraag mijn offerte aan</span>
+              <button type="submit" disabled={bezig} className="btn-pill disabled:opacity-60">
+                <span className="label">{bezig ? 'Bezig met versturen...' : 'Vraag mijn offerte aan'}</span>
                 <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
               </button>
               <p className="mt-2 text-xs text-ink-400">Vrijblijvend · Geen verplichtingen</p>
             </div>
           </div>
+          {verzendFout && (
+            <p role="alert" className="mt-6 field-error">
+              Versturen is niet gelukt. Probeer het opnieuw, of mail ons op{' '}
+              <a href={`mailto:${bedrijf.email}`} className="underline">{bedrijf.email}</a> of bel{' '}
+              <a href="tel:+31680110879" className="underline">{bedrijf.telefoon}</a>.
+            </p>
+          )}
         </div>
       </form>
     </div>

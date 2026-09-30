@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { ArrowRight, Check, Lock } from 'lucide-react';
+import { bedrijf } from '@/lib/data';
+import { verstuurAanvraag } from '@/lib/verstuur';
 
 const ONDERWERPEN = [
   'Bitumen dak',
@@ -40,16 +42,28 @@ export function ContactFormulier() {
   const [aangeraakt, setAangeraakt] = useState<Partial<Record<Veld, boolean>>>({});
   const [gepoogd, setGepoogd] = useState(false);
   const [verzonden, setVerzonden] = useState(false);
+  const [bezig, setBezig] = useState(false);
+  const [verzendFout, setVerzendFout] = useState(false);
+  const [website, setWebsite] = useState('');
 
   const fouten = valideer(data);
   const toonFout = (k: Veld) => Boolean((aangeraakt[k] || gepoogd) && fouten[k]);
   const update = (k: Veld, v: string) => setData((d) => ({ ...d, [k]: v }));
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
     setGepoogd(true);
-    if (Object.keys(fouten).length > 0) return;
-    setVerzonden(true);
+    if (Object.keys(fouten).length > 0 || bezig) return;
+    setBezig(true);
+    setVerzendFout(false);
+    try {
+      await verstuurAanvraag('contact', data, website);
+      setVerzonden(true);
+    } catch {
+      setVerzendFout(true);
+    } finally {
+      setBezig(false);
+    }
   }
 
   if (verzonden) {
@@ -70,6 +84,17 @@ export function ContactFormulier() {
 
   return (
     <form onSubmit={submit} noValidate className="panel p-6 md:p-10">
+      {/* Honeypot tegen spambots: onzichtbaar voor mensen en schermlezers. */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        value={website}
+        onChange={(e) => setWebsite(e.target.value)}
+        className="hidden"
+      />
       {data.onderwerp === 'Lekkage' && (
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl bg-blue-50 p-5">
           <p className="font-medium text-ink-900">Heeft u momenteel actieve lekkage?</p>
@@ -164,11 +189,18 @@ export function ContactFormulier() {
           <Lock className="w-4 h-4 mt-0.5 text-blue-500 shrink-0" aria-hidden="true" />
           Uw gegevens worden alleen gebruikt om contact met u op te nemen over uw aanvraag.
         </p>
-        <button type="submit" className="btn-pill self-start sm:self-auto">
-          <span className="label">Verstuur mijn bericht</span>
+        <button type="submit" disabled={bezig} className="btn-pill self-start sm:self-auto disabled:opacity-60">
+          <span className="label">{bezig ? 'Bezig met versturen...' : 'Verstuur mijn bericht'}</span>
           <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
         </button>
       </div>
+      {verzendFout && (
+        <p role="alert" className="mt-6 field-error">
+          Versturen is niet gelukt. Probeer het opnieuw, of mail ons op{' '}
+          <a href={`mailto:${bedrijf.email}`} className="underline">{bedrijf.email}</a> of bel{' '}
+          <a href="tel:+31680110879" className="underline">{bedrijf.telefoon}</a>.
+        </p>
+      )}
     </form>
   );
 }
