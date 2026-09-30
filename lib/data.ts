@@ -4,20 +4,19 @@
  * opgebouwd via de helper in lib/images.ts.
  */
 
-// Fotopool voor locatiepagina's: daken, Nederlandse stadsbeelden en gevels.
+// Fotopool voor locatiepagina's: Rotterdamse skyline plus eigen opgeleverde daken uit de regio.
 const locatieFotos = [
   'photo-1526505917130-857817501277',
   'photo-1597224646250-fadbb825dcf8',
-  'photo-1459679749680-18eb1eb37418',
-  'photo-1583295125721-766a0088cd3f',
-  'photo-1542379589-60723c4ece4e',
-  'photo-1566745609223-23bce7140997',
-  'photo-1744975748338-d226c7535d49',
-  'photo-1704908325704-250c0a685c11',
-  'photo-1774900132442-e7692caaf285',
-  'photo-1605704320412-5c3255bf47a9',
-  'photo-1618333302170-d7bbc76188da',
-  'photo-1465032995827-c3dce1d71c2a',
+  'project-01',
+  'project-02',
+  'project-04',
+  'project-05',
+  'project-06',
+  'project-07',
+  'project-08',
+  'project-09',
+  'project-10',
 ];
 
 const locatieLijst = [
@@ -81,7 +80,7 @@ export const diensten = [
     titel: "Bitumen daken",
     slug: "bitumen-daken",
     korte: "Hoogwaardige bitumen dakbedekking voor platte en licht hellende daken.",
-    heroImage: "photo-1635424709845-3a85ad5e1f5e",
+    heroImage: "project-08",
     beschrijving: "Bitumen is al decennialang de standaard voor platte daken. Wij werken uitsluitend met APP en SBS gemodificeerde bitumen van topmerken zoals IKO en Derbigum. Onze bitumen daken worden mechanisch bevestigd, gelast of volledig verkleefd, afhankelijk van de ondergrond en uw wensen.",
     icon: "layers",
     voordelen: [
@@ -95,7 +94,7 @@ export const diensten = [
     titel: "Renovatie",
     slug: "renovatie",
     korte: "Volledige dakrenovatie met garantiecertificaat.",
-    heroImage: "photo-1633759593085-1eaeb724fc88",
+    heroImage: "project-05",
     beschrijving: "Is uw dak toe aan vervanging? Wij verzorgen de complete renovatie: van inspectie en advies tot demontage van de oude bedekking en het aanbrengen van nieuw isolatie- en dakbedekkingssysteem. Na afloop ontvangt u een garantiecertificaat.",
     icon: "wrench",
     voordelen: [
@@ -109,7 +108,7 @@ export const diensten = [
     titel: "Nieuwbouw",
     slug: "nieuwbouw",
     korte: "Complete dakbedekking voor nieuwbouwprojecten.",
-    heroImage: "photo-1676802037786-3697d60497ae",
+    heroImage: "project-01",
     beschrijving: "Voor aannemers en particulieren realiseren wij complete daksystemen voor nieuwbouw. Wij denken mee in de ontwerpfase en stemmen de uitvoering af op de planning van uw bouwproject.",
     icon: "hammer",
     voordelen: [
@@ -123,7 +122,7 @@ export const diensten = [
     titel: "Onderhoud",
     slug: "onderhoud",
     korte: "Periodiek onderhoud voorkomt kostbare reparaties.",
-    heroImage: "photo-1779755376652-22ca6eba86b8",
+    heroImage: "project-06",
     beschrijving: "Periodiek dakonderhoud helpt gebreken vroegtijdig te herkennen en kan bijdragen aan het behoud van de technische staat van uw dak. Wij inspecteren, reinigen en onderhouden platte daken voor particuliere en zakelijke opdrachtgevers, met heldere rapportage na iedere controle.",
     icon: "shield-check",
     voordelen: [
@@ -137,7 +136,7 @@ export const diensten = [
     titel: "Lekkage",
     slug: "lekkage",
     korte: "Spoedservice bij lekkage. Vaak dezelfde dag ter plaatse.",
-    heroImage: "photo-1784009198441-fce45ab9d268",
+    heroImage: "project-02",
     beschrijving: "Daklekkage vraagt om snel handelen. Wij onderzoeken de oorzaak, beperken waar mogelijk verdere schade en zorgen voor een passende reparatie. Voor urgente lekkages kunt u ons direct bellen; wij zijn 7 dagen per week telefonisch bereikbaar.",
     icon: "droplet",
     voordelen: [
@@ -158,7 +157,7 @@ export const blogPosts = [
     leestijd: "6 min",
     datum: "2026-01-15",
     auteur: "Kees van der Linden",
-    image: "photo-1673645652864-9c285c1eed29",
+    image: "project-07",
     inhoud: `Bitumen en EPDM zijn de twee meest gekozen materialen voor platte daken in Nederland. Maar welke past het beste bij uw situatie? In dit artikel zetten we de belangrijkste verschillen op een rij.\n\n## Bitumen dakbedekking\n\nBitumen is al ruim een eeuw de standaard voor platte daken. Modern APP en SBS bitumen heeft een levensduur van 25 tot 30 jaar, is sterk en betaalbaar. Bitumen wordt warm of koud verwerkt en is daardoor op vrijwel elke ondergrond toepasbaar.\n\n## EPDM dakbedekking\n\nEPDM is een synthetisch rubber dat in één stuk op het dak wordt gelijmd. Het materiaal is elastisch, UV-bestendig en gaat tot 40 jaar mee. Het nadeel: EPDM is duurder in aanschaf en de verwerking vraagt meer specialistische kennis.\n\n## Wanneer kiest u wat?\n\nKies bitumen als u een betrouwbaar, betaalbaar dak wilt dat door elke dakdekker goed verwerkt kan worden. Kies EPDM als u maximaal 40 jaar wilt genieten zonder onderhoud en bereid bent om meer te investeren.\n\nTwijfelt u? Wij komen graag vrijblijvend langs voor een dakinspectie en eerlijk advies.`,
   },
   {
@@ -191,7 +190,7 @@ export const blogPosts = [
     leestijd: "7 min",
     datum: "2025-12-12",
     auteur: "Kees van der Linden",
-    image: "photo-1763665814538-8ba04597286c",
+    image: "project-04",
     inhoud: `Een volledige dakrenovatie kost gemiddeld tussen de 8.000 en 25.000 euro voor een gemiddelde woning. Maar wat bepaalt de prijs precies?\n\n## Factoren die de prijs bepalen\n\n**Oppervlakte**: het aantal vierkante meters is de belangrijkste prijsbepaler.\n\n**Materiaal**: bitumen is voordeliger dan EPDM of groendak.\n\n**Isolatie**: het meenemen van dakisolatie in de renovatie levert direct besparing op uw energierekening.\n\n**Bereikbaarheid**: een dak op de 4e verdieping zonder lift is duurder om te renoveren dan een dak op de begane grond.\n\n**Ondergrond**: rotte dakbeschot of doorgezakte balken zorgen voor meerwerk.\n\n## Hoe bespaart u slim?\n\n- Combineer renovatie met isolatie: subsidie mogelijk via ISDE\n- Voer het werk in het laagseizoen uit (oktober-maart)\n- Kies voor bitumen als topkwaliteit niet per se EPDM vereist\n- Vraag meerdere offertes aan en vergelijk op garantie en materiaal\n\n## Garantie als kwaliteitsindicator\n\nEen Garantiecertificaat bij oplevering geeft u 10 jaar garantie op waterdichtheid, ook als het bedrijf onverhoopt in gebreke blijft. Dat is pas echte zekerheid.`,
   },
   {
@@ -213,7 +212,7 @@ export const blogPosts = [
     leestijd: "4 min",
     datum: "2025-11-15",
     auteur: "Kees van der Linden",
-    image: "photo-1635424710928-0544e8512eae",
+    image: "project-09",
     inhoud: `De aankoop van een woning is een grote stap. Een bouwkundige keuring wordt vaak geadviseerd, maar het dak krijgt daarbij soms weinig aandacht. Dat is jammer, want een dakreparatie of renovatie kan al snel tienduizenden euro's kosten.\n\n## Wat wij controleren\n\nBij een dakinspectie voor aankoop kijken wij naar:\n\n- Leeftijd en conditie van de dakbedekking\n- Aansluitingen, randen en loodslabben\n- Staat van goten, hemelwaterafvoeren en kilgoten\n- Eventuele vochtplekken of schimmel\n- Staat van het dakbeschot (van binnenuit)\n\n## Onafhankelijk rapport\n\nU ontvangt een helder rapport met foto's en een inschatting van de kosten op korte en middellange termijn. Handig als onderhandelingsinstrument of om onaangename verrassingen te voorkomen.\n\n## Wanneer inschakelen?\n\nHet liefst vóór of tijdens het onderhandelingsproces. Een eigen dakdekker mee laten kijken op de bezichtigdag kan al veel duidelijk maken.\n\nWij bieden dakinspecties voor slechts 195 euro. Bel ons of plan online een afspraak.`,
   },
 ];
@@ -450,8 +449,8 @@ export const faq = [
 export const fotos = {
   overOnsTeam: "photo-1541888894402-f3b1af908be4",
   overOnsHeader: "photo-1541888946425-d81bb19240f5",
-  dienstenHeader: "photo-1744975748338-d226c7535d49",
-  blogHeader: "photo-1590365876016-da05ac533e83",
+  dienstenHeader: "project-04",
+  blogHeader: "project-10",
   locatiesHeader: "photo-1526505917130-857817501277",
   contactHeader: "photo-1597224646250-fadbb825dcf8",
   offerteHeader: "photo-1742112125567-3e8967bad60f",

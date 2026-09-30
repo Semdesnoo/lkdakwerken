@@ -10,6 +10,8 @@
  * NEXT_PUBLIC_BASE_PATH; lokaal zonder basePath blijft de waarde leeg.
  */
 export function foto(id: string, breedte = 1200, kwaliteit = 80) {
+  // Eigen projectfoto's ('project-01') passen beter bij de dienst dan stock.
+  if (id.startsWith('project-')) return breedte <= 700 ? projectKaart(id) : projectGroot(id);
   return `https://images.unsplash.com/${id}?w=${breedte}&q=${kwaliteit}&auto=format&fit=crop`;
 }
 

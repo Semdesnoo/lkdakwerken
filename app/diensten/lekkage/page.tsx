@@ -85,7 +85,7 @@ const faq = [
 const andereDiensten = [
   { slug: 'bitumen-daken', titel: 'Bitumen daken', tekst: 'Hoogwaardige bitumen dakbedekking voor platte en licht hellende daken.', knop: 'Bekijk bitumen daken', image: projectGroot('project-01') },
   { slug: 'renovatie', titel: 'Renovatie', tekst: 'Bij een sterk verouderd dak kan volledige renovatie een betere oplossing zijn.', knop: 'Bekijk renovatie', image: projectGroot('project-08') },
-  { slug: 'nieuwbouw', titel: 'Nieuwbouw', tekst: 'Complete dakbedekking voor nieuwbouwprojecten.', knop: 'Bekijk nieuwbouw', image: foto('photo-1541976590-713941681591', 600, 75) },
+  { slug: 'nieuwbouw', titel: 'Nieuwbouw', tekst: 'Complete dakbedekking voor nieuwbouwprojecten.', knop: 'Bekijk nieuwbouw', image: foto('project-01', 600, 75) },
   { slug: 'onderhoud', titel: 'Onderhoud', tekst: 'Laat uw dak periodiek controleren om aandachtspunten eerder te herkennen.', knop: 'Bekijk onderhoud', image: projectGroot('project-05') },
 ];
 
@@ -96,7 +96,7 @@ export default function LekkagePage() {
       <PageHeader
         titel="Lekkage"
         lead="Daklekkage vraagt om snel handelen. Wij onderzoeken de oorzaak, beperken waar mogelijk verdere schade en zorgen voor een passende reparatie. Voor urgente lekkages kunt u ons direct bellen."
-        imageSrc={foto('photo-1784009198441-fce45ab9d268', 2000, 80)}
+        imageSrc={foto('project-02', 2000, 80)}
         imageAlt="Dakdekker onderzoekt een beschadigde aansluiting op een plat dak"
         compact
       >

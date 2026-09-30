@@ -133,7 +133,7 @@ export default function NieuwbouwPage() {
       <PageHeader
         titel="Nieuwbouw"
         lead="Complete dakbedekking voor nieuwbouwprojecten. Van voorbereiding en materiaalkeuze tot uitvoering en oplevering. Wij realiseren complete daksystemen voor woningen, aanbouwen en bedrijfspanden en stemmen onze werkzaamheden af op de planning van uw bouwproject."
-        imageSrc={foto('photo-1541976590-713941681591', 2000, 80)}
+        imageSrc={foto('project-01', 2000, 80)}
         imageAlt="Plat dak in aanleg op een nieuwbouwproject"
         compact
       >
@@ -184,7 +184,7 @@ export default function NieuwbouwPage() {
           </Reveal>
           <Reveal delay={0.05} className="lg:col-span-6 rounded-3xl overflow-hidden aspect-[4/3]">
             <img
-              src={foto('photo-1590644365607-1c5e5a5c4c8e', 900, 78)}
+              src={foto('project-09', 900, 78)}
               alt="Dak in ruwbouwfase tijdens een nieuwbouwproject"
               loading="lazy"
               className="w-full h-full object-cover"
