@@ -312,7 +312,7 @@ export function Navigation() {
         <div className="px-6 py-6 border-t border-paper-200 space-y-3">
           <a href="tel:+31680110879" className="flex items-center gap-3 font-medium">
             <Phone className="w-4 h-4 text-blue-500" aria-hidden="true" />
-            <span>06 - 80 11 08 79</span>
+            <span>+31 6 80110879</span>
           </a>
           <Link
             href="/offerte"

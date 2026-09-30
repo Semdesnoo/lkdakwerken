@@ -394,7 +394,7 @@ export function OfferteFormulier() {
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50">
                       <Phone className="w-4 h-4" aria-hidden="true" />
                     </span>
-                    06 - 80 11 08 79
+                    +31 6 80110879
                   </a>
                 </div>
               )}

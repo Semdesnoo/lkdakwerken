@@ -101,7 +101,7 @@ export default function LekkagePage() {
         compact
       >
         <a href="tel:+31680110879" className="btn-pill">
-          <span className="label">Bel direct: 06 - 80 11 08 79</span>
+          <span className="label">Bel direct: +31 6 80110879</span>
           <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
         </a>
         <Link href="/offerte?dienst=lekkage" className="btn-ghost-invert">
@@ -145,7 +145,7 @@ export default function LekkagePage() {
           </div>
           <div className="mt-10 text-center">
             <a href="tel:+31680110879" className="btn-pill justify-center inline-flex">
-              <span className="label">Bel 06 - 80 11 08 79</span>
+              <span className="label">Bel +31 6 80110879</span>
               <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
             </a>
             <p className="mt-4 text-sm text-ink-500">
@@ -405,7 +405,7 @@ export default function LekkagePage() {
             </p>
             <div className="mt-8">
               <a href="tel:+31680110879" className="btn-pill">
-                <span className="label">Bel 06 - 80 11 08 79</span>
+                <span className="label">Bel +31 6 80110879</span>
                 <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
               </a>
             </div>
@@ -647,7 +647,7 @@ export default function LekkagePage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
               <a href="tel:+31680110879" className="btn-pill">
-                <span className="label">Bel 06 - 80 11 08 79</span>
+                <span className="label">Bel +31 6 80110879</span>
                 <span className="arrow"><Phone className="w-4 h-4" aria-hidden="true" /></span>
               </a>
               <Link href="/offerte?dienst=lekkage" className="btn-ghost-invert">

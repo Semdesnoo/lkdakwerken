@@ -636,7 +636,7 @@ export default function NieuwbouwPage() {
               </Link>
               <a href="tel:+31680110879" className="btn-ghost-invert">
                 <Phone className="w-4 h-4" aria-hidden="true" />
-                Bel 06 - 80 11 08 79
+                Bel +31 6 80110879
               </a>
             </div>
           </Reveal>

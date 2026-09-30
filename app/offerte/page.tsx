@@ -82,7 +82,7 @@ export default function OffertePage() {
                   href="tel:+31680110879"
                   className="mt-5 inline-block text-2xl font-display font-bold tracking-[-0.02em] link-underline"
                 >
-                  06 - 80 11 08 79
+                  +31 6 80110879
                 </a>
               </div>
             </Reveal>
