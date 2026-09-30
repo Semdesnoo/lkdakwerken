@@ -73,7 +73,7 @@ export default function OverOnsPage() {
           <Reveal className="lg:col-span-5">
             <div className="aspect-[4/5] rounded-3xl overflow-hidden bg-paper-100">
               <img
-                src={foto(fotos.overOnsTeam, 1000, 80)}
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH}/over/luuk.webp`}
                 alt="Luuk Kanters tijdens werkzaamheden op een dak"
                 loading="lazy"
                 className="w-full h-full object-cover"
