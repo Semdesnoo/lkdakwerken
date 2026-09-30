@@ -80,7 +80,7 @@ export const diensten = [
     titel: "Bitumen daken",
     slug: "bitumen-daken",
     korte: "Hoogwaardige bitumen dakbedekking voor platte en licht hellende daken.",
-    heroImage: "project-08",
+    heroImage: "diensten/bitumen",
     beschrijving: "Bitumen is al decennialang de standaard voor platte daken. Wij werken uitsluitend met APP en SBS gemodificeerde bitumen van topmerken zoals IKO en Derbigum. Onze bitumen daken worden mechanisch bevestigd, gelast of volledig verkleefd, afhankelijk van de ondergrond en uw wensen.",
     icon: "layers",
     voordelen: [

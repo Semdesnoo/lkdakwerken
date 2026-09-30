@@ -83,7 +83,7 @@ const faq = [
 ];
 
 const andereDiensten = [
-  { slug: 'bitumen-daken', titel: 'Bitumen daken', tekst: 'Hoogwaardige bitumen dakbedekking voor platte en licht hellende daken.', knop: 'Bekijk bitumen daken', image: projectGroot('project-01') },
+  { slug: 'bitumen-daken', titel: 'Bitumen daken', tekst: 'Hoogwaardige bitumen dakbedekking voor platte en licht hellende daken.', knop: 'Bekijk bitumen daken', image: foto('diensten/bitumen') },
   { slug: 'nieuwbouw', titel: 'Nieuwbouw', tekst: 'Complete dakbedekking en dakopbouw voor nieuwbouwprojecten.', knop: 'Bekijk nieuwbouw', image: foto('project-01', 600, 75) },
   { slug: 'onderhoud', titel: 'Onderhoud', tekst: 'Periodiek onderhoud helpt problemen vroegtijdig te herkennen en de levensduur van het dak te verlengen.', knop: 'Bekijk onderhoud', image: projectGroot('project-05') },
   { slug: 'lekkage', titel: 'Lekkage', tekst: 'Daklekkage laten onderzoeken en professioneel herstellen.', knop: 'Bekijk lekkage', image: projectGroot('project-08') },
