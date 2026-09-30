@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
-const basePath = '/lkdakwerken';
+// Vercel serveert vanaf de root van het domein, GitHub Pages onder /lkdakwerken.
+const basePath = process.env.VERCEL ? '' : '/lkdakwerken';
 
 const nextConfig = {
   output: 'export',

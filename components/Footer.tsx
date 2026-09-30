@@ -27,7 +27,7 @@ export function Footer() {
           {/* Merk en NAP */}
           <div className="md:col-span-3">
             <img
-              src="/lkdakwerken/logo-wit.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/logo-wit.png`}
               alt="LK Dakwerken"
               className="h-10 w-auto mb-6"
             />

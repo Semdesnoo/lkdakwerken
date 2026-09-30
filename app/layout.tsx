@@ -139,10 +139,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Het basePath staat niet automatisch voor deze paden, dus hier
             voluit. De .ico dekt de tab in elke browser, de png's zijn voor
             scherpe schermen en voor een snelkoppeling op het beginscherm. */}
-        <link rel="icon" href="/lkdakwerken/favicon.ico" sizes="any" />
-        <link rel="icon" href="/lkdakwerken/favicon-96.png" type="image/png" sizes="96x96" />
-        <link rel="apple-touch-icon" href="/lkdakwerken/apple-touch-icon.png" sizes="180x180" />
-        <link rel="manifest" href="/lkdakwerken/site.webmanifest" />
+        <link rel="icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH}/favicon.ico`} sizes="any" />
+        <link rel="icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH}/favicon-96.png`} type="image/png" sizes="96x96" />
+        <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH}/apple-touch-icon.png`} sizes="180x180" />
+        <link rel="manifest" href={`${process.env.NEXT_PUBLIC_BASE_PATH}/site.webmanifest`} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
       </head>
       <body className="min-h-screen flex flex-col">

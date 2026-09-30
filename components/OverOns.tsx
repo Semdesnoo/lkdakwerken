@@ -33,7 +33,7 @@ export function OverOns() {
             {/* Keurmerken: dezelfde blauwe merkkleur als de rest van de site,
                 zodat het zwart-wit logo niet uit de toon valt. */}
             <img
-              src="/lkdakwerken/keurmerken-blauw.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH}/keurmerken-blauw.png`}
               alt="VCA VOL en NEN 6050 keurmerken"
               loading="lazy"
               className="h-20 md:h-24 w-auto"
