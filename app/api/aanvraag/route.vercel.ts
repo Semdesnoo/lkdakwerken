@@ -1,4 +1,5 @@
 import { bedrijf } from '@/lib/data';
+import { interneMail, klantMail } from './mail';
 
 /* Alleen op Vercel gebouwd (zie pageExtensions in next.config.mjs): GitHub
    Pages kan geen servercode draaien, daar faalt de fetch en toont het
@@ -33,15 +34,6 @@ type Soort = keyof typeof VELDEN;
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const AFZENDER = `${bedrijf.naam} <${bedrijf.email}>`;
-
-function html(tekst: string) {
-  return tekst
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/\n/g, '<br>');
-}
 
 async function verstuur(mail: Record<string, unknown>) {
   const res = await fetch('https://api.resend.com/emails', {
@@ -85,13 +77,9 @@ export async function POST(req: Request) {
   const email = waarden.email ?? '';
   if (!naam || !EMAIL.test(email)) return Response.json({ ok: false }, { status: 400 });
 
-  const rijen = Object.entries(waarden)
-    .map(
-      ([k, v]) =>
-        `<tr><td style="padding:6px 16px 6px 0;color:#6b7280;vertical-align:top">${labels[k]}</td><td style="padding:6px 0;color:#111827">${html(v)}</td></tr>`,
-    )
-    .join('');
-  const tabel = `<table style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">${rijen}</table>`;
+  const rijen = Object.entries(waarden).map(([k, v]) => [labels[k], v] as [string, string]);
+  // De klant ziet zijn eigen invoer terug, zonder ons interne nummer en de prijsindicatie.
+  const klantRijen = rijen.filter(([l]) => l !== 'Aanvraagnummer' && l !== 'Prijsindicatie');
 
   const onderwerp =
     soort === 'offerte'
@@ -105,7 +93,7 @@ export async function POST(req: Request) {
       to: [bedrijf.email],
       reply_to: email,
       subject: onderwerp,
-      html: `<p style="font-family:Arial,sans-serif">Nieuwe aanvraag via de website:</p>${tabel}`,
+      html: interneMail({ soort, naam, email, telefoon: waarden.telefoon, rijen }),
     });
   } catch (fout) {
     console.error(fout);
@@ -121,14 +109,7 @@ export async function POST(req: Request) {
         soort === 'offerte'
           ? `We hebben uw offerteaanvraag ontvangen (${waarden.aanvraagnummer ?? ''})`
           : 'We hebben uw bericht ontvangen',
-      html: `<div style="font-family:Arial,sans-serif;font-size:15px;color:#111827;line-height:1.6">
-<p>Beste ${html(naam)},</p>
-<p>Bedankt voor uw ${soort === 'offerte' ? 'offerteaanvraag' : 'bericht'}. We nemen zo snel mogelijk contact met u op, meestal binnen één werkdag.</p>
-<p>Heeft u een lekkage die niet kan wachten? Bel ons direct op <a href="tel:+31680110879">${bedrijf.telefoon}</a>.</p>
-<p style="margin-top:24px">Uw gegevens ter controle:</p>
-${tabel}
-<p style="margin-top:24px">Met vriendelijke groet,<br>${bedrijf.naam}<br>${bedrijf.adres}</p>
-</div>`,
+      html: klantMail({ soort, naam, aanvraagnummer: waarden.aanvraagnummer, rijen: klantRijen }),
     });
   } catch (fout) {
     // De aanvraag is binnen; een mislukte bevestiging mag de klant niet laten denken dat het fout ging.
