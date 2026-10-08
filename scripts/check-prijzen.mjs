@@ -33,9 +33,9 @@ test('geen indicatie zonder bruikbare invoer', () => {
 test('bitumen van 120 m² valt in de bandbreedte uit de FAQ', () => {
   const r = berekenIndicatie('bitumen-daken', '120');
   assert.ok(r);
-  // 120 x 75 = 9000, 120 x 110 = 13200
-  assert.equal(r.van, 9000);
-  assert.equal(r.tot, 13200);
+  // 120 x 55 = 6600, 120 x 80 = 9600
+  assert.equal(r.van, 6600);
+  assert.equal(r.tot, 9600);
   assert.equal(r.minimumGehaald, false);
 });
 

@@ -421,7 +421,7 @@ export const projecten: Project[] = [
 export const faq = [
   {
     vraag: "Wat kost een nieuw bitumen dak?",
-    antwoord: "De prijs hangt af van oppervlakte, huidige staat en isolatiewensen. Gemiddeld ligt bitumen tussen €75 en €110 per m² inclusief materiaal en arbeid. We maken graag een vrijblijvende offerte.",
+    antwoord: "De prijs hangt af van oppervlakte, huidige staat en isolatiewensen. Gemiddeld ligt bitumen tussen €55 en €80 per m² inclusief materiaal en arbeid. We maken graag een vrijblijvende offerte.",
   },
   {
     vraag: "Hoe snel kunnen jullie bij een lekkage zijn?",

@@ -2,7 +2,7 @@
  * Prijsmodel voor de indicatie in het offerteformulier.
  *
  * De bedragen zijn richtprijzen inclusief btw, materiaal en arbeid, en sluiten
- * aan op de prijs die ook in de FAQ staat (bitumen 75 tot 110 euro per m²).
+ * aan op de prijs die ook in de FAQ staat (bitumen 55 tot 80 euro per m²).
  * Alles staat bewust in dit ene bestand, zodat de tarieven aangepast kunnen
  * worden zonder de formuliercode aan te raken.
  *
@@ -40,22 +40,22 @@ type Tarief =
 export const tarieven: Record<DienstSlug, Tarief> = {
   'bitumen-daken': {
     soort: 'oppervlakte',
-    perM2: [75, 110],
-    minimum: 950,
+    perM2: [55, 80],
+    minimum: 700,
     eenheid: 'per m²',
     toelichting: 'Inclusief materiaal, arbeid en afvoer van het oude materiaal.',
   },
   renovatie: {
     soort: 'oppervlakte',
-    perM2: [110, 165],
-    minimum: 1450,
+    perM2: [80, 120],
+    minimum: 1050,
     eenheid: 'per m²',
     toelichting: 'Inclusief demontage van de oude bedekking en een nieuw daksysteem.',
   },
   nieuwbouw: {
     soort: 'oppervlakte',
-    perM2: [90, 140],
-    minimum: 1200,
+    perM2: [65, 105],
+    minimum: 900,
     eenheid: 'per m²',
     toelichting: 'Compleet daksysteem op een nieuwe constructie, exclusief dakramen.',
   },

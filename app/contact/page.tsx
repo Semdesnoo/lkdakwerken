@@ -211,12 +211,12 @@ export default function ContactPage() {
             <div className="rounded-3xl bg-ink-950 text-white p-6 sm:p-7">
               <p className="text-sm font-semibold text-blue-400">Uw prijsindicatie</p>
               <p className="mt-2 font-display text-3xl sm:text-4xl font-bold tracking-[-0.03em] leading-none">
-                € 9.000 <span className="text-white/50 font-normal">–</span> € 13.200
+                € 6.600 <span className="text-white/50 font-normal">–</span> € 9.600
               </p>
               <dl className="mt-5 pt-5 border-t border-blue-400/20 space-y-2.5">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
                   <dt className="text-white/70">Dakwerk, 120 m²</dt>
-                  <dd className="text-white font-medium">€ 75 tot € 110 per m²</dd>
+                  <dd className="text-white font-medium">€ 55 tot € 80 per m²</dd>
                 </div>
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 text-sm">
                   <dt className="text-white/70">Isolatie meenemen</dt>
