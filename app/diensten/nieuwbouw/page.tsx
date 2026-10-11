@@ -24,7 +24,6 @@ import { bedrijf, fotos } from '@/lib/data';
 import { foto, projectGroot } from '@/lib/images';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
-import { SubsidieCTA } from '@/components/SubsidieCTA';
 
 export const metadata: Metadata = {
   title: 'Dakdekker Nieuwbouw Rotterdam | Platte Daken | LK Dakwerken',
@@ -570,13 +569,6 @@ export default function NieuwbouwPage() {
               </details>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* 19. Subsidies — klein aanvullend blok, geen hoofd-CTA */}
-      <section className="section-pad bg-white">
-        <div className="container-tight">
-          <SubsidieCTA />
         </div>
       </section>
 

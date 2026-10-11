@@ -18,7 +18,7 @@ export default function DienstenPage() {
       <PageHeader
         titel="Vijf specialisaties."
         accent="Eén aanspreekpunt."
-        lead="Van een lekkage in uw garage tot de complete dakbedekking van een bedrijfspand. Wij regelen het van A tot Z, met een vast team en tien jaar garantie."
+        lead="Van een lekkage in uw garage tot de complete dakbedekking van een bedrijfspand. Wij regelen het van A tot Z, met een vast team en vijf jaar garantie."
         image={fotos.dienstenHeader}
         imageAlt="Platte daken van woningen in Zuid-Holland"
         compact

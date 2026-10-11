@@ -25,7 +25,6 @@ import { bedrijf, fotos } from '@/lib/data';
 import { foto, projectGroot } from '@/lib/images';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
-import { SubsidieCTA } from '@/components/SubsidieCTA';
 
 export const metadata: Metadata = {
   title: 'Dakonderhoud Rotterdam | Inspectie & Onderhoud | LK Dakwerken',
@@ -538,13 +537,6 @@ export default function OnderhoudPage() {
               </Link>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* 15. Verduurzaming — klein aanvullend blok */}
-      <section className="section-pad bg-paper-50">
-        <div className="container-tight">
-          <SubsidieCTA />
         </div>
       </section>
 

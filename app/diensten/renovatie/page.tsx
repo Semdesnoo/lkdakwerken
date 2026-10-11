@@ -18,7 +18,6 @@ import { bedrijf, fotos } from '@/lib/data';
 import { foto, projectGroot } from '@/lib/images';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
-import { SubsidieCTA } from '@/components/SubsidieCTA';
 
 export const metadata: Metadata = {
   title: 'Dakrenovatie Rotterdam | Plat Dak Renoveren | LK Dakwerken',
@@ -76,8 +75,7 @@ const faq = [
   { vraag: 'Moet de oude dakbedekking altijd worden verwijderd?', antwoord: 'Nee. In sommige situaties kan een bestaand dak geschikt zijn voor renovatie zonder dat alle daklagen volledig verwijderd hoeven te worden. Dit wordt tijdens de inspectie technisch beoordeeld.' },
   { vraag: 'Kan ik mijn dak tijdens de renovatie ook laten isoleren?', antwoord: 'In veel gevallen kan dakisolatie onderdeel worden van een renovatie. Welke isolatiemethode mogelijk is, hangt af van de bestaande constructie en gewenste dakopbouw.' },
   { vraag: 'Hoe lang duurt een dakrenovatie?', antwoord: 'Dat is afhankelijk van het oppervlak, de werkzaamheden, bereikbaarheid en weersomstandigheden. De verwachte uitvoeringsduur wordt vooraf in de planning besproken.' },
-  { vraag: 'Kan ik subsidie krijgen wanneer ik mijn dak laat isoleren?', antwoord: 'Voor bepaalde isolatiemaatregelen kan subsidie beschikbaar zijn. Via onze pagina Subsidies & verduurzaming kunt u de actuele landelijke en lokale mogelijkheden bekijken.' },
-  { vraag: 'Krijg ik garantie na een dakrenovatie?', antwoord: 'Op onze werkzaamheden gelden de afgesproken garantievoorwaarden, tot 10 jaar garantie op waterdichtheid, vastgelegd in een garantiecertificaat bij oplevering.' },
+  { vraag: 'Krijg ik garantie na een dakrenovatie?', antwoord: 'Op onze werkzaamheden gelden de afgesproken garantievoorwaarden, tot 5 jaar garantie op waterdichtheid, vastgelegd in een garantiecertificaat bij oplevering.' },
   { vraag: 'Kan ik in het gebouw blijven tijdens een dakrenovatie?', antwoord: 'Bij veel dakrenovaties kan het gebouw tijdens de werkzaamheden gewoon gebruikt blijven worden. Dit hangt echter af van het type gebouw en de omvang van de werkzaamheden.' },
   { vraag: 'Werken jullie voor particulieren én bedrijven?', antwoord: 'Ja. LK Dakwerken voert renovatiewerkzaamheden uit voor zowel particuliere als zakelijke opdrachtgevers.' },
 ];
@@ -340,16 +338,11 @@ export default function RenovatiePage() {
             </p>
             <p className="mt-4 text-ink-600 leading-relaxed max-w-xl">
               Betere dakisolatie kan daarnaast bijdragen aan minder warmteverlies en een comfortabeler binnenklimaat.
-              Voor bepaalde isolatiemaatregelen zijn mogelijk landelijke of lokale subsidies beschikbaar.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/subsidies-verduurzaming" className="btn-pill">
-                <span className="label">Bekijk subsidies & regelingen</span>
+              <Link href="/offerte?dienst=renovatie" className="btn-pill">
+                <span className="label">Bespreek isolatie bij mijn renovatie</span>
                 <span className="arrow"><ArrowRight className="w-4 h-4" aria-hidden="true" /></span>
-              </Link>
-              <Link href="/offerte" className="btn-link">
-                Bespreek isolatie bij mijn renovatie
-                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
             </div>
           </Reveal>
@@ -397,7 +390,7 @@ export default function RenovatiePage() {
               {[
                 'Controle en oplevering na afronding',
                 'Garantiecertificaat bij oplevering',
-                'Tot 10 jaar garantie op waterdichtheid',
+                'Tot 5 jaar garantie op waterdichtheid',
                 'Vast team, geen onderaannemers',
               ].map((k) => (
                 <li key={k} className="flex items-center gap-2.5 text-white/85">

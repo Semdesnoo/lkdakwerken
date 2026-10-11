@@ -99,7 +99,7 @@ export const diensten = [
     icon: "wrench",
     voordelen: [
       "Gratis dakinspectie vooraf",
-      "10 jaar garantie op waterdichtheid",
+      "5 jaar garantie op waterdichtheid",
       "Garantiecertificaat bij oplevering",
       "Vast team, geen onderaannemers",
     ],
@@ -191,18 +191,7 @@ export const blogPosts = [
     datum: "2025-12-12",
     auteur: "Luuk Kanters",
     image: "project-05",
-    inhoud: `Een volledige dakrenovatie kost gemiddeld tussen de 8.000 en 25.000 euro voor een gemiddelde woning. Maar wat bepaalt de prijs precies?\n\n## Factoren die de prijs bepalen\n\n**Oppervlakte**: het aantal vierkante meters is de belangrijkste prijsbepaler.\n\n**Materiaal**: bitumen is voordeliger dan EPDM of groendak.\n\n**Isolatie**: het meenemen van dakisolatie in de renovatie levert direct besparing op uw energierekening.\n\n**Bereikbaarheid**: een dak op de 4e verdieping zonder lift is duurder om te renoveren dan een dak op de begane grond.\n\n**Ondergrond**: rotte dakbeschot of doorgezakte balken zorgen voor meerwerk.\n\n## Hoe bespaart u slim?\n\n- Combineer renovatie met isolatie: subsidie mogelijk via ISDE\n- Voer het werk in het laagseizoen uit (oktober-maart)\n- Kies voor bitumen als topkwaliteit niet per se EPDM vereist\n- Vraag meerdere offertes aan en vergelijk op garantie en materiaal\n\n## Garantie als kwaliteitsindicator\n\nEen Garantiecertificaat bij oplevering geeft u 10 jaar garantie op waterdichtheid, ook als het bedrijf onverhoopt in gebreke blijft. Dat is pas echte zekerheid.`,
-  },
-  {
-    slug: "groendak-subsidie-zuid-holland",
-    titel: "Groendak aanleggen? Subsidie in Zuid-Holland",
-    excerpt: "Een sedumdak isoleert, vertraagt regenwater en verlengt de levensduur van uw dak. En u kunt subsidie krijgen.",
-    categorie: "Duurzaam",
-    leestijd: "5 min",
-    datum: "2025-11-28",
-    auteur: "Luuk Kanters",
-    image: "photo-1641244107263-266c7c43d0ac",
-    inhoud: `Steeds meer huiseigenaren in Zuid-Holland kiezen voor een groendak. Niet alleen vanwege de uitstraling, maar ook vanwege de praktische voordelen: betere isolatie, langere levensduur van de onderliggende dakbedekking en opvang van regenwater.\n\n## Subsidie in uw gemeente\n\nVeel Zuid-Hollandse gemeenten verstrekken subsidie voor de aanleg van een groendak. Het bedrag verschilt per gemeente, maar loopt op tot 50 euro per vierkante meter.\n\nGemeenten met groendak-subsidie in onze regio zijn onder andere Rotterdam, Den Haag, Dordrecht, Leiden, Delft en Zoetermeer. De ISDE-subsidie van de rijksoverheid is landelijk beschikbaar.\n\n## Wat kost een groendak?\n\nEen sedumdak kost gemiddeld 50 tot 80 euro per vierkante meter, inclusief aanleg en onderhoudsplan. Reken op een terugverdientijd van 12 tot 18 jaar via subsidie, besparing op energiekosten en waardevermeerdering van uw woning.\n\n## Onze werkwijze\n\nWij leggen groendaksystemen aan op bestaande en nieuwe platte daken. Eerst een waterdichte onderlaag in bitumen of EPDM, daarna een drainagelaag, substraat en sedummat. Binnen twee dagen heeft u een bloeiend dak.\n\nWilt u weten of uw groendak in aanmerking komt voor subsidie? Wij regelen de aanvraag voor u.`,
+    inhoud: `Een volledige dakrenovatie kost gemiddeld tussen de 8.000 en 25.000 euro voor een gemiddelde woning. Maar wat bepaalt de prijs precies?\n\n## Factoren die de prijs bepalen\n\n**Oppervlakte**: het aantal vierkante meters is de belangrijkste prijsbepaler.\n\n**Materiaal**: bitumen is voordeliger dan EPDM of groendak.\n\n**Isolatie**: het meenemen van dakisolatie in de renovatie levert direct besparing op uw energierekening.\n\n**Bereikbaarheid**: een dak op de 4e verdieping zonder lift is duurder om te renoveren dan een dak op de begane grond.\n\n**Ondergrond**: rotte dakbeschot of doorgezakte balken zorgen voor meerwerk.\n\n## Hoe bespaart u slim?\n\n- Combineer renovatie met isolatie: het dak gaat maar één keer open\n- Voer het werk in het laagseizoen uit (oktober-maart)\n- Kies voor bitumen als topkwaliteit niet per se EPDM vereist\n- Vraag meerdere offertes aan en vergelijk op garantie en materiaal\n\n## Garantie als kwaliteitsindicator\n\nEen Garantiecertificaat bij oplevering geeft u 5 jaar garantie op waterdichtheid, ook als het bedrijf onverhoopt in gebreke blijft. Dat is pas echte zekerheid.`,
   },
   {
     slug: "dakinspectie-kopen-huis",
@@ -309,7 +298,7 @@ export const bedrijf = {
 export const stats = [
   { cijfer: "5", label: "Jaar ervaring per dakdekker" },
   { cijfer: "387", label: "Projecten gerealiseerd" },
-  { cijfer: "10", label: "Jaar garantie bij LK Dakwerken" },
+  { cijfer: "5", label: "Jaar garantie bij LK Dakwerken" },
   { cijfer: "4,9", label: "Sterren review" },
 ];
 
@@ -433,7 +422,7 @@ export const faq = [
   },
   {
     vraag: "Krijg ik garantie op het werk?",
-    antwoord: "Ja. U ontvangt 10 jaar garantie op waterdichtheid, vastgelegd in een garantiecertificaat bij oplevering.",
+    antwoord: "Ja. U ontvangt 5 jaar garantie op waterdichtheid, vastgelegd in een garantiecertificaat bij oplevering.",
   },
   {
     vraag: "Werken jullie voor particulieren of alleen bedrijven?",

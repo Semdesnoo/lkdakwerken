@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: '%s | LK Dakwerken',
   },
   description:
-    'LK Dakwerken is uw specialist voor bitumen daken, renovatie, nieuwbouw, onderhoud en lekkage in heel Zuid-Holland. 10 jaar garantie.',
+    'LK Dakwerken is uw specialist voor bitumen daken, renovatie, nieuwbouw, onderhoud en lekkage in heel Zuid-Holland. 5 jaar garantie.',
   keywords: [
     'LK Dakwerken',
     'dakdekker',

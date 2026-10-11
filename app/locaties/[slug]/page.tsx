@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const loc = locaties.find((l) => l.slug === slug);
   if (!loc) return {};
   const title = `Dakdekker ${loc.naam} - LK Dakwerken`;
-  const description = `LK Dakwerken is uw dakdekker in ${loc.naam} en omgeving. Vast team, 10 jaar garantie.`;
+  const description = `LK Dakwerken is uw dakdekker in ${loc.naam} en omgeving. Vast team, 5 jaar garantie.`;
   return {
     title,
     description,
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const beloften = [
   'Gratis dakinspectie op locatie',
   'Binnen 5 werkdagen een offerte',
-  '10 jaar garantie op waterdichtheid',
+  '5 jaar garantie op waterdichtheid',
   'Vast team, geen onderaannemers',
 ];
 
@@ -49,7 +49,7 @@ export default async function LocatiePage({ params }: { params: Promise<{ slug: 
       <PageHeader
         titel="Dakdekker"
         accent={`${loc.naam}.`}
-        lead={`LK Dakwerken is uw lokale dakdekkersbedrijf in ${loc.naam} en omgeving. Vast team, passie voor het vak en 10 jaar garantie.`}
+        lead={`LK Dakwerken is uw lokale dakdekkersbedrijf in ${loc.naam} en omgeving. Vast team, passie voor het vak en 5 jaar garantie.`}
         image={loc.image}
         imageAlt={`Daken in ${loc.naam}`}
         compact

@@ -126,7 +126,7 @@ const faq = [
   {
     vraag: 'Krijg ik garantie op het dak?',
     antwoord:
-      'Op onze uitgevoerde dakwerkzaamheden geven wij volgens onze garantievoorwaarden tot 10 jaar garantie op waterdichtheid.',
+      'Op onze uitgevoerde dakwerkzaamheden geven wij volgens onze garantievoorwaarden tot 5 jaar garantie op waterdichtheid.',
   },
   {
     vraag: 'Werken jullie ook voor bedrijven?',
@@ -405,14 +405,9 @@ export default function BitumenDakenPage() {
               <p className="mt-4 text-ink-600 leading-relaxed max-w-2xl">
                 Wanneer oude dakbedekking wordt vervangen, is dit vaak een logisch moment om ook te kijken naar de
                 isolatie van het dak. Dakisolatie kan het warmteverlies van een woning verminderen en het
-                wooncomfort verbeteren. Voor bepaalde isolatiemaatregelen zijn mogelijk landelijke of lokale
-                subsidies beschikbaar.
+                wooncomfort verbeteren.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
-                <Link href="/subsidies-verduurzaming" className="btn-link">
-                  Bekijk subsidies
-                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
-                </Link>
                 <Link href="/offerte" className="btn-link">
                   Vraag advies over dakisolatie
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />

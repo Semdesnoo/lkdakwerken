@@ -14,7 +14,6 @@ const bedrijfsLinks = [
 
 const overigeLinks = [
   { label: 'Home', href: '/' },
-  { label: 'Subsidies', href: '/subsidies-verduurzaming' },
   { label: 'Locaties', href: '/locaties' },
   { label: 'Contact', href: '/contact' },
 ];
@@ -143,7 +142,7 @@ export function Footer() {
           <p>
             &copy; {new Date().getFullYear()} {bedrijf.naam}. KvK {bedrijf.kvk}.
           </p>
-          <p>10 jaar garantie op waterdichtheid.</p>
+          <p>5 jaar garantie op waterdichtheid.</p>
         </div>
       </div>
     </footer>

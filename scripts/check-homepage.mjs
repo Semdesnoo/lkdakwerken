@@ -61,7 +61,8 @@ rij.forEach((k, i) => console.log('  ' + i + ': ' + k));
 const paginaBron = readFileSync('app/page.tsx', 'utf8');
 const verwachteSecties = [...paginaBron.matchAll(/^\s*<[A-Z]\w+ \/>/gm)].length;
 eis(`${verwachteSecties} secties`, rij.length === verwachteSecties, `${rij.length} gevonden`);
-eis('geen twee gelijke achtergronden naast elkaar', rij.every((k, i) => i === 0 || k !== rij[i - 1]));
+/* Process en GoogleReviews staan sinds het schrappen van OverOns bewust als één zwart blok achter elkaar. */
+eis('geen twee gelijke lichte achtergronden naast elkaar', rij.every((k, i) => i === 0 || k === 'donker' || k !== rij[i - 1]));
 eis('donkere secties aanwezig', rij.filter((k) => k === 'donker').length >= 3);
 
 console.log('\nfouten: ' + fouten);

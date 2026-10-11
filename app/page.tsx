@@ -1,6 +1,5 @@
 import { Hero } from '@/components/Hero';
 import { DienstenPaneel } from '@/components/DienstenPaneel';
-import { OverOns } from '@/components/OverOns';
 import { Process } from '@/components/Process';
 import { ProjectenSlider } from '@/components/ProjectenSlider';
 import { GoogleReviews } from '@/components/GoogleReviews';
@@ -23,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'LK Dakwerken | Dakdekker Rotterdam en Zuid-Holland',
     description:
-      'Specialist in platte daken: bitumen, renovatie, nieuwbouw, onderhoud en lekkage. 10 jaar garantie.',
+      'Specialist in platte daken: bitumen, renovatie, nieuwbouw, onderhoud en lekkage. 5 jaar garantie.',
     url: '/',
   },
 };
@@ -46,9 +45,6 @@ export default function Home() {
       <DienstenPaneel />  {/* paper-50 met een wit paneel erin, dakvormige wig met zigzag geknipt uit de sectie zelf */}
       <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <Process />         {/* donker ink met foto */}
-      <SchuineOvergang kleur="#ffffff" hoek={1.75} />
-      <OverOns />         {/* wit */}
-      <SchuineOvergang kleur="#000000" hoek={-1.75} />
       <GoogleReviews />   {/* donker ink met raster en lijnen */}
       <SchuineOvergang kleur="#ffffff" hoek={1.75} />
       <ProjectenSlider /> {/* wit */}

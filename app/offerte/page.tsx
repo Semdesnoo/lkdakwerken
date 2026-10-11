@@ -5,7 +5,6 @@ import { fotos } from '@/lib/data';
 import { OfferteFormulier } from '@/components/OfferteFormulier';
 import { PageHeader } from '@/components/PageHeader';
 import { Reveal } from '@/components/Reveal';
-import { SubsidieCTA } from '@/components/SubsidieCTA';
 
 export const metadata: Metadata = {
   title: 'Offerte aanvragen - Binnen 24 uur reactie',
@@ -24,7 +23,7 @@ const inbegrepen = [
   'Heldere offerte zonder kleine lettertjes',
   'Fotorapport van de huidige staat',
   'Garantiecertificaat bij oplevering',
-  '10 jaar garantie op waterdichtheid',
+  '5 jaar garantie op waterdichtheid',
 ];
 
 export default function OffertePage() {
@@ -88,7 +87,6 @@ export default function OffertePage() {
             </Reveal>
           </div>
 
-          <SubsidieCTA />
         </div>
       </section>
     </>
